@@ -1,0 +1,13 @@
+{
+	"name": "acf/text-image-block",
+	"title": "Text Image Block",
+	"description": "Text with image block",
+	"category": "widgets",
+	"icon": "text-page",
+	"keywords": ["text", "block", "columns"],
+	"acf": {
+		"mode": "editor",
+		"renderTemplate": "text-image-block.php"
+	},
+	"align": "full"
+}

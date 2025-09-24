@@ -1,0 +1,13 @@
+{
+	"name": "acf/faqs-block",
+	"title": "Faqs block",
+	"description": "FAQs block in accordion form",
+	"category": "widgets",
+	"icon": "text-page",
+	"keywords": ["faqs", "faq", "questions", "answers"],
+	"acf": {
+		"mode": "editor",
+		"renderTemplate": "faqs-block.php"
+	},
+	"align": "full"
+}

@@ -1,0 +1,74 @@
+/*FONTS*/
+@font-face {
+    font-family: 'EB Garamond';
+    src: url('../fonts/EBGaramond-Regular.eot');
+    src: local('EB Garamond Regular'), local('EBGaramond-Regular'),
+        url('../fonts/EBGaramond-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/EBGaramond-Regular.woff2') format('woff2'),
+        url('../fonts/EBGaramond-Regular.woff') format('woff'),
+        url('../fonts/EBGaramond-Regular.ttf') format('truetype'),
+        url('../fonts/EBGaramond-Regular.svg#EBGaramond-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Helvetica World';
+    src: url('../fonts/HelveticaWorld-Regular.eot');
+    src: url('../fonts/HelveticaWorld-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/HelveticaWorld-Regular.woff2') format('woff2'),
+        url('../fonts/HelveticaWorld-Regular.woff') format('woff'),
+        url('../fonts/HelveticaWorld-Regular.ttf') format('truetype'),
+        url('../fonts/HelveticaWorld-Regular.svg#HelveticaWorld-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/****************************************
+GLOBAL
+*****************************************/
+
+body {
+    font-family: 'EB Garamond', serif;
+    color: #1B1B1B;
+    font-size: clamp(1rem, 0.6094rem + 1.25vw, 1.3125rem);
+    line-height: 1.2em;
+}
+
+.bg-tertiary {
+    background-color: $tertiary !important;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Helvetica World', sans-serif;
+    line-height: 1.2em;
+}
+
+/****************************************
+FOOTER
+*****************************************/
+.footer-title{
+    font-size: clamp(1rem, 0.4531rem + 1.75vw, 1.4375rem);
+    color: $primary;
+    font-weight: bold;
+}
+.footer-widgets .menu {
+    padding-left: 0;
+    list-style: none;
+    font-size: clamp(0.875rem, 0.5625rem + 1vw, 1.125rem);
+}
+.footer-widgets {
+    font-size: clamp(0.875rem, 0.5625rem + 1vw, 1.125rem);
+    a {
+        text-decoration: none;
+        color: #1B1B1B;
+        &:hover {
+            color: $secondary;
+            text-decoration: none; 
+        }
+    }
+}
+.site-info {
+    font-size: clamp(0.875rem, 0.5625rem + 1vw, 1.125rem);
+}

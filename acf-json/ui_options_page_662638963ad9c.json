@@ -1,0 +1,26 @@
+{
+    "key": "ui_options_page_662638963ad9c",
+    "title": "Theme Settings",
+    "active": true,
+    "menu_order": 0,
+    "page_title": "Theme Settings",
+    "menu_slug": "theme-options",
+    "parent_slug": "none",
+    "advanced_configuration": 1,
+    "icon_url": "",
+    "menu_title": "Theme Settings",
+    "position": 1,
+    "redirect": 0,
+    "description": "",
+    "menu_icon": {
+        "type": "media_library",
+        "value": "282"
+    },
+    "update_button": "Update settings",
+    "updated_message": "Settings Updated",
+    "capability": "edit_posts",
+    "data_storage": "options",
+    "post_id": "",
+    "autoload": 0,
+    "modified": 1758738312
+}
