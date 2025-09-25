@@ -14,7 +14,7 @@
     "description": "",
     "menu_icon": {
         "type": "media_library",
-        "value": "282"
+        "value": "83"
     },
     "update_button": "Update settings",
     "updated_message": "Settings Updated",
@@ -22,5 +22,5 @@
     "data_storage": "options",
     "post_id": "",
     "autoload": 0,
-    "modified": 1758738312
+    "modified": 1758821781
 }

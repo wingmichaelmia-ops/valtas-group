@@ -16,6 +16,7 @@ function register_acf_blocks() {
 	$blocks = array(
 		'faqs-block',
 		'text-image-block',
+		'hero-banner-block',
 	);
 
 	foreach ( $blocks as $block ) {

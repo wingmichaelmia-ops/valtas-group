@@ -21,6 +21,7 @@
   --spacer-sm: 1.5rem;
   --spacer-md: 3rem;
   --spacer-lg: 7rem;
+  --bs-border-color: rgba(0, 0, 0, 0.1) !important;
 }
 
 *,

@@ -13,6 +13,8 @@ defined( 'ABSPATH' ) || exit;
 $container = get_theme_mod( 'echo_container_type' );
 $linkedin = get_field('linkedin', 'option');
 $facebook = get_field('facebook', 'option');
+$privacy_policy = get_field('privacy_policy', 'option');
+$terms_conditions = get_field('terms_conditions', 'option');
 ?>
 
 <?php get_template_part( 'sidebar-templates/sidebar', 'footerfull' ); ?>
@@ -27,13 +29,13 @@ $facebook = get_field('facebook', 'option');
 
 				<footer class="site-footer" id="colophon">
 					<div class="footer-widgets">
-						<div class="row">
-							<div class="col-md-4">
+						<div class="row border-top border-bottom">
+							<div class="col-md-4 text-center p-4">
 								<a href="<?php echo get_site_url(); ?>"><img src="<?php echo get_template_directory_uri() . '/img/footer-logo.png'; ?>" alt="Valtas Group Logo"></a>
 							</div>
-							<div class="col-md-8">
+							<div class="col-md-8 border-start">
 								<div class="row">
-									<div class="col-md-4">
+									<div class="col-md-4 p-4">
 										<h4 class="footer-title">Quick Links</h4>
 										<?php
 											wp_nav_menu(array(
@@ -44,7 +46,7 @@ $facebook = get_field('facebook', 'option');
 											));
 										?>
 									</div>
-									<div class="col-md-4">
+									<div class="col-md-4 p-4">
 										<h4 class="footer-title">More Links</h4>
 										<?php
 											wp_nav_menu(array(
@@ -55,7 +57,7 @@ $facebook = get_field('facebook', 'option');
 											));
 										?>
 									</div>
-									<div class="col-md-4">
+									<div class="col-md-4 p-4">
 										<h4 class="footer-title">About</h4>
 										<?php
 											wp_nav_menu(array(
@@ -66,7 +68,7 @@ $facebook = get_field('facebook', 'option');
 											));
 										?>
 									</div>
-									<div class="col-md-12">
+									<div class="col-md-12 border-top p-4">
 										<h4 class="footer-title">Contact Us</h4>
 										<div class="row">
 											<div class="col-md-4">
@@ -89,12 +91,12 @@ $facebook = get_field('facebook', 'option');
 							</div>
 						</div>
 					</div>
-					<div class="site-info row">
+					<div class="site-info row py-3">
 						<div class="col-md-6">
 							© COPYRIGHT VALTAS GROUP - ALL RIGHTS RESERVED.
 						</div>
 						<div class="col-md-6 text-md-end">
-							Privacy Policy  |  Terms & Conditions
+							<?php if($privacy_policy) { ?><a href="<?php echo $privacy_policy; ?>">Privacy Policy</a><?php } ?>  |  <?php if($terms_conditions) { ?><a href="<?php the_field('terms_conditions', 'option') ?>">Terms & Conditions</a><?php } ?>
 						</div>
 						
 

@@ -1,0 +1,35 @@
+.echo-block-hero_banner {
+    position: relative;
+    padding: 150px 0 2rem;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    .bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 120dvh;
+        object-fit: cover;
+        z-index: -1;
+        object-position: top center;
+    }
+}
+.hero-banner__text {
+    font-size: clamp(1.125rem, 0.1875rem + 3vw, 1.875rem);
+    font-family: 'Helvetica World', sans-serif;
+    font-weight: bold;
+    line-height: 1.2em;
+}
+.hero-banner__title{
+    .highlight {
+        background-color: $tertiary;
+        display: inline-block;
+        padding: 0 10px 20px;
+        line-height: 1;
+    }   
+}
+.hero-banner__content {
+    max-width: 700px;
+}

@@ -1,0 +1,61 @@
+<?php
+
+$default = array(
+    "title_tag"      => get_sub_field( 'title_tag' ),
+    "title"         => get_sub_field( 'title' ),
+    "content"       => get_sub_field( 'blurb' ),
+    "background_image"       => get_sub_field( 'background_image' )
+);
+
+$args = wp_parse_args( $args, $default );
+
+?>
+    
+    <?php 
+        $image_id = get_sub_field( 'background_image' );
+        if( $image_id ) {
+            echo wp_get_attachment_image( $image_id, 'full', false, array(
+                'class'   => 'bg-image',
+                'loading' => 'lazy',
+            ) );
+        }
+    ?>
+
+    <div class="container">
+        <div class="hero-banner__content">
+            
+            <?php if ( $args['title'] ) : ?>
+                <<?php echo esc_html( $args['title_tag'] ); ?> class="hero-banner__title"><?php echo $args['title']; ?></<?php echo esc_html( $args['title_tag'] ); ?>>
+            <?php endif; ?>
+
+            <?php if ( $args['content'] ) : ?>
+                <div class="hero-banner__text">
+                    <?php echo wp_kses_post( wpautop( $args['content'] ) ); ?>
+                </div>
+            <?php endif; ?>
+            <?php 
+                $link = get_sub_field('button');
+                if( $link ): 
+                    $url = $link['url'];
+                    $title = $link['title'];
+                    $target = $link['target'] ? $link['target'] : '_self';
+                    ?>
+                    <div class="btn-valtas">
+                        <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>">
+                            <?php echo esc_html($title); ?>
+                        </a>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+
+
+
+    
+<script>
+window.addEventListener("scroll", () => {
+  const img = document.querySelector(".echo-block-hero_banner .bg-image");
+  const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  img.style.transform = `translateY(${scrolled * -20}%)`; // moves up as you scroll
+});
+</script>

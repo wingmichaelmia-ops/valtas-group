@@ -30,7 +30,6 @@ $echo_theme_includes = array(
 	'/editor.php',                          // Load Editor functions.
 	'/block-editor.php',                    // Load Block Editor functions.
 	'/shortcodes.php',                      // Library of shortcodes
-	'/blocks.php',                          // ACF Blocks
 );
 
 // Load WooCommerce functions if WooCommerce is activated.
