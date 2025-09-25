@@ -13,4 +13,4 @@ jobs:
       with:
         REMOTE_PATH: "wp-content/themes/valtas-theme/"
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }}
-        WPE_ENV: valtasdev
+        WPE_ENV: valtasstg
