@@ -2,7 +2,7 @@ name: Deploy to a WP Engine Development environment
 on:
   push:
     branches:
-     - dev
+     - main
 jobs:
   build:
     runs-on: ubuntu-latest
