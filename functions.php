@@ -55,3 +55,33 @@ function theme_register_menus() {
     );
 }
 add_action('after_setup_theme', 'theme_register_menus');
+
+
+function mytheme_enqueue_swiper() {
+    // Swiper CSS
+    wp_enqueue_style(
+        'swiper',
+        'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
+        array(),
+        '11.0.0'
+    );
+
+    // Swiper JS
+    wp_enqueue_script(
+        'swiper',
+        'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
+        array(),
+        '11.0.0',
+        true
+    );
+
+    // Init script
+    wp_enqueue_script(
+        'swiper-init',
+        get_template_directory_uri() . '/src/js/swiper-init.js',
+        array('swiper'),
+        null,
+        true
+    );
+}
+add_action('wp_enqueue_scripts', 'mytheme_enqueue_swiper', 20);

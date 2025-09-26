@@ -17,7 +17,8 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_639cada284e04",
@@ -37,16 +38,18 @@
                 "default": "Default",
                 "bg-light": "Light",
                 "bg-primary": "Primary",
-                "bg-danger": "Red",
-                "bg-light-green": "Light green"
+                "bg-light-blue": "Light Primary"
             },
             "default_value": "default",
             "return_format": "value",
             "multiple": 0,
             "allow_null": 0,
+            "allow_in_bindings": 1,
             "ui": 0,
             "ajax": 0,
             "placeholder": "",
+            "create_options": 0,
+            "save_options": 0,
             "allow_custom": 0,
             "search_placeholder": ""
         },
@@ -77,7 +80,9 @@
             "ajax": 0,
             "placeholder": "",
             "allow_custom": 0,
-            "search_placeholder": ""
+            "search_placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_639cae6e84e06",
@@ -94,7 +99,8 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_639cae7d84e07",
@@ -135,7 +141,9 @@
             "ajax": 0,
             "placeholder": "",
             "allow_custom": 0,
-            "search_placeholder": ""
+            "search_placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_63a45b37cbb5c",
@@ -152,7 +160,8 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_63ac449e95606",
@@ -197,7 +206,9 @@
             "allow_null": 0,
             "ui": 1,
             "ajax": 0,
-            "search_placeholder": ""
+            "search_placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_662a7e0a51d75",
@@ -265,5 +276,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1717159681
+    "modified": 1758914632
 }

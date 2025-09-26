@@ -125,3 +125,4 @@ class Accordion {
 document.querySelectorAll("details").forEach((el) => {
 	new Accordion(el);
 });
+

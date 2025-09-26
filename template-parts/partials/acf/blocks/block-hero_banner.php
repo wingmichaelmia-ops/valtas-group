@@ -50,12 +50,3 @@ $args = wp_parse_args( $args, $default );
     </div>
 
 
-
-    
-<script>
-window.addEventListener("scroll", () => {
-  const img = document.querySelector(".echo-block-hero_banner .bg-image");
-  const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-  img.style.transform = `translateY(${scrolled * -20}%)`; // moves up as you scroll
-});
-</script>
