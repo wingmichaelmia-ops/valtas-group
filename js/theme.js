@@ -6256,6 +6256,25 @@
   document.querySelectorAll("details").forEach(function (el) {
     new Accordion(el);
   });
+  jQuery(document).ready(function ($) {
+    function setActiveService() {
+      var windowCenter = $(window).scrollTop() + $(window).height() / 2;
+      $('.service-item').each(function () {
+        var $this = $(this);
+        var itemTop = $this.offset().top;
+        var itemBottom = itemTop + $this.outerHeight();
+        if (itemTop < windowCenter && itemBottom > windowCenter) {
+          $this.addClass('in-center');
+        } else {
+          $this.removeClass('in-center');
+        }
+      });
+    }
+
+    // Run on scroll + on page load
+    $(window).on('scroll resize', setActiveService);
+    setActiveService();
+  });
 
   exports.Alert = Alert;
   exports.Button = Button;

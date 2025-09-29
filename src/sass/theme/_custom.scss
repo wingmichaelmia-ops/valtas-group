@@ -103,6 +103,10 @@ h2 {
         border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
     }
 }
+
+.gradient-bg {
+    background: linear-gradient(180deg,rgba(1, 47, 107, 1) 0%, rgba(0, 159, 237, 1) 100%);
+}
 /****************************************
 BUTTONS
 
@@ -130,7 +134,7 @@ BUTTONS
         border: 1px solid #fff;
         padding: 0 20px;
         position: relative;
-        clip-path: polygon(7% 0%, 100% 0%, 100% 100%, 0% 100%);
+        clip-path: polygon(9% 0%, 100% 0%, 100% 100%, 0% 100%);
         border-bottom-left-radius: 0;
         text-decoration: none;
         height: 55px;
@@ -249,4 +253,239 @@ ul.usp-list {
 }
 .usp-blurb {
     font-size: clamp(1.5625rem, 1.5625rem + 0vw, 1.5625rem);
+}
+
+/****************************************
+SERVICES BLOCK
+*****************************************/
+.service-image img {
+    border: 8px solid rgba(255,255,255,0.1);
+}
+.service-title {
+    font-size: clamp(1.5625rem, 0.8976rem + 2.1277vw, 2.8125rem);
+    color: $secondary;
+}
+.service-number {
+    font-size: clamp(3rem, 2.3351rem + 2.1277vw, 4.25rem);
+    color: #D9D9D9;
+    opacity: 0.3;
+}
+.service-list {
+    position: relative;
+    z-index: 3;
+    &::before {
+        content: '';
+        width: 2px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, .3) 100%);
+        height: calc(100% - 65px);
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 20px;
+        margin: auto;
+        @include media-breakpoint-down(md){
+            margin-left: 20px;
+        }
+    }
+}
+.service-item {
+    position: relative;
+    padding: 45px 0;
+    justify-content: space-between;
+    .tracker {
+        width: 42px;
+        height: 42px;
+        border: 1px solid #fff;
+        position: absolute;
+        border-radius: 100%;
+        right: 0;
+        left: 0;
+        margin: auto;
+        opacity: .3;
+        top: 0;
+        @include media-breakpoint-down(md){
+            margin-left: 20px;
+            left: -49px;
+            width: 25px;
+            height: 25px;
+        }
+    }
+    &.in-center {
+        .tracker {
+            opacity: 1;
+            &::after {
+                content: "";
+                width: 20px;
+                height: 20px;
+                background: #fff;
+                display: block;
+                border-radius: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+                @include media-breakpoint-down(md){
+                    width: 10px;
+                    height: 10px;
+                }
+            }
+        }
+    }
+}
+.echo-block-services_block {
+    position: relative;
+    &::before {
+        background-image: url(../img/mark-bg.png);
+        background-position: bottom right;
+        background-repeat: no-repeat;
+        background-size: 50%;
+        content: '';
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+    &::after {
+        background-image: url(../img/dots-pattern.svg);
+        background-position: bottom right;
+        background-repeat: repeat;
+        background-size: contain;
+        content: '';
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        opacity: 0.02;
+    }
+}
+
+
+#testimonialCarousel {
+    margin-top: -30px;
+    .carousel-inner {
+        padding-top: 40px;
+    }
+    .carousel-indicators button {
+        background-color: #51513D;
+        width: 46px;
+        height: 9px;
+    }
+    .carousel-indicators {
+        top: 0;
+        right: 0;
+        margin-right: 0;
+        margin-left: 0;
+        justify-content: end;
+        height: max-content;
+        border-bottom: 1px solid rgba(0, 0, 0, .2);
+        padding-bottom: 15px;
+    }
+    .carousel-item {
+        padding-top: 20px;
+    }
+}
+.testimonial-title {
+    font-size: clamp(1.4375rem, 1.2048rem + 0.7447vw, 1.875rem);
+    font-weight: 700;
+    color: #51513D;
+}
+.testimonial-blurb {
+    font-size: clamp(1.25rem, 0.984rem + 0.8511vw, 1.75rem);
+    font-style: italic;
+    color:#363628;
+    line-height: 1.2em;
+    letter-spacing: -2px;
+}
+.testimonial-name {
+    font-size: clamp(1.625rem, 1.5585rem + 0.2128vw, 1.75rem);
+    color: #51513D;
+    font-family: "Helvetica World", sans-serif;
+}
+.testimonial-meta {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+.testimonial-designation {
+    font-size: clamp(1rem, 0.8005rem + 0.6383vw, 1.375rem);
+    color:#1B1B1B;
+    line-height: 1.2em;
+    letter-spacing: -2px;
+}
+.echo-block-testimonials {
+    background-color: rgba(252,236,201,.5);
+}
+.quote-icon {
+    width: 5rem;
+}
+
+.featured-review-title{
+    font-size: clamp(1.625rem, 1.492rem + 0.4255vw, 1.875rem);
+}
+
+/****************************************
+BLOG SECTION
+*****************************************/
+
+.post-date {
+    font-size: clamp(1rem, 0.8338rem + 0.5319vw, 1.3125rem);
+    color: $secondary;
+}
+.featured-post .card-title {
+    font-size: clamp(1.6875rem, 1.2553rem + 1.383vw, 2.5rem);
+}
+.blog-section .understrap-read-more-link {
+    display: none;
+}
+.btn-text {
+    font-size: clamp(.9375rem, .7713rem + .5319vw, 1.25rem);
+    width: max-content;
+    padding: 0;
+    text-decoration: underline;
+}
+.featured-post {
+    max-height: 500px;
+    overflow: hidden;
+    border-radius: 0;
+    border: 0;
+    img {
+        border-radius: 0;
+    }
+}
+.blog-section .card {
+    border-color: rgba(0, 0, 0, .15);
+    border-radius: 0 !important;
+    .card-title {
+        font-size: clamp(1.375rem, 1.1755rem + 0.6383vw, 1.75rem);
+        a {
+            text-decoration: none;
+            color: #51513D;
+        }
+    }
+    .card-img-top {
+        min-height: 230px;
+        max-height: 230px;
+        overflow: hidden;
+        border-radius: 0 !important;
+        img {
+            object-fit: cover;
+            object-position: center;
+            height: 100%;
+            width: 100%;
+            border-radius: 0;
+        }
+    }
+}
+.btn-center {
+    max-width: max-content;
+    margin: 2rem auto;
 }
