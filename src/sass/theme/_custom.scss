@@ -50,6 +50,11 @@ h1 {
 h2 {
     font-size: clamp(2.5rem, -5.625rem + 10.8333vw, 4.125rem);
 }
+blockquote.blockquote {
+    font-size: clamp(1.875rem, 1.3763rem + 1.5957vw, 2.8125rem);
+    color: $primary;
+    line-height: 1em;
+}
 .accordion-item {
     border-radius: 0 !important;
 }
@@ -80,12 +85,28 @@ h2 {
 .highlight {
     background-color: $tertiary;
     display: inline-block;
-    padding: 0 10px 20px;
+    padding: 0 10px 10px;
     line-height: 1;
     color: #fff;
 }  
 .bg-light-blue {
     background: rgba(0, 159, 237, 0.1);
+}
+.bg-mark {
+    position: relative;
+    &::before {
+        background-image: url(../img/brand-bg.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        content: "";
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
 }
 @include media-breakpoint-down(lg) {
     .border-top.border-top-lg-0 {
@@ -144,8 +165,10 @@ BUTTONS
         width: max-content;
         padding-left: 35px;
         font-size: clamp(1rem, 0.375rem + 0.8333vw, 1.125rem);
+        transition: background 0.5s ease;
         &:hover {
             background: #012f6b;
+            transition: background 0.5s ease;
         }
     }
 }
@@ -488,4 +511,204 @@ BLOG SECTION
 .btn-center {
     max-width: max-content;
     margin: 2rem auto;
+}
+
+/****************************************
+CTA BLOCK
+*****************************************/
+.echo-block-cta_block {
+    position: relative;
+    &::before {
+        content: '';
+        width: 100%;
+        height: 100%;
+        background: #012F6B;
+        background: linear-gradient(90deg, rgba(1, 47, 107, 1) 0%, rgba(1, 47, 107, 0.59) 44%, rgba(1, 47, 107, 0) 100%);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+    .bg-image {
+        position: absolute;
+        object-fit: cover;
+        width: 100%;
+        z-index: 1;
+        height: 100%;
+    }
+}
+.valtas-cta-block {
+    position: relative;
+    z-index: 3;
+}
+.valtas-cta-block__content {
+    max-width: 700px;
+}
+.valtas-cta-block__buttons {
+    margin-top: 2rem;
+    .btn-valtas:first-child {
+        &::before {
+            background: url(../img/btn-icon.png);
+            left: -32px;
+        }
+        a {
+            background: #fff;
+            color: $primary !important;
+            border-color: $primary !important; 
+            &:hover {
+                background: $primary;
+                color: #fff !important;
+                border-color: $primary !important;
+            }
+        }
+    }
+}
+/****************************************   
+ADVERT BLOCK    
+*****************************************/
+.echo-block-advert_block {
+    background-color: rgba(0,159,237,.1);
+}
+.advert-image {
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+.advert-text {
+    max-width: 700px;
+    margin: auto;
+}
+/****************************************   
+OUR VALUES BLOCK
+*****************************************/  
+.echo-block-our_values {
+    background: #fdf5e4;
+}
+.value-number {
+    text-align: center;
+    width: 150px;
+    height: 75px;
+
+    
+    z-index: 2;
+    background: #fdf5e4;
+    span {
+        width: 100px;
+        height: 100px;
+        background: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100%;
+        font-size: 41px;
+        color: $secondary;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        margin: 0 auto;
+        margin-top: -50px;
+    }
+}
+.value-title {
+    font-size: clamp(1.1875rem, 1.0878rem + 0.3191vw, 1.375rem);
+    font-weight: 700;
+    width: 100%;
+}
+@media(min-width:1200px) {
+    .value-number {
+
+        border: 2px dotted #009fed;
+        border-bottom: none;          /* remove bottom */
+        border-radius: 150px 150px 0 0; /* top rounded */
+        padding-top: 75px;
+    }
+    .value-item_inner {
+        max-width: 290px;
+        margin: auto;
+        display: flex;
+        margin: auto;
+        align-items: center;
+        justify-content: flex-end;
+        flex-flow: column;
+        height: 100%;
+    }
+
+    
+    .value-item {
+        margin-top: 0 !important;
+    }
+    .value-top {
+        padding-bottom: 77px;
+        .value-number {
+            border: 2px dotted #009fed;
+            border-top: none;          /* remove bottom */
+            border-radius:  0 0 150px 150px; /* top rounded */
+            padding-bottom: 75px;
+            padding-top: 0;
+            margin-bottom: 2px;
+        }
+        .value-blurb {
+            margin-bottom: 85px;
+        }
+    }
+    .value-bottom {
+        margin-top: -231px;
+        .value-title {
+            padding-top: 85px;
+            border-top: dotted 2px #009fed;
+        }
+        .value-item_inner {
+            justify-content: flex-start
+
+        }
+        .value-number {
+            margin-bottom: -2px;
+        }
+    }
+    .value-bottom .value-item:first-child .value-title,
+    .value-bottom .value-item:last-child .value-title {
+        position: relative;
+    }
+    .value-bottom .value-item:first-child .value-title:before {
+        content: '';
+        width: 11px;
+        height: 11px;
+        background: $tertiary;
+        display: block;
+        border-radius: 100%;
+        left: 0;
+        top: -6px;
+        position: absolute;
+    }
+    .value-bottom .value-item:last-child .value-title:before {
+        content: '';
+        width: 11px;
+        height: 11px;
+        background: $tertiary;
+        display: block;
+        border-radius: 100%;
+        right: 0;
+        top: -6px;
+        position: absolute;
+    }
+}
+@media(max-width:1399px) {
+    .value-number {
+        width: 100px;
+        span {
+            width: 70px;
+            height: 70px;
+            font-size: 30px;
+        }
+    }
+    .value-top .value-number span {
+        margin-top: -15px;
+    }
+}
+@media(max-width:1119px) {
+    
+    .value-item_inner {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+    }
 }

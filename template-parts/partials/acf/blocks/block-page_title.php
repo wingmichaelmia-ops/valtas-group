@@ -1,25 +1,50 @@
 <?php
-    $default = array(
-        "title"          => get_sub_field( 'title' ) ? : "Please enter title",
-        "alignment"      => get_sub_field( 'alignment' ),
-        "image_url"      => get_sub_field( 'image' )['url'] ?? get_template_directory_uri() . '/img/page-title.png'
-    );
-    
-    $args = wp_parse_args( $args, $default );
 
-    $text_alignment = 'text-' . $args['alignment'];
+$default = array(
+    "title_tag"      => get_sub_field( 'title_tag' ),
+    "title" => get_sub_field('title') ?: get_the_title(),
+    "content"       => get_sub_field( 'blurb' ),
+    "background_image"       => get_sub_field( 'background_image' )
+);
+
+$args = wp_parse_args( $args, $default );
+
 ?>
+    
+    <?php 
+        $image_id = get_sub_field( 'background_image' );
+        if( $image_id ) {
+            echo wp_get_attachment_image( $image_id, 'full', false, array(
+                'class'   => 'bg-image',
+                'loading' => 'lazy',
+            ) );
+        }
+    ?>
 
-<div class="block-page-title page-title d-flex flex-column position-relative overflow-hidden" data-delay="0.1" style="background-image: url(<?php echo $args['image_url']; ?>)">
-    <div class="container position-relative not-to-fade" data-delay="0.1">
-        <?php echo get_template_part( 'global-templates/breadcrumbs' ) ?>
+    <div class="container">
+        <div class="page-title__content text-white">
+            
+            <?php if ( $args['title'] ) : ?>
+                <<?php echo esc_html( $args['title_tag'] ); ?> class="page-title__title"><?php echo $args['title']; ?></<?php echo esc_html( $args['title_tag'] ); ?>>
+            <?php endif; ?>
+
+            <?php if ( $args['content'] ) : ?>
+                    <?php echo wp_kses_post( wpautop( $args['content'] ) ); ?>
+            <?php endif; ?>
+            <?php 
+                $link = get_sub_field('button');
+                if( $link ): 
+                    $url = $link['url'];
+                    $title = $link['title'];
+                    $target = $link['target'] ? $link['target'] : '_self';
+                    ?>
+                    <div class="btn-valtas">
+                        <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>">
+                            <?php echo esc_html($title); ?>
+                        </a>
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
 
-    <img src="<?php echo $args['image_url']; ?>" alt="banner" width="2000" height="400" class="d-block d-md-none w-100 h-auto">
 
-    <div class="container title-container mt-0 mt-md-auto content-row-inner not-to-fade" data-delay="0.2">
-        <?php if ($args['title']) { ?>
-        <h1 class="h1 my-3 mb-md-5 mt-md-auto col-md-4 <?php echo $text_alignment; ?> not-to-fade" data-delay="0.3"><?php echo $args['title']; ?></h1>
-        <?php } ?>
-    </div>
-</div>

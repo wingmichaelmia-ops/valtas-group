@@ -12648,6 +12648,88 @@ header .navbar-nav a:hover {
   max-width: 700px;
 }
 
+.echo-block-page_title {
+  position: relative;
+  padding: 150px 0 2rem;
+  height: 75dvh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.echo-block-page_title:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  background: linear-gradient(90deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.59) 60%, rgba(0, 0, 0, 0) 100%);
+  z-index: 1;
+}
+.echo-block-page_title .bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  -o-object-fit: cover;
+  object-fit: cover;
+  z-index: -1;
+  -o-object-position: top center;
+  object-position: top center;
+}
+.echo-block-page_title .btn-valtas {
+  position: relative;
+  margin-left: 35px;
+}
+.echo-block-page_title .btn-valtas::before {
+  content: "";
+  width: 66px;
+  background: url(../img/valtas-btn-icon.png);
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -35px;
+  z-index: 2;
+}
+.echo-block-page_title .btn-valtas a {
+  background: linear-gradient(180deg, #012f6b 0, #009fed 100%);
+  color: #fff !important;
+  border-radius: 40px;
+  text-transform: uppercase;
+  border: 1px solid #fff;
+  padding: 0 20px;
+  position: relative;
+  clip-path: polygon(7% 0%, 100% 0%, 100% 100%, 0% 100%);
+  border-bottom-left-radius: 0;
+  text-decoration: none;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: -moz-max-content;
+  width: max-content;
+  padding-left: 35px;
+}
+.echo-block-page_title .btn-valtas a:hover {
+  background: #012f6b;
+}
+
+.page-title__text {
+  font-size: clamp(1.125rem, 0.1875rem + 3vw, 1.875rem);
+  font-family: "Helvetica World", sans-serif;
+  font-weight: bold;
+  line-height: 1.2em;
+}
+
+.page-title__content {
+  max-width: 550px;
+  z-index: 2;
+  position: relative;
+}
+
 /*FONTS*/
 @font-face {
   font-family: "EB Garamond";
@@ -12692,6 +12774,12 @@ h2, .h2 {
   font-size: clamp(2.5rem, -5.625rem + 10.8333vw, 4.125rem);
 }
 
+blockquote.blockquote, blockquote.wp-block-quote {
+  font-size: clamp(1.875rem, 1.3763rem + 1.5957vw, 2.8125rem);
+  color: #012F6C;
+  line-height: 1em;
+}
+
 .accordion-item {
   border-radius: 0 !important;
 }
@@ -12726,13 +12814,30 @@ h2, .h2 {
 .highlight {
   background-color: #009FED;
   display: inline-block;
-  padding: 0 10px 20px;
+  padding: 0 10px 10px;
   line-height: 1;
   color: #fff;
 }
 
 .bg-light-blue {
   background: rgba(0, 159, 237, 0.1);
+}
+
+.bg-mark {
+  position: relative;
+}
+.bg-mark::before {
+  background-image: url(../img/brand-bg.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  content: "";
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
 }
 
 @media (max-width: 991.98px) {
@@ -12793,9 +12898,11 @@ BUTTONS
   width: max-content;
   padding-left: 35px;
   font-size: clamp(1rem, 0.375rem + 0.8333vw, 1.125rem);
+  transition: background 0.5s ease;
 }
 .btn-valtas a:hover {
   background: #012f6b;
+  transition: background 0.5s ease;
 }
 
 /****************************************
@@ -13174,6 +13281,206 @@ BLOG SECTION
   max-width: -moz-max-content;
   max-width: max-content;
   margin: 2rem auto;
+}
+
+/****************************************
+CTA BLOCK
+*****************************************/
+.echo-block-cta_block {
+  position: relative;
+}
+.echo-block-cta_block::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #012F6B;
+  background: linear-gradient(90deg, rgb(1, 47, 107) 0%, rgba(1, 47, 107, 0.59) 44%, rgba(1, 47, 107, 0) 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.echo-block-cta_block .bg-image {
+  position: absolute;
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 100%;
+  z-index: 1;
+  height: 100%;
+}
+
+.valtas-cta-block {
+  position: relative;
+  z-index: 3;
+}
+
+.valtas-cta-block__content {
+  max-width: 700px;
+}
+
+.valtas-cta-block__buttons {
+  margin-top: 2rem;
+}
+.valtas-cta-block__buttons .btn-valtas:first-child::before {
+  background: url(../img/btn-icon.png);
+  left: -32px;
+}
+.valtas-cta-block__buttons .btn-valtas:first-child a {
+  background: #fff;
+  color: #012F6C !important;
+  border-color: #012F6C !important;
+}
+.valtas-cta-block__buttons .btn-valtas:first-child a:hover {
+  background: #012F6C;
+  color: #fff !important;
+  border-color: #012F6C !important;
+}
+
+/****************************************   
+ADVERT BLOCK    
+*****************************************/
+.echo-block-advert_block {
+  background-color: rgba(0, 159, 237, 0.1);
+}
+
+.advert-image img {
+  width: 100%;
+  height: auto;
+}
+
+.advert-text {
+  max-width: 700px;
+  margin: auto;
+}
+
+/****************************************   
+OUR VALUES BLOCK
+*****************************************/
+.echo-block-our_values {
+  background: #fdf5e4;
+}
+
+.value-number {
+  text-align: center;
+  width: 150px;
+  height: 75px;
+  z-index: 2;
+  background: #fdf5e4;
+}
+.value-number span {
+  width: 100px;
+  height: 100px;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  font-size: 41px;
+  color: #F3B700;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  margin-top: -50px;
+}
+
+.value-title {
+  font-size: clamp(1.1875rem, 1.0878rem + 0.3191vw, 1.375rem);
+  font-weight: 700;
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .value-number {
+    border: 2px dotted #009fed;
+    border-bottom: none; /* remove bottom */
+    border-radius: 150px 150px 0 0; /* top rounded */
+    padding-top: 75px;
+  }
+  .value-item_inner {
+    max-width: 290px;
+    margin: auto;
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: flex-end;
+    flex-flow: column;
+    height: 100%;
+  }
+  .value-item {
+    margin-top: 0 !important;
+  }
+  .value-top {
+    padding-bottom: 77px;
+  }
+  .value-top .value-number {
+    border: 2px dotted #009fed;
+    border-top: none; /* remove bottom */
+    border-radius: 0 0 150px 150px; /* top rounded */
+    padding-bottom: 75px;
+    padding-top: 0;
+    margin-bottom: 2px;
+  }
+  .value-top .value-blurb {
+    margin-bottom: 85px;
+  }
+  .value-bottom {
+    margin-top: -231px;
+  }
+  .value-bottom .value-title {
+    padding-top: 85px;
+    border-top: dotted 2px #009fed;
+  }
+  .value-bottom .value-item_inner {
+    justify-content: flex-start;
+  }
+  .value-bottom .value-number {
+    margin-bottom: -2px;
+  }
+  .value-bottom .value-item:first-child .value-title,
+  .value-bottom .value-item:last-child .value-title {
+    position: relative;
+  }
+  .value-bottom .value-item:first-child .value-title:before {
+    content: "";
+    width: 11px;
+    height: 11px;
+    background: #009FED;
+    display: block;
+    border-radius: 100%;
+    left: 0;
+    top: -6px;
+    position: absolute;
+  }
+  .value-bottom .value-item:last-child .value-title:before {
+    content: "";
+    width: 11px;
+    height: 11px;
+    background: #009FED;
+    display: block;
+    border-radius: 100%;
+    right: 0;
+    top: -6px;
+    position: absolute;
+  }
+}
+@media (max-width: 1399px) {
+  .value-number {
+    width: 100px;
+  }
+  .value-number span {
+    width: 70px;
+    height: 70px;
+    font-size: 30px;
+  }
+  .value-top .value-number span {
+    margin-top: -15px;
+  }
+}
+@media (max-width: 1119px) {
+  .value-item_inner {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+  }
 }
 
 /*# sourceMappingURL=theme.css.map */
