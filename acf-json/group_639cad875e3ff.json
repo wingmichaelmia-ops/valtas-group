@@ -38,7 +38,8 @@
                 "default": "Default",
                 "bg-light": "Light",
                 "bg-primary": "Primary",
-                "bg-light-blue": "Light Primary"
+                "bg-light-blue": "Light Primary",
+                "bg-light-secondary": "Light Secondary"
             },
             "default_value": "default",
             "return_format": "value",
@@ -276,5 +277,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1758914632
+    "modified": 1759339895
 }

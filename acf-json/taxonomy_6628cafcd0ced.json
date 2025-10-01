@@ -2,7 +2,7 @@
     "key": "taxonomy_6628cafcd0ced",
     "title": "Region",
     "menu_order": 0,
-    "active": true,
+    "active": false,
     "taxonomy": "region",
     "object_type": [
         "product"
@@ -72,5 +72,5 @@
     "meta_box": "default",
     "meta_box_cb": "",
     "meta_box_sanitize_cb": "",
-    "modified": 1732794024
+    "modified": 1759341001
 }

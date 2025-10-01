@@ -27,7 +27,7 @@ $values  = get_sub_field('our_values');
         <?php if ( $values ) : ?>
 
             <!-- ✅ Straight Order (1 → 7) for LG and below -->
-            <div class="row g-4 justify-content-center d-flex d-xl-none">
+            <div class="row g-4 justify-content-center value-mobile d-flex d-xl-none">
                 <?php foreach ( $values as $index => $value ) : 
                     $num    = $index + 1;
                     $vtitle = $value['our_values_title'] ?? '';

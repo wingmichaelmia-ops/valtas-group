@@ -75,3 +75,7 @@ header .navbar-nav {
     background-size: cover;
     background-repeat: no-repeat;
 }
+.dropdown-menu {
+    background-color: rgba(0, 0, 0, .3);
+    backdrop-filter: blur(10px);
+}

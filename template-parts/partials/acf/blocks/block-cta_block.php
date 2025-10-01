@@ -20,11 +20,11 @@ $args = wp_parse_args( $args, $default );
             ) );
         }
     ?>
-<div class="valtas-cta-block py-5">
+<div class="valtas-cta-block">
     
 
     <div class="container">
-        <div class="valtas-cta-block__content py-5 text-white">
+        <div class="valtas-cta-block__content p-2 p-md-5 text-white">
             
             <?php if ( $args['title'] ) : ?>
                 <<?php echo esc_html( $args['title_tag'] ); ?> class="valtas-cta-block__title"><?php echo $args['title']; ?></<?php echo esc_html( $args['title_tag'] ); ?>>

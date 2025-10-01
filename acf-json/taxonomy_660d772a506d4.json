@@ -2,7 +2,7 @@
     "key": "taxonomy_660d772a506d4",
     "title": "Sectors",
     "menu_order": 0,
-    "active": true,
+    "active": false,
     "taxonomy": "product_category",
     "object_type": [
         "product"
@@ -72,5 +72,5 @@
     "meta_box": "default",
     "meta_box_cb": "",
     "meta_box_sanitize_cb": "",
-    "modified": 1732794034
+    "modified": 1759341001
 }

@@ -50,6 +50,15 @@ h1 {
 h2 {
     font-size: clamp(2.5rem, -5.625rem + 10.8333vw, 4.125rem);
 }
+h3 {
+    font-size: clamp(1.875rem, 0.7031rem + 3.75vw, 2.8125rem);
+}
+h4 {
+    font-size: clamp(1.4375rem, 0.8906rem + 1.75vw, 1.875rem);
+}
+p {
+    font-size: clamp(1rem, 0.6094rem + 1.25vw, 1.3125rem);
+}
 blockquote.blockquote {
     font-size: clamp(1.875rem, 1.3763rem + 1.5957vw, 2.8125rem);
     color: $primary;
@@ -91,6 +100,9 @@ blockquote.blockquote {
 }  
 .bg-light-blue {
     background: rgba(0, 159, 237, 0.1);
+}
+.bg-light-secondary {
+    background-color: #fdf5e4;
 }
 .bg-mark {
     position: relative;
@@ -535,14 +547,22 @@ CTA BLOCK
         width: 100%;
         z-index: 1;
         height: 100%;
+        object-position: top right;
     }
 }
 .valtas-cta-block {
     position: relative;
     z-index: 3;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    @media(max-width:767px) {
+        min-height: auto;
+        padding: 2rem 1rem;
+    }   
 }
 .valtas-cta-block__content {
-    max-width: 700px;
+    max-width: 600px;
 }
 .valtas-cta-block__buttons {
     margin-top: 2rem;
@@ -711,4 +731,253 @@ OUR VALUES BLOCK
         flex-flow: row;
         align-items: center;
     }
+    .value-number span {
+        margin-top: 0;
+    }
 }
+.value-mobile {
+    padding: 2.5rem 1rem;
+    .value-item {
+        margin-top: -2px !important;
+    }
+    .value-item_inner {
+        position: relative;
+    }
+    .value-item:nth-child(odd) {
+        .value-item_inner {
+            flex-direction: row-reverse;
+            text-align: right;
+            margin-right: 20px;
+        }
+        .value-number {
+            position: absolute;
+            right: -50px;
+        }
+        .value-content {
+            padding-right: 70px;
+            border-right: 2px dotted $tertiary;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            border-top-right-radius: 20px;
+            border-top: 2px dotted $tertiary;
+            border-left: 0;
+            border-bottom-right-radius: 20px;
+            margin-left: 30px;
+        }
+    }
+    .value-item:nth-child(even) {
+        .value-number {
+            position: absolute;
+            left: -50px;
+        }
+        .value-content {
+            padding-left: 70px;
+            border-left: 2px dotted $tertiary;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            border-top-left-radius: 20px;
+            border-top: 2px dotted $tertiary;
+            border-right: 0;
+            border-bottom-left-radius: 20px;
+            margin-right: 30px;
+        }
+        .value-item_inner {
+            width: calc(100% - 20px);
+            text-align: left;
+            margin-left: 20px;
+        }
+    }
+}
+.value-mobile .value-item:first-child .value-content{
+    border-top: none;
+    &:before {
+        content: "";
+        position: absolute;
+        top: -18px;
+        left: 0;
+        height: 20px;
+        width: calc(50% - 15px);
+        border-bottom: dotted 2px $tertiary;
+        margin-left: auto;
+        right: 15px;
+        border-bottom-left-radius: 20px;
+        border-left: dotted 2px $tertiary;
+    }
+}
+.value-mobile .value-item:first-child .value-content:after {
+    width: 10px;
+    height: 10px;
+    content: "";
+    position: absolute;
+    top: -28px;
+    background: $tertiary;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 100%;
+}
+.value-mobile .value-item:last-child .value-content{
+    &:before {
+        content: "";
+        position: absolute;
+        bottom: -18px;
+        height: 20px;
+        width: calc(50% - 15px);
+        border-top: dotted 2px #009fed;
+        margin-left: auto;
+        right: 15px;
+        border-top-left-radius: 20px;
+        border-left: dotted 2px #009fed;
+    }
+}
+.value-mobile .value-item:last-child .value-content:after {
+    width: 10px;
+    height: 10px;
+    content: "";
+    position: absolute;
+    bottom: -28px;
+    background: $tertiary;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 100%;
+}
+
+.header-color-primary .page-title__title{
+    color: $primary !important;
+    
+}
+.image-border-secondary .image-col img {
+    border: 15px solid #fdf5e4;
+    box-sizing: border-box
+}
+/****************************************
+OUR PROCESS BLOCK
+*****************************************/
+.our-process {
+    z-index: 3;
+    position: relative;
+    .arrow-icon {
+        height: 28px;
+        width: 28px;
+        background-image: url(../img/process-arrow.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        right: -28px;
+    }
+}
+.step-icon {
+    width: 177px;
+    height: 177px;
+    margin: auto;
+    border: 10px solid;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+span.step-number {
+    position: absolute;
+    bottom: -27px;
+    width: 54px;
+    height: 54px;
+    background: #fff;
+    border-radius: 100%;
+    color: $primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.step-title {
+    font-size: clamp(1.5625rem, 1.1719rem + 1.25vw, 1.875rem);
+}
+@include media-breakpoint-up(lg) {
+    .step-header {
+        position: relative;
+        &:before {
+            content: "";
+            width: 15%;
+            height: 2px;
+            top: auto;
+            bottom: auto;
+            position: absolute;
+            border-top: 2px dotted;
+            left: 0;
+        }
+        &:after {
+            content: "";
+            width: 15%;
+            height: 2px;
+            top: auto;
+            bottom: auto;
+            position: absolute;
+            border-top: 2px dotted;
+            right: 0;
+        }
+    }
+    .process-steps .process-step:first-child .step-header{
+        &:before {
+            display: none;
+        }
+    }
+    .process-steps .process-step:last-child .step-header{
+        &:after {
+            display: none;
+        }
+        .arrow-icon {
+            display: none;
+        }
+    }
+}
+@include media-breakpoint-down(lg) {
+    .process-step:not(:last-child) {
+        position: relative;
+        padding-bottom: 50px;
+        &:after {
+            content: '';
+            height: 25px;
+            display: block;
+            width: 1px;
+            margin: auto;
+            border-right: 2px dotted;
+            bottom: 0;
+            position: absolute;
+            right: 0;
+            left: 0;
+        }
+        &::before {
+            content: '';
+            height: 25px;
+            display: block;
+            width: 1px;
+            margin: auto;
+            border-right: 2px dotted;
+            bottom: 25px;
+            position: absolute;
+            right: 0;
+            left: 0;
+        }
+        .arrow-icon {
+            height: 20px;
+            width: 20px;
+            background-image: url(../img/process-arrow.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            bottom: 15px;
+            right: 0;
+            left: 0;
+            margin: auto;
+            transform: rotate(90deg);
+        }
+    }
+    .process-step:last-child .arrow-icon {
+        display: none;
+    }
+    
+}   

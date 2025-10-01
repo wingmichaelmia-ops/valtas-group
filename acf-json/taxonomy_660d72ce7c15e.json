@@ -2,7 +2,7 @@
     "key": "taxonomy_660d72ce7c15e",
     "title": "Forms",
     "menu_order": 0,
-    "active": true,
+    "active": false,
     "taxonomy": "form",
     "object_type": [
         "product"
@@ -72,5 +72,5 @@
     "meta_box": "default",
     "meta_box_cb": "",
     "meta_box_sanitize_cb": "",
-    "modified": 1732793716
+    "modified": 1759341001
 }
