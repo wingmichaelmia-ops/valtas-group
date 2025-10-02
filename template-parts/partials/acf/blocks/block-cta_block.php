@@ -11,6 +11,9 @@ $default = array(
 $args = wp_parse_args( $args, $default );
 
 ?>
+
+<div class="valtas-cta-block">
+    
 <?php 
         $image_id = get_sub_field( 'background_image' );
         if( $image_id ) {
@@ -20,9 +23,6 @@ $args = wp_parse_args( $args, $default );
             ) );
         }
     ?>
-<div class="valtas-cta-block">
-    
-
     <div class="container">
         <div class="valtas-cta-block__content p-2 p-md-5 text-white">
             

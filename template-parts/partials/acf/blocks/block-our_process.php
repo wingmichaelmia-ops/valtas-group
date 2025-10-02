@@ -7,10 +7,11 @@ $tag         = get_sub_field('title_tag') ?: 'h2';
 $title       = get_sub_field('title');
 $intro       = get_sub_field('blurb');
 $our_process = get_sub_field('our_process');
+$arrows_option = get_sub_field('arrows_option');
 ?>
 
 <?php if ( $title || $intro || $our_process ) : ?>
-    <div class="our-process container py-5">
+    <div class="our-process container py-5 <?php echo esc_attr( $arrows_option ); ?>">
         <?php if ( $title ) : ?>
             <<?php echo esc_html( $tag ); ?> class="process-title text-center mb-3">
                 <?php echo  $title; ?>

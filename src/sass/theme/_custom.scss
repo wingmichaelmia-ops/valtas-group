@@ -56,6 +56,12 @@ h3 {
 h4 {
     font-size: clamp(1.4375rem, 0.8906rem + 1.75vw, 1.875rem);
 }
+h5 {
+    font-size: clamp(1.4375rem, 1.0469rem + 1.25vw, 1.75rem);
+}
+h6 {
+    font-size: clamp(1.375rem, 0.8281rem + 1.75vw, 1.8125rem);
+}
 p {
     font-size: clamp(1rem, 0.6094rem + 1.25vw, 1.3125rem);
 }
@@ -94,7 +100,7 @@ blockquote.blockquote {
 .highlight {
     background-color: $tertiary;
     display: inline-block;
-    padding: 0 10px 10px;
+    padding: 0 10px 12px;
     line-height: 1;
     color: #fff;
 }  
@@ -530,6 +536,18 @@ CTA BLOCK
 *****************************************/
 .echo-block-cta_block {
     position: relative;
+    
+}
+.valtas-cta-block {
+    position: relative;
+    z-index: 3;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    @media(max-width:767px) {
+        min-height: auto;
+        padding: 2rem 1rem;
+    }   
     &::before {
         content: '';
         width: 100%;
@@ -550,19 +568,10 @@ CTA BLOCK
         object-position: top right;
     }
 }
-.valtas-cta-block {
-    position: relative;
-    z-index: 3;
-    min-height: 700px;
-    display: flex;
-    align-items: center;
-    @media(max-width:767px) {
-        min-height: auto;
-        padding: 2rem 1rem;
-    }   
-}
 .valtas-cta-block__content {
     max-width: 600px;
+    z-index: 3;
+    position: relative;
 }
 .valtas-cta-block__buttons {
     margin-top: 2rem;
@@ -851,6 +860,12 @@ OUR VALUES BLOCK
     border: 15px solid #fdf5e4;
     box-sizing: border-box
 }
+.image-col img{
+    width: 100%;
+    @include media-breakpoint-down(lg) {
+        margin-bottom: 1rem;
+    }
+}
 /****************************************
 OUR PROCESS BLOCK
 *****************************************/
@@ -868,6 +883,13 @@ OUR PROCESS BLOCK
         right: -28px;
     }
 }
+.process-icon-secondary .step-icon {
+    background: $secondary;
+    border-color: #fff;
+    .step-number {
+        color: $secondary;
+    }
+}
 .step-icon {
     width: 177px;
     height: 177px;
@@ -879,6 +901,8 @@ OUR PROCESS BLOCK
     justify-content: center;
     position: relative;
     margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+    z-index: 2;
 }
 span.step-number {
     position: absolute;
@@ -894,6 +918,7 @@ span.step-number {
 }
 .step-title {
     font-size: clamp(1.5625rem, 1.1719rem + 1.25vw, 1.875rem);
+    font-weight: bold;
 }
 @include media-breakpoint-up(lg) {
     .step-header {
@@ -980,4 +1005,141 @@ span.step-number {
         display: none;
     }
     
+}  
+.echo-block-our_process {
+    position: relative;
+}
+.our-process.hide_arrow {
+    position: static;
+}
+.hide_arrow .arrow-icon,
+.hide_arrow .step-header:after,
+.hide_arrow .step-header:before {
+    display: none;
+}
+
+@include media-breakpoint-up(lg) {
+    .hide_arrow .process-steps:before {
+        height: 1px;
+        width: 100%;
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 40%;
+        border-top: 2px dotted rgba(0, 0, 0, .3);
+        z-index: 1;
+    }
+}
+/****************************************
+TEXT BLOCK
+*****************************************/
+.header-title-center {
+    max-width: 800px;
+    text-align: center;
+}
+@include media-breakpoint-up(lg) {
+    .header-title-left {
+        display: flex;
+        .valtas-cta-block__title {
+            width: 40%;
+        }
+        .valtas-cta-block__intro-text {
+            width: 60%;
+            padding-left: 2rem;
+        }
+    }
 }   
+.icon-list-item .icon img {
+    max-width: 74px;
+    height: 74px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+    border-radius: 100%;
+}
+.contact-info {
+    a {
+        text-decoration: none;
+    }
+}
+
+/****************************************
+ICON TEXT BLOCK
+*****************************************/
+
+.icon-text-item .text-title {
+    font-size: 27px;
+    font-weight: 700;
+    color: #51513D;
+}
+.icon-text-item .icon img {
+    border-radius: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+}
+.icon-text-item {
+    padding: 0 2rem;
+    position: relative;
+    &:first-child {
+        padding-left: 0;
+    }
+    &:last-child {
+        padding-right: 0;
+    }
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 2px;
+        
+        /* Apply your gradient */
+        background: linear-gradient(90deg,
+            rgba(0, 0, 0, 0.4) 10%, 
+            rgba(0, 0, 0, 1) 50%, 
+            rgba(0, 0, 0, 0.4) 90%);
+        
+        /* Use mask to make it dotted */
+        -webkit-mask: radial-gradient(circle, #000 30%, transparent 31%) repeat-y;
+        -webkit-mask-size: 2px 7px;
+        mask: radial-gradient(circle, #000 30%, transparent 31%) repeat-y;
+        mask-size: 2px 7px;
+    }
+    &:last-child::before {
+        opacity: 0;
+    }
+}
+@include media-breakpoint-down(lg) {
+    .icon-text-item {
+        padding: 1rem;
+        &:first-child::before {
+            opacity: 0;
+        }
+        &:last-child::before {
+            opacity: 1;
+        }
+    }
+
+    .icon-text-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px; /* thickness of border */
+        width: 100%;
+
+        /* Apply your gradient */
+        background: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.4) 20%,
+            rgba(0, 0, 0, 1) 50%,
+            rgba(0, 0, 0, 0.4) 80%
+        );
+
+        /* Mask into dotted pattern */
+        -webkit-mask: radial-gradient(circle, #000 30%, transparent 31%) repeat-x;
+        -webkit-mask-size: 7px 2px; /* dot spacing + size */
+        mask: radial-gradient(circle, #000 30%, transparent 31%) repeat-x;
+        mask-size: 7px 2px;
+    }
+}
