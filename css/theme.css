@@ -13399,7 +13399,7 @@ ADVERT BLOCK
 OUR VALUES BLOCK
 *****************************************/
 .echo-block-our_values {
-  background: #fdf5e4;
+  /*background: #fdf5e4;*/
 }
 
 .value-number {
@@ -13649,6 +13649,64 @@ OUR VALUES BLOCK
   .image-col img {
     margin-bottom: 1rem;
   }
+}
+
+.col-xl-2.value-item .value-number {
+  width: 222px;
+  height: 110px;
+  background: transparent;
+}
+@media (max-width: 1399px) {
+  .col-xl-2.value-item .value-number {
+    width: 192px;
+    height: 106px;
+  }
+}
+
+.value-bottom .col-xl-2.value-item .value-number {
+  padding-top: 110px;
+}
+
+.connector_style_2 .value-bottom .value-title {
+  border-top: 0;
+}
+
+.connector_style_2 .value-number {
+  border: 2px dotted white;
+  border-bottom: 0;
+}
+.connector_style_2 .value-item {
+  padding: 0 !important;
+}
+.connector_style_2 .value-number span {
+  background: #F3B700;
+  color: white;
+  border: 11px solid;
+}
+.connector_style_2 .value-top {
+  padding-bottom: 0;
+}
+.connector_style_2 .value-top .value-number {
+  border: 2px dotted white;
+  border-top: 0;
+}
+.connector_style_2 .value-top .value-item:last-child .value-title:before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  display: block;
+  border-radius: 100%;
+  top: -6px;
+  position: absolute;
+  background: white;
+  right: -5px;
+}
+.connector_style_2 .value-bottom {
+  margin-top: -220px;
+}
+.connector_style_2 .value-bottom .value-item:first-child .value-title:before {
+  background: white;
+  left: -5px;
 }
 
 /****************************************
@@ -13920,6 +13978,56 @@ ICON TEXT BLOCK
     mask: radial-gradient(circle, #000 30%, transparent 31%) repeat-x;
     mask-size: 7px 2px;
   }
+}
+/********************************************
+CASE STUDY
+********************************************/
+.case-study-item {
+  border-radius: 20px;
+  background: white;
+  padding: 20px 10px;
+  position: relative;
+  z-index: 2;
+}
+.case-study-item img {
+  border-radius: 20px;
+}
+
+.case-study-title {
+  font-size: clamp(1.375rem, 0.9844rem + 1.25vw, 1.6875rem);
+  font-weight: bold;
+  color: #009FED;
+}
+.case-study-title a {
+  text-decoration: none;
+  color: #009FED;
+}
+
+.cs-item-label {
+  padding: 10px 20px;
+  max-width: -moz-max-content;
+  max-width: max-content;
+  position: absolute;
+  top: 2rem;
+  left: -8px;
+  background: #F3B700;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  z-index: 2;
+  font-family: "Helvetica World", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+.cs-item-label:before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #a37b00;
+  left: 0;
+  position: absolute;
+  bottom: -10px;
+  z-index: 1;
 }
 
 /*# sourceMappingURL=theme.css.map */

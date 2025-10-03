@@ -40,6 +40,7 @@ $args = wp_parse_args($args ?? [], $defaults);
             $css            = $row['css'] ?? '';
             $image_position = $row['image_position'] ?? 'left';
             $icon_list      = $row['icon_list'] ?? []; // 👈 nested repeater
+            $button = $row['image-text_button'];
 
             $css_classes = is_array($css) ? implode(' ', array_map('esc_attr', $css)) : esc_attr($css);
         ?>
@@ -60,6 +61,15 @@ $args = wp_parse_args($args ?? [], $defaults);
                         <div class="blurb">
                             <?php echo wp_kses_post($blurb); ?>
                         </div>
+                        <?php if ( $button ) : ?>
+                            <div class="btn-valtas my-4">
+                                <a href="<?php echo esc_url($button['url']); ?>" 
+                                class="btn btn-primary"
+                                target="<?php echo esc_attr($button['target'] ?: '_self'); ?>">
+                                    <?php echo esc_html($button['title']); ?>
+                                </a>
+                            </div>
+                        <?php endif; ?>  
                     <?php endif; ?>
 
                     <?php if ( !empty($icon_list) ) : ?>
