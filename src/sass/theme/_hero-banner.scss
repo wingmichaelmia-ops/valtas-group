@@ -33,11 +33,11 @@
             background: linear-gradient(180deg, #012f6b 0, #009fed 100%);
             color: #fff !important;
             border-radius: 40px;
-            text-transform: uppercase;
+            text-transform: capitalize;
             border: 1px solid #fff;
             padding: 0 20px;
             position: relative;
-            clip-path: polygon(7% 0%, 100% 0%, 100% 100%, 0% 100%);
+            clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%);
             border-bottom-left-radius: 0;
             text-decoration: none;
             height: 55px;

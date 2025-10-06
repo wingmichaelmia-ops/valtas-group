@@ -169,11 +169,11 @@ BUTTONS
         background: linear-gradient(180deg, #012f6b 0, #009fed 100%);
         color: #fff !important;
         border-radius: 40px;
-        text-transform: uppercase;
+        text-transform: capitalize;
         border: 1px solid #fff;
-        padding: 0 20px;
+        padding: 0 30px;
         position: relative;
-        clip-path: polygon(9% 0%, 100% 0%, 100% 100%, 0% 100%);
+        clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%);
         border-bottom-left-radius: 0;
         text-decoration: none;
         height: 55px;
@@ -578,12 +578,13 @@ CTA BLOCK
     .btn-valtas:first-child {
         &::before {
             background: url(../img/btn-icon.png);
-            left: -32px;
+            left: -25px;
         }
         a {
             background: #fff;
             color: $primary !important;
             border-color: $primary !important; 
+            clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
             &:hover {
                 background: $primary;
                 color: #fff !important;
@@ -744,56 +745,58 @@ OUR VALUES BLOCK
         margin-top: 0;
     }
 }
-.value-mobile {
-    padding: 2.5rem 1rem;
-    .value-item {
-        margin-top: -2px !important;
-    }
-    .value-item_inner {
-        position: relative;
-    }
-    .value-item:nth-child(odd) {
-        .value-item_inner {
-            flex-direction: row-reverse;
-            text-align: right;
-            margin-right: 20px;
-        }
-        .value-number {
-            position: absolute;
-            right: -50px;
-        }
-        .value-content {
-            padding-right: 70px;
-            border-right: 2px dotted $tertiary;
-            padding-top: 40px;
-            padding-bottom: 40px;
-            border-top-right-radius: 20px;
-            border-top: 2px dotted $tertiary;
-            border-left: 0;
-            border-bottom-right-radius: 20px;
-            margin-left: 30px;
-        }
-    }
-    .value-item:nth-child(even) {
-        .value-number {
-            position: absolute;
-            left: -50px;
-        }
-        .value-content {
-            padding-left: 70px;
-            border-left: 2px dotted $tertiary;
-            padding-top: 40px;
-            padding-bottom: 40px;
-            border-top-left-radius: 20px;
-            border-top: 2px dotted $tertiary;
-            border-right: 0;
-            border-bottom-left-radius: 20px;
-            margin-right: 30px;
+.connector_style_1 {
+    .value-mobile {
+        padding: 2.5rem 1rem;
+        .value-item {
+            margin-top: -2px !important;
         }
         .value-item_inner {
-            width: calc(100% - 20px);
-            text-align: left;
-            margin-left: 20px;
+            position: relative;
+        }
+        .value-item:nth-child(odd) {
+            .value-item_inner {
+                flex-direction: row-reverse;
+                text-align: right;
+                margin-right: 20px;
+            }
+            .value-number {
+                position: absolute;
+                right: -50px;
+            }
+            .value-content {
+                padding-right: 70px;
+                border-right: 2px dotted $tertiary;
+                padding-top: 40px;
+                padding-bottom: 40px;
+                border-top-right-radius: 20px;
+                border-top: 2px dotted $tertiary;
+                border-left: 0;
+                border-bottom-right-radius: 20px;
+                margin-left: 30px;
+            }
+        }
+        .value-item:nth-child(even) {
+            .value-number {
+                position: absolute;
+                left: -50px;
+            }
+            .value-content {
+                padding-left: 70px;
+                border-left: 2px dotted $tertiary;
+                padding-top: 40px;
+                padding-bottom: 40px;
+                border-top-left-radius: 20px;
+                border-top: 2px dotted $tertiary;
+                border-right: 0;
+                border-bottom-left-radius: 20px;
+                margin-right: 30px;
+            }
+            .value-item_inner {
+                width: calc(100% - 20px);
+                text-align: left;
+                margin-left: 20px;
+            }
         }
     }
 }
@@ -883,12 +886,36 @@ OUR VALUES BLOCK
     border-top: 0;
 }
 .connector_style_2 {
+    .value-item_inner {
+        &:after {
+            height: 28px;
+            width: 28px;
+            background-image: url(../img/process-arrow.png);
+            content: "";
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            top: -13px;
+        }
+    }
     .value-number {
         border: 2px dotted white;
         border-bottom: 0;
+        @media(max-width:1199px) {
+            margin: auto;
+        }
     }
     .value-item {
         padding: 0 !important;
+        position: relative;
+        margin-bottom: -2px !important;
+        &:nth-child(even) .value-item_inner {
+            &:after {
+                top: auto;
+                bottom: -13px;
+            }
+        }
     }
     .value-number span {
         background: $secondary;
@@ -900,17 +927,27 @@ OUR VALUES BLOCK
         .value-number {
             border: 2px dotted white;
             border-top: 0;
+            &::after {
+                top: auto;
+                bottom: -7px;
+            }
         }
+        .value-item:nth-last-child(2) .value-title:before,
         .value-item:last-child .value-title:before {
             content: "";
             width: 11px;
             height: 11px;
             display: block;
             border-radius: 100%;
-            top: -6px;
+            bottom: 110px;
             position: absolute;
             background: white;
             right: -5px;
+        }
+    }
+    .value-content {
+        @media(max-width:1199px) {
+            margin: 0 20px 30px;
         }
     }
     .value-bottom {
@@ -918,6 +955,96 @@ OUR VALUES BLOCK
         .value-item:first-child .value-title:before {
             background: white;
             left: -5px;
+        }
+    }
+    .value-mobile {
+        margin-top: 5rem;
+        padding: 0 2rem;
+        .value-item {
+            margin: 0;
+            &:first-child .value-content:before {
+                border-color: white;
+            }
+        }
+        .value-item:first-child:before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            right: 14px;
+            top: -4px;
+            border-radius: 100%;
+        }
+        .value-item:last-child:before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            left: 40%;
+            bottom: -4px;
+            border-radius: 100%;
+        }
+        .value-item_inner {
+            flex-flow: column;
+            padding: 2rem;
+            width: 80%;
+            margin: auto;
+            &::before {
+                content: "";
+                position: absolute;
+                border: 2px dotted;
+                border-radius: 100px;
+                border-right: 0;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                width: 60%;
+                height: 100%;
+                left: 0;
+                padding-right: 5%;
+                top: 0;
+            }
+            &:after {
+                top: 45%;
+                right: auto;
+                left: -12px;
+                rotate: 90deg;
+            }
+        }
+        .value-item:nth-child(even) .value-item_inner {
+            flex-flow: column;
+            padding: 2rem;
+            &::before {
+                border-left: 0;
+                border-radius: 100px;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                border-right: 2px;
+                right: 0;
+                left: auto;
+            }
+            &:after {
+                top: 45%;
+                left: auto;
+                right: -12px;
+                rotate: 90deg;
+            }
+        }
+        .value-number {
+            background: transparent;
+            border: 0;
+            margin-top: -50px;
+            z-index: 3;
+            top: -15px;
+            position: relative;
+            &::after {
+                top: auto;
+                bottom: auto;
+                left: -10px;
+                right: auto;
+                rotate: 90deg;
+            }
         }
     }
 }
@@ -1226,7 +1353,7 @@ CASE STUDY
     padding: 10px 20px;
     max-width: max-content;
     position: absolute;
-    top: 2rem;
+    top: 1.2rem;
     left: -8px;
     background: $secondary;
     border-top-right-radius: 20px;
@@ -1247,4 +1374,36 @@ CASE STUDY
         bottom: -10px;
         z-index: 1;
     }
+}
+
+/*************************************************************
+Card Block
+*************************************************************/
+.valtas-cards .overlay-content .btn {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+.valtas-cards .card-img-overlay .overlay-bg {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, .8) 100%) !important;
+}
+.valtas-cards .overlay-content {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: flex-end;
+}
+.valtas-cards .card-item_overlay-content {
+    display: flex;
+    flex-flow: column;
+    height: max-content;
+    justify-content: end;
+    text-align: left;
+    padding-left: 1rem;
+    border-left: 4px solid $secondary;
+}
+.valtas-cards .card-title {
+    font-size: clamp(1.375rem, 0.2813rem + 3.5vw, 2.25rem);
 }
