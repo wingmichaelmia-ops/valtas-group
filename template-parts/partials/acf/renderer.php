@@ -25,13 +25,12 @@ if ( have_rows( $args['flexible_content_key'], $args['id'] ) ) {
                 $block_classes[] = get_sub_field('background_color');
                 /* Settings: Text color */
                 $block_classes[] = get_sub_field('text_color');
-                /* Settings: Visibility */
-                $block_classes[] = implode(' ', get_sub_field('visibility'));
                 /* Settings: CSS */
                 $block_classes[] = implode(' ', get_sub_field('css'));
-                /* Settgins: Paddings */
-                $block_classes[] = ( get_sub_field('rem_top' ) ) ? "rem_top" : "";
-                $block_classes[] = ( get_sub_field('rem_bot' ) ) ? "rem_bot" : "";
+                $bg_image = get_sub_field('background_image');
+                if ( $bg_image ) {  
+                    $block_classes[] = 'has-bg-image';
+                }
             endwhile;
         endif;
 
@@ -45,6 +44,9 @@ if ( have_rows( $args['flexible_content_key'], $args['id'] ) ) {
         $delay = $block_index / 100;
 
         echo sprintf('<section id="%s" class="echo-block %s">', $block_anchor, trim( implode( ' ', $block_classes ) ) );
+        if ( $bg_image ) {  ?>
+            <div class="section-bg-img" style="background-image: url('<?php echo esc_url( $bg_image['url'] ); ?>');"></div>
+        <?php } 
             get_template_part( 'template-parts/partials/acf/blocks/block', $block_template, array( 'block_index' => $block_index,  'block_id' => $block_index, 'block_template' => $block_template ) );
         echo '</section>';
 

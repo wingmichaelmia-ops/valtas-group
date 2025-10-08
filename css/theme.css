@@ -12588,6 +12588,11 @@ header .navbar-nav a:hover {
   backdrop-filter: blur(10px);
 }
 
+.site-footer .menu ul {
+  padding-left: 0;
+  list-style: none;
+}
+
 .echo-block-hero_banner {
   position: relative;
   padding: 150px 0 2rem;
@@ -12685,8 +12690,8 @@ header .navbar-nav a:hover {
   -o-object-fit: cover;
   object-fit: cover;
   z-index: -1;
-  -o-object-position: top center;
-  object-position: top center;
+  -o-object-position: center;
+  object-position: center;
 }
 .echo-block-page_title .btn-valtas {
   position: relative;
@@ -12893,6 +12898,28 @@ blockquote.blockquote, blockquote.wp-block-quote {
   background: linear-gradient(180deg, rgb(1, 47, 107) 0%, rgb(0, 159, 237) 100%);
 }
 
+.section-bg-img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0.1;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.has-bg-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.has-bg-image > *:not(.section-bg-img) {
+  position: relative;
+  z-index: 3;
+}
+
 /****************************************
 BUTTONS
 
@@ -12909,7 +12936,7 @@ BUTTONS
   height: 100%;
   position: absolute;
   top: 0;
-  left: -40px;
+  left: -25px;
   z-index: 2;
 }
 .btn-valtas a {
@@ -12918,9 +12945,9 @@ BUTTONS
   border-radius: 40px;
   text-transform: capitalize;
   border: 1px solid #fff;
-  padding: 0 30px;
+  padding: 0 40px;
   position: relative;
-  clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%);
+  clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 3% 100%);
   border-bottom-left-radius: 0;
   text-decoration: none;
   height: 55px;
@@ -12929,7 +12956,8 @@ BUTTONS
   justify-content: end;
   width: -moz-max-content;
   width: max-content;
-  padding-left: 35px;
+  min-width: 170px;
+  padding-left: 50px;
   font-size: clamp(1rem, 0.375rem + 0.8333vw, 1.125rem);
   transition: background 0.5s ease;
 }
@@ -14038,14 +14066,28 @@ TEXT BLOCK
 ICON TEXT BLOCK
 *****************************************/
 .icon-text-item .text-title {
-  font-size: 27px;
   font-weight: 700;
   color: #51513D;
 }
 
-.icon-text-item .icon img {
+.text-white .icon-text-item .text-title {
+  color: white;
+}
+
+.echo-block-icon_text_block.gradient-bg .icon-text-item:before,
+.echo-block-icon_text_block.bg-primary .icon-text-item:before {
+  /* Apply your gradient */
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.4) 10%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0.4) 90%);
+  /* Use mask to make it dotted */
+  -webkit-mask: radial-gradient(circle, #FFF 30%, transparent 31%) repeat-y;
+  -webkit-mask-size: 2px 7px;
+  -webkit-mask: radial-gradient(circle, #FFF 30%, transparent 31%) repeat-y;
+  mask: radial-gradient(circle, #FFF 30%, transparent 31%) repeat-y;
+  mask-size: 2px 7px;
+}
+
+.img-shadow .icon img {
   border-radius: 100%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .icon-text-item {
@@ -14055,8 +14097,10 @@ ICON TEXT BLOCK
 .icon-text-item:first-child {
   padding-left: 0;
 }
-.icon-text-item:last-child {
-  padding-right: 0;
+@media (min-width: 992px) {
+  .icon-text-item:last-child {
+    padding-right: 0;
+  }
 }
 .icon-text-item:before {
   content: "";
@@ -14120,6 +14164,12 @@ CASE STUDY
   border-radius: 20px;
 }
 
+@media (min-width: 992px) {
+  .case_studies_layout_2 .case-study-item {
+    flex-flow: row-reverse;
+  }
+}
+
 .case-study-title {
   font-size: clamp(1.375rem, 0.9844rem + 1.25vw, 1.6875rem);
   font-weight: bold;
@@ -14128,6 +14178,10 @@ CASE STUDY
 .case-study-title a {
   text-decoration: none;
   color: #009FED;
+}
+
+.case-studies-block .understrap-read-more-link {
+  display: none;
 }
 
 .cs-item-label {
@@ -14155,6 +14209,10 @@ CASE STUDY
   position: absolute;
   bottom: -10px;
   z-index: 1;
+}
+
+.case_studies_layout_2 .cs-item-label {
+  display: none;
 }
 
 /*************************************************************
@@ -14192,6 +14250,112 @@ Card Block
 
 .valtas-cards .card-title {
   font-size: clamp(1.375rem, 0.2813rem + 3.5vw, 2.25rem);
+}
+
+/********************************************************
+WHY VALTAS
+********************************************************/
+.why-card-number {
+  font-family: "Helvetica World", sans-serif;
+  color: #F3B700;
+}
+
+.why-card-title {
+  border-bottom: 1px solid;
+}
+
+/******************************************************
+PROJECT BLOCK
+******************************************************/
+.project-item_meta {
+  font-size: clamp(0.9375rem, 0.4688rem + 1.5vw, 1.3125rem);
+  color: #009FED;
+  text-transform: uppercase;
+}
+
+.project-title a {
+  color: #51513D;
+  text-decoration: none;
+}
+
+.project-item_img {
+  overflow: hidden;
+}
+
+.masonry-grid {
+  -moz-column-count: 3;
+  column-count: 3; /* Adjust number of columns */
+  -moz-column-gap: 2rem;
+  column-gap: 2rem;
+}
+
+.masonry-item {
+  -moz-column-break-inside: avoid;
+  break-inside: avoid;
+  display: inline-block;
+  width: 100%;
+  background: white;
+}
+
+@media (max-width: 992px) {
+  .masonry-grid {
+    -moz-column-count: 2;
+    column-count: 2;
+  }
+}
+@media (max-width: 576px) {
+  .masonry-grid {
+    -moz-column-count: 1;
+    column-count: 1;
+  }
+}
+.testimonial-review {
+  font-size: clamp(1.25rem, 1.1719rem + 0.25vw, 1.3125rem);
+  font-style: italic;
+  color: #51513D;
+}
+
+.project-title {
+  font-size: clamp(1.5rem, 1.3438rem + 0.5vw, 1.625rem);
+  color: #51513D;
+  font-family: "EB Garamond", serif;
+  font-weight: 600;
+}
+
+.has-video .title-separator,
+.no-title .title-separator,
+.has-video .project-title,
+.no-title .project-title {
+  display: none;
+}
+
+.testimonial-author {
+  font-size: clamp(1.5rem, 1.3438rem + 0.5vw, 1.625rem);
+  color: #51513D;
+  font-family: "Helvetica World", sans-serif;
+  font-weight: 700;
+}
+
+.testimonial-company {
+  font-size: clamp(1rem, 0.8438rem + 0.5vw, 1.125rem);
+  color: #51513D;
+}
+
+.testimonials-masonry-wrapper {
+  position: relative;
+}
+
+#load-more-container {
+  text-align: center;
+  height: 50%;
+  width: 100%;
+  position: absolute;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 10%, #fff 100%);
+  bottom: 0;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  padding-bottom: 5rem;
 }
 
 /*# sourceMappingURL=theme.css.map */

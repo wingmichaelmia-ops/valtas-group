@@ -85,3 +85,55 @@ function mytheme_enqueue_swiper() {
     );
 }
 add_action('wp_enqueue_scripts', 'mytheme_enqueue_swiper', 20);
+
+
+function ajax_load_more_testimonials() {
+    $paged     = isset($_POST['page']) ? intval($_POST['page']) : 1;
+    $per_page  = isset($_POST['per_page']) ? intval($_POST['per_page']) : 6;
+    $post_type = sanitize_text_field($_POST['post_type']);
+    $terms     = sanitize_text_field($_POST['terms']);
+    $term_ids  = $terms ? array_map('intval', explode(',', $terms)) : [];
+
+    $args = [
+        'post_type'      => $post_type,
+        'posts_per_page' => $per_page,
+        'paged'          => $paged,
+    ];
+
+    if ( ! empty($term_ids) ) {
+        $args['tax_query'] = [
+            [
+                'taxonomy' => 'testimonial_category',
+                'field'    => 'term_id',
+                'terms'    => $term_ids,
+                'operator' => 'IN',
+            ],
+        ];
+    }
+
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) :
+        while ($query->have_posts()) : $query->the_post();
+            get_template_part('template-parts/testimonial', 'card');
+        endwhile;
+    endif;
+
+    wp_die();
+}
+add_action('wp_ajax_load_more_testimonials', 'ajax_load_more_testimonials');
+add_action('wp_ajax_nopriv_load_more_testimonials', 'ajax_load_more_testimonials');
+
+
+function testimonials_load_scripts() {
+    wp_enqueue_script(
+        'load-more-testimonials',
+        get_template_directory_uri() . '/src/js/load-more-testimonials.js',
+        ['jquery'],
+        null,
+        true
+    );
+
+    wp_localize_script('load-more-testimonials', 'ajaxurl', admin_url('admin-ajax.php'));
+}
+add_action('wp_enqueue_scripts', 'testimonials_load_scripts');

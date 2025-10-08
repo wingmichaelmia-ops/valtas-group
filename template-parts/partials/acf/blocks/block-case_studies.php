@@ -8,6 +8,7 @@
 $title     = get_sub_field('title');
 $title_tag = get_sub_field('title_tag') ?: 'h2';
 $categories = get_sub_field('select_category'); 
+$case_studies_layout = get_sub_field('case_studies_layout'); 
 
 // Normalize return values
 if ( $categories ) {
@@ -35,6 +36,13 @@ if ( ! empty($term_ids) ) {
 }
 
 $query = new WP_Query($args);
+if($case_studies_layout == 'case_studies_layout_2') {
+    $text_col = 'col-md-6 ps-0 ps-lg-4';
+    $image_col = 'col-md-6';
+} else {
+    $image_col = 'col-md-5';
+    $text_col = 'col-md-7 pt-5';
+}
 ?>
 
 <div class="case-studies-block py-5">
@@ -45,20 +53,20 @@ $query = new WP_Query($args);
             </<?php echo esc_attr($title_tag); ?>>
         <?php endif; ?>
     </div>
-    <div class="container">
+    <div class="container <?php echo $case_studies_layout ?>">
         
         <?php if ( $query->have_posts() ) : ?>
             <?php $i = 1; // counter ?>
             <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                 <div class="row align-items-center case-study-item">
-                    <div class="col-md-7 pt-5">
+                    <div class="<?php echo $text_col; ?>">
                         <div class="cs-item-label">Case Study <?php echo $i; ?></div>
                         <h5 class="case-study-title">
                             <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                         </h5>
                         <?php the_excerpt(); ?>
                     </div>
-                    <div class="col-md-5">
+                    <div class="<?php echo $image_col ?>">
                         <?php if ( has_post_thumbnail() ) : ?>
                             <a href="<?php the_permalink(); ?>">
                                 <?php the_post_thumbnail('full'); ?>
@@ -66,6 +74,7 @@ $query = new WP_Query($args);
                         <?php endif; ?>
                     </div>
                 </div>
+            <?php $i++; ?>
             <?php endwhile; ?>
         <?php else : ?>
             <p>No case studies found.</p>

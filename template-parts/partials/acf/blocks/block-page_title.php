@@ -1,10 +1,10 @@
 <?php
 
 $default = array(
-    "title_tag"      => get_sub_field( 'title_tag' ),
-    "title" => get_sub_field('title') ?: get_the_title(),
-    "content"       => get_sub_field( 'blurb' ),
-    "background_image"       => get_sub_field( 'background_image' )
+    'title_tag'        => get_sub_field('title_tag') ?: 'h2',
+    'title'            => get_sub_field('title') ?: get_the_title(),
+    'content'          => get_sub_field('blurb'),
+    'background_image' => get_sub_field('background_image') ?: get_post_thumbnail_id(get_the_ID()),
 );
 
 $args = wp_parse_args( $args, $default );
@@ -12,14 +12,28 @@ $args = wp_parse_args( $args, $default );
 ?>
     
     <?php 
-        $image_id = get_sub_field( 'background_image' );
-        if( $image_id ) {
-            echo wp_get_attachment_image( $image_id, 'full', false, array(
-                'class'   => 'bg-image',
-                'loading' => 'lazy',
-            ) );
+        $image = get_sub_field('background_image');
+
+        if (empty($image)) {
+            $image = get_post_thumbnail_id(get_the_ID());
+        }
+
+        if ($image) {
+            if (is_array($image) && isset($image['ID'])) {
+                $image_id = $image['ID'];
+            } elseif (is_numeric($image)) {
+                $image_id = $image;
+            }
+
+            if (!empty($image_id)) {
+                echo wp_get_attachment_image($image_id, 'full', false, [
+                    'class'   => 'bg-image',
+                    'loading' => 'lazy',
+                ]);
+            }
         }
     ?>
+
 
     <div class="container">
         <div class="page-title__content text-white">
@@ -39,7 +53,7 @@ $args = wp_parse_args( $args, $default );
                     $target = $link['target'] ? $link['target'] : '_self';
                     ?>
                     <div class="btn-valtas">
-                        <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>">
+                        <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>" class="btn btn-primary">
                             <?php echo esc_html($title); ?>
                         </a>
                 </div>

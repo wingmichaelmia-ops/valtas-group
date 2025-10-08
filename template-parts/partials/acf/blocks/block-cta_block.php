@@ -4,7 +4,7 @@ $default = array(
     "title_tag"      => get_sub_field( 'title_tag' ),
     "title"         => get_sub_field( 'title' ),
     "content"       => get_sub_field( 'blurb' ),
-    "background_image"       => get_sub_field( 'background_image' ),
+    "background_image" => get_sub_field('background_image'),
     "button_group" => get_sub_field( 'button_group' )
 );
 
@@ -14,17 +14,21 @@ $args = wp_parse_args( $args, $default );
 
 <div class="valtas-cta-block">
     
-<?php 
-        $image_id = get_sub_field( 'background_image' );
-        if( $image_id ) {
+    <?php 
+        $image_id = get_sub_field('background_image');
+
+        if ( $image_id ) {
             echo wp_get_attachment_image( $image_id, 'full', false, array(
                 'class'   => 'bg-image',
                 'loading' => 'lazy',
             ) );
+        } else {
+            // fallback image (as <img> tag)
+            echo '<img src="' . esc_url( get_template_directory_uri() . '/img/default-cta.jpg' ) . '" alt="" class="bg-image" loading="lazy">';
         }
     ?>
     <div class="container">
-        <div class="valtas-cta-block__content p-2 p-md-5 text-white">
+        <div class="valtas-cta-block__content py-5 px-3 py-md-2 px-md-0 text-white">
             
             <?php if ( $args['title'] ) : ?>
                 <<?php echo esc_html( $args['title_tag'] ); ?> class="valtas-cta-block__title"><?php echo $args['title']; ?></<?php echo esc_html( $args['title_tag'] ); ?>>

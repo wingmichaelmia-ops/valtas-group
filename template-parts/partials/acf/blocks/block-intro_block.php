@@ -28,7 +28,7 @@ $args = wp_parse_args( $args, $default );
                         $target = $link['target'] ? $link['target'] : '_self';
                         ?>
                         <div class="btn-valtas my-4">
-                            <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>">
+                            <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>" class="btn btn-primary">
                                 <?php echo esc_html($title); ?>
                             </a>
                     </div>

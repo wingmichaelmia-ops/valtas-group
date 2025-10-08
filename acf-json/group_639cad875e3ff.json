@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_639cad8784e03",
-            "label": "Background Color",
+            "label": "Color",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -22,7 +22,7 @@
         },
         {
             "key": "field_639cada284e04",
-            "label": "Background",
+            "label": "Background Color",
             "name": "background_color",
             "aria-label": "",
             "type": "select",
@@ -78,67 +78,6 @@
             "multiple": 0,
             "allow_null": 0,
             "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "allow_custom": 0,
-            "search_placeholder": "",
-            "create_options": 0,
-            "save_options": 0
-        },
-        {
-            "key": "field_639cae6e84e06",
-            "label": "Responsiveness",
-            "name": "",
-            "aria-label": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "placement": "top",
-            "endpoint": 0,
-            "selected": 0
-        },
-        {
-            "key": "field_639cae7d84e07",
-            "label": "Visibility",
-            "name": "visibility",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "default": "default",
-                "d-block": "d-block",
-                "d-sm-block": "d-sm-block",
-                "d-md-block": "d-md-block",
-                "d-lg-block": "d-lg-block",
-                "d-xl-block": "d-xl-block",
-                "d-xxl-block": "d-xxl-block",
-                "d-none": "d-none",
-                "d-sm-none": "d-sm-none",
-                "d-md-none": "d-md-none",
-                "d-lg-none": "d-lg-none",
-                "d-xl-none": "d-xl-none",
-                "d-xxl-none": "d-xxl-none"
-            },
-            "default_value": [
-                "default"
-            ],
-            "return_format": "value",
-            "multiple": 1,
-            "allow_null": 0,
-            "ui": 1,
             "ajax": 0,
             "placeholder": "",
             "allow_custom": 0,
@@ -212,11 +151,11 @@
             "save_options": 0
         },
         {
-            "key": "field_662a7e0a51d75",
-            "label": "Remove top padding",
-            "name": "rem_top",
+            "key": "field_68e69154f4d38",
+            "label": "Background Image",
+            "name": "background_image",
             "aria-label": "",
-            "type": "true_false",
+            "type": "image",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -225,31 +164,19 @@
                 "class": "",
                 "id": ""
             },
-            "message": "",
-            "default_value": 0,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_662a7e8451d76",
-            "label": "Remove bottom padding",
-            "name": "rem_bot",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
+            "uploader": "",
+            "return_format": "array",
+            "library": "all",
+            "acfe_thumbnail": 0,
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
         }
     ],
     "location": [
@@ -277,5 +204,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1759339895
+    "modified": 1759941268
 }

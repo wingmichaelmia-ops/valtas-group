@@ -39,7 +39,7 @@ $args = wp_parse_args($args ?? [], $defaults);
                 $blurb    = $item['blurb'] ?? '';
                 $title_tag = $item['title_tag'] ?? 'h3';
             ?>
-                <div class="col-lg icon-text-item text-center">
+                <div class="col-lg icon-text-item">
                     <?php if ( $icon_img ) : ?>
                         <div class="icon mb-3">
                             <?php echo wp_get_attachment_image( $icon_img, 'thumbnail', false, ['class' => ''] ); ?>
