@@ -31,6 +31,9 @@ $args = wp_parse_args( $args, $default );
                     'loading' => 'lazy',
                 ]);
             }
+        } else {
+            // fallback image (as <img> tag)
+            echo '<img src="' . esc_url( get_template_directory_uri() . '/img/default-banner.jpg' ) . '" alt="" class="bg-image" loading="lazy">';
         }
     ?>
 

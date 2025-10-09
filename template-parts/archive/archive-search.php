@@ -1,11 +1,4 @@
-<?php
 
-    $args = array(
-        "title" => get_the_archive_title()
-    );
-    get_template_part( 'template-parts/partials/header/header-archive', 'page', $args );
-
-?>
 <div class="container">
     <div class="row">
         <?php

@@ -12739,7 +12739,7 @@ header .navbar-nav a:hover {
 }
 
 .page-title__content {
-  max-width: 550px;
+  max-width: 600px;
   z-index: 2;
   position: relative;
 }
@@ -14356,6 +14356,137 @@ PROJECT BLOCK
   align-items: end;
   justify-content: center;
   padding-bottom: 5rem;
+}
+
+/****************************************   
+CASE STUDY TEMPLATE
+*****************************************/
+.approach-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px 10px;
+}
+.approach-item img {
+  border-radius: 15px;
+}
+
+.outcome-checklist-item {
+  padding-left: 30px;
+  position: relative;
+}
+.outcome-checklist-item .section-title {
+  font-family: "Helvetica World", sans-serif;
+  font-weight: 700;
+  color: #012F6C;
+}
+
+.checklist-icon {
+  background: url(../img/checklist.svg);
+  width: 20px;
+  height: 20px;
+  display: block;
+  position: absolute;
+  top: 5px;
+  left: 0;
+}
+
+/* HTML: <div class="ribbon">Your text content</div> */
+.ribbon {
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.ribbon {
+  --r: .8em;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-inline: calc(var(--r) + 2em);
+  line-height: 1em;
+  clip-path: polygon(0 0, 100% 0, calc(100% - var(--r)) 50%, 100% 100%, 0 100%, var(--r) 50%);
+  background: linear-gradient(90deg, rgb(0, 159, 237) 0%, rgb(1, 47, 108) 100%);
+  width: -moz-fit-content;
+  width: fit-content;
+  text-align: center;
+}
+.ribbon p:last-child {
+  margin-bottom: 0;
+}
+
+.cp_container {
+  background: white;
+  padding-top: calc(var(--bs-gutter-x) * 0.5);
+  padding-bottom: calc(var(--bs-gutter-x) * 0.5);
+}
+
+.cp_content {
+  font-size: 25px;
+  font-style: italic;
+  line-height: 1.2em;
+  color: #1B1B1B;
+}
+
+.cp_name {
+  font-size: 30px;
+  font-weight: 700;
+  color: #009FED;
+  margin-bottom: 0;
+}
+
+.cp_designation {
+  font-family: "Helvetica World", sans-serif;
+  font-size: 20px;
+}
+
+.cp_author {
+  position: relative;
+  padding-right: 5rem;
+}
+.cp_author img {
+  position: absolute;
+  right: 0;
+  width: 4rem;
+  height: auto;
+  top: 0;
+}
+
+/****************************************
+BLOGS PAGE
+*****************************************/
+a.read-more {
+  margin-top: 1rem;
+  display: block;
+  color: #000;
+  text-transform: capitalize;
+}
+
+.date-capsule {
+  padding: 5px 20px;
+  border-radius: 50px;
+  border: 1px solid #000;
+  width: -moz-max-content;
+  width: max-content;
+  font-size: clamp(0.75rem, 0.2031rem + 1.75vw, 1.1875rem);
+}
+
+.blog-page .card img {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.blog-page hr {
+  opacity: 0.1;
+}
+
+.blog-page .card-title a {
+  color: #012F6C !important;
+}
+
+.wp-block-search__input {
+  padding: 0.7rem 1rem;
+  font-size: clamp(0.875rem, 0.5625rem + 1vw, 1.125rem);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 /*# sourceMappingURL=theme.css.map */

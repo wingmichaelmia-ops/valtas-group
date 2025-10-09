@@ -137,3 +137,16 @@ function testimonials_load_scripts() {
     wp_localize_script('load-more-testimonials', 'ajaxurl', admin_url('admin-ajax.php'));
 }
 add_action('wp_enqueue_scripts', 'testimonials_load_scripts');
+
+
+function theme_register_sidebars() {
+    register_sidebar(array(
+        'name'          => __('Blog Sidebar', 'valtas-theme'),
+        'id'            => 'blog-sidebar',
+        'before_widget' => '<div class="mb-4">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h5 class="fw-bold mb-3">',
+        'after_title'   => '</h5>',
+    ));
+}
+add_action('widgets_init', 'theme_register_sidebars');

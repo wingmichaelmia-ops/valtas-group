@@ -276,7 +276,7 @@
                         "id": ""
                     },
                     "uploader": "",
-                    "return_format": "array",
+                    "return_format": "id",
                     "library": "all",
                     "acfe_thumbnail": 0,
                     "min_width": "",
@@ -449,8 +449,30 @@
             "sub_fields": [
                 {
                     "key": "field_68e6b025b62fd",
-                    "label": "Outcome Checklist",
-                    "name": "outcome_checklist",
+                    "label": "Title",
+                    "name": "outcome_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_68e6b00fb62fc"
+                },
+                {
+                    "key": "field_68e7e922df05c",
+                    "label": "Blurb",
+                    "name": "outcome_blurb",
                     "aria-label": "",
                     "type": "wysiwyg",
                     "instructions": "",
@@ -631,5 +653,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1759952141
+    "modified": 1760029066
 }
