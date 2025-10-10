@@ -150,3 +150,239 @@ function theme_register_sidebars() {
     ));
 }
 add_action('widgets_init', 'theme_register_sidebars');
+
+
+
+function filter_blog_posts() {
+    $categories = isset($_POST['categories']) ? array_map('intval', $_POST['categories']) : [];
+
+    $args = [
+        'post_type'      => 'post',
+        'posts_per_page' => 6,
+    ];
+
+    if ( !empty($categories) ) {
+        $args['tax_query'] = [
+            [
+                'taxonomy' => 'category',
+                'field'    => 'term_id',
+                'terms'    => $categories,
+            ]
+        ];
+    }
+
+    $query = new WP_Query($args);
+
+    if ( $query->have_posts() ) :
+        while ( $query->have_posts() ) : $query->the_post();
+            $post_url   = urlencode( get_permalink() );
+            $post_title = urlencode( get_the_title() );
+
+            $share_facebook = 'https://www.facebook.com/sharer/sharer.php?u=' . $post_url;
+            $share_x        = 'https://twitter.com/intent/tweet?text=' . $post_title . '&url=' . $post_url;
+            ?>
+            <div class="col-md-12 blog-item-post">
+                <div class="card h-100 border-0">
+                    <?php if ( has_post_thumbnail() ) : ?>
+                        <a href="<?php the_permalink(); ?>">
+                            <?php the_post_thumbnail('medium_large', ['class' => 'card-img-top']); ?>
+                        </a>
+                    <?php endif; ?>
+
+                    <div class="card-body py-4 px-0">
+                        <div class="card-meta d-flex gap-3 small mb-2 align-items-center">
+                            <div class="date-capsule"><?php echo get_the_date(); ?></div>
+                            <div class="share-links d-flex gap-2">
+                                <a href="<?php echo esc_url( $share_facebook ); ?>" target="_blank" rel="noopener">
+                                    <img src="<?php echo esc_url( get_template_directory_uri() . '/img/fb.png' ); ?>" alt="Facebook">
+                                </a>
+                                <a href="<?php echo esc_url( $share_x ); ?>" target="_blank" rel="noopener">
+                                    <img src="<?php echo esc_url( get_template_directory_uri() . '/img/x.png' ); ?>" alt="X">
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="card-title mb-3">
+                            <a href="<?php the_permalink(); ?>" class="text-dark text-decoration-none"><?php the_title(); ?></a>
+                        </h3>
+                        <?php
+                                    if ( ! function_exists( 'trim_preserve_html' ) ) {
+                                        /**
+                                         * Trim text to a number of words while preserving HTML formatting.
+                                         */
+                                        function trim_preserve_html( $text, $limit = 100 ) {
+                                            // Split by spaces but keep HTML tags
+                                            $words = preg_split( '/(\s+)/', $text, -1, PREG_SPLIT_DELIM_CAPTURE );
+                                            $word_count = 0;
+                                            $output = '';
+
+                                            foreach ( $words as $word ) {
+                                                // Count only actual words, not HTML tags or whitespace
+                                                if ( trim( $word ) !== '' && strip_tags( $word ) === $word ) {
+                                                    $word_count++;
+                                                }
+
+                                                $output .= $word;
+
+                                                if ( $word_count >= $limit ) {
+                                                    break;
+                                                }
+                                            }
+
+                                            // Fix any unclosed HTML tags
+                                            $output = force_balance_tags( $output );
+
+                                            return $output . '';
+                                        }
+                                    }
+
+                                    // 1️⃣ Get post content or manual excerpt
+                                    $post_id = get_the_ID();
+                                    $excerpt = trim( get_post_field( 'post_excerpt', $post_id ) );
+
+                                    if ( empty( $excerpt ) ) {
+                                        $excerpt = get_post_field( 'post_content', $post_id );
+                                    }
+
+                                    // 2️⃣ Remove unwanted fragments like "[...]" or "Read More... from ..."
+                                    $excerpt = preg_replace( '/\s*\[.*?\]\s*/', ' ', $excerpt );
+                                    $excerpt = preg_replace( '/\s*Read\s*More.*$/i', ' ', $excerpt );
+
+                                    // 3️⃣ Trim while keeping HTML formatting
+                                    $excerpt = trim_preserve_html( $excerpt, 100 );
+
+                                    // 4️⃣ Add read more link
+                                    $read_more_link = '<a href="' . esc_url( get_permalink( $post_id ) ) . '" class="read-more">Read more</a>';
+
+                                    // 5️⃣ Output with allowed post HTML (keeps formatting)
+                                    echo wp_kses_post( $excerpt . $read_more_link );
+                                ?>
+                    </div>
+                    <hr class="my-3">
+                </div>
+            </div>
+            <?php
+        endwhile;
+        wp_reset_postdata();
+    else :
+        echo '<p>No posts found.</p>';
+    endif;
+
+    wp_die();
+}
+add_action('wp_ajax_filter_blog_posts', 'filter_blog_posts');
+add_action('wp_ajax_nopriv_filter_blog_posts', 'filter_blog_posts');
+
+
+add_action( 'widgets_init', function() {
+    register_widget( 'Valtas_Category_Filter_Widget' );
+});
+
+class Valtas_Category_Filter_Widget extends WP_Widget {
+
+    function __construct() {
+        parent::__construct(
+            'valtas_category_filter_widget',
+            __( 'Category Filter Checklist', 'valtas' ),
+            [ 'description' => __( 'Displays category checkboxes for filtering posts.', 'valtas' ) ]
+        );
+    }
+
+    function widget( $args, $instance ) {
+        echo $args['before_widget'];
+        echo '<div class="valtas-category-list">';
+        echo $args['before_title'] . __( 'Category :', 'valtas' ) . $args['after_title'];
+
+        $categories = get_categories([
+            'orderby' => 'name',
+            'order' => 'ASC',
+            'hide_empty' => true,
+        ]);
+
+        // 🔹 Start form
+        echo '<form id="category-filter-form">';
+
+        // 🔹 Add "All" checkbox (checked by default)
+        echo '<div class="form-check mb-2">';
+        echo '<input 
+                class="form-check-input category-checkbox" 
+                type="checkbox" 
+                id="cat-all" 
+                value="all" 
+                checked
+            >';
+        echo '<label class="form-check-label" for="cat-all">All</label>';
+        echo '</div>';
+
+        // 🔹 Individual category checkboxes
+        foreach ( $categories as $cat ) {
+            echo '<div class="form-check mb-2">';
+            echo '<input 
+                    class="form-check-input category-checkbox" 
+                    type="checkbox" 
+                    value="' . esc_attr( $cat->term_id ) . '" 
+                    id="cat-' . esc_attr( $cat->term_id ) . '"
+                >';
+            echo '<label class="form-check-label" for="cat-' . esc_attr( $cat->term_id ) . '">' . esc_html( $cat->name ) . '</label>';
+            echo '</div>';
+        }
+
+        echo '</form>';
+
+        echo $args['after_widget'];
+        echo '</div>';
+    }
+}
+
+add_action( 'widgets_init', function() {
+    register_widget( 'Valtas_Year_Filter_Widget' );
+});
+
+class Valtas_Year_Filter_Widget extends WP_Widget {
+
+    function __construct() {
+        parent::__construct(
+            'valtas_year_filter_widget',
+            __( 'Year Filter Checklist', 'valtas' ),
+            [ 'description' => __( 'Displays a checklist to filter blog posts by year.', 'valtas' ) ]
+        );
+    }
+
+    function widget( $args, $instance ) {
+        echo $args['before_widget'];
+        echo '<div class="valtas-category-list">';
+        echo $args['before_title'] . __( 'Select by year :', 'valtas' ) . $args['after_title'];
+
+        global $wpdb;
+        $years = $wpdb->get_col("
+            SELECT DISTINCT YEAR(post_date)
+            FROM $wpdb->posts
+            WHERE post_status = 'publish'
+            AND post_type = 'post'
+            ORDER BY post_date DESC
+        ");
+
+        if ( $years ) {
+            echo '<form id="year-filter-form">';
+            
+            // 🔹 Default “All” option
+            echo '<div class="form-check mb-2">
+                    <input class="form-check-input year-checkbox" type="checkbox" value="all" id="year-all" checked>
+                    <label class="form-check-label" for="year-all">All</label>
+                  </div>';
+
+            foreach ( $years as $year ) {
+                echo '<div class="form-check mb-2">
+                        <input class="form-check-input year-checkbox" type="checkbox" value="' . esc_attr( $year ) . '" id="year-' . esc_attr( $year ) . '">
+                        <label class="form-check-label" for="year-' . esc_attr( $year ) . '">' . esc_html( $year ) . '</label>
+                      </div>';
+            }
+
+            echo '</form>';
+        } else {
+            echo '<p>No posts available yet.</p>';
+        }
+
+        echo $args['after_widget'];
+        echo '</div>';
+    }
+}

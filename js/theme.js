@@ -6275,6 +6275,29 @@
     $(window).on('scroll resize', setActiveService);
     setActiveService();
   });
+  jQuery(document).ready(function ($) {
+    $('.category-checkbox').on('change', function () {
+      var selected = [];
+      $('.category-checkbox:checked').each(function () {
+        selected.push($(this).val());
+      });
+      $.ajax({
+        url: ajaxurl,
+        // WordPress global variable
+        type: 'POST',
+        data: {
+          action: 'filter_posts',
+          categories: selected
+        },
+        beforeSend: function beforeSend() {
+          $('#post-results').html('<p>Loading...</p>');
+        },
+        success: function success(response) {
+          $('#post-results').html(response);
+        }
+      });
+    });
+  });
 
   exports.Alert = Alert;
   exports.Button = Button;

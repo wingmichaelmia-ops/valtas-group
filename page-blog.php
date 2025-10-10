@@ -29,7 +29,7 @@ get_header();
 <div class="blog-page container py-5 px-3 px-md-0">
     <div class="row g-5">
         <!-- Main Blog Posts -->
-        <div class="col-lg-8">
+        <div class="col-lg-8 blog-items">
             <?php
             // Get current page number
             $paged = get_query_var('paged') ? get_query_var('paged') : 1;
@@ -186,5 +186,71 @@ get_header();
         </div>
     </div>
 </div>
+
+<script>
+jQuery(document).ready(function($) {
+    $('#category-filter-form input[type="checkbox"]').on('change', function() {
+        let selected = [];
+
+        $('#category-filter-form input[type="checkbox"]:checked').each(function() {
+            selected.push($(this).val());
+        });
+
+        $.ajax({
+            url: "<?php echo admin_url('admin-ajax.php'); ?>",
+            type: 'POST',
+            data: {
+                action: 'filter_blog_posts',
+                categories: selected
+            },
+            beforeSend: function() {
+                $('.blog-item-post').css('opacity', '0.5');
+            },
+            success: function(response) {
+                $('.blog-item-post').css('opacity', '1');
+                $('.col-lg-8 .row.g-4').html(response);
+            }
+        });
+    });
+});
+</script>
+<script>
+jQuery(document).ready(function($) {
+    $('#year-filter-form .year-checkbox').on('change', function() {
+        let selectedYears = [];
+
+        // If "All Years" is checked, uncheck others
+        if ($(this).val() === 'all' && $(this).is(':checked')) {
+            $('#year-filter-form .year-checkbox').not(this).prop('checked', false);
+        } else {
+            $('#year-filter-form .year-checkbox[value="all"]').prop('checked', false);
+        }
+
+        $('#year-filter-form .year-checkbox:checked').each(function() {
+            selectedYears.push($(this).val());
+        });
+
+        // AJAX request
+        $.ajax({
+            url: '<?php echo admin_url("admin-ajax.php"); ?>',
+            type: 'POST',
+            data: {
+                action: 'filter_blog_posts',
+                years: selectedYears
+            },
+            beforeSend: function() {
+                $('#blog-posts-container').css('opacity', '0.5');
+            },
+            success: function(response) {
+                $('#blog-posts-container').css('opacity', '1').html(response);
+            },
+            error: function() {
+                $('#blog-posts-container').css('opacity', '1').html('<p>Error loading posts.</p>');
+            }
+        });
+    });
+});
+</script>
+
 
 <?php get_footer(); ?>

@@ -149,3 +149,26 @@ jQuery(document).ready(function($) {
     setActiveService();
 });
 
+jQuery(document).ready(function($) {
+    $('.category-checkbox').on('change', function() {
+        let selected = [];
+        $('.category-checkbox:checked').each(function() {
+            selected.push($(this).val());
+        });
+
+        $.ajax({
+            url: ajaxurl, // WordPress global variable
+            type: 'POST',
+            data: {
+                action: 'filter_posts',
+                categories: selected
+            },
+            beforeSend: function() {
+                $('#post-results').html('<p>Loading...</p>');
+            },
+            success: function(response) {
+                $('#post-results').html(response);
+            }
+        });
+    });
+});
