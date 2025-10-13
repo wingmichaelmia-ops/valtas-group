@@ -4,7 +4,7 @@ $default = array(
     'title_tag'        => get_sub_field('title_tag') ?: 'h2',
     'title'            => get_sub_field('title') ?: get_the_title(),
     'content'          => get_sub_field('blurb'),
-    'background_image' => get_sub_field('background_image') ?: get_post_thumbnail_id(get_the_ID()),
+    'background_image' => get_sub_field('background_image'),
 );
 
 $args = wp_parse_args( $args, $default );
@@ -17,7 +17,11 @@ $args = wp_parse_args( $args, $default );
         if (empty($image)) {
             $image = get_post_thumbnail_id(get_the_ID());
         }
-
+        // 🧩 If single post → always use fallback
+        if ( is_single() ) {
+            echo '<img src="' . esc_url( get_template_directory_uri() . '/img/default-banner.jpg' ) . '" alt="Default banner" class="bg-image" loading="lazy">';
+           
+        }
         if ($image) {
             if (is_array($image) && isset($image['ID'])) {
                 $image_id = $image['ID'];
@@ -27,7 +31,7 @@ $args = wp_parse_args( $args, $default );
 
             if (!empty($image_id)) {
                 echo wp_get_attachment_image($image_id, 'full', false, [
-                    'class'   => 'bg-image',
+                    'class'   => 'bg-image feature-image',
                     'loading' => 'lazy',
                 ]);
             }

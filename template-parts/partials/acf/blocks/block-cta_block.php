@@ -16,7 +16,10 @@ $args = wp_parse_args( $args, $default );
     
     <?php 
         $image_id = get_sub_field('background_image');
-
+        if ( is_single() ) {
+            echo '<img src="' . esc_url( get_template_directory_uri() . '/img/cta-single-post.jpg' ) . '" alt="Default banner" class="bg-image" loading="lazy">';
+           
+        }
         if ( $image_id ) {
             echo wp_get_attachment_image( $image_id, 'full', false, array(
                 'class'   => 'bg-image',
@@ -24,7 +27,7 @@ $args = wp_parse_args( $args, $default );
             ) );
         } else {
             // fallback image (as <img> tag)
-            echo '<img src="' . esc_url( get_template_directory_uri() . '/img/default-cta.jpg' ) . '" alt="" class="bg-image" loading="lazy">';
+            echo '<img src="' . esc_url( get_template_directory_uri() . '/img/default-cta.jpg' ) . '" alt="" class="bg-image default-cta" loading="lazy">';
         }
     ?>
     <div class="container">
