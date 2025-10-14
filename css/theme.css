@@ -13239,7 +13239,6 @@ SERVICES BLOCK
   font-style: italic;
   color: #363628;
   line-height: 1.2em;
-  letter-spacing: -2px;
 }
 
 .testimonial-name {
@@ -14640,6 +14639,19 @@ TEAM BLOCK
   border-radius: 20px;
   overflow: hidden;
   min-height: 443px;
+  max-height: 443px;
+}
+.card.team-member-card:hover {
+  background: linear-gradient(180deg, rgb(0, 159, 237) 0%, #012F6C 100%);
+}
+.card.team-member-card:hover .team-member-info {
+  background: linear-gradient(180deg, rgba(1, 47, 107, 0) 60%, #012F6C 70%);
+}
+.card.team-member-card:hover .team-member-info > * {
+  color: white !important;
+}
+.card.team-member-card:hover .team-member-image::after {
+  background: linear-gradient(180deg, rgba(1, 47, 107, 0.5) 60%, #012f6c 100%);
 }
 .card.team-member-card .btn-valtas::before {
   background: url(../img/btn-icon.png);
@@ -14693,6 +14705,105 @@ TEAM BLOCK
 .card.team-member-card .card-title {
   color: #012F6C;
   font-size: 27px;
+}
+
+.team-profile-popup .modal-content {
+  border-radius: 30px;
+  background-image: url("../img/profile-bg.jpg");
+  padding: 2rem;
+  background-size: cover;
+  background-position: top center;
+}
+.team-profile-popup .tp-image {
+  background: #F1F1F1;
+  border: 4px solid white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  aspect-ratio: 1;
+}
+.team-profile-popup .tp-position {
+  font-size: clamp(1.25rem, 1.118rem + 0.4225vw, 1.625rem);
+  text-transform: uppercase;
+  margin-bottom: 0;
+  color: #fff;
+}
+.team-profile-popup .tp-name {
+  color: #fff;
+  margin-bottom: 2rem;
+}
+.team-profile-popup .socials {
+  min-width: 53px;
+  height: 53px;
+  display: flex;
+  background: white;
+  border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.team-profile-popup button.btn-close {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  background-color: white;
+  border: 3px solid #009FED;
+  opacity: 1;
+  border-radius: 100%;
+  padding: 1rem;
+}
+.team-profile-popup .tp-image img {
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  -o-object-position: top;
+  object-position: top;
+}
+
+/****************************************
+REVIEW CTA BLOCK
+*****************************************/
+#reviewCarousel {
+  background-image: url("../img/testi-bg.png");
+  min-height: 420px;
+  width: 100%;
+  max-width: 671px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+  margin-left: auto;
+}
+@media (max-width: 991.98px) {
+  #reviewCarousel {
+    background: linear-gradient(0deg, rgb(34, 118, 162) 0%, rgb(24, 54, 86) 100%);
+  }
+}
+#reviewCarousel .testimonial-title {
+  max-width: 80%;
+}
+#reviewCarousel .carousel-controls {
+  display: flex;
+  position: absolute;
+  bottom: -15px;
+  right: 5%;
+  gap: 10px;
+}
+#reviewCarousel .carousel-controls button {
+  background: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  position: relative;
+}
+#reviewCarousel .carousel-controls button span {
+  filter: brightness(0) saturate(100%) invert(12%) sepia(40%) saturate(4860%) hue-rotate(206deg) brightness(96%) contrast(99%);
 }
 
 /*# sourceMappingURL=theme.css.map */
