@@ -38,7 +38,10 @@ $args = wp_parse_args($args ?? [], $defaults);
         $args = array(
             'post_type'      => 'team-member',
             'posts_per_page' => -1,
-            'orderby'        => 'menu_order',
+            'orderby'   => array(
+                'menu_order' => 'ASC', // Sort by menu_order in ascending order
+                'title'      => 'ASC',  // Then sort alphabetically by title in ascending order
+            ),
             'order'          => 'ASC',
                 'tax_query' => array(
                     array(
