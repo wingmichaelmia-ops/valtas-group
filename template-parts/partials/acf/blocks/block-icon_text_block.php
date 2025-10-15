@@ -62,13 +62,13 @@ $button = $args['button'];
                 </div>
             <?php endforeach; ?>
         </div>
+        <?php if ( $button ) : ?>
+            <div class="btn-valtas center-button my-4">
+                <a href="<?php echo esc_url($button['url']); ?>" class="btn btn-primary" target="<?php echo esc_attr($button['target'] ?: '_self'); ?>">
+                    <?php echo esc_html($button['title']); ?>
+                </a>
+            </div>
+        <?php endif; ?>
     </div>
 <?php endif; ?>
 
-<?php if ( $button ) : ?>
-    <div class="btn-valtas my-4">
-        <a href="<?php echo esc_url($button['url']); ?>" class="btn btn-primary" target="<?php echo esc_attr($button['target'] ?: '_self'); ?>">
-            <?php echo esc_html($button['title']); ?>
-        </a>
-    </div>
-<?php endif; ?>
