@@ -12929,6 +12929,32 @@ blockquote.blockquote, blockquote.wp-block-quote {
   z-index: 3;
 }
 
+ul.checklist {
+  list-style: none;
+  padding-left: 0;
+}
+ul.checklist li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+ul.checklist li:before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: url(../img/checklist.svg) no-repeat center;
+  position: absolute;
+  left: 0;
+  top: auto;
+  bottom: auto;
+}
+
+.text-white .checklist li:before {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(6%) saturate(492%) hue-rotate(276deg) brightness(117%) contrast(100%);
+}
+
 /****************************************
 BUTTONS
 
