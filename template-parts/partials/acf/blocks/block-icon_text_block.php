@@ -34,7 +34,7 @@ $button = $args['button'];
 
 <?php if ( !empty($args['icon_text']) ) : ?>
     <div class="icon-text-block container py-5">
-        <div class="row g-4">
+        <div class="row g-4 mb-5">
             <?php foreach ( $args['icon_text'] as $item ) :
                 $icon_img = $item['image'] ?? '';
                 $title    = $item['title'] ?? '';
