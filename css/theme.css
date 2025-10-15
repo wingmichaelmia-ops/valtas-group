@@ -12722,10 +12722,11 @@ header .navbar-nav a:hover {
   height: 55px;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: center;
   width: -moz-max-content;
   width: max-content;
   padding-left: 35px;
+  min-width: 180px;
 }
 .echo-block-page_title .btn-valtas a:hover {
   background: #012f6b;

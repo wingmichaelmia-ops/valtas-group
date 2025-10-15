@@ -54,9 +54,10 @@
             height: 55px;
             display: flex;
             align-items: center;
-            justify-content: end;
+            justify-content: center;
             width: max-content;
             padding-left: 35px;
+            min-width: 180px;
             &:hover {
                 background: #012f6b;
             }
