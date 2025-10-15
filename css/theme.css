@@ -14166,6 +14166,13 @@ ICON TEXT BLOCK
   border-top-right-radius: 20px;
 }
 
+.gradient-cards .icon-text-item {
+  padding: 2rem;
+}
+.gradient-cards .icon-text-item:before {
+  display: none;
+}
+
 /********************************************
 CASE STUDY
 ********************************************/
