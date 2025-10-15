@@ -30,7 +30,7 @@ $args = wp_parse_args($args ?? [], $defaults);
         <!-- First Column -->
         <?php if ( $args['title_first'] || $args['blurb_first'] || $args['image_first'] ) : ?>
             <div class="col-lg-6">
-                <div class="row align-items-center <?php echo $args['image_position_first'] === 'bottom_first_column_image_position' ? 'flex-column-reverse' : ''; ?>">
+                <div class="row align-items-center g-4 <?php echo $args['image_position_first'] === 'bottom_first_column_image_position' ? 'flex-column-reverse' : ''; ?>">
                     
                     <div class="col-12 image-col">
                         <?php if ( $args['image_first'] ) : ?>
@@ -69,7 +69,7 @@ $args = wp_parse_args($args ?? [], $defaults);
         <!-- Second Column -->
         <?php if ( $args['title_second'] || $args['blurb_second'] || $args['image_second'] ) : ?>
             <div class="col-lg-6">
-                <div class="row align-items-center <?php echo $args['image_position_second'] === 'bottom_first_column_image_position' ? 'flex-column-reverse' : ''; ?>">
+                <div class="row align-items-center g-4 <?php echo $args['image_position_second'] === 'bottom_first_column_image_position' ? 'flex-column-reverse' : ''; ?>">
                     
                     <div class="col-12 image-col">
                         <?php if ( $args['image_second'] ) : ?>
