@@ -130,11 +130,13 @@ $args = wp_parse_args($args ?? [], $defaults);
                                             <div class="tp-bio text-white">
                                                 <?php echo $bio; ?>
                                             </div>
+                                            <?php if ( $resume ) : ?>   
                                             <div class="btn-valtas mt-5">
                                                     <a href="<?php echo $resume ?>" target="_blank" class="btn btn-primary">
                                                         <?php echo esc_html( strtok( get_the_title(), ' ' ) ); ?>'s Resume
                                                     </a>
                                             </div>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
