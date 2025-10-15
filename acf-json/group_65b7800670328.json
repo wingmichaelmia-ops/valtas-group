@@ -286,11 +286,11 @@
                             "delay": 0
                         },
                         {
-                            "key": "field_68dc06117bfd5",
-                            "label": "Button",
-                            "name": "button",
+                            "key": "field_68efdbf822f61",
+                            "label": "Buttons",
+                            "name": "button_group",
                             "aria-label": "",
-                            "type": "link",
+                            "type": "repeater",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -299,8 +299,33 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "return_format": "array",
-                            "allow_in_bindings": 0
+                            "acfe_repeater_stylised_button": 0,
+                            "layout": "table",
+                            "min": 0,
+                            "max": 0,
+                            "collapsed": "",
+                            "button_label": "Add Row",
+                            "rows_per_page": 20,
+                            "sub_fields": [
+                                {
+                                    "key": "field_68dc06117bfd5",
+                                    "label": "Button",
+                                    "name": "button",
+                                    "aria-label": "",
+                                    "type": "link",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "array",
+                                    "allow_in_bindings": 0,
+                                    "parent_repeater": "field_68efdbf822f61"
+                                }
+                            ]
                         },
                         {
                             "key": "field_68dc06117bfd6",
@@ -4182,5 +4207,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1760467732
+    "modified": 1760549915
 }

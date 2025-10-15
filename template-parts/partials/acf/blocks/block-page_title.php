@@ -5,6 +5,7 @@ $default = array(
     'title'            => get_sub_field('title') ?: get_the_title(),
     'content'          => get_sub_field('blurb'),
     'background_image' => get_sub_field('background_image'),
+    'button_group' => get_sub_field( 'button_group' )
 );
 
 $args = wp_parse_args( $args, $default );
@@ -52,17 +53,26 @@ $args = wp_parse_args( $args, $default );
             <?php if ( $args['content'] ) : ?>
                     <?php echo wp_kses_post( wpautop( $args['content'] ) ); ?>
             <?php endif; ?>
-            <?php 
-                $link = get_sub_field('button');
-                if( $link ): 
-                    $url = $link['url'];
-                    $title = $link['title'];
-                    $target = $link['target'] ? $link['target'] : '_self';
-                    ?>
-                    <div class="btn-valtas">
-                        <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>" class="btn btn-primary">
-                            <?php echo esc_html($title); ?>
-                        </a>
+            <?php if ( !empty($args['button_group']) ) : ?>
+                <div class="valtas-title-block__buttons d-flex flex-wrap gap-2">
+                    <?php foreach ( $args['button_group'] as $row ) : 
+                        $button = $row['button'] ?? null;
+                        if ( $button ) :
+                            $url    = $button['url'] ?? '';
+                            $title  = $button['title'] ?? '';
+                            $target = !empty($button['target']) ? $button['target'] : '_self';
+                            
+                            if ( $url && $title ) : ?>
+                                <div class="btn-valtas">
+                                    <a href="<?php echo esc_url($url); ?>" 
+                                    target="<?php echo esc_attr($target); ?>" 
+                                    class="btn btn-primary">
+                                        <?php echo esc_html($title); ?>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
             <?php endif; ?>
         </div>
