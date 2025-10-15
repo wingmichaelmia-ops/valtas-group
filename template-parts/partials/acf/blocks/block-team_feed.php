@@ -152,3 +152,8 @@ $args = wp_parse_args($args ?? [], $defaults);
         ?>
     </div>
 </div>
+<style>
+.team-profile .btn-valtas a {
+    clip-path: polygon(13% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+</style>
