@@ -9,9 +9,11 @@ $defaults = [
     'intro_text'      => get_sub_field('intro_text'),
     'icon_text'       => get_sub_field('icon_list') ?: [], // renamed repeater
     'header_position' => get_sub_field('header_position') ?: 'header-title-center',
+    'button'      => get_sub_field('button'),
 ];
 
 $args = wp_parse_args($args ?? [], $defaults);
+$button = $args['button'];
 ?>
 
 <?php if ( $args['header_title'] || $args['intro_text'] ) : ?>
@@ -60,5 +62,13 @@ $args = wp_parse_args($args ?? [], $defaults);
                 </div>
             <?php endforeach; ?>
         </div>
+    </div>
+<?php endif; ?>
+
+<?php if ( $button ) : ?>
+    <div class="btn-valtas my-4">
+        <a href="<?php echo esc_url($button['url']); ?>" class="btn btn-primary" target="<?php echo esc_attr($button['target'] ?: '_self'); ?>">
+            <?php echo esc_html($button['title']); ?>
+        </a>
     </div>
 <?php endif; ?>

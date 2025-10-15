@@ -14166,6 +14166,10 @@ ICON TEXT BLOCK
   border-top-right-radius: 20px;
 }
 
+.gradient-cards .icon-text-block .row {
+  gap: 1rem;
+}
+
 .gradient-cards .icon-text-item {
   padding: 2rem;
 }
