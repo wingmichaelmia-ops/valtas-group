@@ -386,3 +386,260 @@ class Valtas_Year_Filter_Widget extends WP_Widget {
         echo '</div>';
     }
 }
+
+// =====================================================
+// CUSTOM LOGIN PAGE SETUP (for Members plugin integration)
+// =====================================================
+
+// Redirect logged-in users away from the login page BEFORE output starts
+function redirect_logged_in_user_from_login_page() {
+    if ( is_page( 'login' ) && is_user_logged_in() ) {
+        wp_redirect( home_url( '/members-area/' ) );
+        exit;
+    }
+}
+add_action( 'template_redirect', 'redirect_logged_in_user_from_login_page' );
+
+// Custom Login Form Shortcode
+function custom_login_form_shortcode() {
+
+    if ( is_user_logged_in() ) {
+        return '<div class="alert alert-info text-center my-5">You are already logged in.</div>';
+    }
+
+    // Capture any login errors
+    $login_errors = '';
+    if ( isset( $_GET['login'] ) && $_GET['login'] === 'failed' ) {
+        $login_errors = '<div class="alert alert-danger text-center mb-3">Invalid username or password.</div>';
+    }
+
+    // Custom form markup (no labels, using placeholders)
+    ob_start();
+    ?>
+    <div class="custom-login-wrapper">
+        <div class="custom-login-wrapper-inner">
+                <h2 class="h4 mb-2 fw-bold text-primary">Welcome to BoardX</h2>
+                <p class="mb-2">Please sign in to continue...</p>
+                <?php echo $login_errors; ?>
+                <form name="loginform" id="custom-login-form" action="<?php echo esc_url( wp_login_url() ); ?>" method="post">
+                    <div class="mb-4">
+                        <input type="text" name="log" id="user_login" class="form-control" placeholder="Username or Email Address" required>
+                    </div>
+                    <div class="mb-4">
+                        <input type="password" name="pwd" id="user_pass" class="form-control" placeholder="Password" required>
+                    </div>
+                    <!--<div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" name="rememberme" type="checkbox" id="rememberme" value="forever">
+                            <label class="form-check-label" for="rememberme">Remember Me</label>
+                        </div>
+                    </div>-->
+                    <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-primary w-100" value="Submit">
+                    <div class="text-center mt-5 form-links">
+                        <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>">Lost your password?</a> | <a href="<?php echo esc_url( home_url( '/request-access/' ) ); ?>">Request Access</a>
+                    </div>
+                    <input type="hidden" name="redirect_to" value="<?php echo esc_url( home_url( '/members-area/' ) ); ?>">
+                    <input type="hidden" name="testcookie" value="1">
+                </form>
+        </div>
+    </div>
+    <style>
+        .custom-login-wrapper {
+            background-image: url('<?php echo esc_url( get_template_directory_uri() . '/img/login-bg.jpg' ); ?>');
+            min-height: 80dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1rem;
+            padding-top: 200px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .custom-login-wrapper-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: column;
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 30px;
+            width: 100%;
+            max-width: 577px;
+            box-shadow: 0 10px 125px rgba(0, 52, 78, .08);
+        }
+        #custom-login-form {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        #custom-login-form input[type="text"],
+        #custom-login-form input[type="password"] {
+            width: 100%;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            padding: 1rem;
+            background-color: #F5F5F5;
+            border-color: #F5F5F5;
+        }
+        #custom-login-form input[type="submit"] {
+            width: 100%;
+            background: linear-gradient(90deg,rgba(0, 159, 237, 1) 0%, rgba(1, 47, 108, 1) 100%);
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border-radius: 30px;
+            text-transform: uppercase;
+        }
+        #custom-login-form input[type="submit"]:hover {
+            background-color: #009fed;
+        }
+        .form-links a {
+            color: #009fed;
+        }
+    </style>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode( 'custom_login_form', 'custom_login_form_shortcode' );
+
+function custom_register_form_shortcode() {
+
+    if ( is_user_logged_in() ) {
+        return '<div class="alert alert-info text-center my-5">You are already logged in.</div>';
+    }
+
+    $errors = array();
+    $success = '';
+
+    // Handle form submission
+    if ( isset( $_POST['custom_user_register'] ) ) {
+        $username = sanitize_user( $_POST['username'] );
+        $email    = sanitize_email( $_POST['email'] );
+        $password = $_POST['password'];
+        $confirm  = $_POST['confirm_password'];
+
+        if ( empty( $username ) || empty( $email ) || empty( $password ) || empty( $confirm ) ) {
+            $errors[] = 'All fields are required.';
+        }
+        if ( ! is_email( $email ) ) {
+            $errors[] = 'Please enter a valid email address.';
+        }
+        if ( username_exists( $username ) || email_exists( $email ) ) {
+            $errors[] = 'Username or email already exists.';
+        }
+        if ( $password !== $confirm ) {
+            $errors[] = 'Passwords do not match.';
+        }
+
+        // If no errors, register the user
+        if ( empty( $errors ) ) {
+            $user_id = wp_create_user( $username, $password, $email );
+            if ( ! is_wp_error( $user_id ) ) {
+                wp_new_user_notification( $user_id, null, 'both' ); // Sends email to admin & user
+                $success = 'Registration successful! You can now log in.';
+                $_POST = array(); // Clear form
+            } else {
+                $errors[] = 'Registration failed. Please try again.';
+            }
+        }
+    }
+
+    // Build output
+    ob_start();
+    ?>
+    <div class="custom-login-wrapper">
+        <div class="custom-login-wrapper-inner">
+                        <h2 class="h4 text-center mb-4 fw-bold text-primary">Request Access</h2>
+
+                        <?php if ( ! empty( $errors ) ) : ?>
+                            <div class="alert alert-danger"><?php echo implode( '<br>', $errors ); ?></div>
+                        <?php elseif ( ! empty( $success ) ) : ?>
+                            <div class="alert alert-success text-center"><?php echo esc_html( $success ); ?></div>
+                        <?php endif; ?>
+
+                        <form id="custom-register-form" method="post" action="">
+                            <div class="mb-3">
+                                <input type="text" name="username" class="form-control" placeholder="Username" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" name="password" class="form-control" placeholder="Password" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
+                            </div>
+                            <input type="submit" name="custom_user_register" class="btn btn-primary w-100" value="Register">
+                            <div class="text-center mt-5 form-links">
+                                <a href="<?php echo esc_url( home_url( '/login/' ) ); ?>">Already have an account? Log in</a>
+                            </div>
+                        </form>
+        </div>
+    </div>
+
+    <style>
+        .custom-login-wrapper {
+            background-image: url('<?php echo esc_url( get_template_directory_uri() . '/img/login-bg.jpg' ); ?>');
+            min-height: 80dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1rem;
+            padding-top: 200px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .custom-login-wrapper-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: column;
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 30px;
+            width: 100%;
+            max-width: 577px;
+            box-shadow: 0 10px 125px rgba(0, 52, 78, .08);
+        }
+        #custom-register-form {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        #custom-register-form input[type="text"],
+        #custom-register-form input[type="password"],
+        #custom-register-form input[type="email"] {
+            width: 100%;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            padding: 1rem;
+            background-color: #F5F5F5;
+            border-color: #F5F5F5;
+        }
+        #custom-register-form input[type="submit"] {
+            width: 100%;
+            background: linear-gradient(90deg,rgba(0, 159, 237, 1) 0%, rgba(1, 47, 108, 1) 100%);
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border-radius: 30px;
+            text-transform: uppercase;
+        }
+        #custom-register-form input[type="submit"]:hover {
+            background-color: #009fed;
+        }
+        .form-links a {
+            color: #009fed;
+        }
+    </style>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode( 'custom_register_form', 'custom_register_form_shortcode' );
