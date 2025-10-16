@@ -646,13 +646,23 @@ add_shortcode( 'custom_register_form', 'custom_register_form_shortcode' );
 
 
 
-// Redirect logged-out users from the Members Area template
+// Redirect logged-out users from Members Area template or content tagged "BoardX"
 function valtas_redirect_members_area_pages() {
-	// Only apply to your custom Members Area template
+
+	// Redirect if using the Members Area template
 	if ( is_page_template( 'page-members-area.php' ) && ! is_user_logged_in() ) {
-		wp_redirect( '/login/' );
+		wp_redirect( home_url( '/login/' ) );
+		exit;
+	}
+
+	// Redirect if post or page has the tag "BoardX"
+	if ( ( is_single() || is_page() ) && has_tag( 'BoardX' ) && ! is_user_logged_in() ) {
+		wp_redirect( home_url( '/login/' ) );
 		exit;
 	}
 }
 add_action( 'template_redirect', 'valtas_redirect_members_area_pages' );
 
+add_action( 'init', function() {
+	register_taxonomy_for_object_type( 'post_tag', 'page' );
+} );

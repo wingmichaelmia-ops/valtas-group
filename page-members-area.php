@@ -27,12 +27,28 @@ if (
 get_header();
 ?>
 
-<main id="primary" class="site-main members-area">
-		<?php
-
-		get_template_part( 'template-parts/partials/acf/renderer' );
-
-		?>
-</main>
+<style>
+    .page-title__content {
+        max-width: 477px;
+    }
+    .echo-block-page_title img.bg-image:nth-child(2) {
+        display: none;
+    }
+</style>
+<section class="echo-block echo-block-page_title">    
+    
+    <?php
+    // ✅ Reusable ACF Page Title block
+    get_template_part(
+        'template-parts/partials/acf/blocks/block',
+        'page_title',
+        [
+            'title'      => 'BoardX <span class="highlight">Archive</span>', // use the post title dynamically
+            'title_tag'  => 'h1',
+            'content'    => ' BoardX is a free, invitation-only resource hub powered by Valtas that equips nonprofit boards with tools, insights, and connections to grow their eXperience, eXpertise, and eXcellence, with a monthly donation from Valtas to every nonprofit whose board engages with the platform that month.',
+        ]
+    );
+    ?>
+</section>
 
 <?php get_footer(); ?>

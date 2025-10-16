@@ -23,6 +23,9 @@ $args = wp_parse_args( $args, $default );
             echo '<img src="' . esc_url( get_template_directory_uri() . '/img/default-banner.jpg' ) . '" alt="Default banner" class="bg-image" loading="lazy">';
            
         }
+        if ( is_page_template( 'page-members-area.php' ) ) {
+            echo '<img src="' . esc_url( get_template_directory_uri() . '/img/boardx-archive-banner.jpg' ) . '" alt="Default banner" class="bg-image" loading="lazy">';
+        }
         if ($image) {
             if (is_array($image) && isset($image['ID'])) {
                 $image_id = $image['ID'];
