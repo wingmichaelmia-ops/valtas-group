@@ -394,7 +394,7 @@ class Valtas_Year_Filter_Widget extends WP_Widget {
 // Redirect logged-in users away from the login page BEFORE output starts
 function redirect_logged_in_user_from_login_page() {
     if ( is_page( 'login' ) && is_user_logged_in() ) {
-        wp_redirect( home_url( '/members-area/' ) );
+        wp_redirect( home_url( '/boardx-archive/' ) );
         exit;
     }
 }
@@ -438,7 +438,7 @@ function custom_login_form_shortcode() {
                     <div class="text-center mt-5 form-links">
                         <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>">Lost your password?</a> | <a href="<?php echo esc_url( home_url( '/request-access/' ) ); ?>">Request Access</a>
                     </div>
-                    <input type="hidden" name="redirect_to" value="<?php echo esc_url( home_url( '/members-area/' ) ); ?>">
+                    <input type="hidden" name="redirect_to" value="<?php echo esc_url( home_url( '/boardx-archive/' ) ); ?>">
                     <input type="hidden" name="testcookie" value="1">
                 </form>
         </div>
