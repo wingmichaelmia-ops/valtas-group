@@ -643,3 +643,24 @@ function custom_register_form_shortcode() {
     return ob_get_clean();
 }
 add_shortcode( 'custom_register_form', 'custom_register_form_shortcode' );
+
+
+function valtas_private_site_roles() {
+    if ( is_admin() || preg_match('/(wp-login\.php|login|register)/', $_SERVER['REQUEST_URI']) ) {
+        return;
+    }
+
+    if ( !is_user_logged_in() ) {
+        wp_redirect( home_url('/login/') );
+        exit;
+    }
+
+    $allowed_roles = array('administrator', 'member');
+    $user = wp_get_current_user();
+
+    if ( empty( array_intersect( $allowed_roles, (array) $user->roles ) ) ) {
+        wp_redirect( home_url('/no-access/') ); // optional page
+        exit;
+    }
+}
+add_action( 'template_redirect', 'valtas_private_site_roles' );
