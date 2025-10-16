@@ -645,3 +645,17 @@ function custom_register_form_shortcode() {
 add_shortcode( 'custom_register_form', 'custom_register_form_shortcode' );
 
 
+function valtas_private_site_redirect() {
+    // Skip redirect in admin area or during login requests
+    if ( is_admin() || 
+         preg_match('/(wp-login\.php|wp-register\.php|login|register)/', $_SERVER['REQUEST_URI']) ) {
+        return;
+    }
+
+    // If not logged in, redirect to custom login page
+    if ( !is_user_logged_in() ) {
+        wp_redirect( home_url('/login/') ); // <-- change to your custom login slug
+        exit;
+    }
+}
+add_action( 'template_redirect', 'valtas_private_site_redirect' );
