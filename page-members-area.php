@@ -51,4 +51,10 @@ get_header();
     ?>
 </section>
 
+<?php
+
+get_template_part( 'template-parts/partials/acf/renderer-boardx' );
+
+?>
+
 <?php get_footer(); ?>

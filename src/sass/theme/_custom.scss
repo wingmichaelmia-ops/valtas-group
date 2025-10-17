@@ -2034,3 +2034,20 @@ REVIEW CTA BLOCK
         }
     }
 }
+
+
+/****************************************
+BOARDX ACHIEVE 
+*****************************************/
+.boardx-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 1rem;
+    img.featured-img {
+        border-radius: 20px;
+    }
+}
+.boardx-title {
+    font-size: clamp(1.375rem, 0.75rem + 2vw, 1.875rem);
+    font-weight: 700;
+}

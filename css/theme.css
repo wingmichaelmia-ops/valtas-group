@@ -14874,4 +14874,21 @@ REVIEW CTA BLOCK
   filter: brightness(0) saturate(100%) invert(12%) sepia(40%) saturate(4860%) hue-rotate(206deg) brightness(96%) contrast(99%);
 }
 
+/****************************************
+BOARDX ACHIEVE 
+*****************************************/
+.boardx-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 1rem;
+}
+.boardx-card img.featured-img {
+  border-radius: 20px;
+}
+
+.boardx-title {
+  font-size: clamp(1.375rem, 0.75rem + 2vw, 1.875rem);
+  font-weight: 700;
+}
+
 /*# sourceMappingURL=theme.css.map */
