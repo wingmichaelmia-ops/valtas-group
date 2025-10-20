@@ -425,6 +425,7 @@ endif;
         </h2>
     </div>
     <div class="container pb-5">
+        <div class="row">
     <?php
     $defaults = [
         'articles_3'        => 'responsibilities',
@@ -543,6 +544,7 @@ endif;
         
         <?php endif; ?>
     <?php endwhile; ?>
+    </div>
     </div>
 </section>
 <?php get_footer(); ?>
