@@ -493,7 +493,7 @@ endif;
     ?>
         <?php if ($count === 1) : ?>
             <!-- Left large article -->
-            <div class="col-lg-12">
+            <div class="col-lg-12 mb-2">
                 <div class="boardx-card boardx-card-overlay large h-100 position-relative">
                     <?php if ($image): ?>
                         <div class="featured-img">

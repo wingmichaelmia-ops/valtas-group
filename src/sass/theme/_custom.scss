@@ -2152,3 +2152,22 @@ BOARDX ACHIEVE
 .boardx-card.bg-light-secondary {
     background-color: #fdf5e4;
 }
+.boardx-card.boardx-card-overlay {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+}
+.boardx-card.boardx-card-overlay .article-content {
+    z-index: 2;
+    position: relative;
+    color: white;
+}
+.boardx-card.boardx-card-overlay .featured-img {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    height: 100%;
+}
