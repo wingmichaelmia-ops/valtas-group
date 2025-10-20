@@ -512,8 +512,8 @@ endif;
                 </div>
             </div>       
         <?php else : ?>
-            <div class="col-6">
-                <div class="boardx-card small position-relative h-100">
+            <div class="col-4">
+                <div class="boardx-card small position-relative h-100 bg-light-secondary">
                     <?php if ($image) { ?>
                         <div class="featured-img">
                             <?php
