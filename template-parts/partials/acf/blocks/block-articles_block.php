@@ -91,6 +91,7 @@ endif;
                 $query->the_post();
                 $count++;
                 $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
+                $download = get_field('file_download');
             ?>
 
                 <?php if ($count === 1) : ?>
@@ -98,7 +99,11 @@ endif;
                     <div class="col-lg-4">
                         <div class="boardx-card large h-100 position-relative">
                             <?php if ($image): ?>
-                                <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 featured-img" alt="<?php the_title_attribute(); ?>">
+                                <div class="featured-img">
+                                    <?php
+                                        echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
+                                    ?>
+                                </div>
                             <?php endif; ?>
                             <div class="article-content bottom-0 start-0 py-2">
                                 <h3 class="boardx-title"><?php the_title(); ?></h3>
@@ -116,15 +121,28 @@ endif;
                 <?php elseif ($count === 2) : ?>
                         <!-- Top right article -->
                         <div class="boardx-card flex-grow-1 position-relative">
-                            <?php if ($image): ?>
-                                <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
-                            <?php else: ?>
-                                <img src="<?php echo esc_url( get_template_directory_uri() . '/img/note.png' ); ?>" class="mb-3">
-                            <?php endif; ?>
+                            <?php if ($image) {
+                               ?>
+                                        <div class="featured-img">
+                                        <?php
+                                        echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
+                                        ?>
+                                        </div>
+                                        <?php
+                                echo '<img src="' . esc_url(get_template_directory_uri() . '/img/newspaper.jpg') . '" class="img-fluid w-100 featured-img" alt="Download Available">';
+                            } else {
+                                echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
+                            } ?>
                             <div class="article-content">
                                 <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
                                 <?php echo get_the_content(); ?>
-                                <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
+                                <div class="mb-2">
+                                <?php if ($download): ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
+                                <?php else: ?>
+                                    <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
+                                <?php endif; ?>
+                                </div>
                             </div>
                         </div>
 
@@ -133,13 +151,35 @@ endif;
                             <!-- Bottom right small articles -->
                             <div class="col-6">
                                 <div class="boardx-card small position-relative h-100">
-                                    <?php if ($image): ?>
-                                        <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
-                                    <?php endif; ?>
+                                    <?php if ($image) {
+                                        ?>
+                                        <div class="featured-img">
+                                        <?php
+                                        echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
+                                        ?>
+                                        </div>
+                                        <?php
+                                    } elseif ($download) {
+                                        ?>
+                                        <div class="newspaper-holder">
+                                        <?php
+                                        echo '<img src="' . esc_url(get_template_directory_uri() . '/img/newspaper.jpg') . '" class="img-fluid w-100" alt="Download Available">';
+                                        ?>
+                                        </div>
+                                        <?php
+                                    } else {
+                                        echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
+                                    } ?>
                                     <div class="article-content">
                                         <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
                                         <?php echo get_the_content(); ?>
-                                        <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
+                                        <div class="mb-2">
+                                        <?php if ($download): ?>
+                                            <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
+                                        <?php else: ?>
+                                            <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
+                                        <?php endif; ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -2039,6 +2039,7 @@ REVIEW CTA BLOCK
 /****************************************
 BOARDX ACHIEVE 
 *****************************************/
+
 .boardx-card {
     background: #fff;
     border-radius: 20px;
@@ -2050,4 +2051,101 @@ BOARDX ACHIEVE
 .boardx-title {
     font-size: clamp(1.375rem, 0.75rem + 2vw, 1.875rem);
     font-weight: 700;
+}
+.boardx-card {
+    .featured-img {
+        aspect-ratio: 1;
+        img {
+            object-fit: cover;
+        }
+    }
+}
+.newspaper-holder {
+    max-height: 168px;
+    overflow: hidden;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+}
+.echo-block-articles_block:not(.bg-light-secondary) {
+    .boardx-card {
+        background-color: #F2FAFE;
+    }
+}
+
+.ask-boardx {
+    background: url('../img/ask-bg.jpg') no-repeat center right;
+    padding: 3rem;
+    border-radius: 20px;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+    .ask-boardx_form{
+        background-color: rgba(255,255,255,.1);
+        border: 2px solid rgba(255,255,255,.2);
+        width: 100%;
+        max-width: 650px;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 7px 45px rgba(0, 0, 0, .55);
+        backdrop-filter: blur(10px); /* blur behind the element */
+        -webkit-backdrop-filter: blur(10px); /* Safari support */
+        ::placeholder {
+            color: white !important;
+        }
+        textarea {
+            max-height: 179px;
+            resize: none;
+        }
+    }
+    .form-title {
+        font-size: clamp(1.5625rem, 0.7031rem + 2.75vw, 2.25rem);
+        color: white;
+        margin-bottom: 2rem;
+        text-align: center;
+        font-family: "Helvetica World", sans-serif;
+    }
+    &:before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: linear-gradient(90deg,rgba(33, 33, 33, 1) 0%, rgba(1, 47, 108, 0) 100%);
+    }
+    .wpcf7 input[type=date], .wpcf7 input[type=email], .wpcf7 input[type=number], .wpcf7 input[type=tel], .wpcf7 input[type=text], .wpcf7 select, .wpcf7 textarea {
+        background: transparent;
+        border-color: rgba(255, 255, 255, .15);
+        color: white;
+    }
+
+    .btn-valtas {
+        max-width: max-content;
+        margin: auto;
+    }
+    button.wpcf7-form-control.wpcf7-submit.btn {
+        background: linear-gradient(180deg, #012f6b 0, #009fed 100%);
+        color: #fff !important;
+        border-radius: 40px;
+        text-transform: capitalize;
+        border: 1px solid #fff;
+        padding: 0 30px;
+        position: relative;
+        clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+        border-bottom-left-radius: 0;
+        text-decoration: none;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        width: -moz-max-content;
+        width: max-content;
+        padding-left: 45px;
+    }
 }
