@@ -419,10 +419,12 @@ endif;
    </div>
 </section>
 <section id="responsibilities">
-    <div class="container py-5 mb-5 header-title-center">
+    <div class="container pt-5 mb-5 header-title-center">
         <h2 class="valtas-cta-block__title">
             Board Roles &amp; <br><span class="highlight">Responsibilities</span>
         </h2>
+    </div>
+    <div class="container pb-5">
     <?php
     $defaults = [
         'articles_3'        => 'responsibilities',
