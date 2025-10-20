@@ -413,7 +413,7 @@ endif;
    <div class="container py-5">
       <div class="ask-boardx">
           <div class="ask-boardx_form">                                  
-            <?php echo do_shortcode('[contact-form-7 id="2485f9c" title="Ask Us Anything"]'); ?>
+            <?php echo do_shortcode('[contact-form-7 title="Ask Us Anything"]'); ?>
           </div>                            
       </div>
    </div>
