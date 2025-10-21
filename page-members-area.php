@@ -790,7 +790,7 @@ while ($query->have_posts()) :
                             <img src="<?php echo esc_url(get_template_directory_uri() . '/img/newspaper.jpg'); ?>" class="img-fluid w-100" alt="Download Available">
                         </div>
                     <?php else: ?>
-                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3" alt="Read More">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3 white-icon" alt="Read More">
                     <?php endif; ?>
 
                     <div class="article-content">
@@ -816,7 +816,7 @@ while ($query->have_posts()) :
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
                     <?php else: ?>
-                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3" alt="Read More">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3 white-icon" alt="Read More">
                     <?php endif; ?>
 
                     <div class="article-content">
@@ -959,7 +959,7 @@ while ($query->have_posts()) :
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
                     <?php else: ?>
-                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3" alt="Read More">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3 white-icon" alt="Read More">
                     <?php endif; ?>
 
                     <div class="article-content">
@@ -983,8 +983,12 @@ while ($query->have_posts()) :
                         <div class="featured-img">
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
+                    <?php elseif ($download): ?>
+                        <div class="newspaper-holder">
+                            <img src="<?php echo esc_url(get_template_directory_uri() . '/img/newspaper.jpg'); ?>" class="img-fluid w-100" alt="Download Available">
+                        </div>
                     <?php else: ?>
-                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3" alt="Read More">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3 white-icon" alt="Read More">
                     <?php endif; ?>
 
                     <div class="article-content">
