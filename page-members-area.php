@@ -776,7 +776,7 @@ endif;
                         $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
                         $download = get_field('file_download');
             ?>
-        <?php if ($count === 1 | $count === 2 | $count === 3) : ?>
+        <?php if ($count === 1 || $count === 2 || $count === 3) : ?>
             <div class="col-lg-4">
                 <div class="boardx-card small position-relative h-100">
                     <?php if ($image) { ?>
