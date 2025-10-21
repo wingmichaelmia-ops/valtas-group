@@ -555,18 +555,18 @@ endif;
     </div>
 <?php
 $defaults = [
-    'articles_3'        => 'governance',
+    'articles_4'        => 'governance',
 ];
 
 $args = wp_parse_args($args ?? [], $defaults);
 // Query articles by selected taxonomy terms (archieve)
-if (!empty($args['articles_3'])) :
+if (!empty($args['articles_4'])) :
 
     // Normalize to slugs no matter the return type
     $taxonomy_slugs = [];
 
-    if (is_array($args['articles_3'])) {
-        foreach ($args['articles_3'] as $term) {
+    if (is_array($args['articles_4'])) {
+        foreach ($args['articles_4'] as $term) {
             if (is_object($term) && isset($term->slug)) {
                 $taxonomy_slugs[] = $term->slug; // Term object
             } elseif (is_numeric($term)) {
@@ -580,22 +580,22 @@ if (!empty($args['articles_3'])) :
         }
     } else {
         // Single selection fallback
-        if (is_object($args['articles_3']) && isset($args['articles_3']->slug)) {
-            $taxonomy_slugs[] = $args['articles_3']->slug;
-        } elseif (is_numeric($args['articles_3'])) {
-            $term_obj = get_term($args['articles_3'], 'archieve');
+        if (is_object($args['articles_4']) && isset($args['articles_4']->slug)) {
+            $taxonomy_slugs[] = $args['articles_4']->slug;
+        } elseif (is_numeric($args['articles_4'])) {
+            $term_obj = get_term($args['articles_4'], 'archieve');
             if ($term_obj && !is_wp_error($term_obj)) {
                 $taxonomy_slugs[] = $term_obj->slug;
             }
         } else {
-            $taxonomy_slugs[] = sanitize_title($args['articles_3']);
+            $taxonomy_slugs[] = sanitize_title($args['articles_4']);
         }
     }
 
     // Query posts by taxonomy slug(s)
     $query = new WP_Query([
         'post_type'      => 'boardx-article',
-        'posts_per_page' => 4,
+        'posts_per_page' => 5,
         'orderby'        => 'date',
         'order'          => 'ASC', // oldest first
         'tax_query'      => [
@@ -609,14 +609,15 @@ if (!empty($args['articles_3'])) :
 
 endif;
 ?>
-
-<?php
-        $count = 0;
-        while ($query->have_posts()) :
-            $query->the_post();
-            $count++;
-            $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
-            $download = get_field('file_download');
+<div class="container">
+    <div class="row">
+    <?php
+            $count = 0;
+            while ($query->have_posts()) :
+                $query->the_post();
+                $count++;
+                $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
+                $download = get_field('file_download');
     ?>
         <?php if ($count === 1) : ?>
             <!-- Left large article -->
@@ -701,7 +702,9 @@ endif;
         
         <?php endif; ?>
     <?php endwhile; ?>
-
+    </div>
+</div>
+                                
 
 </section>
 <?php get_footer(); ?>
