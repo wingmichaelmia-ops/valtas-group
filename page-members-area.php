@@ -711,7 +711,7 @@ endif;
         </h2>
     </div>
     <div class="container pb-5">
-        <div class="row">
+        <div class="row g-4">
 <?php
 $defaults = [
     'articles_5'        => 'financial',
