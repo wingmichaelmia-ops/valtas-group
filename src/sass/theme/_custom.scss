@@ -2184,3 +2184,8 @@ BOARDX ACHIEVE
         position: absolute;
     }
 }
+
+.boardx-card.transparent-bg {
+    background: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 255, 255, .3);
+}
