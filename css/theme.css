@@ -15000,12 +15000,16 @@ BOARDX ACHIEVE
   position: relative;
   overflow: hidden;
   padding: 2rem;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
 }
 
 .boardx-card.boardx-card-overlay .article-content {
   z-index: 2;
   position: relative;
   color: white;
+  max-width: 450px;
 }
 
 .boardx-card.boardx-card-overlay .featured-img {
@@ -15017,6 +15021,15 @@ BOARDX ACHIEVE
   -o-object-fit: cover;
   object-fit: cover;
   height: 100%;
+}
+.boardx-card.boardx-card-overlay .featured-img:before {
+  content: "";
+  background: linear-gradient(90deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0.8;
+  position: absolute;
 }
 
 /*# sourceMappingURL=theme.css.map */
