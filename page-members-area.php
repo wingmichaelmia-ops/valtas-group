@@ -547,7 +547,7 @@ endif;
     </div>
     </div>
 </section>
-<section class="echo-block bg-light-primary">
+<section class="echo-block bg-light-blue">
     <div class="container pt-5 mb-5 header-title-center">
         <h2 class="valtas-cta-block__title">
             Board Structure & <span class="highlight">Governance</span>
