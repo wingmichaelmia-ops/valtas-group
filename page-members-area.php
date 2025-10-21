@@ -710,6 +710,8 @@ endif;
             Financial  <span class="highlight">Oversight</span>
         </h2>
     </div>
+    <div class="container pb-5">
+        <div class="row">
 <?php 
 $count = 0;
 while ($query->have_posts()) :
@@ -721,83 +723,84 @@ while ($query->have_posts()) :
 
     <?php if (in_array($count, [1, 2, 3])) : ?>
         <!-- SMALL CARDS -->
-        <div class="col-lg-4">
-            <div class="boardx-card small position-relative h-100">
-                <?php if ($image): ?>
-                    <div class="featured-img">
-                        <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
-                    </div>
-                <?php elseif ($download): ?>
-                    <div class="newspaper-holder">
-                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/newspaper.jpg'); ?>" class="img-fluid w-100" alt="Download Available">
-                    </div>
-                <?php else: ?>
-                    <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3" alt="Read More">
-                <?php endif; ?>
+            <div class="col-lg-4">
+                <div class="boardx-card small position-relative h-100">
+                    <?php if ($image): ?>
+                        <div class="featured-img">
+                            <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
+                        </div>
+                    <?php elseif ($download): ?>
+                        <div class="newspaper-holder">
+                            <img src="<?php echo esc_url(get_template_directory_uri() . '/img/newspaper.jpg'); ?>" class="img-fluid w-100" alt="Download Available">
+                        </div>
+                    <?php else: ?>
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3" alt="Read More">
+                    <?php endif; ?>
 
-                <div class="article-content">
-                    <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                    <?php the_content(); ?>
-                    <div class="mb-2">
-                        <?php if ($download): ?>
-                            <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                        <?php else: ?>
-                            <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    <?php elseif ($count === 4): ?>
-        <!-- MIDDLE CARD -->
-        <div class="col-lg-4">
-            <div class="boardx-card flex-grow-1 position-relative">
-                <?php if ($image): ?>
-                    <div class="featured-img">
-                        <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
-                    </div>
-                <?php else: ?>
-                    <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3" alt="Read More">
-                <?php endif; ?>
-
-                <div class="article-content">
-                    <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                    <?php the_content(); ?>
-                    <div class="mb-2">
-                        <?php if ($download): ?>
-                            <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                        <?php else: ?>
-                            <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
-                        <?php endif; ?>
+                    <div class="article-content">
+                        <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
+                        <?php the_content(); ?>
+                        <div class="mb-2">
+                            <?php if ($download): ?>
+                                <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
+                            <?php else: ?>
+                                <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    <?php elseif ($count === 5): ?>
-        <!-- LARGE FEATURE CARD -->
-        <div class="col-lg-8">
-            <div class="boardx-card boardx-card-overlay large h-100 position-relative">
-                <?php if ($image): ?>
-                    <div class="featured-img">
-                        <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
-                    </div>
-                <?php endif; ?>
+        <?php elseif ($count === 4): ?>
+            <!-- MIDDLE CARD -->
+            <div class="col-lg-4">
+                <div class="boardx-card flex-grow-1 position-relative">
+                    <?php if ($image): ?>
+                        <div class="featured-img">
+                            <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
+                        </div>
+                    <?php else: ?>
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3" alt="Read More">
+                    <?php endif; ?>
 
-                <div class="article-content bottom-0 start-0 py-2">
-                    <h3 class="boardx-title"><?php the_title(); ?></h3>
-                    <div class="boardx-excerpt">
-                        <?php echo wp_kses_post(wp_trim_words(get_the_content(), 30, '...')); ?>
+                    <div class="article-content">
+                        <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
+                        <?php the_content(); ?>
+                        <div class="mb-2">
+                            <?php if ($download): ?>
+                                <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
+                            <?php else: ?>
+                                <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
+                            <?php endif; ?>
+                        </div>
                     </div>
-                    <a href="<?php the_permalink(); ?>" class="stretched-link opacity-0"></a>
                 </div>
             </div>
-        </div>
-    <?php endif; ?>
 
-<?php endwhile; ?>
+        <?php elseif ($count === 5): ?>
+            <!-- LARGE FEATURE CARD -->
+            <div class="col-lg-8">
+                <div class="boardx-card boardx-card-overlay large h-100 position-relative">
+                    <?php if ($image): ?>
+                        <div class="featured-img">
+                            <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
+                        </div>
+                    <?php endif; ?>
 
+                    <div class="article-content bottom-0 start-0 py-2">
+                        <h3 class="boardx-title"><?php the_title(); ?></h3>
+                        <div class="boardx-excerpt">
+                            <?php echo wp_kses_post(wp_trim_words(get_the_content(), 30, '...')); ?>
+                        </div>
+                        <a href="<?php the_permalink(); ?>" class="stretched-link opacity-0"></a>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+    <?php endwhile; ?>
+    </div>
+</div>
 </section>
 
 <?php get_footer(); ?>
