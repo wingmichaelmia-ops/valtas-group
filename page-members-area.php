@@ -712,6 +712,62 @@ endif;
     </div>
     <div class="container pb-5">
         <div class="row">
+<?php
+$defaults = [
+    'articles_5'        => 'financial',
+];
+
+$args = wp_parse_args($args ?? [], $defaults);
+// Query articles by selected taxonomy terms (archieve)
+if (!empty($args['articles_5'])) :
+
+    // Normalize to slugs no matter the return type
+    $taxonomy_slugs = [];
+
+    if (is_array($args['articles_5'])) {
+        foreach ($args['articles_5'] as $term) {
+            if (is_object($term) && isset($term->slug)) {
+                $taxonomy_slugs[] = $term->slug; // Term object
+            } elseif (is_numeric($term)) {
+                $term_obj = get_term($term, 'archieve');
+                if ($term_obj && !is_wp_error($term_obj)) {
+                    $taxonomy_slugs[] = $term_obj->slug;
+                }
+            } else {
+                $taxonomy_slugs[] = sanitize_title($term); // Already a slug
+            }
+        }
+    } else {
+        // Single selection fallback
+        if (is_object($args['articles_5']) && isset($args['articles_5']->slug)) {
+            $taxonomy_slugs[] = $args['articles_5']->slug;
+        } elseif (is_numeric($args['articles_5'])) {
+            $term_obj = get_term($args['articles_5'], 'archieve');
+            if ($term_obj && !is_wp_error($term_obj)) {
+                $taxonomy_slugs[] = $term_obj->slug;
+            }
+        } else {
+            $taxonomy_slugs[] = sanitize_title($args['articles_5']);
+        }
+    }
+
+    // Query posts by taxonomy slug(s)
+    $query = new WP_Query([
+        'post_type'      => 'boardx-article',
+        'posts_per_page' => 5,
+        'orderby'        => 'date',
+        'order'          => 'ASC', // oldest first
+        'tax_query'      => [
+            [
+                'taxonomy' => 'xarchieve',
+                'field'    => 'slug',
+                'terms'    => $taxonomy_slugs,
+            ],
+        ],
+    ]);
+
+endif;
+?>
 <?php 
 $count = 0;
 while ($query->have_posts()) :
