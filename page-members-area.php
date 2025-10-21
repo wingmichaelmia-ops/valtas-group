@@ -609,8 +609,8 @@ if (!empty($args['articles_4'])) :
 
 endif;
 ?>
-<div class="container">
-    <div class="row">
+<div class="container pb-5">
+    <div class="row g-4">
     <?php
             $count = 0;
             while ($query->have_posts()) :
@@ -670,7 +670,7 @@ endif;
             </div>
         <?php else : ?>
             <div class="col-lg-4">
-                <div class="boardx-card small position-relative h-100 bg-light-secondary">
+                <div class="boardx-card small position-relative h-100">
                     <?php if ($image) { ?>
                         <div class="featured-img">
                             <?php
