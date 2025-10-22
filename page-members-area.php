@@ -1746,7 +1746,7 @@ while ($query->have_posts()) :
             </div>       
         <?php else : ?>
             <div class="col-4">
-                <div class="boardx-card small position-relative h-100 bg-grey">
+                <div class="boardx-card small position-relative h-100 bg-white">
                     <?php if ($image) { ?>
                         <div class="featured-img">
                             <?php
