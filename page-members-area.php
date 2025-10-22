@@ -1319,7 +1319,7 @@ endif;
 <?php endif; ?>
 
 </section>
-<section class="echo-block echo-block-articles_block">
+<section class="echo-block">
     <div class="container pt-5 mb-5 header-title-center">
         <h2 class="valtas-cta-block__title">
             CEO/ED Support &amp;<span class="highlight">Evaluation</span>
