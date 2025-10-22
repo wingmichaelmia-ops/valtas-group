@@ -1494,5 +1494,160 @@ endif;
     <?php wp_reset_postdata(); ?>
 <?php endif; ?>
 
+<hr class="my-4">
+
+<div class="container pt-5 mb-5 header-title-center">
+        <h2 class="valtas-cta-block__title">
+            Board Recruitment &<br><span class="highlight">Onboarding</span>
+        </h2>
+    </div>
+    <div class="container pb-5">
+        <div class="row g-4">
+<?php
+$defaults = [
+    'articles_10'        => 'board-recruitment',
+];
+
+$args = wp_parse_args($args ?? [], $defaults);
+// Query articles by selected taxonomy terms (archieve)
+if (!empty($args['articles_10'])) :
+
+    // Normalize to slugs no matter the return type
+    $taxonomy_slugs = [];
+
+    if (is_array($args['articles_10'])) {
+        foreach ($args['articles_10'] as $term) {
+            if (is_object($term) && isset($term->slug)) {
+                $taxonomy_slugs[] = $term->slug; // Term object
+            } elseif (is_numeric($term)) {
+                $term_obj = get_term($term, 'archieve');
+                if ($term_obj && !is_wp_error($term_obj)) {
+                    $taxonomy_slugs[] = $term_obj->slug;
+                }
+            } else {
+                $taxonomy_slugs[] = sanitize_title($term); // Already a slug
+            }
+        }
+    } else {
+        // Single selection fallback
+        if (is_object($args['articles_10']) && isset($args['articles_6']->slug)) {
+            $taxonomy_slugs[] = $args['articles_10']->slug;
+        } elseif (is_numeric($args['articles_10'])) {
+            $term_obj = get_term($args['articles_10'], 'archieve');
+            if ($term_obj && !is_wp_error($term_obj)) {
+                $taxonomy_slugs[] = $term_obj->slug;
+            }
+        } else {
+            $taxonomy_slugs[] = sanitize_title($args['articles_10']);
+        }
+    }
+
+    // Query posts by taxonomy slug(s)
+    $query = new WP_Query([
+        'post_type'      => 'boardx-article',
+        'posts_per_page' => 5,
+        'orderby'        => 'date',
+        'order'          => 'ASC', // oldest first
+        'tax_query'      => [
+            [
+                'taxonomy' => 'xarchieve',
+                'field'    => 'slug',
+                'terms'    => $taxonomy_slugs,
+            ],
+        ],
+    ]);
+
+endif;
+?>
+<?php 
+$count = 0;
+while ($query->have_posts()) :
+    $query->the_post();
+    $count++;
+    $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
+    $download = get_field('file_download');
+?>
+
+    <?php if ( $count === 1) : ?>
+        <!-- SMALL CARDS -->
+            <div class="col-lg-6">
+                <div class="boardx-card boardx-card-overlay large h-100 position-relative">
+                    <?php if ($image): ?>
+                        <div class="featured-img">
+                            <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="article-content bottom-0 start-0 py-2">
+                        <h3 class="boardx-title"><?php the_title(); ?></h3>
+                        <div class="boardx-excerpt">
+                            <?php echo wp_kses_post(wp_trim_words(get_the_content(), 30, '...')); ?>
+                        </div>
+                        <a href="<?php the_permalink(); ?>" class="stretched-link opacity-0"></a>
+                    </div>
+                </div>
+            </div>
+            <?php elseif ($count === 2): ?>
+            <!-- LARGE FEATURE CARD -->
+            <div class="col-lg-6">
+                <div class="boardx-card bg-light-secondary flex-grow-1 position-relative">
+                    <?php if ($image): ?>
+                        <div class="featured-img">
+                            <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
+                        </div>
+                    <?php else: ?>
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3 white-icon" alt="Read More">
+                    <?php endif; ?>
+
+                    <div class="article-content">
+                        <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
+                        <?php the_content(); ?>
+                        <div class="mb-2">
+                            <?php if ($download): ?>
+                                <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
+                            <?php else: ?>
+                                <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php elseif (in_array($count, [3, 4, 5])): ?>
+            <!-- MIDDLE CARD -->
+            <div class="col-lg-4">
+                <div class="boardx-card bg-light-secondary flex-grow-1 position-relative">
+                    <?php if ($image): ?>
+                        <div class="featured-img">
+                            <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
+                        </div>
+                    <?php elseif ($download): ?>
+                        <div class="newspaper-holder">
+                            <img src="<?php echo esc_url(get_template_directory_uri() . '/img/newspaper.jpg'); ?>" class="img-fluid w-100" alt="Download Available">
+                        </div>
+                    <?php else: ?>
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3 white-icon" alt="Read More">
+                    <?php endif; ?>
+
+                    <div class="article-content">
+                        <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
+                        <?php the_content(); ?>
+                        <div class="mb-2">
+                            <?php if ($download): ?>
+                                <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
+                            <?php else: ?>
+                                <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        
+        <?php endif; ?>
+
+    <?php endwhile; ?>
+    </div>
+</div>
+
 </section>
 <?php get_footer(); ?>
