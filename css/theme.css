@@ -15041,8 +15041,8 @@ BOARDX ACHIEVE
   color: #fff;
 }
 
-.bg-grey {
-  background-color: #EEEEEE;
+.boardx-card.bg-grey {
+  background-color: #EEEEEE !important;
 }
 
 /*# sourceMappingURL=theme.css.map */
