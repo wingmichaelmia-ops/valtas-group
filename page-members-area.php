@@ -1014,14 +1014,14 @@ while ($query->have_posts()) :
 
 
 </section>
-<section id="responsibilities">
+<section id="strategic-plan">
     <div class="container pt-5 mb-5 header-title-center">
         <h2 class="valtas-cta-block__title">
             Strategic Planning <br><span class="highlight">And Impact</span>
         </h2>
     </div>
     <div class="container pb-5">
-        <div class="row">
+        <div class="row g-4">
     <?php
     $defaults = [
         'articles_7'        => 'strategic-planning',
@@ -1090,7 +1090,7 @@ while ($query->have_posts()) :
         <?php if ($count === 1) : ?>
             <!-- Left large article -->
             <div class="col-lg-12 mb-2">
-                <div class="boardx-card boardx-card-overlay large h-100 position-relative">
+                <div class="boardx-card boardx-card-overlay overlay-white large h-100 position-relative">
                     <?php if ($image): ?>
                         <div class="featured-img">
                             <?php
@@ -1110,7 +1110,7 @@ while ($query->have_posts()) :
             </div>       
         <?php else : ?>
             <div class="col-4">
-                <div class="boardx-card small position-relative h-100 bg-light-secondary">
+                <div class="boardx-card small position-relative h-100 bg-grey">
                     <?php if ($image) { ?>
                         <div class="featured-img">
                             <?php
