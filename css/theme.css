@@ -15086,4 +15086,15 @@ ul.nap-list li a {
   text-decoration: none;
 }
 
+.valtas-form form {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.valtas-form .wpcf7 input[type=date], .valtas-form .wpcf7 input[type=email], .valtas-form .wpcf7 input[type=number], .valtas-form .wpcf7 input[type=tel], .valtas-form .wpcf7 input[type=text], .valtas-form .wpcf7 select, .valtas-form .wpcf7 textarea {
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
 /*# sourceMappingURL=theme.css.map */
