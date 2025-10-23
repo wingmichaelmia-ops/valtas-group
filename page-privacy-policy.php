@@ -26,6 +26,11 @@ get_header();
         color: #012F6B;
         margin-bottom: 1rem;
     }
+    .pp-body {
+        p, li {
+            font-size: clamp(1.3125rem, 1.1563rem + 0.5vw, 1.4375rem);
+        }
+    }
 </style>
 <section class="pp-header-title py-5">
     <div class="container text-center" style="max-width:820px;">
@@ -33,7 +38,7 @@ get_header();
         <p>Nullam eget augue et mauris aliquam ornare ut sit amet diam. Sed ac dui varius, lacinia diam vitae, suscipit sapien. Curabitur eu ante vel ante elementum porta. </p>
     </div>
 </section>
-<section>
+<section class="pp-body">
     <div class="container">
         <?php the_content() ?>
     </div>
