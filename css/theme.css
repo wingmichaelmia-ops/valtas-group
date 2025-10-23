@@ -15045,4 +15045,44 @@ BOARDX ACHIEVE
   background-color: #EEEEEE !important;
 }
 
+/****************************************************
+CTA Block
+****************************************************/
+ul.nap-list .label {
+  font-size: clamp(1.375rem, 1.2188rem + 0.5vw, 1.5rem);
+  font-family: "Helvetica World", sans-serif;
+  margin-bottom: 1rem;
+}
+ul.nap-list li {
+  font-weight: bold;
+  font-size: 32px;
+  gap: 15px;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  align-items: center;
+}
+ul.nap-list li img {
+  width: 100%;
+  max-width: 100px;
+  height: auto;
+}
+@media (max-width: 767.98px) {
+  ul.nap-list li {
+    padding: 1.5rem 0;
+  }
+}
+@media (max-width: 575.98px) {
+  ul.nap-list li {
+    flex-flow: column;
+    align-items: start;
+  }
+}
+ul.nap-list li:last-child {
+  border-bottom: 0;
+}
+ul.nap-list li a {
+  color: #009FED;
+  text-decoration: none;
+}
+
 /*# sourceMappingURL=theme.css.map */

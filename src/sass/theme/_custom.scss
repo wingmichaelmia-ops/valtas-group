@@ -2195,3 +2195,42 @@ BOARDX ACHIEVE
 .boardx-card.bg-grey{
     background-color: #EEEEEE !important;
 }
+
+/****************************************************
+CTA Block
+****************************************************/
+
+ul.nap-list {
+    .label {
+        font-size: clamp(1.375rem, 1.2188rem + 0.5vw, 1.5rem);
+        font-family: "Helvetica World", sans-serif;
+        margin-bottom: 1rem;
+    }
+    li {
+        font-weight: bold;
+        font-size: 32px;
+        gap: 15px;
+        padding: 2rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, .2);
+        align-items: center;
+        img {
+            width: 100%;
+            max-width: 100px;
+            height: auto;
+        }
+        @include media-breakpoint-down(md) {
+            padding: 1.5rem 0;
+        }
+        @include media-breakpoint-down(sm) {
+            flex-flow: column;
+            align-items: start;
+        }
+        &:last-child {
+            border-bottom: 0;
+        }
+        a {
+            color: $tertiary;
+            text-decoration: none;
+        }
+    }
+}
