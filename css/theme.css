@@ -15051,7 +15051,8 @@ CTA Block
 ul.nap-list .label {
   font-size: clamp(1.375rem, 1.2188rem + 0.5vw, 1.5rem);
   font-family: "Helvetica World", sans-serif;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  font-weight: normal;
 }
 ul.nap-list li {
   font-weight: bold;
