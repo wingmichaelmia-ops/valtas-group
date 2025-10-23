@@ -2285,3 +2285,21 @@ PRIVACY
 .box-content {
     padding: 1.5rem;
 }
+
+.resource-title {
+    font-size: clamp(1.25rem, 1.0156rem + 0.75vw, 1.4375rem);
+}
+.btn-download {
+    border-radius: 60px;
+    padding: .5rem 1.5rem;
+}
+.resources-downloads {
+    border: 1px solid rgba(0, 0, 0, .3);
+    padding: 1rem 2rem;
+}
+.resources-downloads-list {
+    padding: 1rem 0;
+    &:not(:last-child) {
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
+    }
+}
