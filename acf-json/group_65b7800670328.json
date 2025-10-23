@@ -4369,6 +4369,11 @@
                 "param": "page_template",
                 "operator": "!=",
                 "value": "page-members-area.php"
+            },
+            {
+                "param": "page_template",
+                "operator": "!=",
+                "value": "page-privacy-policy.php"
             }
         ],
         [
@@ -4399,5 +4404,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1761236779
+    "modified": 1761243638
 }
