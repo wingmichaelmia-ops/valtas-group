@@ -2252,4 +2252,28 @@ ul.nap-list {
         height: 150px;
         resize: none;
     }
+    .btn-valtas {
+        width: max-content;
+        margin: auto;
+        button {
+            background: linear-gradient(180deg, #012f6b 0, #009fed 100%);
+            color: #fff !important;
+            border-radius: 40px;
+            text-transform: capitalize;
+            border: 1px solid #fff;
+            padding: 0 20px;
+            position: relative;
+            clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%);
+            border-bottom-left-radius: 0;
+            text-decoration: none;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: -moz-max-content;
+            width: max-content;
+            padding-left: 35px;
+            min-width: 200px;
+        }
+    }
 }
