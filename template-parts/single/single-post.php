@@ -33,6 +33,14 @@
         padding: 2rem;
         margin: 1rem 0;
     }
+    
+    .post-thumbnail {
+        text-align: center;
+    }
+    .post-thumbnail img {
+        width: auto;
+        margin: auto;
+    }
 </style>
 <section class="echo-block echo-block-page_title">    
     
