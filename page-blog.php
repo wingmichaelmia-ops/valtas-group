@@ -10,6 +10,18 @@ get_header();
     .page-title__content {
         max-width: 700px;
     }
+    blockquote.wp-block-quote {
+        padding: 2rem;
+        background: rgba(0, 159, 237, .1);
+        line-height: normal;
+    }
+    .post-thumbnail {
+        text-align: center;
+    }
+    .post-thumbnail img {
+        width: auto;
+        margin: auto;
+    }
 </style>
 <section class="echo-block echo-block-page_title">    
     
