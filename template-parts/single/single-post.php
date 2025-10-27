@@ -41,6 +41,11 @@
         width: auto;
         margin: auto;
     }
+    blockquote.wp-block-quote {
+        padding: 2rem;
+        background: rgba(0, 159, 237, .1);
+        line-height: normal;
+    }
 </style>
 <section class="echo-block echo-block-page_title">    
     
