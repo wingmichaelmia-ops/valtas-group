@@ -90,34 +90,51 @@ get_template_part(
                                     </h3>
 
                                     <?php
-                                        $post_id = get_the_ID();
-                                        $excerpt = trim(get_post_field('post_excerpt', $post_id));
-
-                                        if (empty($excerpt)) {
-                                            $excerpt = get_post_field('post_content', $post_id);
+                                    if (!function_exists('trim_preserve_html')) {
+                                        function trim_preserve_html($text, $limit = 100) {
+                                            $words = preg_split('/(\s+)/', $text, -1, PREG_SPLIT_DELIM_CAPTURE);
+                                            $word_count = 0;
+                                            $output = '';
+                                            foreach ($words as $word) {
+                                                if (trim($word) !== '' && strip_tags($word) === $word) {
+                                                    $word_count++;
+                                                }
+                                                $output .= $word;
+                                                if ($word_count >= $limit) break;
+                                            }
+                                            return force_balance_tags($output);
                                         }
+                                    }
 
-                                        // Remove shortcodes, inline images, and any existing "Read more" text or links
-                                        $excerpt = preg_replace('/\s*\[.*?\]\s*/', ' ', $excerpt);
-                                        $excerpt = preg_replace('/<img[^>]+>/i', '', $excerpt);
-                                        $excerpt = preg_replace('/<a[^>]*>(\s*Read\s*More\s*|Continue\s*Reading\s*)<\/a>/i', '', $excerpt);
-                                        $excerpt = preg_replace('/\s*Read\s*More.*$/i', '', $excerpt);
+                                    $post_id = get_the_ID();
+                                    $excerpt = trim(get_post_field('post_excerpt', $post_id));
 
-                                        // Trim and balance HTML tags
-                                        $excerpt = trim_preserve_html($excerpt, 50);
+                                    if (empty($excerpt)) {
+                                        $excerpt = get_post_field('post_content', $post_id);
+                                    }
 
-                                        // Only allow safe formatting
-                                        $allowed_tags = [
-                                            'p'      => [],
-                                            'a'      => ['href' => [], 'title' => [], 'target' => [], 'rel' => []],
-                                            'strong' => [],
-                                            'em'     => [],
-                                            'br'     => [],
-                                        ];
+                                    // Remove shortcodes, inline images, and any existing "Read more" text or links
+                                    $excerpt = preg_replace('/\s*\[.*?\]\s*/', ' ', $excerpt);
+                                    $excerpt = preg_replace('/<img[^>]+>/i', '', $excerpt);
+                                    $excerpt = preg_replace('/<a[^>]*>(\s*Read\s*More\s*|Continue\s*Reading\s*)<\/a>/i', '', $excerpt);
+                                    $excerpt = preg_replace('/\s*Read\s*More.*$/i', '', $excerpt);
 
-                                        // Output clean excerpt with ONE read-more link
-                                        echo wp_kses($excerpt, $allowed_tags);
-                                        echo ' <a href="' . esc_url(get_permalink($post_id)) . '" class="read-more d-block">Read more</a>';
+                                    // Trim and balance HTML tags
+                                    $excerpt = trim_preserve_html($excerpt, 50);
+
+                                    // Only allow safe formatting
+                                    $allowed_tags = [
+                                        'p'      => [],
+                                        'a'      => ['href' => [], 'title' => [], 'target' => [], 'rel' => []],
+                                        'strong' => [],
+                                        'em'     => [],
+                                        'br'     => [],
+                                    ];
+
+                                    // Output clean excerpt with ONE read-more link
+                                    echo wp_kses($excerpt, $allowed_tags);
+                                    echo ' <a href="' . esc_url(get_permalink($post_id)) . '" class="read-more d-blocks">Read more</a>';
+                                    
                                     ?>
                                 </div>
                                 <hr class="my-3">
