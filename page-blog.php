@@ -147,7 +147,7 @@ get_header();
                 echo '</div>';
 
                 // Pagination
-                echo '<div class="post-pagination">';
+                echo '<div class="mt-2 post-pagination">';
                 echo paginate_links( array(
                     'total'   => $query->max_num_pages,
                     'current' => $paged,
