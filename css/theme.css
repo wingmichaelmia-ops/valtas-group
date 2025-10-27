@@ -14568,6 +14568,7 @@ a.read-more {
   font-weight: bold;
   color: #000;
   opacity: 0.5;
+  line-height: 26px;
 }
 .post-pagination .page-numbers.current {
   background: #012F6C;
