@@ -37,7 +37,7 @@ get_header();
         <div class="col-lg-8 blog-items">
             <?php
             // Get current page number
-            $paged = get_query_var('paged') ? get_query_var('paged') : 1;
+            $paged = max( 1, get_query_var('paged'), get_query_var('page') );
 
             // Query for blog posts
             $args = array(
@@ -149,7 +149,9 @@ get_header();
                 // Pagination
                 echo '<div class="mt-5">';
                 the_posts_pagination(array(
-                    'mid_size'  => 2,
+                    'total'   => $query->max_num_pages,
+                    'current' => $paged,
+                    'mid_size'=> 2,
                     'prev_text' => '« Prev',
                     'next_text' => 'Next »',
                 ));
