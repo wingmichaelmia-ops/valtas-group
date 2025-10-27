@@ -52,7 +52,7 @@ get_template_part(
                 $query = new WP_Query($args);
 
                 if ($query->have_posts()) :
-                    echo '<div class="row g-4"  id="blog-posts-container">';
+                    echo '<div class="row g-4" id="blog-posts-container">';
 
                     while ($query->have_posts()) :
                         $query->the_post();
@@ -90,6 +90,7 @@ get_template_part(
                                     </h3>
 
                                     <?php
+                                    // Helper function: trim but preserve basic HTML
                                     if (!function_exists('trim_preserve_html')) {
                                         function trim_preserve_html($text, $limit = 100) {
                                             $words = preg_split('/(\s+)/', $text, -1, PREG_SPLIT_DELIM_CAPTURE);
@@ -106,23 +107,23 @@ get_template_part(
                                         }
                                     }
 
+                                    // Fetch excerpt or content
                                     $post_id = get_the_ID();
                                     $excerpt = trim(get_post_field('post_excerpt', $post_id));
-
                                     if (empty($excerpt)) {
                                         $excerpt = get_post_field('post_content', $post_id);
                                     }
 
-                                    // Remove shortcodes, inline images, and any existing "Read more" text or links
+                                    // Clean up excerpt: remove inline images & "read more"
                                     $excerpt = preg_replace('/\s*\[.*?\]\s*/', ' ', $excerpt);
-                                    $excerpt = preg_replace('/<img[^>]+>/i', '', $excerpt);
+                                    $excerpt = preg_replace('/<img[^>]+>/i', '', $excerpt); // remove inline images
                                     $excerpt = preg_replace('/<a[^>]*>(\s*Read\s*More\s*|Continue\s*Reading\s*)<\/a>/i', '', $excerpt);
                                     $excerpt = preg_replace('/\s*Read\s*More.*$/i', '', $excerpt);
 
-                                    // Trim and balance HTML tags
+                                    // Trim & preserve basic tags
                                     $excerpt = trim_preserve_html($excerpt, 50);
 
-                                    // Only allow safe formatting
+                                    // Allow only basic safe tags
                                     $allowed_tags = [
                                         'p'      => [],
                                         'a'      => ['href' => [], 'title' => [], 'target' => [], 'rel' => []],
@@ -131,10 +132,8 @@ get_template_part(
                                         'br'     => [],
                                     ];
 
-                                    // Output clean excerpt with ONE read-more link
                                     echo wp_kses($excerpt, $allowed_tags);
-                                    echo ' <a href="' . esc_url(get_permalink($post_id)) . '" class="read-more d-blocks">Read more</a>';
-                                    
+                                    echo ' <a href="' . esc_url(get_permalink($post_id)) . '" class="read-more">Read more</a>';
                                     ?>
                                 </div>
                                 <hr class="my-3">
@@ -145,7 +144,7 @@ get_template_part(
 
                     echo '</div>'; // end .row.g-4
 
-                    // Pagination (stays inside same container)
+                    // Pagination
                     echo '<div class="post-pagination text-center mt-4">';
                     echo paginate_links([
                         'total'     => $query->max_num_pages,
