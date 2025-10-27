@@ -161,6 +161,7 @@ get_header();
             else :
                 echo '<p>No blog posts found.</p>';
             endif;
+            echo '</div>';
             ?>
         </div>
 
