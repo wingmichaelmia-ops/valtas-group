@@ -144,7 +144,6 @@ get_header();
                     <?php
                 endwhile;
 
-                echo '</div>';
 
                 // Pagination
                 echo '<div class="mt-2 post-pagination">';
