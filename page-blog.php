@@ -148,14 +148,15 @@ get_header();
 
                 // Pagination
                 echo '<div class="mt-5">';
-                the_posts_pagination(array(
+                echo paginate_links( array(
                     'total'   => $query->max_num_pages,
                     'current' => $paged,
                     'mid_size'=> 2,
                     'prev_text' => '« Prev',
                     'next_text' => 'Next »',
-                ));
+                ) );
                 echo '</div>';
+
 
                 wp_reset_postdata();
             else :
