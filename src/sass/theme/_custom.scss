@@ -1736,7 +1736,7 @@ a.read-more {
         font-weight: bold;
         color: #000;
         opacity: .5;
-        &.active {
+        &.current {
             background: $primary;
             color: #fff;
             opacity: 1;

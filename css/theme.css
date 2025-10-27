@@ -14569,7 +14569,7 @@ a.read-more {
   color: #000;
   opacity: 0.5;
 }
-.post-pagination .page-numbers.active {
+.post-pagination .page-numbers.current {
   background: #012F6C;
   color: #fff;
   opacity: 1;
