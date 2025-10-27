@@ -1728,9 +1728,19 @@ a.read-more {
         height: 30px;
         display: inline-block;
         border-radius: 100%;
-        background: $primary;
-        color: white;
         font-family: "Helvetica World", sans-serif;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        color: #000;
+        opacity: .5;
+        &.active {
+            background: $primary;
+            color: #fff;
+            opacity: 1;
+        }
     }
 }
 

@@ -147,13 +147,13 @@ get_header();
                 echo '</div>';
 
                 // Pagination
-                echo '<div class="mt-5 post-pagination">';
+                echo '<div class="post-pagination">';
                 echo paginate_links( array(
                     'total'   => $query->max_num_pages,
                     'current' => $paged,
                     'mid_size'=> 2,
-                    'prev_text' => '« Prev',
-                    'next_text' => 'Next »',
+                    'prev_text' => 'Prev',
+                    'next_text' => 'Next',
                 ) );
                 echo '</div>';
 
