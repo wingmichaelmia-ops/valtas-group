@@ -333,8 +333,6 @@ class Valtas_Category_Filter_Widget extends WP_Widget {
     }
 }
 
-
-
 add_action( 'widgets_init', function() {
     register_widget( 'Valtas_Year_Filter_Widget' );
 });
@@ -351,9 +349,8 @@ class Valtas_Year_Filter_Widget extends WP_Widget {
 
     function widget( $args, $instance ) {
         echo $args['before_widget'];
-
-        echo '<div class="valtas-year-filter-widget">';
-        echo $args['before_title'] . __( 'Select by Year:', 'valtas' ) . $args['after_title'];
+        echo '<div class="valtas-category-list">';
+        echo $args['before_title'] . __( 'Select by year :', 'valtas' ) . $args['after_title'];
 
         global $wpdb;
         $years = $wpdb->get_col("
@@ -364,46 +361,32 @@ class Valtas_Year_Filter_Widget extends WP_Widget {
             ORDER BY post_date DESC
         ");
 
-        if ( $years ) :
-            ?>
-            <form id="year-filter-form">
-                <!-- Default "All" checkbox -->
-                <div class="form-check mb-2">
-                    <input 
-                        class="form-check-input year-checkbox" 
-                        type="checkbox" 
-                        value="all" 
-                        id="year-all" 
-                        checked
-                    >
-                    <label class="form-check-label" for="year-all">
-                        <?php esc_html_e( 'All', 'valtas' ); ?>
-                    </label>
-                </div>
+        if ( $years ) {
+            echo '<form id="year-filter-form">';
+            
+            // 🔹 Default “All” option
+            echo '<div class="form-check mb-2">
+                    <input class="form-check-input year-checkbox" type="checkbox" value="all" id="year-all" checked>
+                    <label class="form-check-label" for="year-all">All</label>
+                  </div>';
 
-                <?php foreach ( $years as $year ) : ?>
-                    <div class="form-check mb-2">
-                        <input 
-                            class="form-check-input year-checkbox" 
-                            type="checkbox" 
-                            value="<?php echo esc_attr( $year ); ?>" 
-                            id="year-<?php echo esc_attr( $year ); ?>"
-                        >
-                        <label class="form-check-label" for="year-<?php echo esc_attr( $year ); ?>">
-                            <?php echo esc_html( $year ); ?>
-                        </label>
-                    </div>
-                <?php endforeach; ?>
-            </form>
-            <?php
-        else :
-            echo '<p>' . esc_html__( 'No posts available yet.', 'valtas' ) . '</p>';
-        endif;
+            foreach ( $years as $year ) {
+                echo '<div class="form-check mb-2">
+                        <input class="form-check-input year-checkbox" type="checkbox" value="' . esc_attr( $year ) . '" id="year-' . esc_attr( $year ) . '">
+                        <label class="form-check-label" for="year-' . esc_attr( $year ) . '">' . esc_html( $year ) . '</label>
+                      </div>';
+            }
 
-        echo '</div>';
+            echo '</form>';
+        } else {
+            echo '<p>No posts available yet.</p>';
+        }
+
         echo $args['after_widget'];
+        echo '</div>';
     }
 }
+
 // =====================================================
 // CUSTOM LOGIN PAGE SETUP (for Members plugin integration)
 // =====================================================
@@ -683,3 +666,80 @@ add_action( 'template_redirect', 'valtas_redirect_members_area_pages' );
 add_action( 'init', function() {
 	register_taxonomy_for_object_type( 'post_tag', 'page' );
 } );
+
+
+
+/*FILTER BY YEAR*/
+
+add_action( 'wp_enqueue_scripts', function() {
+    wp_enqueue_script(
+        'valtas-blog-filter',
+        get_template_directory_uri() . '/js/blog-filter.js',
+        ['jquery'],
+        null,
+        true
+    );
+
+    wp_localize_script('valtas-blog-filter', 'valtas_ajax', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+    ]);
+});
+add_action('wp_ajax_filter_posts_by_year', 'valtas_filter_posts_by_year');
+add_action('wp_ajax_nopriv_filter_posts_by_year', 'valtas_filter_posts_by_year');
+
+function valtas_filter_posts_by_year() {
+    $years = isset($_POST['years']) ? (array) $_POST['years'] : [];
+
+    $args = [
+        'post_type'      => 'post',
+        'posts_per_page' => 6,
+        'paged'          => 1,
+    ];
+
+    if (!in_array('all', $years)) {
+        $args['date_query'] = [
+            [
+                'year' => intval($years[0]), // Only handle one year for simplicity; extendable for multiple
+            ]
+        ];
+    }
+
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) :
+        echo '<div class="row g-4">';
+        while ($query->have_posts()) :
+            $query->the_post();
+            ?>
+            <div class="col-md-12 blog-item-post">
+                <div class="card h-100 border-0">
+                    <?php if (has_post_thumbnail()) : ?>
+                        <a href="<?php the_permalink(); ?>">
+                            <?php the_post_thumbnail('medium_large', ['class' => 'card-img-top']); ?>
+                        </a>
+                    <?php endif; ?>
+
+                    <div class="card-body py-4 px-0">
+                        <div class="card-meta d-flex gap-3 small mb-2 align-items-center">
+                            <div class="date-capsule"><?php echo get_the_date(); ?></div>
+                        </div>
+                        <h3 class="card-title mb-3">
+                            <a href="<?php the_permalink(); ?>" class="text-dark text-decoration-none">
+                                <?php the_title(); ?>
+                            </a>
+                        </h3>
+                        <?php echo wpautop(wp_trim_words(get_the_content(), 50, '...')); ?>
+                    </div>
+                </div>
+                <hr class="my-3">
+            </div>
+            <?php
+        endwhile;
+        echo '</div>';
+    else :
+        echo '<p>No posts found for this year.</p>';
+    endif;
+
+    wp_reset_postdata();
+    wp_die();
+}
