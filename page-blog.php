@@ -39,7 +39,7 @@ get_template_part(
     <div class="row g-5">
         <!-- Main Blog Posts -->
         <div class="col-lg-8 blog-items">
-            <div id="blog-posts-container"><!-- 🧱 content reload zone -->
+            <div><!-- 🧱 content reload zone -->
                 <?php
                 $paged = max(1, get_query_var('paged'), get_query_var('page'));
 
@@ -52,7 +52,7 @@ get_template_part(
                 $query = new WP_Query($args);
 
                 if ($query->have_posts()) :
-                    echo '<div class="row g-4">';
+                    echo '<div class="row g-4"  id="blog-posts-container">';
 
                     while ($query->have_posts()) :
                         $query->the_post();
