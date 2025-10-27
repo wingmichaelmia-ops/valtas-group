@@ -333,6 +333,8 @@ class Valtas_Category_Filter_Widget extends WP_Widget {
     }
 }
 
+
+
 add_action( 'widgets_init', function() {
     register_widget( 'Valtas_Year_Filter_Widget' );
 });
@@ -349,8 +351,9 @@ class Valtas_Year_Filter_Widget extends WP_Widget {
 
     function widget( $args, $instance ) {
         echo $args['before_widget'];
-        echo '<div class="valtas-category-list">';
-        echo $args['before_title'] . __( 'Select by year :', 'valtas' ) . $args['after_title'];
+
+        echo '<div class="valtas-year-filter-widget">';
+        echo $args['before_title'] . __( 'Select by Year:', 'valtas' ) . $args['after_title'];
 
         global $wpdb;
         $years = $wpdb->get_col("
@@ -361,32 +364,46 @@ class Valtas_Year_Filter_Widget extends WP_Widget {
             ORDER BY post_date DESC
         ");
 
-        if ( $years ) {
-            echo '<form id="year-filter-form">';
-            
-            // 🔹 Default “All” option
-            echo '<div class="form-check mb-2">
-                    <input class="form-check-input year-checkbox" type="checkbox" value="all" id="year-all" checked>
-                    <label class="form-check-label" for="year-all">All</label>
-                  </div>';
+        if ( $years ) :
+            ?>
+            <form id="year-filter-form">
+                <!-- Default "All" checkbox -->
+                <div class="form-check mb-2">
+                    <input 
+                        class="form-check-input year-checkbox" 
+                        type="checkbox" 
+                        value="all" 
+                        id="year-all" 
+                        checked
+                    >
+                    <label class="form-check-label" for="year-all">
+                        <?php esc_html_e( 'All', 'valtas' ); ?>
+                    </label>
+                </div>
 
-            foreach ( $years as $year ) {
-                echo '<div class="form-check mb-2">
-                        <input class="form-check-input year-checkbox" type="checkbox" value="' . esc_attr( $year ) . '" id="year-' . esc_attr( $year ) . '">
-                        <label class="form-check-label" for="year-' . esc_attr( $year ) . '">' . esc_html( $year ) . '</label>
-                      </div>';
-            }
+                <?php foreach ( $years as $year ) : ?>
+                    <div class="form-check mb-2">
+                        <input 
+                            class="form-check-input year-checkbox" 
+                            type="checkbox" 
+                            value="<?php echo esc_attr( $year ); ?>" 
+                            id="year-<?php echo esc_attr( $year ); ?>"
+                        >
+                        <label class="form-check-label" for="year-<?php echo esc_attr( $year ); ?>">
+                            <?php echo esc_html( $year ); ?>
+                        </label>
+                    </div>
+                <?php endforeach; ?>
+            </form>
+            <?php
+        else :
+            echo '<p>' . esc_html__( 'No posts available yet.', 'valtas' ) . '</p>';
+        endif;
 
-            echo '</form>';
-        } else {
-            echo '<p>No posts available yet.</p>';
-        }
-
-        echo $args['after_widget'];
         echo '</div>';
+        echo $args['after_widget'];
     }
 }
-
 // =====================================================
 // CUSTOM LOGIN PAGE SETUP (for Members plugin integration)
 // =====================================================
