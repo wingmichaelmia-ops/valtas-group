@@ -129,7 +129,7 @@ get_header();
                                     $excerpt = preg_replace( '/\s*Read\s*More.*$/i', ' ', $excerpt );
 
                                     // 3️⃣ Trim while keeping HTML formatting
-                                    $excerpt = trim_preserve_html( $excerpt, 100 );
+                                    $excerpt = trim_preserve_html( $excerpt, 50 );
 
                                     // 4️⃣ Add read more link
                                     $read_more_link = '<a href="' . esc_url( get_permalink( $post_id ) ) . '" class="read-more">Read more</a>';
