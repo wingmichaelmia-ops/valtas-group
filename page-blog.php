@@ -112,9 +112,14 @@ get_template_part(
                                         $excerpt = get_post_field('post_content', $post_id);
                                     }
 
+                                    // Remove shortcodes, inline images, and "Read More" text
                                     $excerpt = preg_replace('/\s*\[.*?\]\s*/', ' ', $excerpt);
+                                    $excerpt = preg_replace('/<img[^>]+>/i', '', $excerpt); // remove inline images
                                     $excerpt = preg_replace('/\s*Read\s*More.*$/i', ' ', $excerpt);
+
+                                    // Trim and balance HTML tags
                                     $excerpt = trim_preserve_html($excerpt, 50);
+
 
                                     echo wp_kses_post($excerpt . ' <a href="' . esc_url(get_permalink($post_id)) . '" class="read-more">Read more</a>');
                                     ?>
