@@ -236,25 +236,38 @@ function filter_blog_posts() {
                                     }
 
                                     // 1️⃣ Get post content or manual excerpt
+                                    // Fetch excerpt or content
                                     $post_id = get_the_ID();
-                                    $excerpt = trim( get_post_field( 'post_excerpt', $post_id ) );
-
-                                    if ( empty( $excerpt ) ) {
-                                        $excerpt = get_post_field( 'post_content', $post_id );
+                                    $excerpt = trim(get_post_field('post_excerpt', $post_id));
+                                    if (empty($excerpt)) {
+                                        $excerpt = get_post_field('post_content', $post_id);
                                     }
 
-                                    // 2️⃣ Remove unwanted fragments like "[...]" or "Read More... from ..."
-                                    $excerpt = preg_replace( '/\s*\[.*?\]\s*/', ' ', $excerpt );
-                                    $excerpt = preg_replace( '/\s*Read\s*More.*$/i', ' ', $excerpt );
+                                    // Clean up excerpt: remove shortcodes, Gutenberg comments, and inline images
+                                    $excerpt = preg_replace('/\s*\[.*?\]\s*/', ' ', $excerpt);                     
+                                    $excerpt = preg_replace('/<!--.*?-->/s', '', $excerpt);                        
+                                    $excerpt = preg_replace('/<img[^>]+>/i', '', $excerpt);                        
+                                    $excerpt = preg_replace('/<a[^>]*>(\s*Read\s*More\s*|Continue\s*Reading\s*)<\/a>/i', '', $excerpt); 
+                                    $excerpt = preg_replace('/\s*Read\s*More.*$/i', '', $excerpt);                 
 
-                                    // 3️⃣ Trim while keeping HTML formatting
-                                    $excerpt = trim_preserve_html( $excerpt, 100 );
+                                    // Trim & preserve basic tags
+                                    $excerpt = trim_preserve_html($excerpt, 50);
 
-                                    // 4️⃣ Add read more link
-                                    $read_more_link = '<a href="' . esc_url( get_permalink( $post_id ) ) . '" class="read-more">Read more</a>';
+                                    // Allow only basic safe tags
+                                    $allowed_tags = [
+                                        'p'      => [],
+                                        'a'      => ['href' => [], 'title' => [], 'target' => [], 'rel' => []],
+                                        'ul'     => [],
+                                        'ol'     => [],
+                                        'li'     => [],
+                                        'strong' => [],
+                                        'em'     => [],
+                                        'br'     => [],
+                                    ];
 
-                                    // 5️⃣ Output with allowed post HTML (keeps formatting)
-                                    echo wp_kses_post( $excerpt . $read_more_link );
+                                    echo wp_kses($excerpt, $allowed_tags);
+                                    echo ' <a href="' . esc_url(get_permalink($post_id)) . '" class="read-more">Read more</a>';
+
                                 ?>
                     </div>
                     <hr class="my-3">

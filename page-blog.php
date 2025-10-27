@@ -114,11 +114,12 @@ get_template_part(
                                         $excerpt = get_post_field('post_content', $post_id);
                                     }
 
-                                    // Clean up excerpt: remove inline images & "read more"
-                                    $excerpt = preg_replace('/\s*\[.*?\]\s*/', ' ', $excerpt);
-                                    $excerpt = preg_replace('/<img[^>]+>/i', '', $excerpt); // remove inline images
-                                    $excerpt = preg_replace('/<a[^>]*>(\s*Read\s*More\s*|Continue\s*Reading\s*)<\/a>/i', '', $excerpt);
-                                    $excerpt = preg_replace('/\s*Read\s*More.*$/i', '', $excerpt);
+                                    // Clean up excerpt: remove shortcodes, Gutenberg comments, and inline images
+                                    $excerpt = preg_replace('/\s*\[.*?\]\s*/', ' ', $excerpt);                     
+                                    $excerpt = preg_replace('/<!--.*?-->/s', '', $excerpt);                        
+                                    $excerpt = preg_replace('/<img[^>]+>/i', '', $excerpt);                        
+                                    $excerpt = preg_replace('/<a[^>]*>(\s*Read\s*More\s*|Continue\s*Reading\s*)<\/a>/i', '', $excerpt); 
+                                    $excerpt = preg_replace('/\s*Read\s*More.*$/i', '', $excerpt);                 
 
                                     // Trim & preserve basic tags
                                     $excerpt = trim_preserve_html($excerpt, 50);
@@ -127,6 +128,9 @@ get_template_part(
                                     $allowed_tags = [
                                         'p'      => [],
                                         'a'      => ['href' => [], 'title' => [], 'target' => [], 'rel' => []],
+                                        'ul'     => [],
+                                        'ol'     => [],
+                                        'li'     => [],
                                         'strong' => [],
                                         'em'     => [],
                                         'br'     => [],
@@ -134,6 +138,7 @@ get_template_part(
 
                                     echo wp_kses($excerpt, $allowed_tags);
                                     echo ' <a href="' . esc_url(get_permalink($post_id)) . '" class="read-more">Read more</a>';
+
                                     ?>
                                 </div>
                                 <hr class="my-3">
