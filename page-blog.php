@@ -152,8 +152,8 @@ get_header();
                     'total'   => $query->max_num_pages,
                     'current' => $paged,
                     'mid_size'=> 2,
-                    'prev_text' => 'Prev',
-                    'next_text' => 'Next',
+                    'prev_text' => '<',
+                    'next_text' => '>',
                 ) );
                 echo '</div>';
 
