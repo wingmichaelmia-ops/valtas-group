@@ -112,16 +112,25 @@ get_template_part(
                                         $excerpt = get_post_field('post_content', $post_id);
                                     }
 
-                                    // Remove shortcodes, inline images, and "Read More" text
-                                    $excerpt = preg_replace('/\s*\[.*?\]\s*/', ' ', $excerpt);
-                                    $excerpt = preg_replace('/<img[^>]+>/i', '', $excerpt); // remove inline images
-                                    $excerpt = preg_replace('/\s*Read\s*More.*$/i', ' ', $excerpt);
+                                    // Clean excerpt but keep paragraphs and links
+                                    $excerpt = preg_replace('/\s*\[.*?\]\s*/', ' ', $excerpt);     // remove shortcodes
+                                    $excerpt = preg_replace('/<img[^>]+>/i', '', $excerpt);         // remove inline images only
+                                    $excerpt = preg_replace('/\s*Read\s*More.*$/i', ' ', $excerpt); // remove trailing "Read More"
 
                                     // Trim and balance HTML tags
                                     $excerpt = trim_preserve_html($excerpt, 50);
 
+                                    // Allow basic formatting (p, a, strong, em, br)
+                                    $allowed_tags = [
+                                        'p' => [],
+                                        'a' => ['href' => [], 'title' => [], 'target' => [], 'rel' => []],
+                                        'strong' => [],
+                                        'em' => [],
+                                        'br' => [],
+                                    ];
 
-                                    echo wp_kses_post($excerpt . ' <a href="' . esc_url(get_permalink($post_id)) . '" class="read-more">Read more</a>');
+                                    echo wp_kses($excerpt . ' <a href="' . esc_url(get_permalink($post_id)) . '" class="read-more">Read more</a>', $allowed_tags);
+
                                     ?>
                                 </div>
                                 <hr class="my-3">
