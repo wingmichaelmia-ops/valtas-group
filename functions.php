@@ -262,6 +262,16 @@ function filter_blog_posts() {
             </div>
             <?php
         endwhile;
+        // Pagination (stays inside same container)
+        echo '<div class="post-pagination text-center mt-4">';
+            echo paginate_links([
+                'total'     => $query->max_num_pages,
+                'current'   => $paged,
+                'mid_size'  => 2,
+                'prev_text' => '&lt;',
+                'next_text' => '&gt;',
+            ]);
+        echo '</div>';
         wp_reset_postdata();
     else :
         echo '<p>No posts found.</p>';
