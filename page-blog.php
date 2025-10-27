@@ -35,7 +35,6 @@ get_header();
     <div class="row g-5">
         <!-- Main Blog Posts -->
         <div class="col-lg-8 blog-items">
-            <div class="row g-4">
             <?php
             // Get current page number
             $paged = max( 1, get_query_var('paged'), get_query_var('page') );
@@ -50,6 +49,7 @@ get_header();
             $query = new WP_Query($args);
 
             if ( $query->have_posts() ) :
+                echo '<div class="row g-4">';
 
                 while ( $query->have_posts() ) :
                     $query->the_post();
@@ -144,9 +144,10 @@ get_header();
                     <?php
                 endwhile;
 
+                echo '</div>';
 
                 // Pagination
-                echo '<div class="mt-2 post-pagination">';
+                echo '<div class="post-pagination">';
                 echo paginate_links( array(
                     'total'   => $query->max_num_pages,
                     'current' => $paged,
@@ -162,7 +163,6 @@ get_header();
                 echo '<p>No blog posts found.</p>';
             endif;
             ?>
-            </div>
         </div>
 
         <!-- Sidebar -->
