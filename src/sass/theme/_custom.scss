@@ -1721,7 +1721,18 @@ a.read-more {
     font-size: clamp(0.875rem, 0.5625rem + 1vw, 1.125rem);
     color: rgba(0, 0, 0, .5);
 }
-
+.post-pagination {
+    text-align: center;
+    .page-numbers {
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        border-radius: 100%;
+        background: $primary;
+        color: white;
+        font-family: "Helvetica World", sans-serif;
+    }
+}
 
 /****************************************
 SIDE BAR WIDGETS    

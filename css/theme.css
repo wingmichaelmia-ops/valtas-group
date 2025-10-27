@@ -14552,6 +14552,19 @@ a.read-more {
   color: rgba(0, 0, 0, 0.5);
 }
 
+.post-pagination {
+  text-align: center;
+}
+.post-pagination .page-numbers {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  border-radius: 100%;
+  background: #012F6C;
+  color: white;
+  font-family: "Helvetica World", sans-serif;
+}
+
 /****************************************
 SIDE BAR WIDGETS    
 *****************************************/
