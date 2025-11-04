@@ -6298,18 +6298,6 @@
       });
     });
   });
-  document.querySelectorAll('.dropdown-submenu > a.dropdown-toggle').forEach(function (link) {
-    link.addEventListener('click', function (e) {
-      var submenu = link.nextElementSibling;
-      // Toggle submenu
-      submenu.classList.toggle('show');
-      // Follow link normally after a short delay
-      setTimeout(function () {
-        window.location = link.getAttribute('href');
-      }, 150);
-      e.preventDefault();
-    });
-  });
 
   exports.Alert = Alert;
   exports.Button = Button;

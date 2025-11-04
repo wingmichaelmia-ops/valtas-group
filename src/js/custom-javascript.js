@@ -174,15 +174,3 @@ jQuery(document).ready(function($) {
 });
 
 
-document.querySelectorAll('.dropdown-submenu > a.dropdown-toggle').forEach(link => {
-  link.addEventListener('click', e => {
-    const submenu = link.nextElementSibling;
-    // Toggle submenu
-    submenu.classList.toggle('show');
-    // Follow link normally after a short delay
-    setTimeout(() => {
-      window.location = link.getAttribute('href');
-    }, 150);
-    e.preventDefault();
-  });
-});
