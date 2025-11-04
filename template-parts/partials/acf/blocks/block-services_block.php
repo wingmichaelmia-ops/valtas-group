@@ -11,7 +11,7 @@ $args = wp_parse_args( $args, $default );
 
 ?>
 
-<div class="valtas-services-block py-5">
+<div class="valtas-services-block pt-5">
     <div class="container" style="max-width: 826px;">
        <div class="row">
             <div class="col-lg-12 text-center">
@@ -26,7 +26,7 @@ $args = wp_parse_args( $args, $default );
     </div>
     <div class="container">
        <?php if ( !empty($args['service']) ) : ?>
-    <div class="service-list mt-5 ps-5 ps-md-0">
+    <div class="service-list mt-5 ps-5 ps-md-0 pb-0 pb-md-5">
         <?php $i = 1; // start counter ?>
             <?php foreach ( $args['service'] as $service ) : 
                 $image  = $service['service_featured_image']; 

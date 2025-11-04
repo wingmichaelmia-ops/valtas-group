@@ -12781,8 +12781,8 @@ GLOBAL
 body {
   font-family: "EB Garamond", serif;
   color: #1B1B1B;
-  font-size: clamp(1rem, 0.6094rem + 1.25vw, 1.3125rem);
-  line-height: 1.2em;
+  font-size: clamp(1.3rem, 0.6094rem + 1.25vw, 1.4rem);
+  line-height: 1.4em;
 }
 
 .bg-tertiary {
@@ -12818,14 +12818,10 @@ h6, .h6 {
   font-size: clamp(1.375rem, 0.8281rem + 1.75vw, 1.8125rem);
 }
 
-p {
-  font-size: clamp(1rem, 0.6094rem + 1.25vw, 1.3125rem);
-}
-
 blockquote.blockquote, blockquote.wp-block-quote {
   font-size: clamp(1.875rem, 1.3763rem + 1.5957vw, 2.8125rem);
   color: #012F6C;
-  line-height: 1em;
+  line-height: 1.2em;
 }
 
 .accordion-item {
@@ -12907,7 +12903,7 @@ blockquote.blockquote, blockquote.wp-block-quote {
   .border-bottom-md {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
   }
-  .echo-block {
+  .echo-block:not(.echo-block-cta_block) {
     padding-left: 9px;
     padding-right: 9px;
   }
@@ -13330,7 +13326,6 @@ SERVICES BLOCK
   font-size: clamp(1rem, 0.8005rem + 0.6383vw, 1.375rem);
   color: #1B1B1B;
   line-height: 1.2em;
-  letter-spacing: -2px;
 }
 
 .echo-block-testimonials {
@@ -13371,12 +13366,18 @@ BLOG SECTION
 
 .featured-post {
   max-height: 500px;
+  min-height: 500px;
   overflow: hidden;
   border-radius: 0;
   border: 0;
 }
 .featured-post img {
   border-radius: 0;
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  position: absolute;
 }
 
 .blog-section .card {
