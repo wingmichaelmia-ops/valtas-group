@@ -12906,6 +12906,10 @@ blockquote.blockquote, blockquote.wp-block-quote {
   .border-bottom-md {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
   }
+  .echo-block {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 .gradient-bg {
   background: linear-gradient(180deg, rgb(1, 47, 107) 0%, rgb(0, 159, 237) 100%);
@@ -14101,6 +14105,11 @@ ICON TEXT BLOCK
   color: #51513D;
 }
 
+.icon-text-item .icon img {
+  box-shadow: 0 7px 16px rgba(0, 0, 0, 0.25);
+  border-radius: 100%;
+}
+
 .text-white .icon-text-item .text-title {
   color: white;
 }
@@ -14125,10 +14134,10 @@ ICON TEXT BLOCK
   padding: 0 2rem;
   position: relative;
 }
-.icon-text-item:first-child {
-  padding-left: 0;
-}
 @media (min-width: 992px) {
+  .icon-text-item:first-child {
+    padding-left: 0;
+  }
   .icon-text-item:last-child {
     padding-right: 0;
   }
@@ -14170,7 +14179,9 @@ ICON TEXT BLOCK
     left: 0;
     right: 0;
     height: 4px; /* thickness of border */
-    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: calc(100% - 3rem);
     /* Apply your gradient */
     background: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 20%, rgb(0, 0, 0) 50%, rgba(0, 0, 0, 0.4) 80%);
     /* Mask into dotted pattern */
