@@ -14103,6 +14103,7 @@ ICON TEXT BLOCK
 .icon-text-item .text-title {
   font-weight: 700;
   color: #51513D;
+  font-size: 27px;
 }
 
 .icon-text-item .icon img {
