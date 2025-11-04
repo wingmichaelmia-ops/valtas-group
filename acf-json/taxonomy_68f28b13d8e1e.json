@@ -5,7 +5,7 @@
     "active": true,
     "taxonomy": "xarchieve",
     "object_type": [
-        "boardx-article"
+        "boardspark-article"
     ],
     "advanced_configuration": 0,
     "import_source": "",
@@ -71,5 +71,5 @@
     "meta_box": "default",
     "meta_box_cb": "",
     "meta_box_sanitize_cb": "",
-    "modified": 1760727491
+    "modified": 1762275000
 }

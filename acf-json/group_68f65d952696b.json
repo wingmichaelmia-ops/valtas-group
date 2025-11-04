@@ -1,6 +1,6 @@
 {
     "key": "group_68f65d952696b",
-    "title": "BoardX Articles",
+    "title": "BoardSpark Articles",
     "fields": [
         {
             "key": "field_68f65d967886a",
@@ -30,7 +30,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "boardx-article"
+                "value": "boardspark-article"
             }
         ]
     ],
@@ -51,5 +51,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1760976710
+    "modified": 1762275187
 }

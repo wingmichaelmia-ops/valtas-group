@@ -192,7 +192,7 @@ ul.checklist {
 BUTTONS
 
 *****************************************/
-
+/*
 .btn-valtas {
     position: relative;
     margin-left: 35px;
@@ -228,7 +228,7 @@ BUTTONS
             background: #012f6b;
         }
     }
-}
+}*/
 /****************************************
 FOOTER
 *****************************************/
@@ -616,13 +616,11 @@ CTA BLOCK
     .btn-valtas:first-child {
         &::before {
             background: url(../img/btn-icon.png);
-            left: -25px;
         }
         a {
             background: #fff;
             color: $primary !important;
             border-color: $primary !important; 
-            clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
             &:hover {
                 background: $primary;
                 color: #fff !important;
@@ -1909,8 +1907,8 @@ TEAM BLOCK
     .btn-valtas::before {
         background: url(../img/btn-icon.png);
     }
+    
     .btn-valtas a {
-        height: 55px;
         background: white;
         border-color: $primary;
         color: $primary !important;
@@ -2151,25 +2149,7 @@ BOARDX ACHIEVE
         max-width: max-content;
         margin: auto;
     }
-    button.wpcf7-form-control.wpcf7-submit.btn {
-        background: linear-gradient(180deg, #012f6b 0, #009fed 100%);
-        color: #fff !important;
-        border-radius: 40px;
-        text-transform: capitalize;
-        border: 1px solid #fff;
-        padding: 0 30px;
-        position: relative;
-        clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
-        border-bottom-left-radius: 0;
-        text-decoration: none;
-        height: 55px;
-        display: flex;
-        align-items: center;
-        justify-content: end;
-        width: -moz-max-content;
-        width: max-content;
-        padding-left: 45px;
-    }
+    
 }
 .boardx-card.bg-light-secondary {
     background-color: #fdf5e4;

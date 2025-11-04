@@ -65,7 +65,7 @@ if (!empty($args['articles'])) :
 
     // Query posts by taxonomy slug(s)
     $query = new WP_Query([
-        'post_type'      => 'boardx-article',
+        'post_type'      => 'boardspark-article',
         'posts_per_page' => 4,
         'orderby'        => 'date',
         'order'          => 'ASC', // oldest first

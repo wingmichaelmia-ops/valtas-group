@@ -43,9 +43,9 @@ get_header();
         'template-parts/partials/acf/blocks/block',
         'page_title',
         [
-            'title'      => 'BoardX <span class="highlight">Archive</span>', // use the post title dynamically
+            'title'      => 'BoardSpark <span class="highlight">Archive</span>', // use the post title dynamically
             'title_tag'  => 'h1',
-            'content'    => ' BoardX is a free, invitation-only resource hub powered by Valtas that equips nonprofit boards with tools, insights, and connections to grow their eXperience, eXpertise, and eXcellence, with a monthly donation from Valtas to every nonprofit whose board engages with the platform that month.',
+            'content'    => ' BoardSpark is a free, invitation-only resource hub powered by Valtas that equips nonprofit boards with tools, insights, and connections to grow their eXperience, eXpertise, and eXcellence, with a monthly donation from Valtas to every nonprofit whose board engages with the platform that month.',
         ]
     );
     ?>
@@ -97,7 +97,7 @@ if (!empty($args['articles'])) :
 
     // Query posts by taxonomy slug(s)
     $query = new WP_Query([
-        'post_type'      => 'boardx-article',
+        'post_type'      => 'boardspark-article',
         'posts_per_page' => 4,
         'orderby'        => 'date',
         'order'          => 'ASC', // oldest first
@@ -280,7 +280,7 @@ if (!empty($args['articles_2'])) :
 
     // Query posts by taxonomy slug(s)
     $query = new WP_Query([
-        'post_type'      => 'boardx-article',
+        'post_type'      => 'boardspark-article',
         'posts_per_page' => 4,
         'orderby'        => 'date',
         'order'          => 'ASC', // oldest first
@@ -467,7 +467,7 @@ endif;
 
         // Query posts by taxonomy slug(s)
         $query = new WP_Query([
-            'post_type'      => 'boardx-article',
+            'post_type'      => 'boardspark-article',
             'posts_per_page' => 4,
             'orderby'        => 'date',
             'order'          => 'ASC', // oldest first
@@ -594,7 +594,7 @@ if (!empty($args['articles_4'])) :
 
     // Query posts by taxonomy slug(s)
     $query = new WP_Query([
-        'post_type'      => 'boardx-article',
+        'post_type'      => 'boardspark-article',
         'posts_per_page' => 5,
         'orderby'        => 'date',
         'order'          => 'ASC', // oldest first
@@ -753,7 +753,7 @@ if (!empty($args['articles_5'])) :
 
     // Query posts by taxonomy slug(s)
     $query = new WP_Query([
-        'post_type'      => 'boardx-article',
+        'post_type'      => 'boardspark-article',
         'posts_per_page' => 5,
         'orderby'        => 'date',
         'order'          => 'ASC', // oldest first
@@ -907,7 +907,7 @@ if (!empty($args['articles_6'])) :
 
     // Query posts by taxonomy slug(s)
     $query = new WP_Query([
-        'post_type'      => 'boardx-article',
+        'post_type'      => 'boardspark-article',
         'posts_per_page' => 5,
         'orderby'        => 'date',
         'order'          => 'ASC', // oldest first
@@ -1063,7 +1063,7 @@ while ($query->have_posts()) :
 
         // Query posts by taxonomy slug(s)
         $query = new WP_Query([
-            'post_type'      => 'boardx-article',
+            'post_type'      => 'boardspark-article',
             'posts_per_page' => 4,
             'orderby'        => 'date',
             'order'          => 'ASC', // oldest first
@@ -1190,7 +1190,7 @@ if (!empty($args['articles'])) :
 
     // Query posts by taxonomy slug(s)
     $query = new WP_Query([
-        'post_type'      => 'boardx-article',
+        'post_type'      => 'boardspark-article',
         'posts_per_page' => 4,
         'orderby'        => 'date',
         'order'          => 'ASC', // oldest first
@@ -1366,7 +1366,7 @@ if (!empty($args['articles_9'])) :
 
     // Query posts by taxonomy slug(s)
     $query = new WP_Query([
-        'post_type'      => 'boardx-article',
+        'post_type'      => 'boardspark-article',
         'posts_per_page' => 4,
         'orderby'        => 'date',
         'order'          => 'ASC', // oldest first
@@ -1544,7 +1544,7 @@ if (!empty($args['articles_10'])) :
 
     // Query posts by taxonomy slug(s)
     $query = new WP_Query([
-        'post_type'      => 'boardx-article',
+        'post_type'      => 'boardspark-article',
         'posts_per_page' => 5,
         'orderby'        => 'date',
         'order'          => 'ASC', // oldest first
@@ -1699,7 +1699,7 @@ while ($query->have_posts()) :
 
         // Query posts by taxonomy slug(s)
         $query = new WP_Query([
-            'post_type'      => 'boardx-article',
+            'post_type'      => 'boardspark-article',
             'posts_per_page' => 4,
             'orderby'        => 'date',
             'order'          => 'ASC', // oldest first

@@ -408,7 +408,7 @@ class Valtas_Year_Filter_Widget extends WP_Widget {
 // Redirect logged-in users away from the login page BEFORE output starts
 function redirect_logged_in_user_from_login_page() {
     if ( is_page( 'login' ) && is_user_logged_in() ) {
-        wp_redirect( home_url( '/boardx-archive/' ) );
+        wp_redirect( home_url( '/boardspark-archive/' ) );
         exit;
     }
 }
@@ -432,7 +432,7 @@ function custom_login_form_shortcode() {
     ?>
     <div class="custom-login-wrapper">
         <div class="custom-login-wrapper-inner">
-                <h2 class="h4 mb-2 fw-bold text-primary">Welcome to BoardX</h2>
+                <h2 class="h4 mb-2 fw-bold text-primary">Welcome to BoardSpark</h2>
                 <p class="mb-2">Please sign in to continue...</p>
                 <?php echo $login_errors; ?>
                 <form name="loginform" id="custom-login-form" action="<?php echo esc_url( wp_login_url() ); ?>" method="post">
@@ -452,7 +452,7 @@ function custom_login_form_shortcode() {
                     <div class="text-center mt-5 form-links">
                         <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>">Lost your password?</a> | <a href="<?php echo esc_url( home_url( '/request-access/' ) ); ?>">Request Access</a>
                     </div>
-                    <input type="hidden" name="redirect_to" value="<?php echo esc_url( home_url( '/boardx-archive/' ) ); ?>">
+                    <input type="hidden" name="redirect_to" value="<?php echo esc_url( home_url( '/boardspark-archive/' ) ); ?>">
                     <input type="hidden" name="testcookie" value="1">
                 </form>
         </div>
@@ -660,7 +660,7 @@ add_shortcode( 'custom_register_form', 'custom_register_form_shortcode' );
 
 
 
-// Redirect logged-out users from Members Area template or content tagged "BoardX"
+// Redirect logged-out users from Members Area template or content tagged "BoardSpark"
 function valtas_redirect_members_area_pages() {
 
 	// Redirect if using the Members Area template
@@ -669,8 +669,8 @@ function valtas_redirect_members_area_pages() {
 		exit;
 	}
 
-	// Redirect if post or page has the tag "BoardX"
-	if ( ( is_single() || is_page() ) && has_tag( 'BoardX' ) && ! is_user_logged_in() ) {
+	// Redirect if post or page has the tag "BoardSpark"
+	if ( ( is_single() || is_page() ) && has_tag( 'BoardSpark' ) && ! is_user_logged_in() ) {
 		wp_redirect( home_url( '/login/' ) );
 		exit;
 	}
