@@ -178,10 +178,10 @@ $terms_conditions = get_field('terms_conditions', 'option');
 					</div>
 					<div class="site-info row py-3 text-center text-md-start">
 						<div class="col-md-6">
-							© COPYRIGHT VALTAS GROUP - ALL RIGHTS RESERVED.
+							&copy; Copyright <?php echo date('Y'); ?> Valtas Group - All Rights Reserved.
 						</div>
 						<div class="col-md-6 text-md-end">
-							<?php if($privacy_policy) { ?><a href="<?php echo $privacy_policy; ?>">Privacy Policy</a><?php } ?>  |  <?php if($terms_conditions) { ?><a href="<?php the_field('terms_conditions', 'option') ?>">Terms & Conditions</a><?php } ?>
+							<?php if($privacy_policy) { ?><a href="<?php echo $privacy_policy; ?>">Privacy Policy</a><?php } ?><?php if($terms_conditions) { ?>  |  <a href="<?php the_field('terms_conditions', 'option') ?>">Terms & Conditions</a><?php } ?>
 						</div>
 						
 
