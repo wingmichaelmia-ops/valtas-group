@@ -174,3 +174,24 @@ jQuery(document).ready(function($) {
 });
 
 
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Prevent Bootstrap’s default behavior of blocking parent link
+  document.querySelectorAll('.dropdown-toggle').forEach(function(el) {
+    el.addEventListener('click', function (e) {
+      if (this.nextElementSibling && this.nextElementSibling.classList.contains('dropdown-menu')) {
+        const isHover = window.matchMedia('(hover: hover)').matches;
+        if (isHover) {
+          // On hover devices, allow normal link click
+          window.location = this.getAttribute('href');
+        } else {
+          // On touch devices, toggle dropdown normally
+          e.preventDefault();
+          this.classList.toggle('show');
+          const menu = this.nextElementSibling;
+          menu.classList.toggle('show');
+        }
+      }
+    });
+  });
+});

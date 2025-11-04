@@ -13009,6 +13009,32 @@ BUTTONS
   margin-left: 0.5em;
 }
 
+/* Submenu positioning */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+}
+
+/* Hover open */
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+/* For nested submenu hover */
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+}
+
+/* Prevent hover glitches */
+.dropdown-menu {
+  margin-top: 0;
+}
+
 /****************************************
 FOOTER
 *****************************************/

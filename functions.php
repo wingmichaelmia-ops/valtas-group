@@ -757,3 +757,8 @@ function valtas_filter_posts_by_year() {
     wp_reset_postdata();
     wp_die();
 }
+
+
+
+
+

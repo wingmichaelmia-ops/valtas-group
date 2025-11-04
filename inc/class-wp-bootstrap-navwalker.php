@@ -190,13 +190,24 @@ if ( ! class_exists( 'Understrap_WP_Bootstrap_Navwalker' ) ) {
 
 			// If item has_children add atts to <a>.
 			if ( isset( $args->has_children ) && $args->has_children && 0 === $depth && 1 !== $args->depth ) {
-				$atts['href']           = '#';
+
+				// Ensure href uses the real URL if available
+				if ( empty( $atts['href'] ) && ! empty( $item->url ) ) {
+					$atts['href'] = $item->url;
+				}
+
+				// Add dropdown attributes (Bootstrap 4 & 5)
 				$atts['data-toggle']    = 'dropdown';
 				$atts['data-bs-toggle'] = 'dropdown';
 				$atts['aria-haspopup']  = 'true';
 				$atts['aria-expanded']  = 'false';
-				$atts['class']          = 'dropdown-toggle nav-link';
-				$atts['id']             = 'menu-item-dropdown-' . $item->ID;
+
+				// Add Bootstrap class
+				$atts['class'] = isset($atts['class'])
+					? $atts['class'] . ' dropdown-toggle nav-link'
+					: 'dropdown-toggle nav-link';
+
+				$atts['id'] = 'menu-item-dropdown-' . $item->ID;
 			} else {
 				$atts['href'] = ! empty( $item->url ) ? $item->url : '#';
 				// Items in dropdowns use .dropdown-item instead of .nav-link.
