@@ -12639,6 +12639,7 @@ header .navbar-nav a:hover {
   top: 0;
   left: -30px;
   z-index: 2;
+  background-repeat: no-repeat;
 }
 .btn-valtas button.wpcf7-form-control.wpcf7-submit.btn,
 .btn-valtas a {
