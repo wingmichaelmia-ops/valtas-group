@@ -107,7 +107,7 @@ $blog_posts = get_posts([
         </div>
     <?php endif; ?>
     <?php if ( $button ) : ?>
-                        <div class="btn-valtas my-4 btn-center">
+                        <div class="btn-valtas mt-0 mb-4 btn-center">
                             <a href="<?php echo esc_url($button['url']); ?>" 
                             class="btn btn-primary"
                             target="<?php echo esc_attr($button['target'] ?: '_self'); ?>">
