@@ -19,20 +19,22 @@ $args = wp_parse_args( $args, $default );
             <div class="col-lg-5">
                 <?php if ( $args['title'] ) : ?>
                     <<?php echo esc_html( $args['title_tag'] ); ?>><?php echo $args['title']; ?></<?php echo esc_html( $args['title_tag'] ); ?>>
-                <?php endif; ?>  
-                <?php 
-                    $link = get_sub_field('button');
-                    if( $link ): 
-                        $url = $link['url'];
-                        $title = $link['title'];
-                        $target = $link['target'] ? $link['target'] : '_self';
-                        ?>
-                        <div class="btn-valtas my-4">
-                            <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>" class="btn btn-primary">
-                                <?php echo esc_html($title); ?>
-                            </a>
-                    </div>
                 <?php endif; ?>
+                <div class="d-none d-md-block">  
+                    <?php 
+                        $link = get_sub_field('button');
+                        if( $link ): 
+                            $url = $link['url'];
+                            $title = $link['title'];
+                            $target = $link['target'] ? $link['target'] : '_self';
+                            ?>
+                            <div class="btn-valtas my-4">
+                                <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>" class="btn btn-primary">
+                                    <?php echo esc_html($title); ?>
+                                </a>
+                        </div>
+                    <?php endif; ?>
+                </div>
             </div>
             <div class="col-lg-7">
                 <div class="row px-0">
@@ -63,6 +65,21 @@ $args = wp_parse_args( $args, $default );
                     <img src="<?php echo esc_url( $args['featured_image']['url'] ); ?>" alt="<?php echo esc_attr( $args['featured_image']['alt'] ); ?>" />    
                 <?php endif; ?>         
             </div>
+        </div>
+        <div class="d-md-none d-block">
+            <?php 
+                $link = get_sub_field('button');
+                if( $link ): 
+                    $url = $link['url'];
+                    $title = $link['title'];
+                    $target = $link['target'] ? $link['target'] : '_self';
+                ?>
+                <div class="btn-valtas my-4">
+                    <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>" class="btn btn-primary">
+                        <?php echo esc_html($title); ?>
+                    </a>
+                </div>
+            <?php endif; ?>           
         </div>
     </div>
 </div>

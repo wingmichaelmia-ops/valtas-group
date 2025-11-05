@@ -31,7 +31,7 @@ $args = wp_parse_args( $args, $default );
         }
     ?>
     <div class="container">
-        <div class="valtas-cta-block__content py-5 px-3 py-md-2 px-md-0 text-white">
+        <div class="valtas-cta-block__content px-0 text-white">
             
             <?php if ( $args['title'] ) : ?>
                 <<?php echo esc_html( $args['title_tag'] ); ?> class="valtas-cta-block__title"><?php echo $args['title']; ?></<?php echo esc_html( $args['title_tag'] ); ?>>

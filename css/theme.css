@@ -12604,6 +12604,12 @@ header .navbar-nav a:hover {
   display: flex;
   align-items: end;
   overflow: hidden;
+  min-height: 700px;
+}
+@media (max-width: 767.98px) {
+  .echo-block-hero_banner {
+    min-height: 762px;
+  }
 }
 .echo-block-hero_banner .bg-image {
   position: absolute;
@@ -12674,7 +12680,8 @@ header .navbar-nav a:hover {
 .echo-block-page_title {
   position: relative;
   padding: 150px 0 5%;
-  min-height: 75dvh;
+  height: 75dvh;
+  min-height: 700px;
   display: flex;
   align-items: end;
   overflow: hidden;
@@ -12720,6 +12727,7 @@ header .navbar-nav a:hover {
 @media (max-width: 767.98px) {
   .echo-block-page_title {
     padding: 150px 0 10%;
+    min-height: 762px;
   }
 }
 .echo-block-page_title:before {
@@ -12742,8 +12750,8 @@ header .navbar-nav a:hover {
   -o-object-fit: cover;
   object-fit: cover;
   z-index: -1;
-  -o-object-position: center;
-  object-position: center;
+  -o-object-position: 75%;
+  object-position: 75%;
 }
 
 .page-title__text {
@@ -13043,7 +13051,7 @@ BUTTONS
 FOOTER
 *****************************************/
 .footer-title {
-  font-size: clamp(1rem, 0.4531rem + 1.75vw, 1.4375rem);
+  font-size: clamp(1.2rem, 0.4531rem + 1.75vw, 1.4375rem);
   color: #012F6C;
   font-weight: bold;
   margin-bottom: 1.2rem;
@@ -13052,14 +13060,14 @@ FOOTER
 .footer-widgets .menu {
   padding-left: 0;
   list-style: none;
-  font-size: clamp(0.875rem, 0.5625rem + 1vw, 1.125rem);
+  font-size: clamp(1.125rem, 0.5625rem + 1vw, 1.125rem);
   display: flex;
   flex-flow: column;
   gap: 10px;
 }
 
 .footer-widgets {
-  font-size: clamp(0.875rem, 0.5625rem + 1vw, 1.125rem);
+  font-size: clamp(1.125rem, 0.5625rem + 1vw, 1.125rem);
 }
 .footer-widgets a {
   text-decoration: none;
@@ -13384,6 +13392,8 @@ BLOG SECTION
   -o-object-fit: cover;
   object-fit: cover;
   position: absolute;
+  -o-object-position: left center;
+  object-position: left center;
 }
 
 .blog-section .card {
@@ -13402,15 +13412,18 @@ BLOG SECTION
   max-height: 230px;
   overflow: hidden;
   border-radius: 0 !important;
+  position: relative;
+  margin-bottom: 1rem;
 }
 .blog-section .card .card-img-top img {
   -o-object-fit: cover;
   object-fit: cover;
-  -o-object-position: center;
-  object-position: center;
+  -o-object-position: left center;
+  object-position: left center;
   height: 100%;
   width: 100%;
   border-radius: 0;
+  position: absolute;
 }
 
 .btn-center {
@@ -13429,13 +13442,11 @@ CTA BLOCK
 .valtas-cta-block {
   position: relative;
   z-index: 3;
-  min-height: 700px;
   display: flex;
-  align-items: center;
+  align-items: start;
 }
 @media (max-width: 767px) {
   .valtas-cta-block {
-    min-height: auto;
     padding: 2rem 1rem;
   }
 }
@@ -13457,14 +13468,18 @@ CTA BLOCK
   width: 100%;
   z-index: 1;
   height: 100%;
-  -o-object-position: top right;
-  object-position: top right;
+  -o-object-position: 70%;
+  object-position: 70%;
+  top: 0;
+  left: 0;
 }
 
 .valtas-cta-block__content {
-  max-width: 600px;
+  max-width: 660px;
   z-index: 3;
   position: relative;
+  min-height: 710px;
+  padding-top: 5%;
 }
 
 .valtas-cta-block__buttons {

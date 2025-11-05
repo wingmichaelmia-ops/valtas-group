@@ -59,7 +59,7 @@ $blog_posts = get_posts([
                                         <?php echo $thumb; ?>
                                     </a>
                                 <?php endif; ?>
-                                <div class="card-img-overlay p-5 d-flex flex-column justify-content-end bg-dark bg-opacity-50">
+                                <div class="card-img-overlay p-3 p-md-5 d-flex flex-column justify-content-end bg-dark bg-opacity-50">
                                     <div  style="max-width:700px;">
                                     <div class="post-date mb-2">
                                         <?php echo esc_html($date); ?>
@@ -79,14 +79,14 @@ $blog_posts = get_posts([
                         <!-- Next three posts -->
                         <div class="col-md-4">
                             <div class="card border-radius-0 h-100">
-                                <?php if ( $thumb ) : ?>
-                                    <div class="card-img-top">
-                                        <a href="<?php echo esc_url($link); ?>">
-                                            <?php echo $thumb; ?>
-                                        </a>
-                                    </div>
-                                <?php endif; ?>
                                 <div class="card-body">
+                                    <?php if ( $thumb ) : ?>
+                                        <div class="card-img-top">
+                                            <a href="<?php echo esc_url($link); ?>">
+                                                <?php echo $thumb; ?>
+                                            </a>
+                                        </div>
+                                    <?php endif; ?>
                                     <div class="post-date mb-2">
                                         <?php echo esc_html($date); ?>
                                     </div>
