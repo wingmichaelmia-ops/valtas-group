@@ -1,10 +1,13 @@
 .echo-block-page_title {
     position: relative;
-    padding: 150px 0 2rem;
-    height: 75dvh;
+    padding: 150px 0 5%;
+    min-height: 75dvh;
     display: flex;
-    align-items: center;
+    align-items: end;
     overflow: hidden;
+    @include media-breakpoint-down(md) {
+        padding: 150px 0 10%;
+    }
     &:before {
         content: "";
         position: absolute;
