@@ -121,6 +121,7 @@ blockquote.blockquote {
         top: 0;
         left: 0;
         z-index: 2;
+        background-position: bottom left;
     }
 }
 @include media-breakpoint-down(lg) {

@@ -12903,6 +12903,7 @@ blockquote.blockquote, blockquote.wp-block-quote {
   top: 0;
   left: 0;
   z-index: 2;
+  background-position: bottom left;
 }
 
 @media (max-width: 991.98px) {
