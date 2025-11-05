@@ -1105,6 +1105,9 @@
                             "layout": "block",
                             "acfe_seamless_style": 0,
                             "acfe_group_modal": 0,
+                            "acfe_group_modal_close": 0,
+                            "acfe_group_modal_button": "",
+                            "acfe_group_modal_size": "large",
                             "sub_fields": [
                                 {
                                     "key": "field_68dad097eb47b",
@@ -1148,10 +1151,7 @@
                                     "media_upload": 1,
                                     "delay": 0
                                 }
-                            ],
-                            "acfe_group_modal_close": 0,
-                            "acfe_group_modal_button": "",
-                            "acfe_group_modal_size": "large"
+                            ]
                         }
                     ],
                     "min": "",
@@ -1766,6 +1766,7 @@
                                     "collapsed": "",
                                     "button_label": "Add Row",
                                     "rows_per_page": 20,
+                                    "parent_repeater": "field_68dc0a5e5c8eb",
                                     "sub_fields": [
                                         {
                                             "key": "field_68dea79627475",
@@ -1818,8 +1819,7 @@
                                             "delay": 0,
                                             "parent_repeater": "field_68dea78127474"
                                         }
-                                    ],
-                                    "parent_repeater": "field_68dc0a5e5c8eb"
+                                    ]
                                 },
                                 {
                                     "key": "field_68dc0a705c8ec",
@@ -3242,7 +3242,7 @@
                             },
                             "acfe_repeater_stylised_button": 0,
                             "layout": "table",
-                            "min": 6,
+                            "min": 4,
                             "max": 7,
                             "collapsed": "",
                             "button_label": "Add Row",
@@ -4557,5 +4557,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1761249254
+    "modified": 1762362983
 }
