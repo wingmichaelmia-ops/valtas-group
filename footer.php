@@ -99,7 +99,7 @@ $terms_conditions = get_field('terms_conditions', 'option');
 
 								<div class="col-md-12 p-4">
 										<h4 class="footer-title">Contact Us</h4>
-										<div class="row">
+										<div class="row gap-3">
 											<div class="col-lg-5">
 												<a href="mailto:<?php the_field('email', 'option'); ?>"><img src="<?php echo get_template_directory_uri() . '/img/email.svg'?>"> <?php the_field('email', 'option'); ?></a>
 											</div>

@@ -267,6 +267,7 @@ FOOTER
     color: $primary;
     font-weight: bold;
     margin-bottom: 1.2rem;
+    letter-spacing: normal;
 }
 .footer-widgets .menu {
     padding-left: 0;
@@ -288,7 +289,7 @@ FOOTER
     }
 }
 .site-info {
-    font-size: clamp(0.875rem, 0.5625rem + 1vw, 1.125rem);
+    font-size: clamp(1.125rem, 0.5625rem + 1vw, 1.125rem);
     a {
         text-decoration: none;
         &:hover {
