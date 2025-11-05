@@ -12791,7 +12791,7 @@ body {
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-family: "Helvetica World", sans-serif;
-  line-height: 1.4em;
+  line-height: 1.2em;
 }
 
 h1, .h1 {
@@ -12859,7 +12859,6 @@ blockquote.blockquote, blockquote.wp-block-quote {
   background-color: #009FED;
   display: inline-block;
   padding: 0 10px 12px;
-  line-height: 1;
   color: #fff;
 }
 
@@ -13307,7 +13306,6 @@ SERVICES BLOCK
   font-size: clamp(1.25rem, 0.984rem + 0.8511vw, 1.75rem);
   font-style: italic;
   color: #363628;
-  line-height: 1.2em;
 }
 
 .testimonial-name {
@@ -13325,7 +13323,6 @@ SERVICES BLOCK
 .testimonial-designation {
   font-size: clamp(1rem, 0.8005rem + 0.6383vw, 1.375rem);
   color: #1B1B1B;
-  line-height: 1.2em;
 }
 
 .echo-block-testimonials {
@@ -14531,7 +14528,6 @@ CASE STUDY TEMPLATE
 .cp_content {
   font-size: 25px;
   font-style: italic;
-  line-height: 1.2em;
   color: #1B1B1B;
 }
 
