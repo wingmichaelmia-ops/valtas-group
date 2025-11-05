@@ -43,6 +43,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Helvetica World', sans-serif;
     line-height: 1.2em;
+    letter-spacing: -2px;
 }
 h1 {
     font-size: clamp(3.75rem, 0.1563rem + 11.5vw, 6.625rem);
@@ -547,6 +548,10 @@ BLOG SECTION
 }
 .featured-post .card-title {
     font-size: clamp(1.6875rem, 1.2553rem + 1.383vw, 2.5rem);
+    letter-spacing: normal;
+    @include media-breakpoint-down(lg){
+        font-weight: bold;
+    }
 }
 .blog-section .understrap-read-more-link {
     display: none;
@@ -577,6 +582,10 @@ BLOG SECTION
     border-radius: 0 !important;
     .card-title {
         font-size: clamp(1.375rem, 1.1755rem + 0.6383vw, 1.75rem);
+        letter-spacing: normal;
+        @include media-breakpoint-down(lg){
+            font-weight: bold;
+        }
         a {
             text-decoration: none;
             color: #51513D;
@@ -1546,6 +1555,7 @@ Card Block
 }
 .valtas-cards .card-title {
     font-size: clamp(1.375rem, 0.2813rem + 3.5vw, 2.25rem);
+    letter-spacing: normal;
 }
 /********************************************************
 WHY VALTAS
@@ -1999,6 +2009,7 @@ TEAM BLOCK
     .card-title {
         color: $primary;
         font-size: 27px;
+        letter-spacing: normal;
     }
 }
 

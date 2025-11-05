@@ -12809,6 +12809,7 @@ body {
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-family: "Helvetica World", sans-serif;
   line-height: 1.2em;
+  letter-spacing: -2px;
 }
 
 h1, .h1 {
@@ -13364,6 +13365,12 @@ BLOG SECTION
 
 .featured-post .card-title {
   font-size: clamp(1.6875rem, 1.2553rem + 1.383vw, 2.5rem);
+  letter-spacing: normal;
+}
+@media (max-width: 991.98px) {
+  .featured-post .card-title {
+    font-weight: bold;
+  }
 }
 
 .blog-section .understrap-read-more-link {
@@ -13402,6 +13409,12 @@ BLOG SECTION
 }
 .blog-section .card .card-title {
   font-size: clamp(1.375rem, 1.1755rem + 0.6383vw, 1.75rem);
+  letter-spacing: normal;
+}
+@media (max-width: 991.98px) {
+  .blog-section .card .card-title {
+    font-weight: bold;
+  }
 }
 .blog-section .card .card-title a {
   text-decoration: none;
@@ -14379,6 +14392,7 @@ Card Block
 
 .valtas-cards .card-title {
   font-size: clamp(1.375rem, 0.2813rem + 3.5vw, 2.25rem);
+  letter-spacing: normal;
 }
 
 /********************************************************
@@ -14861,6 +14875,7 @@ TEAM BLOCK
 .card.team-member-card .card-title {
   color: #012F6C;
   font-size: 27px;
+  letter-spacing: normal;
 }
 
 .team-profile-popup .modal-content {

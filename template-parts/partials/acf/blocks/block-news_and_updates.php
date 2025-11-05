@@ -70,14 +70,14 @@ $blog_posts = get_posts([
                                         </a>
                                     </h2>
                                     <div class="card-text"><?php echo $excerpt; ?></div>
-                                    <a href="<?php echo esc_url($link); ?>" class="btn btn-text text-white">Learn More</a>
+                                    <a href="<?php echo esc_url($link); ?>" class="mt-3 btn btn-text text-white">Learn More</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     <?php else : ?>
                         <!-- Next three posts -->
-                        <div class="col-md-4">
+                        <div class="col-lg-4">
                             <div class="card border-radius-0 h-100">
                                 <div class="card-body">
                                     <?php if ( $thumb ) : ?>
@@ -96,7 +96,7 @@ $blog_posts = get_posts([
                                         </a>
                                     </h5>
                                     <div class="card-text"><?php echo $excerpt; ?></div>
-                                    <a href="<?php echo esc_url($link); ?>" class="btn btn-text">Learn More</a>
+                                    <a href="<?php echo esc_url($link); ?>" class="mt-3 btn btn-text">Learn More</a>
                                 </div>
                             </div>
                         </div>
