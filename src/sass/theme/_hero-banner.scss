@@ -1,9 +1,9 @@
 .echo-block-hero_banner {
     position: relative;
-    padding: 150px 0 2rem;
+    padding: 150px 0 10dvh;
     height: 100dvh;
     display: flex;
-    align-items: center;
+    align-items: end;
     overflow: hidden;
     .bg-image {
         position: absolute;
