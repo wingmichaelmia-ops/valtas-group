@@ -45,7 +45,7 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.2em;
 }
 h1 {
-    font-size: clamp(3.75rem, 0.1563rem + 11.5vw, 6.625rem);
+    font-size: clamp(3.75frem, 0.1563rem + 11.5vw, 6.625rem);
 }
 h2 {
     font-size: clamp(2.5rem, -5.625rem + 10.8333vw, 4.125rem);
@@ -542,7 +542,7 @@ BLOG SECTION
 *****************************************/
 
 .post-date {
-    font-size: clamp(1rem, 0.8338rem + 0.5319vw, 1.3125rem);
+    /*font-size: clamp(1rem, 0.8338rem + 0.5319vw, 1.3125rem);*/
     color: $secondary;
 }
 .featured-post .card-title {
@@ -552,7 +552,7 @@ BLOG SECTION
     display: none;
 }
 .btn-text {
-    font-size: clamp(.9375rem, .7713rem + .5319vw, 1.25rem);
+    font-size: clamp(1.4rem, 0.6094rem + 1.25vw, 1.4rem);
     width: max-content;
     padding: 0;
     text-decoration: underline;

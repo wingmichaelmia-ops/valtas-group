@@ -12795,7 +12795,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 
 h1, .h1 {
-  font-size: clamp(3.75rem, 0.1563rem + 11.5vw, 6.625rem);
+  font-size: clamp(3.75frem, 0.1563rem + 11.5vw, 6.625rem);
 }
 
 h2, .h2 {
@@ -13341,7 +13341,7 @@ SERVICES BLOCK
 BLOG SECTION
 *****************************************/
 .post-date {
-  font-size: clamp(1rem, 0.8338rem + 0.5319vw, 1.3125rem);
+  /*font-size: clamp(1rem, 0.8338rem + 0.5319vw, 1.3125rem);*/
   color: #F3B700;
 }
 
@@ -13354,7 +13354,7 @@ BLOG SECTION
 }
 
 .btn-text {
-  font-size: clamp(0.9375rem, 0.7713rem + 0.5319vw, 1.25rem);
+  font-size: clamp(1.4rem, 0.6094rem + 1.25vw, 1.4rem);
   width: -moz-max-content;
   width: max-content;
   padding: 0;
