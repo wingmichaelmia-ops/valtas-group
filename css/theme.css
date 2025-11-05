@@ -12525,10 +12525,14 @@ header .navbar-nav a:hover {
   border-radius: 40px;
   text-transform: capitalize;
   border: 1px solid #012F6C;
-  padding: 10px 20px;
+  padding: 0 25px;
+  height: 47.2px;
   position: relative;
-  clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+  clip-path: polygon(22px 0%, 100% 0%, 100% 100%, 0% 100%);
   border-bottom-left-radius: 0;
+  font-size: clamp(1rem, -0.25rem + 1.6667vw, 1.25rem);
+  display: flex;
+  align-items: center;
 }
 .navbar-nav .btn-menu a.nav-link:hover {
   background: #012F6C;
@@ -12544,7 +12548,7 @@ header .navbar-nav a:hover {
 }
 @media (max-width: 1199.98px) {
   .navbar-nav .btn-menu {
-    min-width: 120px;
+    min-width: 130px;
   }
 }
 .navbar-nav .btn-menu::before {

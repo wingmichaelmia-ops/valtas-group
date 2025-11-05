@@ -27,10 +27,14 @@ header .navbar-nav {
     border-radius: 40px;
     text-transform: capitalize;
     border: 1px solid $primary;
-    padding: 10px 20px;
+    padding: 0 25px;
+    height: 47.2px;
     position: relative;
-    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(22px 0%, 100% 0%, 100% 100%, 0% 100%);
     border-bottom-left-radius: 0;
+    font-size: clamp(1rem, -.25rem + 1.6667vw, 1.25rem);
+    display: flex;
+    align-items: center;
     &:hover {
         background: $primary;
         color: #fff !important;
@@ -44,7 +48,7 @@ header .navbar-nav {
     min-width: 140px;
     text-align: right;
     @include media-breakpoint-down(xl) {
-        min-width: 120px;
+        min-width: 130px;
     }
     &::before {
         content: "";
