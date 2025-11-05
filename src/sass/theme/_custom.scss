@@ -656,7 +656,15 @@ CTA BLOCK
     z-index: 3;
     position: relative;
     min-height: 710px;
-    padding-top: 5%;
+    padding: 5% 0;
+    display: flex;
+    flex-flow: column;
+    justify-content: start;
+}
+@include media-breakpoint-down(md) {
+    .text-end .valtas-cta-block__content { 
+        justify-content: end;
+    }
 }
 .valtas-cta-block__buttons {
     margin-top: 2rem;
@@ -944,7 +952,10 @@ OUR VALUES BLOCK
 }
 .image-border-secondary .image-col img {
     border: 15px solid #fdf5e4;
-    box-sizing: border-box
+    box-sizing: border-box;
+    @include media-breakpoint-down(lg) {
+        border: 0;
+    }
 }
 .image-col img{
     width: 100%;
@@ -1184,6 +1195,7 @@ span.step-number {
 .step-title {
     font-size: clamp(1.5625rem, 1.1719rem + 1.25vw, 1.875rem);
     font-weight: bold;
+    letter-spacing: normal;
 }
 @include media-breakpoint-up(lg) {
     .step-header {
