@@ -13573,7 +13573,7 @@ OUR VALUES BLOCK
 }
 
 .value-title {
-  font-size: clamp(1.1875rem, 1.0878rem + 0.3191vw, 1.375rem);
+  font-size: 27px;
   font-weight: 700;
   width: 100%;
 }
@@ -13657,9 +13657,9 @@ OUR VALUES BLOCK
     width: 100px;
   }
   .value-number span {
-    width: 70px;
-    height: 70px;
-    font-size: 30px;
+    /*width: 70px;
+    height: 70px;*/
+    font-size: 40px;
   }
   .value-top .value-number span {
     margin-top: -15px;
@@ -13672,7 +13672,7 @@ OUR VALUES BLOCK
     align-items: center;
   }
   .value-number span {
-    margin-top: 0;
+    margin-top: -20px;
   }
 }
 .connector_style_1 .value-mobile {
@@ -13925,15 +13925,15 @@ OUR VALUES BLOCK
 }
 .connector_style_2 .value-mobile .value-item_inner {
   flex-flow: column;
-  padding: 2rem;
-  width: 80%;
+  padding: 3rem 0;
+  width: 90%;
   margin: auto;
 }
 .connector_style_2 .value-mobile .value-item_inner::before {
   content: "";
   position: absolute;
   border: 2px dotted;
-  border-radius: 100px;
+  border-radius: 200px;
   border-right: 0;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -13951,11 +13951,11 @@ OUR VALUES BLOCK
 }
 .connector_style_2 .value-mobile .value-item:nth-child(even) .value-item_inner {
   flex-flow: column;
-  padding: 2rem;
+  padding: 3rem 0;
 }
 .connector_style_2 .value-mobile .value-item:nth-child(even) .value-item_inner::before {
   border-left: 0;
-  border-radius: 100px;
+  border-radius: 200px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-right: 2px;
