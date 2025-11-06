@@ -25,14 +25,14 @@ function my_contact_info_shortcode() {
     ?>
     <div class="contact-info">
 		<div class="row">
-			<div class="col-md-6 border border-white p-3">
+			<div class="col-7 col-md-6 border border-white p-2 p-md-3">
 				<?php if ( $email ) : ?>
 					Email Us <a href="mailto:<?php echo antispambot( esc_attr( $email ) ); ?>" class="text-white">
 						<?php echo antispambot( esc_html( $email ) ); ?>
 					</a>
 				<?php endif; ?>
 			</div>
-			<div class="col-md-6 border border-white p-3">
+			<div class="col-5 col-md-6 border border-white p-2 p-md-3">
 				<?php if ( $phone ) : ?>
 					Call Us <a href="tel:<?php echo esc_attr( preg_replace('/[^0-9+]/', '', $phone) ); ?>" class="text-white">
 						<?php echo esc_html( $phone ); ?>
