@@ -12812,7 +12812,7 @@ body {
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-family: "Helvetica World", sans-serif;
   line-height: 1.2em;
-  letter-spacing: -1px;
+  letter-spacing: -2px;
 }
 
 h1, .h1 {
@@ -13501,7 +13501,7 @@ CTA BLOCK
   text-align: left;
   display: flex;
   flex-flow: column;
-  justify-content: start;
+  justify-content: center;
 }
 
 @media (max-width: 767.98px) {
@@ -14264,7 +14264,11 @@ ICON TEXT BLOCK
 
 @media (max-width: 991.98px) {
   .icon-text-item {
-    padding: 1rem;
+    padding: 2rem 1rem 1rem;
+    border-top: 1px dashed;
+  }
+  .icon-text-item:first-child {
+    border: none;
   }
   .icon-text-item:first-child::before {
     opacity: 0;
@@ -14273,23 +14277,30 @@ ICON TEXT BLOCK
     opacity: 1;
   }
   .icon-text-item::before {
-    content: "";
+    /*content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 4px; /* thickness of border */
+    height: 4px; 
     margin-left: auto;
     margin-right: auto;
     width: calc(100% - 3rem);
-    /* Apply your gradient */
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 20%, rgb(0, 0, 0) 50%, rgba(0, 0, 0, 0.4) 80%);
-    /* Mask into dotted pattern */
+
+
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.4) 20%,
+        rgba(0, 0, 0, 1) 50%,
+        rgba(0, 0, 0, 0.4) 80%
+    );
+
+
     -webkit-mask: radial-gradient(circle, #000 30%, transparent 31%) repeat-x;
-    -webkit-mask-size: 7px 2px; /* dot spacing + size */
-    -webkit-mask: radial-gradient(circle, #000 30%, transparent 31%) repeat-x;
+    -webkit-mask-size: 7px 2px; 
     mask: radial-gradient(circle, #000 30%, transparent 31%) repeat-x;
-    mask-size: 7px 2px;
+    mask-size: 7px 2px;*/
+    display: none;
   }
 }
 .gradient-cards .icon-text-item {
@@ -14434,10 +14445,13 @@ WHY VALTAS
 .why-card-number {
   font-family: "Helvetica World", sans-serif;
   color: #F3B700;
+  font-size: 53px;
+  line-height: 1em;
 }
 
 .why-card-title {
   border-bottom: 1px solid;
+  letter-spacing: normal;
 }
 
 /******************************************************

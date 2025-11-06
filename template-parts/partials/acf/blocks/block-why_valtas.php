@@ -62,9 +62,9 @@ $args = wp_parse_args($args, $default);
                         $cards_blurb     = $card['cards_blurb'] ?? '';
                         $cards_button    = $card['cards_button'] ?? '';
                 ?>
-                        <div class="why-card h-100 text-center text-md-start">
+                        <div class="why-card h-100 text-md-start">
                             <?php if ($cards_title) : ?>
-                                <div class="why-card-number display-6 fw-bold mb-2">
+                                <div class="why-card-number fw-bold mb-2">
                                     0<?php echo $counter; ?>
                                 </div>
                                 <<?php echo esc_attr($cards_title_tag); ?> class="mb-3 fw-bold why-card-title pb-3">
@@ -102,9 +102,9 @@ $args = wp_parse_args($args, $default);
                         $cards_blurb     = $card['cards_blurb'] ?? '';
                         $cards_button    = $card['cards_button'] ?? '';
                 ?>
-                        <div class="why-card h-100 text-center text-md-end">
+                        <div class="why-card h-100 text-start text-lg-end">
                             <?php if ($cards_title) : ?>
-                                <div class="why-card-number display-6 fw-bold mb-2">
+                                <div class="why-card-number fw-bold mb-2">
                                     0<?php echo $counter; ?>
                                 </div>
                                 <<?php echo esc_attr($cards_title_tag); ?> class="mb-3 fw-bold why-card-title pb-3">

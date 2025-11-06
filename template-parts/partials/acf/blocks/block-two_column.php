@@ -33,7 +33,7 @@ if ( is_array( $css_first ) ) {
 
 $css_second = $args['css_second'] ?? [];
 
-if ( is_array( $css_first ) ) {
+if ( is_array( $css_second ) ) {
     $css_second = implode( ' ', $css_second ); // Convert to space-separated list
 }
 ?>
