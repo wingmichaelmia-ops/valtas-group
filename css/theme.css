@@ -14355,6 +14355,13 @@ CASE STUDY
     flex-flow: row-reverse;
   }
 }
+@media (max-width: 991.98px) {
+  .case_studies_layout_2 .case-study-item {
+    flex-flow: column-reverse;
+    gap: 20px;
+    padding: 1rem;
+  }
+}
 
 .case-study-title {
   font-size: clamp(1.375rem, 0.9844rem + 1.25vw, 1.6875rem);

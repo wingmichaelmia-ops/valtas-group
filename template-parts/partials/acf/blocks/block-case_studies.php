@@ -37,11 +37,11 @@ if ( ! empty($term_ids) ) {
 
 $query = new WP_Query($args);
 if($case_studies_layout == 'case_studies_layout_2') {
-    $text_col = 'col-md-6 ps-0 ps-lg-4';
-    $image_col = 'col-md-6';
+    $text_col = 'col-lg-6';
+    $image_col = 'col-lg-6';
 } else {
-    $image_col = 'col-md-5';
-    $text_col = 'col-md-7 mt-5 mt-md-0 pt-5';
+    $image_col = 'col-lg-5';
+    $text_col = 'col-lg-7 mt-5 mt-lg-0 pt-5';
 }
 ?>
 

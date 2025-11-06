@@ -1510,6 +1510,11 @@ CASE STUDY
         @include media-breakpoint-up(lg) {
             flex-flow: row-reverse;
         }
+        @include media-breakpoint-down(lg) {
+            flex-flow: column-reverse;
+            gap: 20px;
+            padding: 1rem;
+        }
     }
 }
 .case-study-title {
