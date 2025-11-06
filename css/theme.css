@@ -12569,6 +12569,9 @@ header .navbar-nav a:hover {
 #top-header {
   font-size: clamp(1rem, -0.5625rem + 2.0833vw, 1.3125rem);
 }
+#top-header a {
+  text-decoration: none;
+}
 
 .navbar-toggler {
   height: 45px;
@@ -12809,7 +12812,7 @@ body {
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-family: "Helvetica World", sans-serif;
   line-height: 1.2em;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
 }
 
 h1, .h1 {

@@ -67,6 +67,9 @@ header .navbar-nav {
 }
 #top-header {
     font-size: clamp(1rem, -0.5625rem + 2.0833vw, 1.3125rem);
+    a {
+        text-decoration: none;
+    }
 }
 .navbar-toggler {
     height: 45px;
