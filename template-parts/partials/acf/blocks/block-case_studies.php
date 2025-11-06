@@ -41,7 +41,7 @@ if($case_studies_layout == 'case_studies_layout_2') {
     $image_col = 'col-md-6';
 } else {
     $image_col = 'col-md-5';
-    $text_col = 'col-md-7 pt-5';
+    $text_col = 'col-md-7 mt-5 mt-md-0 pt-5';
 }
 ?>
 

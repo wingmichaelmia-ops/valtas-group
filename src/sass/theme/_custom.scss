@@ -58,7 +58,7 @@ h4 {
     font-size: clamp(1.4375rem, 0.8906rem + 1.75vw, 1.875rem);
 }
 h5 {
-    font-size: clamp(1.4375rem, 1.0469rem + 1.25vw, 1.75rem);
+    font-size: clamp(1.5rem, 1.2857rem + 0.4464vw, 1.6875rem);
 }
 h6 {
     font-size: clamp(1.375rem, 0.8281rem + 1.75vw, 1.8125rem);
@@ -835,7 +835,7 @@ OUR VALUES BLOCK
         align-items: center;
     }
     .value-number span {
-        margin-top: -20px;
+        margin-top: -30px;
     }
 }
 .connector_style_1 {
@@ -1078,8 +1078,8 @@ OUR VALUES BLOCK
             width: 10px;
             height: 10px;
             background: white;
-            left: 40%;
-            bottom: -4px;
+            right: 0;
+            top: -4px;
             border-radius: 100%;
         }
         .value-item_inner {
@@ -1143,6 +1143,16 @@ OUR VALUES BLOCK
             }
         }
     }
+}
+.connector_style_2 .value-mobile .value-item:last-child .value-item_inner::before {
+    border-radius: 0;
+    border-bottom: 0;
+}
+.connector_style_2 .value-mobile .value-item:last-child .value-item_inner::after {
+    display: none;
+}
+.connector_style_2 .value-mobile .value-item:last-child .value-item_inner {
+    padding-bottom: 0;
 }
 /****************************************
 OUR PROCESS BLOCK

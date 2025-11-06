@@ -11,6 +11,7 @@ $defaults = [
     'image_first'          => get_sub_field('first_column_image'),
     'image_position_first' => get_sub_field('first_column_image_position') ?: 'top_first_column_image_position',
     'button_first'         => get_sub_field('first_column_button'),
+    'css_first'         => get_sub_field('first_column_css'),
 
     // Second column
     'title_tag_second'      => get_sub_field('title_tag_second_column') ?: 'h2',
@@ -19,9 +20,22 @@ $defaults = [
     'image_second'          => get_sub_field('second_column_image'),
     'image_position_second' => get_sub_field('second_column_image_position') ?: 'top_first_column_image_position',
     'button_second'         => get_sub_field('second_column_button'),
+    'css_second'         => get_sub_field('second_column_css'),
 ];
 
 $args = wp_parse_args($args ?? [], $defaults);
+
+$css_first = $args['css_first'] ?? [];
+
+if ( is_array( $css_first ) ) {
+    $css_first = implode( ' ', $css_first ); // Convert to space-separated list
+}
+
+$css_second = $args['css_second'] ?? [];
+
+if ( is_array( $css_first ) ) {
+    $css_second = implode( ' ', $css_second ); // Convert to space-separated list
+}
 ?>
 
 <div class="two-column-block container py-5">
@@ -29,8 +43,8 @@ $args = wp_parse_args($args ?? [], $defaults);
         
         <!-- First Column -->
         <?php if ( $args['title_first'] || $args['blurb_first'] || $args['image_first'] ) : ?>
-            <div class="col-lg-6">
-                <div class="row align-items-center g-4 <?php echo $args['image_position_first'] === 'bottom_first_column_image_position' ? 'flex-column-reverse' : ''; ?>">
+            <div class="col-lg-6 ">
+                <div class="row align-items-center g-4 <?php echo $args['image_position_first'] === 'bottom_first_column_image_position' ? 'flex-column-reverse' : ''; ?> <?php echo esc_attr( implode( ' ', (array) $args['css_first'] ) ); ?>">
                     
                     <div class="col-12 image-col">
                         <?php if ( $args['image_first'] ) : ?>
@@ -69,7 +83,7 @@ $args = wp_parse_args($args ?? [], $defaults);
         <!-- Second Column -->
         <?php if ( $args['title_second'] || $args['blurb_second'] || $args['image_second'] ) : ?>
             <div class="col-lg-6">
-                <div class="row align-items-center g-4 <?php echo $args['image_position_second'] === 'bottom_first_column_image_position' ? 'flex-column-reverse' : ''; ?>">
+                <div class="row align-items-center g-4 <?php echo $args['image_position_second'] === 'bottom_first_column_image_position' ? 'flex-column-reverse' : ''; ?>  <?php echo esc_attr( implode( ' ', (array) $args['css_second'] ) ); ?>">
                     
                     <div class="col-12 image-col">
                         <?php if ( $args['image_second'] ) : ?>
