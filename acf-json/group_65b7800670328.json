@@ -354,6 +354,52 @@
                             "mime_types": "",
                             "allow_in_bindings": 0,
                             "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_690ce8c0ea3a1",
+                            "label": "Background Postion (Desktop)",
+                            "name": "background_postion_desktop",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "min": 0,
+                            "max": 100,
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "step": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_690ce8fbea3a2",
+                            "label": "Background Postion (Mobile)",
+                            "name": "background_postion_mobile",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "min": 0,
+                            "max": 100,
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "step": "",
+                            "prepend": "",
+                            "append": ""
                         }
                     ],
                     "min": "",
@@ -1502,6 +1548,52 @@
                             "mime_types": "",
                             "allow_in_bindings": 0,
                             "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_690cea422196b",
+                            "label": "Background Postion (Desktop)",
+                            "name": "background_postion_desktop",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "min": 0,
+                            "max": 100,
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "step": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_690cea785af2d",
+                            "label": "Background Postion (Mobile)",
+                            "name": "background_postion_mobile",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "min": 0,
+                            "max": 100,
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "step": "",
+                            "prepend": "",
+                            "append": ""
                         }
                     ],
                     "min": "",
@@ -4613,5 +4705,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1762452523
+    "modified": 1762454147
 }

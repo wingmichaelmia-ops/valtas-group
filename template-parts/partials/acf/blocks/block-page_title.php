@@ -5,12 +5,24 @@ $default = array(
     'title'            => get_sub_field('title') ?: get_the_title(),
     'content'          => get_sub_field('blurb'),
     'background_image' => get_sub_field('background_image'),
-    'button_group' => get_sub_field( 'button_group' )
+    'button_group' => get_sub_field( 'button_group' ),
+    'background_postion_desktop' => get_sub_field( 'background_postion_desktop' ) ?: '75',
+    'background_postion_mobile' => get_sub_field( 'background_postion_mobile' ) ?: '80'
 );
 
 $args = wp_parse_args( $args, $default );
 
 ?>
+<style>
+    .echo-block-page_title .bg-image {
+        object-position: <?php echo $args['background_postion_desktop']; ?>%;
+    }
+    @media (max-width: 767.98px) {
+        .echo-block-page_title .bg-image {
+            object-position: <?php echo $args['background_postion_mobile']; ?>%;
+        }
+    }
+</style>
     
     <?php 
         $image = get_sub_field('background_image');
