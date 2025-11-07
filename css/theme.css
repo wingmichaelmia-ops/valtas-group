@@ -14999,22 +14999,18 @@ TEAM BLOCK
 REVIEW CTA BLOCK
 *****************************************/
 #reviewCarousel {
-  background-image: url("../img/testi-bg.png");
-  min-height: 420px;
   width: 100%;
-  max-width: 671px;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
-  padding: 2rem;
   position: relative;
   margin-left: auto;
-}
-@media (max-width: 991.98px) {
-  #reviewCarousel {
-    background: linear-gradient(0deg, rgb(34, 118, 162) 0%, rgb(24, 54, 86) 100%);
-  }
+  width: 100%;
+  max-width: 671px;
+  /*@include media-breakpoint-down(lg) {
+      background: linear-gradient(0deg,rgba(34, 118, 162, 1) 0%, rgba(24, 54, 86, 1) 100%);
+  }*/
 }
 #reviewCarousel .testimonial-title {
   max-width: 80%;
@@ -15039,6 +15035,44 @@ REVIEW CTA BLOCK
 }
 #reviewCarousel .carousel-controls button span {
   filter: brightness(0) saturate(100%) invert(12%) sepia(40%) saturate(4860%) hue-rotate(206deg) brightness(96%) contrast(99%);
+}
+
+.reviewContainer {
+  position: relative;
+}
+.reviewContainer::before {
+  content: "";
+  background-image: url(../img/review_logo.png);
+  width: 152px;
+  height: 124px;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  background-repeat: no-repeat;
+}
+@media (max-width: 767.98px) {
+  .reviewContainer::before {
+    width: 120px;
+    height: 98px;
+    background-size: cover;
+  }
+}
+
+.reviewContainer .carousel-inner {
+  background: linear-gradient(180deg, rgba(1, 47, 107, 0.5) 0%, rgba(0, 159, 237, 0.5) 100%);
+  backdrop-filter: blur(85px);
+  -webkit-backdrop-filter: blur(85px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  clip-path: polygon(560px 25px, 584px 120px, 100% 0, 100% 100%, 0 100%, 0 25px);
+  padding: 2rem;
+  min-height: 420px;
+}
+@media (max-width: 767.98px) {
+  .reviewContainer .carousel-inner {
+    clip-path: polygon(calc(100% - 100px) 20px, calc(100% - 60px) 80px, 100% 0, 100% 100%, 0 100%, 0 20px);
+  }
 }
 
 /****************************************
