@@ -14205,7 +14205,7 @@ ICON TEXT BLOCK
   font-size: 27px;
 }
 
-.icon-text-item .icon img {
+.enable_shadow .icon-text-item .icon img {
   box-shadow: 0 7px 16px rgba(0, 0, 0, 0.25);
   border-radius: 100%;
 }

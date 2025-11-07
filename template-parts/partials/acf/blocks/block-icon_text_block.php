@@ -10,6 +10,7 @@ $defaults = [
     'icon_text'       => get_sub_field('icon_list') ?: [], // renamed repeater
     'header_position' => get_sub_field('header_position') ?: 'header-title-center',
     'button'      => get_sub_field('button'),
+    'icon_shadow'   => get_sub_field('icon_shadow')
 ];
 
 $args = wp_parse_args($args ?? [], $defaults);
@@ -33,7 +34,7 @@ $button = $args['button'];
 <?php endif; ?>
 
 <?php if ( !empty($args['icon_text']) ) : ?>
-    <div class="icon-text-block container py-0 py-md-5 pb-5">
+    <div class="icon-text-block container py-0 py-md-5 pb-5 <?php echo $args['icon_shadow'] ?>">
         <div class="row g-4 mb-0 mb-md-5">
             <?php foreach ( $args['icon_text'] as $item ) :
                 $icon_img = $item['image'] ?? '';
