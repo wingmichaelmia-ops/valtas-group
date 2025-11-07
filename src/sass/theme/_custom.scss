@@ -2185,6 +2185,9 @@ REVIEW CTA BLOCK
     box-shadow: 0 8px 30px rgba(0, 0, 0, .35);
     clip-path: polygon(560px 25px, 584px 120px, 100% 0, 100% 100%, 0 100%, 0 25px);padding: 2rem;
     min-height: 420px;
+    .testimonial-blurb {
+        opacity: .8;
+    }
     @include media-breakpoint-down(md) {
         clip-path: polygon(calc(100% - 100px) 20px, calc(100% - 60px) 80px, 100% 0, 100% 100%, 0 100%, 0 20px);
     }

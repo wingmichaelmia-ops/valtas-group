@@ -15069,6 +15069,9 @@ REVIEW CTA BLOCK
   padding: 2rem;
   min-height: 420px;
 }
+.reviewContainer .carousel-inner .testimonial-blurb {
+  opacity: 0.8;
+}
 @media (max-width: 767.98px) {
   .reviewContainer .carousel-inner {
     clip-path: polygon(calc(100% - 100px) 20px, calc(100% - 60px) 80px, 100% 0, 100% 100%, 0 100%, 0 20px);
