@@ -54,7 +54,7 @@ if($case_studies_layout == 'case_studies_layout_2') {
         <?php endif; ?>
     </div>
     <div class="container <?php echo $case_studies_layout ?>">
-        <div class="row gx-5 align-items-center">
+        <div class="row g-5 align-items-center">
             <?php if ( $query->have_posts() ) : ?>
                 <?php $i = 1; // counter ?>
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>

@@ -10,11 +10,20 @@ $defaults = [
     'icon_text'       => get_sub_field('icon_list') ?: [], // renamed repeater
     'header_position' => get_sub_field('header_position') ?: 'header-title-center',
     'button'      => get_sub_field('button'),
-    'icon_shadow'   => get_sub_field('icon_shadow')
+    'icon_shadow'   => get_sub_field('icon_shadow'),
+    'mobile_layout'   => get_sub_field('mobile_layout')
 ];
 
 $args = wp_parse_args($args ?? [], $defaults);
 $button = $args['button'];
+
+$mobile_layout = $args['mobile_layout'];
+
+if($mobile_layout == 'one_column') {
+    $mobile_layout = 'col-lg';
+} else {
+    $mobile_layout = 'col-6 col-lg';
+}
 ?>
 
 <?php if ( $args['header_title'] || $args['intro_text'] ) : ?>
@@ -35,14 +44,14 @@ $button = $args['button'];
 
 <?php if ( !empty($args['icon_text']) ) : ?>
     <div class="icon-text-block container py-0 py-md-5 pb-5 <?php echo $args['icon_shadow'] ?>">
-        <div class="row g-4 mb-0 mb-md-5">
+        <div class="row g-0 g-lg-4 mb-0 mb-md-5">
             <?php foreach ( $args['icon_text'] as $item ) :
                 $icon_img = $item['image'] ?? '';
                 $title    = $item['title'] ?? '';
                 $blurb    = $item['blurb'] ?? '';
                 $title_tag = $item['title_tag'] ?? 'h3';
             ?>
-                <div class="col-lg icon-text-item">
+                <div class="<?php echo $mobile_layout; ?> icon-text-item">
                     <?php if ( $icon_img ) : ?>
                         <div class="icon mb-3">
                             <?php echo wp_get_attachment_image( $icon_img, 'thumbnail', false, ['class' => ''] ); ?>

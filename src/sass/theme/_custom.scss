@@ -1386,6 +1386,15 @@ ICON TEXT BLOCK
 .img-shadow .icon img {
     border-radius: 100%;
 }
+.col-6.icon-text-item {
+    &:first-child,
+    &:nth-child(2) {
+        border: none;
+    }
+    &:nth-child(odd) {
+        border-right: 1px dashed;
+    }
+}
 .icon-text-item {
     padding: 0 2rem;
     position: relative;
@@ -1463,7 +1472,9 @@ ICON TEXT BLOCK
         display: none;
     }
 }
-
+.icon-text-blurb {
+    font-size: clamp(1.5625rem, 1.3546rem + 0.4337vw, 1.875rem);
+}
 .gradient-cards .icon-text-item {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .5) 100%);
     border-bottom-left-radius: 20px;
@@ -1654,9 +1665,8 @@ PROJECT BLOCK
     color: #51513D;
 }
 .project-title {
-    font-size: clamp(1.5rem, 1.3438rem + 0.5vw, 1.625rem);
+    font-size: clamp(1.5625rem, 1.1467rem + 0.8673vw, 2.1875rem);
     color: #51513D;
-    font-family: "EB Garamond", serif;
     font-weight: 600;
 }
 .has-video .title-separator,
