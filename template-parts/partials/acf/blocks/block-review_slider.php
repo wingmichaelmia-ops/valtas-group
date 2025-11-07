@@ -8,7 +8,9 @@ $default = array(
     'title'      => get_sub_field('title'),
     'content'    => get_sub_field('content'),
     'count'      => get_sub_field('testimonial_count') ?: -1, // optional limit
-    'background' => get_sub_field('background')
+    'background' => get_sub_field('background'),
+    'background_postion_desktop' => get_sub_field( 'background_postion_desktop' ) ?: '75',
+    'background_postion_mobile' => get_sub_field( 'background_postion_mobile' ) ?: '80'
 );
 
 $args = wp_parse_args($args ?? [], $default);
@@ -26,7 +28,16 @@ if (!empty($args['background'])) {
 }
 
 ?>
-
+<style>
+    .valtas-review-block {
+        background-position: <?php echo $args['background_postion_desktop']; ?>% !important;
+    }
+    @media (max-width: 767.98px) {
+        .valtas-review-block {
+            background-position: <?php echo $args['background_postion_mobile']; ?>% !important;
+        }
+    }
+</style>
 <div class="valtas-review-block py-5 px-3 px-lg-0" <?php echo $bg_style; ?>>
     <div class="container py-0 py-lg-5">
         <div class="row align-items-center">

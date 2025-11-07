@@ -12924,7 +12924,7 @@ blockquote.blockquote, blockquote.wp-block-quote {
   .border-bottom-md {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
   }
-  .echo-block:not(.echo-block-cta_block) {
+  .echo-block:not(.echo-block-cta_block, .echo-block-review_slider) {
     padding-left: 9px;
     padding-right: 9px;
   }
@@ -15012,8 +15012,23 @@ REVIEW CTA BLOCK
       background: linear-gradient(0deg,rgba(34, 118, 162, 1) 0%, rgba(24, 54, 86, 1) 100%);
   }*/
 }
+#reviewCarousel .testimonial-meta_name {
+  display: flex;
+  flex-flow: column;
+}
 #reviewCarousel .testimonial-title {
   max-width: 80%;
+  font-size: clamp(1.17375rem, 0.7073rem + 0.9731vw, 1.875rem);
+  letter-spacing: normal;
+}
+#reviewCarousel .testimonial-name {
+  font-size: clamp(1.016875rem, 0.6123rem + 0.8439vw, 1.625rem);
+  margin-bottom: 0 !important;
+  line-height: normal;
+}
+#reviewCarousel .testimonial-designation {
+  font-size: 14px;
+  line-height: normal;
 }
 #reviewCarousel .carousel-controls {
   display: flex;
@@ -15071,6 +15086,8 @@ REVIEW CTA BLOCK
 }
 .reviewContainer .carousel-inner .testimonial-blurb {
   opacity: 0.8;
+  font-size: clamp(1rem, 0.8337rem + 0.3469vw, 1.25rem);
+  line-height: 1.2em;
 }
 @media (max-width: 767.98px) {
   .reviewContainer .carousel-inner {
@@ -15078,6 +15095,13 @@ REVIEW CTA BLOCK
   }
 }
 
+@media (max-width: 767.98px) {
+  .valtas-review-block {
+    min-height: 800px;
+    display: flex;
+    align-items: end;
+  }
+}
 /****************************************
 BOARDX ACHIEVE 
 *****************************************/

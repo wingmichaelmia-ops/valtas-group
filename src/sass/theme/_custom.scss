@@ -139,7 +139,7 @@ blockquote.blockquote {
     .border-bottom-md {
         border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
     }
-    .echo-block:not(.echo-block-cta_block) {
+    .echo-block:not(.echo-block-cta_block, .echo-block-review_slider) {
         padding-left: 9px;
         padding-right: 9px;
     }
@@ -2131,9 +2131,23 @@ REVIEW CTA BLOCK
     /*@include media-breakpoint-down(lg) {
         background: linear-gradient(0deg,rgba(34, 118, 162, 1) 0%, rgba(24, 54, 86, 1) 100%);
     }*/
-    
+    .testimonial-meta_name {
+        display: flex;
+        flex-flow: column;
+    }
     .testimonial-title {
         max-width: 80%;
+        font-size: clamp(1.17375rem, 0.7073rem + 0.9731vw, 1.875rem);
+        letter-spacing: normal;
+    }
+    .testimonial-name {
+        font-size: clamp(1.016875rem, 0.6123rem + 0.8439vw, 1.625rem);
+        margin-bottom: 0 !important;
+        line-height: normal;
+    }
+    .testimonial-designation {
+        font-size: 14px;
+        line-height: normal;
     }
     .carousel-controls {
         display: flex;
@@ -2187,9 +2201,18 @@ REVIEW CTA BLOCK
     min-height: 420px;
     .testimonial-blurb {
         opacity: .8;
+        font-size: clamp(1rem, 0.8337rem + 0.3469vw, 1.25rem);
+        line-height: 1.2em;
     }
     @include media-breakpoint-down(md) {
         clip-path: polygon(calc(100% - 100px) 20px, calc(100% - 60px) 80px, 100% 0, 100% 100%, 0 100%, 0 20px);
+    }
+}
+@include media-breakpoint-down(md) {
+    .valtas-review-block {
+        min-height: 800px;
+        display: flex;
+        align-items: end;
     }
 }
 /****************************************
