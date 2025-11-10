@@ -11,7 +11,7 @@
 ?>
 <style>
     .page-title__content {
-        max-width: 700px;
+        max-width: 800px;
     }
 </style>
 <section class="echo-block echo-block-page_title">    
@@ -127,7 +127,7 @@
             <div class="col-lg-12 text-center">
                 <h2><?php echo get_field('outcome_title') ?: 'The <span class="highlight">Outcome</span>'; ?></h2>
                 <?php
-                   echo get_field('outcome_blurb') ?: 'Over a six-month engagement, Harbor Hope not only weathered the transition but made measurable gains:';
+                   echo get_field('outcome_blurb') ?: '';
                 ?>  
                 
             </div>

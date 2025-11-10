@@ -14588,6 +14588,10 @@ CASE STUDY TEMPLATE
   color: #012F6C;
 }
 
+.outcome-block img {
+  width: 100%;
+}
+
 .checklist-icon {
   background: url(../img/checklist.svg);
   width: 20px;
@@ -14628,7 +14632,6 @@ CASE STUDY TEMPLATE
 }
 
 .cp_content {
-  font-size: 25px;
   font-style: italic;
   color: #1B1B1B;
 }
