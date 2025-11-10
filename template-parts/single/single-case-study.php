@@ -13,6 +13,9 @@
     .page-title__content {
         max-width: 800px;
     }
+    .page-title__title {
+        line-height: 1em;    
+    }
 </style>
 <section class="echo-block echo-block-page_title">    
     
