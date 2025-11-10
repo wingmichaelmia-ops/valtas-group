@@ -135,7 +135,7 @@
                 
             </div>
         </div>
-        <div class="row pt-5 flex-row-reverse">
+        <div class="row pt-5 flex-row-reverse align-items-center">
            <?php
                 $outcome_featured_image = get_field('outcome_featured_image');       
                 if ( $outcome_featured_image ) : ?>

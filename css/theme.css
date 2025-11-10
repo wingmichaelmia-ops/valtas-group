@@ -12625,6 +12625,7 @@ header .navbar-nav a:hover {
   z-index: -1;
   -o-object-position: top center;
   object-position: top center;
+  min-height: 700px;
 }
 
 .hero-banner__text {
