@@ -172,13 +172,15 @@
             </div>
 
         </div>
+        <?php if(get_field('featured_text')): ?>
         <div class="row pt-5">
             <div class="col-12">
                 <div class="ribbon">
-                    <?php echo get_field('featured_text') ?: '“Valtas provided exceptional interim leadership during a critical period for our organization. Their expertise and dedication were instrumental in helping us navigate the transition successfully.” – Jane Doe, Board Chair, Harbor Hope'; ?>
+                    <?php echo get_field('featured_text'); ?>
                 </div>
             </div>
         </div>
+        <?php endif; ?>
     </div>
 </section>
 <section class="client-perspective-block py-5 bg-light-secondary px-3 px-md-0">
