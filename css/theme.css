@@ -13684,6 +13684,9 @@ OUR VALUES BLOCK
 .connector_style_1 .value-mobile .value-item_inner {
   position: relative;
 }
+.connector_style_1 .value-mobile .value-item:first-child .value-content {
+  border-top: 0;
+}
 .connector_style_1 .value-mobile .value-item:nth-child(odd) .value-item_inner {
   flex-direction: row-reverse;
   text-align: right;

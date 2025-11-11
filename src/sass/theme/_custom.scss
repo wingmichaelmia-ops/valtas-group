@@ -847,6 +847,9 @@ OUR VALUES BLOCK
         .value-item_inner {
             position: relative;
         }
+        .value-item:first-child .value-content{
+            border-top: 0;
+        }
         .value-item:nth-child(odd) {
             .value-item_inner {
                 flex-direction: row-reverse;
