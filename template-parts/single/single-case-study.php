@@ -27,7 +27,7 @@
     }
 
     section:not(.echo-block-cta_block) .highlight{
-        background-color: #009fed;
+        background-color: transparent;
         display: inline-block;
         padding: 0;
         color: #009fed;
