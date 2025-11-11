@@ -32,6 +32,9 @@
         padding: 0;
         color: #009fed;
     }
+    .highlight.d-block {
+        width: max-content;
+    }
 </style>
 <section class="echo-block echo-block-page_title">    
     
@@ -62,6 +65,7 @@
 
             </div>
             <div class="col-lg-6">
+                <h2><?php echo get_field('org_title') ?: 'Organization <span class="highlight">Overview</span>'; ?></h2>
                 <?php 
                     echo wp_get_attachment_image( 
                         get_field('company_logo') ?: get_post_thumbnail_id(), 
@@ -70,7 +74,6 @@
                         ['class' => 'company-logo-image', 'loading' => 'lazy'] 
                     );
                 ?>
-                <h2><?php echo get_field('org_title') ?: 'Organization <span class="highlight">Overview</span>'; ?></h2>
                 <?php
                     the_field('org_blurb');
                 ?>  
@@ -273,7 +276,7 @@
         'template-parts/partials/acf/blocks/block',
         'cta_block',
         [
-            'title'      => 'Ready to Strengthen <span class="highlight">Your Board?</span>', // use the post title dynamically
+            'title'      => 'Ready to Strengthen <span class="highlight d-block">Your Board?</span>', // use the post title dynamically
             'title_tag'  => 'h2',
             'content'    => 'Every leadership transition represents both a risk and an opportunity. With the right support, it can be a catalyst for renewal and growth.',
             'button_group' => [
