@@ -62,6 +62,14 @@
 
             </div>
             <div class="col-lg-6">
+                <?php 
+                    echo wp_get_attachment_image( 
+                        get_field('company_logo') ?: get_post_thumbnail_id(), 
+                        'full', 
+                        false, 
+                        ['class' => 'company-logo-image', 'loading' => 'lazy'] 
+                    );
+                ?>
                 <h2><?php echo get_field('org_title') ?: 'Organization <span class="highlight">Overview</span>'; ?></h2>
                 <?php
                     the_field('org_blurb');
