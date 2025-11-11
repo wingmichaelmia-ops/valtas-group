@@ -19,6 +19,12 @@ blockquote.wp-block-quote {
 .blog-page .row.g-5 {
     align-items: start;
 }
+.blog-page a {
+    text-decoration: none;
+}
+.blog-page a:hover {
+    color: #f3b700;
+}
 </style>
 
 <section class="echo-block echo-block-page_title">
