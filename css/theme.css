@@ -14311,7 +14311,7 @@ ICON TEXT BLOCK
   }
 }
 .icon-text-blurb {
-  font-size: clamp(1.5625rem, 1.3546rem + 0.4337vw, 1.875rem);
+  font-size: 23px;
 }
 
 .gradient-cards .icon-text-item {
