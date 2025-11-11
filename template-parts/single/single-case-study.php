@@ -22,6 +22,9 @@
     #content a:hover {
         color: #f3b700;
     }
+    .approach-title {
+        letter-spacing: normal;
+    }
 </style>
 <section class="echo-block echo-block-page_title">    
     
