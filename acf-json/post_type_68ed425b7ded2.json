@@ -46,7 +46,7 @@
     "public": true,
     "hierarchical": true,
     "exclude_from_search": false,
-    "publicly_queryable": false,
+    "publicly_queryable": true,
     "show_ui": true,
     "show_in_menu": true,
     "admin_menu_parent": "",
@@ -76,7 +76,11 @@
     "has_archive": false,
     "has_archive_slug": "",
     "rewrite": {
-        "permalink_rewrite": "no_permalink"
+        "permalink_rewrite": "custom_permalink",
+        "slug": "team",
+        "with_front": "1",
+        "feeds": "0",
+        "pages": "1"
     },
     "query_var": "post_type_key",
     "query_var_name": "",
@@ -84,5 +88,5 @@
     "delete_with_user": false,
     "register_meta_box_cb": "",
     "enter_title_here": "",
-    "modified": 1760379875
+    "modified": 1762880722
 }

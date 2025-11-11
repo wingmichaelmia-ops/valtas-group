@@ -25,7 +25,7 @@
         'template-parts/partials/acf/blocks/block',
         'page_title',
         [
-            'title'      => 'Case Studies: ' . $title_formatted, // use the post title dynamically
+            'title'      => 'Impact: ' . $title_formatted, // use the post title dynamically
             'title_tag'  => 'h1',
         ]
     );
