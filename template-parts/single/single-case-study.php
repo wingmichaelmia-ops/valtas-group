@@ -16,6 +16,12 @@
     .page-title__title {
         line-height: 1em;    
     }
+    #content a {
+        text-decoration: none;
+    }
+    #content a:hover {
+        color: #f3b700;
+    }
 </style>
 <section class="echo-block echo-block-page_title">    
     
