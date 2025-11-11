@@ -173,7 +173,7 @@ ul.checklist {
         position: relative;
         padding-left: 30px;
         margin-bottom: 10px;
-        display: flex;
+        /*display: flex;*/
         align-items: center;
         &:before {
             content: '';
@@ -182,7 +182,7 @@ ul.checklist {
             background: url(../img/checklist.svg) no-repeat center;
             position: absolute;
             left: 0;
-            top: auto;
+            top: 7px;
             bottom: auto;
         }
     }
