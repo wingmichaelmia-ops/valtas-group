@@ -25,6 +25,13 @@
     .approach-title {
         letter-spacing: normal;
     }
+
+    section:not(.echo-block-cta_block) .highlight{
+        background-color: #009fed;
+        display: inline-block;
+        padding: 0;
+        color: #009fed;
+    }
 </style>
 <section class="echo-block echo-block-page_title">    
     
