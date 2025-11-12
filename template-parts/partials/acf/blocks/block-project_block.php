@@ -73,7 +73,7 @@ if($case_studies_layout == 'case_studies_layout_2') {
                         <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                     </h5>
                         
-                    <?php the_field('custom_blurb'); ?>
+                    <?php echo get_the_excerpt(); ?>
                 </div>
                 <?php $i++; ?>   
                 <?php endwhile; ?>
