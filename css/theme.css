@@ -14366,6 +14366,8 @@ CASE STUDY
   width: 100%;
   -o-object-fit: cover;
   object-fit: cover;
+  -o-object-position: right center;
+  object-position: right center;
 }
 
 @media (min-width: 992px) {
@@ -14502,6 +14504,8 @@ PROJECT BLOCK
   width: 100%;
   -o-object-fit: cover;
   object-fit: cover;
+  -o-object-position: right center;
+  object-position: right center;
 }
 
 .masonry-grid {
