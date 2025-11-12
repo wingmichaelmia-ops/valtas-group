@@ -35,6 +35,10 @@
     .highlight.d-block {
         width: max-content;
     }
+    .company-logo-image {
+        max-height: 100px;
+        width: auto;
+    }
 </style>
 <section class="echo-block echo-block-page_title">    
     
