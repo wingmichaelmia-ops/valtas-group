@@ -2,7 +2,7 @@
     $title = get_the_title(); // or get_sub_field('title');
     $words = explode(' ', trim($title));
 
-    if (count($words) > 1) {
+    if (count($words) >= 1) {
         $last_word = array_pop($words);
         $title_formatted = implode(' ', $words) . ' <span class="highlight">' . $last_word . '</span>';
     } else {
