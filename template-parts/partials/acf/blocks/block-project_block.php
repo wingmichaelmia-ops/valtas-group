@@ -72,8 +72,15 @@ if($case_studies_layout == 'case_studies_layout_2') {
                     <h5 class="project-title mb-3">
                         <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                     </h5>
-                        
-                    <?php the_excerpt(); ?>
+                    <?php
+                        $excerpt = get_field('org_blurb'); // replace 'bio' with your ACF field name
+                        if ( $excerpt ) {
+                            // Limit to 30 words
+                            $excerpt = wp_trim_words( $custom_field, 30, '...' );
+                            echo $excerpt;
+                        }
+                    ?>
+                   
                 </div>
                 <?php $i++; ?>   
                 <?php endwhile; ?>
