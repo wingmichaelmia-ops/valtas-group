@@ -20,14 +20,14 @@ if ( $categories ) {
 
 // WP_Query args
 $args = [
-    'post_type'      => 'project', // or 'case-study', confirm slug
+    'post_type'      => 'case-study', // or 'case-study', confirm slug
     'posts_per_page' => 4,
 ];
 
 if ( ! empty($term_ids) ) {
     $args['tax_query'] = [
         [
-            'taxonomy' => 'project-category', // replace with actual taxonomy slug
+            'taxonomy' => 'cs-category', // replace with actual taxonomy slug
             'field'    => 'term_id',
             'terms'    => $term_ids,
             'operator' => 'IN', // will include posts that belong to any of the selected categories
