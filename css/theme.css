@@ -14362,6 +14362,10 @@ CASE STUDY
 }
 .case-study-item img {
   border-radius: 20px;
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
 }
 
 @media (min-width: 992px) {

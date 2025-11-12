@@ -1517,6 +1517,9 @@ CASE STUDY
     z-index: 2;
     img {
         border-radius: 20px;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
     }
 }
 .case_studies_layout_2 {
