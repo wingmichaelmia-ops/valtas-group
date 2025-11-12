@@ -53,12 +53,12 @@ if($case_studies_layout == 'case_studies_layout_2') {
             </<?php echo esc_attr($title_tag); ?>>
         <?php endif; ?>
     </div>
-    <div class="container my-3 <?php echo $case_studies_layout ?>">
+    <div class="container <?php echo $case_studies_layout ?>">
         
         <?php if ( $query->have_posts() ) : ?>
             <?php $i = 1; // counter ?>
             <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-                <div class="row align-items-center case-study-item">
+                <div class="row align-items-center case-study-item my-3">
                     <div class="<?php echo $text_col; ?>">
                         <div class="cs-item-label">Case Study <?php echo $i; ?></div>
                         <h5 class="case-study-title">
