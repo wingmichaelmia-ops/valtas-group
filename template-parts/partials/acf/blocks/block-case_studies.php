@@ -68,7 +68,7 @@ if($case_studies_layout == 'case_studies_layout_2') {
                             $custom_excerpt = get_field('org_blurb'); // replace 'bio' with your ACF field name
                             if ( $custom_excerpt ) {
                                 // Limit to 30 words
-                                $excerpt = mb_substr( strip_tags( $custom_excerpt ), 0, 300 );
+                                $excerpt = mb_substr( $custom_excerpt, 0, 300 ) . '...';
                                 echo $excerpt;
                             }
                         ?>
