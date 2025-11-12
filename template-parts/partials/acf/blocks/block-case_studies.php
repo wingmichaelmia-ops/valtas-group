@@ -76,7 +76,9 @@ if($case_studies_layout == 'case_studies_layout_2') {
                     <div class="<?php echo $image_col ?>">
                         <?php if ( has_post_thumbnail() ) : ?>
                             <a href="<?php the_permalink(); ?>">
-                                <?php the_post_thumbnail('full'); ?>
+                                <div class="case-study-item_img ratio ratio-16x9">
+                                    <?php the_post_thumbnail('full', ['class' => 'object-fit-cover']); ?>
+                                </div>
                             </a>
                         <?php endif; ?>
                     </div>
