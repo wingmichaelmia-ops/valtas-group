@@ -233,7 +233,7 @@
         $default_image_url = get_template_directory_uri() . '/img/client-perspective-default.jpg';
     ?>
     <div class="container mt-5" style="max-width:1156px;">
-        <div class="row justify-content-center cp_container rounded align-items-center">
+        <div class="row justify-content-center cp_container rounded">
             <div class="col-lg-4">
                 <?php if ( $cp_featured_image ) : ?>
                     <?php echo wp_get_attachment_image(
@@ -255,7 +255,7 @@
                     >
                 <?php endif; ?>
             </div>
-            <div class="col-lg-8 p-5">
+            <div class="col-lg-8 p-3">
                 <div class="cp_content">
                     <?php the_field('cp_testimonial'); ?>
                 </div>
@@ -273,7 +273,7 @@
         </div>
     </div>
 </section>
-<section class="echo-block echo-block-cta_block">    
+<section class="echo-block echo-block-cta_block text-end">    
     
     <?php
     // ✅ Reusable ACF Page Title block
