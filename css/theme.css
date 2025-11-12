@@ -14493,6 +14493,13 @@ PROJECT BLOCK
   overflow: hidden;
 }
 
+.project-item_img img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
 .masonry-grid {
   -moz-column-count: 3;
   column-count: 3; /* Adjust number of columns */

@@ -1637,7 +1637,11 @@ PROJECT BLOCK
 .project-item_img {
     overflow: hidden;
 }
-
+.project-item_img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
 
 .masonry-grid {
   column-count: 3; /* Adjust number of columns */
