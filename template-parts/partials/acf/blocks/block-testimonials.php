@@ -14,7 +14,7 @@ $args = wp_parse_args( $args, $default );
 <div class="valtas-testimonials-block py-5 px-3 px-lg-0">
     <div class="container">
        <div class="row">
-            <div class="col-lg-7">
+            <div class="col-lg-12">
                 <?php if ( $args['title'] ) : ?>
                     <<?php echo esc_html( $args['title_tag'] ); ?>><?php echo $args['title']; ?></<?php echo esc_html( $args['title_tag'] ); ?>>
                 <?php endif; ?>  
@@ -68,6 +68,7 @@ $args = wp_parse_args( $args, $default );
                     </div>
                 <?php endif; ?>
             </div>
+            <!--
             <div class="col-lg-1">
                 <div class="vr h-100 mx-auto d-none d-lg-flex"></div>
                 <hr class="d-block d-lg-none my-4">
@@ -96,6 +97,7 @@ $args = wp_parse_args( $args, $default );
                 <?php endif; ?>
 
             </div>
+            -->
         </div>
     </div>
 </div>
