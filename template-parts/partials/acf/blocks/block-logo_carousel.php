@@ -75,4 +75,10 @@ $args = wp_parse_args($args ?? [], $default);
         margin: auto;
         filter: grayscale(1);
     }
+    @media(max-width: 768px) {
+        .slick-slide img {
+            max-height: 45px;
+            padding: 0.7em;
+        }
+    }
 </style>
