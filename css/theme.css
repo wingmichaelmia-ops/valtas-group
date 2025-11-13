@@ -13404,8 +13404,14 @@ BLOG SECTION
   -o-object-fit: cover;
   object-fit: cover;
   position: absolute;
-  -o-object-position: left center;
-  object-position: left center;
+  -o-object-position: top center;
+  object-position: top center;
+}
+
+.featured-post-content {
+  max-width: 700px;
+  padding: 1em;
+  background: rgba(1, 47, 108, 0.8);
 }
 
 .blog-section .card {

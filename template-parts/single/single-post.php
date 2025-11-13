@@ -10,7 +10,7 @@
     .page-title__content {
         max-width: 700px;
     }
-    .echo-block-page_title .bg-image:nth-child(2) {
+    .echo-block-page_title .bg-image:nth-child(3) {
         display: none;
     }
     .echo-block-page_title h2.page-title__title {

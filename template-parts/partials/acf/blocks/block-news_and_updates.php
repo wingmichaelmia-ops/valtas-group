@@ -60,7 +60,7 @@ $blog_posts = get_posts([
                                     </a>
                                 <?php endif; ?>
                                 <div class="card-img-overlay p-3 p-md-5 d-flex flex-column justify-content-end bg-dark bg-opacity-50">
-                                    <div  style="max-width:700px;">
+                                    <div class="featured-post-content">
                                     <div class="post-date mb-2">
                                         <?php echo esc_html($date); ?>
                                     </div>
