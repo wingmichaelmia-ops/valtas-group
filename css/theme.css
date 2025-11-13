@@ -12637,6 +12637,9 @@ header .navbar-nav a:hover {
 
 .hero-banner__content {
   max-width: 700px;
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
 }
 
 .btn-valtas {
