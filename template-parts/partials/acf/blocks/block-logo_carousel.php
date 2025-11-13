@@ -78,7 +78,9 @@ $args = wp_parse_args($args ?? [], $default);
     @media(max-width: 768px) {
         .slick-slide img {
             max-height: 45px;
-            padding: 0.7em;
+        }
+        .slick-slide div {
+            padding: 0.5em;
         }
     }
 </style>
