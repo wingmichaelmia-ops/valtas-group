@@ -3,8 +3,8 @@
     "title": "Case Study Fields",
     "fields": [
         {
-            "key": "field_68e6adb9df52a",
-            "label": "Organization Overview",
+            "key": "field_691612c0c5eed",
+            "label": "Client",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -16,9 +16,49 @@
                 "class": "",
                 "id": ""
             },
-            "placement": "left",
+            "placement": "top",
             "endpoint": 0,
             "selected": 0
+        },
+        {
+            "key": "field_691612e1c5eee",
+            "label": "Dates of client service (Start)",
+            "name": "dates_of_client_service_start",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "F Y",
+            "return_format": "F Y",
+            "first_day": 1,
+            "default_to_current_date": 0,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_6916134bc5eef",
+            "label": "Dates of client service (End)",
+            "name": "dates_of_client_service_end",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "F Y",
+            "return_format": "F Y",
+            "first_day": 1,
+            "default_to_current_date": 0,
+            "allow_in_bindings": 0
         },
         {
             "key": "field_691390050a617",
@@ -47,6 +87,24 @@
             "mime_types": "",
             "allow_in_bindings": 0,
             "preview_size": "medium"
+        },
+        {
+            "key": "field_68e6adb9df52a",
+            "label": "Organization Overview",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_68e6add3df52b",
@@ -682,5 +740,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1762889764
+    "modified": 1763054421
 }

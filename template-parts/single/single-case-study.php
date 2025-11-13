@@ -54,6 +54,11 @@
     );
     ?>
 </section>
+<section class="bg-primary text-white text-center">
+    <div class="container py-3">
+        <strong style="color:#f3b700">Dates of Client Service:</strong> <?php echo get_field('dates_of_client_service_start') ?: 'Month Year'; ?> - <?php echo get_field('dates_of_client_service_end') ?: 'Month Year'; ?>
+    </div>
+</section>
 <section class="overview py-5 px-3 px-md-0">
     <div class="container">
         <div class="row align-items-center flex-column-reverse flex-lg-row">
