@@ -9,7 +9,7 @@ $args = wp_parse_args($args ?? [], $default);
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css" integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<div class="logo-carousel to-fade py-4" data-delay="0.1">
+<div class="logo-carousel to-fade py-2 py-lg-4" data-delay="0.1">
     <div class="container">
         <div class="logo-center">
             <?php foreach ($args['logos'] as $logo) : ?>
