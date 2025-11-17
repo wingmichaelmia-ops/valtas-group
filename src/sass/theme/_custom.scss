@@ -488,7 +488,7 @@ SERVICES BLOCK
     }
     .carousel-indicators button {
         background-color: #51513D;
-        width: 46px;
+        width: 20px;
         height: 9px;
     }
     .carousel-indicators {
@@ -500,9 +500,10 @@ SERVICES BLOCK
         height: max-content;
         border-bottom: 1px solid rgba(0, 0, 0, .2);
         padding-bottom: 15px;
+        padding-top: 20px;
     }
     .carousel-item {
-        padding-top: 20px;
+        padding-top: 40px;
     }
 }
 .testimonial-title {
