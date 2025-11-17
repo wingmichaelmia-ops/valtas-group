@@ -7,11 +7,16 @@ $default = array(
     'background_image' => get_sub_field('background_image'),
     'button_group' => get_sub_field( 'button_group' ),
     'background_postion_desktop' => get_sub_field( 'background_postion_desktop' ) ?: '75',
-    'background_postion_mobile' => get_sub_field( 'background_postion_mobile' ) ?: '80'
+    'background_postion_mobile' => get_sub_field( 'background_postion_mobile' ) ?: '80',
+    'g_start' => get_sub_field('gradient_start') ?: '60',
+    'g_end' => get_sub_field('gradient_end') ?: '100'
 );
 
 $args = wp_parse_args( $args, $default );
 
+
+$g_start = $args['g_start'];
+$g_end = $args['g_end'];
 ?>
 <style>
     .echo-block-page_title .bg-image {
@@ -22,6 +27,11 @@ $args = wp_parse_args( $args, $default );
             object-position: <?php echo $args['background_postion_mobile']; ?>%;
         }
     }
+    <?php if ($g_start && $g_end) : ?>
+    .echo-block-page_title:before {
+        background: linear-gradient(90deg, #000 0, rgba(0, 0, 0, .59) <?php echo esc_attr($g_start); ?>%, rgba(0, 0, 0, 0) <?php echo esc_attr($g_end); ?>%);
+    }
+    <?php endif; ?>
 </style>
     
     <?php 

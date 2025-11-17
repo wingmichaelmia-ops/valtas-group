@@ -74,10 +74,10 @@ $args = wp_parse_args($args ?? [], $defaults);
                             <?php endif; ?>
                         </div>
                         <div class="team-member-info">
-                            <h5 class="card-title"><?php the_title(); ?></h5>
-                             <?php if ( $position ) : ?>
+                            <h5 class="card-title mb-3"><?php the_title(); ?></h5>
+                            <!--<?php if ( $position ) : ?>
                                 <p class="mb-2"><?php echo esc_html( $position ); ?></p>
-                            <?php endif; ?>
+                            <?php endif; ?>-->
                             <div class="team-buttons row">
                                 <div class="col-8">
                                         <div class="btn-valtas">
