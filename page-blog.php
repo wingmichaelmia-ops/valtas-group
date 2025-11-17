@@ -78,7 +78,7 @@ get_template_part(
 
                                 <div class="card-body py-4 px-0">
                                     <div class="card-meta d-flex gap-3 small mb-2 align-items-center">
-                                        <div class="date-capsule"><?php echo get_the_date(); ?></div>
+                                        <div class="date-capsule"><?php echo get_the_date('m/d/y'); ?></div>
                                         <div class="share-links d-flex gap-2">
                                             <a href="<?php echo esc_url($share_facebook); ?>" target="_blank" rel="noopener" class="text-primary">
                                                 <img src="<?php echo esc_url(get_template_directory_uri() . '/img/fb.png'); ?>" alt="Facebook" loading="lazy">

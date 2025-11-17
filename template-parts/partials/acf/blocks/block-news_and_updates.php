@@ -47,7 +47,7 @@ $blog_posts = get_posts([
                     $link    = get_permalink( $post );
                     $excerpt = wp_trim_words( get_the_excerpt(), 20, '...' );
                     $thumb   = get_the_post_thumbnail( $post->ID, 'large', ['class' => 'card-img'] );
-                    $date    = get_the_date('m-d-y', $post ); // Format 08-07-25
+                    $date    = get_the_date('m/d/y', $post ); // Format 08-07-25
                 ?>
 
                     <?php if ( $index === 0 ) : ?>

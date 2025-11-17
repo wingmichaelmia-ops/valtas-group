@@ -67,7 +67,7 @@ if($case_studies_layout == 'case_studies_layout_2') {
                         </a>
                     <?php endif; ?>
                     <div class="project-item_meta mt-3 mb-2">
-                       IMPACT | <?php echo get_the_date(); ?>
+                       IMPACT | <?php echo get_the_date('m/d/y'); ?>
                     </div>  
                     <h5 class="project-title mb-3">
                         <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>

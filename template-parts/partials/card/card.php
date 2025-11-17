@@ -14,7 +14,7 @@ $defaults = array(
         "name"      => get_the_author_meta( "display_name" ),
         "avatar"    => get_site_url() . '/wp-content/uploads/2023/07/capital-lawyers-fav.png'
     ),
-    "date"      => get_the_date( "d M Y" )
+    "date"      => get_the_date('m/d/y')
 );
 
 $args = wp_parse_args( $args, $defaults );
