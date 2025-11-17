@@ -12491,6 +12491,11 @@ body .cky-consent-container {
   margin: 0;
 }
 
+.step-text {
+  text-align: justify;
+  padding: 0 0.5em;
+}
+
 #main-nav {
   background: transparent;
 }
