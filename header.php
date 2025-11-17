@@ -10,7 +10,7 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-$navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
+$navbar_type       = get_theme_mod( 'understrap_navbar_type', 'offcanvas' );
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -36,6 +36,6 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 				<?php the_field('header_message', 'option'); ?>
 			</div>
 		</div>	
-		<?php get_template_part( 'global-templates/navbar', $navbar_type ); ?>
+		<?php get_template_part( 'global-templates/navbar', 'offcanvas' ); ?>
 
 	</header><!-- #wrapper-navbar -->

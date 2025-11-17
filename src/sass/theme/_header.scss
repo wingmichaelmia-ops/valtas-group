@@ -1,6 +1,14 @@
-#main-nav {
-    background-color: rgba(0,0,0,.3);
-    backdrop-filter: blur(10px);
+#main-nav { 
+    background: transparent;
+    &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, .3);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        z-index: -1;
+    }
 } 
 header .navbar-nav {
     font-size: clamp(1rem, -0.25rem + 1.6667vw, 1.25rem);
@@ -90,3 +98,29 @@ header .navbar-nav {
     background-color: rgba(0, 0, 0, .3);
     backdrop-filter: blur(10px);
 }
+@include media-breakpoint-down(xl) {
+    header .navbar-nav {
+        gap: 10px;
+        li {
+            width: 100%;
+            a:not(.dropdown-item) {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            }
+        }
+        .btn-menu {
+            max-width: max-content;
+        }
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            &::after {
+                font-size: 20px;
+            }
+        }
+        ul.dropdown-menu {
+            margin-top: 1rem;
+        }
+    }
+}
+    

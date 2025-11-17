@@ -174,24 +174,71 @@ jQuery(document).ready(function($) {
 });
 
 
-
 document.addEventListener('DOMContentLoaded', function () {
-  // Prevent Bootstrap’s default behavior of blocking parent link
-  document.querySelectorAll('.dropdown-toggle').forEach(function(el) {
-    el.addEventListener('click', function (e) {
-      if (this.nextElementSibling && this.nextElementSibling.classList.contains('dropdown-menu')) {
-        const isHover = window.matchMedia('(hover: hover)').matches;
-        if (isHover) {
-          // On hover devices, allow normal link click
-          window.location = this.getAttribute('href');
+
+  const dropdownLinks = document.querySelectorAll('a.dropdown-toggle');
+
+  dropdownLinks.forEach(function (toggle) {
+
+    let tappedOnce = false;
+
+    toggle.addEventListener('click', function (e) {
+
+      const href = this.getAttribute('href');
+      const menu = this.nextElementSibling;
+      const isDropdown = menu && menu.classList.contains('dropdown-menu');
+      if (!isDropdown) return;
+
+      const isHoverDevice = window.matchMedia('(hover: hover)').matches;
+
+      // --- Desktop behavior ---
+      if (isHoverDevice) {
+        if (href && href !== '#') {
+          window.location.href = href;
         } else {
-          // On touch devices, toggle dropdown normally
+          // desktop: # only toggles
           e.preventDefault();
           this.classList.toggle('show');
-          const menu = this.nextElementSibling;
           menu.classList.toggle('show');
         }
+        return;
       }
+
+      // --- Mobile behavior ---
+
+      // CASE 1 — href="#"
+      if (href === '#') {
+        e.preventDefault();
+
+        if (!tappedOnce) {
+          // First tap → open
+          tappedOnce = true;
+          this.classList.add('show');
+          menu.classList.add('show');
+        } else {
+          // Second tap → close
+          tappedOnce = false;
+          this.classList.remove('show');
+          menu.classList.remove('show');
+        }
+
+        return;
+      }
+
+      // CASE 2 — real URL on mobile
+      if (!tappedOnce) {
+        // First tap → open dropdown
+        e.preventDefault();
+        tappedOnce = true;
+        this.classList.add('show');
+        menu.classList.add('show');
+      } else {
+        // Second tap → follow link
+        window.location.href = href;
+      }
+
     });
+
   });
+
 });

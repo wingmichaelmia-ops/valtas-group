@@ -12492,8 +12492,16 @@ body .cky-consent-container {
 }
 
 #main-nav {
-  background-color: rgba(0, 0, 0, 0.3);
+  background: transparent;
+}
+#main-nav:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: -1;
 }
 
 header .navbar-nav {
@@ -12595,6 +12603,32 @@ header .navbar-nav a:hover {
   backdrop-filter: blur(10px);
 }
 
+@media (max-width: 1199.98px) {
+  header .navbar-nav {
+    gap: 10px;
+  }
+  header .navbar-nav li {
+    width: 100%;
+  }
+  header .navbar-nav li a:not(.dropdown-item) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  header .navbar-nav .btn-menu {
+    max-width: -moz-max-content;
+    max-width: max-content;
+  }
+  header .navbar-nav .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header .navbar-nav .dropdown-toggle::after {
+    font-size: 20px;
+  }
+  header .navbar-nav ul.dropdown-menu {
+    margin-top: 1rem;
+  }
+}
 .site-footer .menu ul {
   padding-left: 0;
   list-style: none;
