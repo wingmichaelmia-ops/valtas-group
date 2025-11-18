@@ -12491,14 +12491,19 @@ body .cky-consent-container {
   margin: 0;
 }
 
+/*
 .step-text {
-  text-align: justify;
-  padding: 0 0.5em;
+	text-align: justify;
+    padding: 0 .5em;
 }
-
+*/
 .icon-text p {
   font-family: "EB Garamond", serif;
   line-height: 1.2em;
+}
+
+.page-title__title a {
+  text-decoration: none;
 }
 
 #main-nav {
