@@ -6355,6 +6355,38 @@
       });
     });
   });
+  jQuery(function ($) {
+    $('#project-load-more').on('click', function () {
+      var button = $(this);
+      var wrapper = $('#project-feed-wrapper');
+      var offset = parseInt(button.data('offset'));
+      var categories = wrapper.data('categories');
+      var layout = wrapper.data('layout');
+      $.ajax({
+        url: ajaxurl,
+        type: 'POST',
+        data: {
+          action: 'load_more_case_studies',
+          offset: offset,
+          categories: categories,
+          layout: layout
+        },
+        beforeSend: function beforeSend() {
+          button.text('Loading...');
+        },
+        success: function success(response) {
+          if (response) {
+            $('#project-feed-posts').append(response);
+            button.data('offset', offset + 4);
+            button.text('Load More');
+          } else {
+            button.text('No more posts');
+            button.prop('disabled', true);
+          }
+        }
+      });
+    });
+  });
 
   exports.Alert = Alert;
   exports.Button = Button;

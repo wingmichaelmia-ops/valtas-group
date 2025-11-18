@@ -242,3 +242,43 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 });
+
+
+jQuery(function($){
+
+    $('#project-load-more').on('click', function(){
+
+        let button = $(this);
+        let wrapper = $('#project-feed-wrapper');
+
+        let offset     = parseInt(button.data('offset'));
+        let categories = wrapper.data('categories');
+        let layout     = wrapper.data('layout');
+
+        $.ajax({
+            url: ajaxurl, 
+            type: 'POST',
+            data: {
+                action: 'load_more_case_studies',
+                offset: offset,
+                categories: categories,
+                layout: layout
+            },
+            beforeSend: function(){
+                button.text('Loading...');
+            },
+            success: function(response){
+                if (response) {
+                    $('#project-feed-posts').append(response);
+                    button.data('offset', offset + 4);
+                    button.text('Load More');
+                } else {
+                    button.text('No more posts');
+                    button.prop('disabled', true);
+                }
+            }
+        });
+
+    });
+
+});
