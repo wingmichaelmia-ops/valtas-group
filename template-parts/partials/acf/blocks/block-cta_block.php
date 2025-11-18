@@ -37,12 +37,7 @@ $args = wp_parse_args( $args, $default );
                 'class'   => 'bg-image',
                 'loading' => 'lazy',
             ) );
-        } elseif ( $cta_image_id ) {
-            echo wp_get_attachment_image( $cta_image_id, 'full', false, array(
-                'class'   => 'bg-image',
-                'loading' => 'lazy',
-            ) );
-        } else {
+        }  else {
             // fallback image (as <img> tag)
             echo '<img src="' . esc_url( get_template_directory_uri() . '/img/default-cta.jpg' ) . '" alt="" class="bg-image default-cta" loading="lazy">';
         }
