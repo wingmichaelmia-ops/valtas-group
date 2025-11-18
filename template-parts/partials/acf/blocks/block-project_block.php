@@ -110,9 +110,11 @@ if ($case_studies_layout === 'case_studies_layout_2') {
 
             <!-- Load More button -->
             <div class="load-more-wrap text-center mt-4">
-                <button id="project-load-more" class="btn btn-primary" data-offset="4">
-                    Load More
-                </button>
+                <div class="btn-valtas">
+                    <a href="#project-feed-posts" id="project-load-more" class="btn btn-primary" data-offset="4"> 
+                        <img src="https://valtasdev.wpenginepowered.com/wp-content/themes/valtas-theme/img/load.png"> Load More
+                </a>
+                </div>
             </div>
 
         </div>

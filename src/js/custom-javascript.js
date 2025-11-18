@@ -271,9 +271,9 @@ jQuery(function($){
                 if (response) {
                     $('#project-feed-posts').append(response);
                     button.data('offset', offset + 4);
-                    button.text('Load More');
+                    button.text('<img src="https://valtasdev.wpenginepowered.com/wp-content/themes/valtas-theme/img/load.png"> Load More');
                 } else {
-                    button.text('No more posts');
+                    button.text('No More Impact posts');
                     button.prop('disabled', true);
                 }
             }
