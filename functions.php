@@ -762,3 +762,77 @@ function valtas_filter_posts_by_year() {
 
 
 
+add_action('wp_ajax_load_more_case_studies', 'load_more_case_studies');
+add_action('wp_ajax_nopriv_load_more_case_studies', 'load_more_case_studies');
+
+function load_more_case_studies() {
+
+    $offset     = intval($_POST['offset']);
+    $categories = sanitize_text_field($_POST['categories']);
+    $layout     = sanitize_text_field($_POST['layout']);
+
+    // Convert categories to array
+    $term_ids = array_filter(array_map('intval', explode(',', $categories)));
+
+    $args = [
+        'post_type'      => 'case-study',
+        'posts_per_page' => 4,
+        'offset'         => $offset,
+    ];
+
+    if (!empty($term_ids)) {
+        $args['tax_query'] = [
+            [
+                'taxonomy' => 'cs-category',
+                'field'    => 'term_id',
+                'terms'    => $term_ids,
+            ]
+        ];
+    }
+
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) :
+
+        ob_start();
+
+        while ($query->have_posts()) : $query->the_post(); ?>
+
+            <div class="project-item col-md-6">
+                <?php if ( has_post_thumbnail() ) : ?>
+                    <a href="<?php the_permalink(); ?>">
+                        <div class="project-item_img ratio ratio-16x9">
+                            <?php the_post_thumbnail('full', ['class' => 'object-fit-cover']); ?>
+                        </div>
+                    </a>
+                <?php endif; ?>
+
+                <div class="project-item_meta mt-3 mb-2">
+                    IMPACT | <?php echo get_the_date('m/d/y'); ?>
+                </div>
+
+                <h5 class="project-title mb-3">
+                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                </h5>
+
+                <?php
+                $custom_excerpt = get_field('org_blurb');
+                if ($custom_excerpt) {
+                    $excerpt = mb_substr($custom_excerpt, 0, 300);
+                    if (mb_strlen($custom_excerpt) > 300) {
+                        $excerpt = preg_replace('/\s+?(\S+)?$/', '', $excerpt) . '...';
+                    }
+                    echo wp_kses_post($excerpt);
+                }
+                ?>
+            </div>
+
+        <?php endwhile;
+
+        wp_reset_postdata();
+        echo ob_get_clean();
+
+    endif;
+
+    die();
+}
