@@ -15,7 +15,7 @@ if ( $video_review ) $classes[] = 'has-video';
     <?php endif; ?>
 
     <?php if ( ! $hide_title ) : ?>
-        <h5 class="project-title mb-2"><?php the_title(); ?></h5>
+        <h5 class="mb-2"><?php the_title(); ?></h5>
         <hr class="title-separator">
     <?php endif; ?>
 
