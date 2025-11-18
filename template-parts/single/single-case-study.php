@@ -1,6 +1,10 @@
 <?php
-    $title = get_the_title(); // or get_sub_field('title');
+    $title = get_field('header_title') ?: get_the_title();
+    $header_blurb = get_field('header_blurb');
     $words = explode(' ', trim($title));
+    $cta_title = get_field('cta_title');
+    $cta_blurb = get_field('cta_blurb');
+    $image_id = get_field('cta_background_image');
 
     if (count($words) >= 1) {
         $last_word = array_pop($words);
@@ -50,6 +54,8 @@
         [
             'title'      => 'Impact: ' . $title_formatted, // use the post title dynamically
             'title_tag'  => 'h1',
+            'content'     => $header_blurb,
+            'button_group' => get_field( 'button_group' )
         ]
     );
     ?>
@@ -288,18 +294,11 @@
         'template-parts/partials/acf/blocks/block',
         'cta_block',
         [
-            'title'      => 'Ready to Strengthen <span class="highlight d-block">Your Board?</span>', // use the post title dynamically
+            'title'      => $cta_title ?: 'Ready to Strengthen <span class="highlight d-block">Your Board?</span>', // use the post title dynamically
             'title_tag'  => 'h2',
-            'content'    => 'Every leadership transition represents both a risk and an opportunity. With the right support, it can be a catalyst for renewal and growth.',
-            'button_group' => [
-                [
-                    'button' => [
-                        'url'    => '/contact-us',
-                        'title'  => 'Contact Us Today',
-                        'target' => '_self',
-                    ],
-                ],
-            ],
+            'content'    => $cta_blurb ?: 'Every leadership transition represents both a risk and an opportunity. With the right support, it can be a catalyst for renewal and growth.',
+            'button_group' => get_field( 'cta_button_group' ),
+            
         ]
     );
     ?>

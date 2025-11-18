@@ -4829,6 +4829,11 @@
                 "param": "page_template",
                 "operator": "!=",
                 "value": "page-privacy-policy.php"
+            },
+            {
+                "param": "post_type",
+                "operator": "!=",
+                "value": "case-study"
             }
         ],
         [
@@ -4859,5 +4864,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1763411367
+    "modified": 1763497501
 }

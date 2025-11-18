@@ -27,12 +27,18 @@ $args = wp_parse_args( $args, $default );
     
     <?php 
         $image_id = get_sub_field('background_image');
+        $cta_image_id = get_field('cta_background_image');
         if ( is_single() ) {
             echo '<img src="' . esc_url( get_template_directory_uri() . '/img/cta-single-post.jpg' ) . '" alt="Default banner" class="bg-image" loading="lazy">';
            
         }
         if ( $image_id ) {
             echo wp_get_attachment_image( $image_id, 'full', false, array(
+                'class'   => 'bg-image',
+                'loading' => 'lazy',
+            ) );
+        } elseif ( $cta_image_id ) {
+            echo wp_get_attachment_image( $cta_image_id, 'full', false, array(
                 'class'   => 'bg-image',
                 'loading' => 'lazy',
             ) );
