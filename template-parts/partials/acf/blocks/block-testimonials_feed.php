@@ -21,7 +21,7 @@ if ( ! empty( $settings['taxonomy_filter'] ) ) {
 }
 
 // WP_Query (first batch)
-$per_page = 6; // Number of posts to load initially
+$per_page = 5; // Number of posts to load initially
 $query_args = [
     'post_type'      => 'testimonial',
     'posts_per_page' => $per_page,
