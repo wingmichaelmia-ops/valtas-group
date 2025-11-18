@@ -243,10 +243,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-
 jQuery(function($){
 
-    $('#project-load-more').on('click', function(){
+    $('#project-load-more').on('click', function(e){
+        e.preventDefault(); // stop page from jumping to top
 
         let button = $(this);
         let wrapper = $('#project-feed-wrapper');
@@ -270,24 +270,21 @@ jQuery(function($){
             success: function(response){
                 if (response) {
 
-                    // Convert response into jQuery objects
                     let newItems = $(response);
 
-                    // Append new posts
                     $('#project-feed-posts').append(newItems);
 
-                    // Focus / scroll to newly revealed content
+                    // Smooth scroll to new items
                     $('html, body').animate({
                         scrollTop: newItems.first().offset().top - 100
                     }, 600);
 
-                    // Update offset
                     button.data('offset', offset + 4);
                     button.text('Load More');
 
                 } else {
                     button.text('No more posts');
-                    button.prop('disabled', true);
+                    button.addClass('disabled').attr('aria-disabled', 'true');
                 }
             }
         });
@@ -295,4 +292,3 @@ jQuery(function($){
     });
 
 });
-

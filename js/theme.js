@@ -6356,7 +6356,9 @@
     });
   });
   jQuery(function ($) {
-    $('#project-load-more').on('click', function () {
+    $('#project-load-more').on('click', function (e) {
+      e.preventDefault(); // stop page from jumping to top
+
       var button = $(this);
       var wrapper = $('#project-feed-wrapper');
       var offset = parseInt(button.data('offset'));
@@ -6376,23 +6378,18 @@
         },
         success: function success(response) {
           if (response) {
-            // Convert response into jQuery objects
             var newItems = $(response);
-
-            // Append new posts
             $('#project-feed-posts').append(newItems);
 
-            // Focus / scroll to newly revealed content
+            // Smooth scroll to new items
             $('html, body').animate({
               scrollTop: newItems.first().offset().top - 100
             }, 600);
-
-            // Update offset
             button.data('offset', offset + 4);
             button.text('Load More');
           } else {
             button.text('No more posts');
-            button.prop('disabled', true);
+            button.addClass('disabled').attr('aria-disabled', 'true');
           }
         }
       });
