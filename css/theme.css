@@ -15446,4 +15446,11 @@ PRIVACY
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.load-more-wrap {
+  max-width: -moz-max-content;
+  max-width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /*# sourceMappingURL=theme.css.map */

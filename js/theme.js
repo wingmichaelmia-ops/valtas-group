@@ -6378,7 +6378,7 @@
           if (response) {
             $('#project-feed-posts').append(response);
             button.data('offset', offset + 4);
-            button.text('<img src="https://valtasdev.wpenginepowered.com/wp-content/themes/valtas-theme/img/load.png"> Load More');
+            button.text('Load More');
           } else {
             button.text('No More Impact posts');
             button.prop('disabled', true);
