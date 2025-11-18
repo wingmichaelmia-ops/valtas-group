@@ -256,7 +256,7 @@ jQuery(function($){
         let layout     = wrapper.data('layout');
 
         $.ajax({
-            url: ajaxurl, 
+            url: ajaxurl,
             type: 'POST',
             data: {
                 action: 'load_more_case_studies',
@@ -269,11 +269,24 @@ jQuery(function($){
             },
             success: function(response){
                 if (response) {
-                    $('#project-feed-posts').append(response);
+
+                    // Convert response into jQuery objects
+                    let newItems = $(response);
+
+                    // Append new posts
+                    $('#project-feed-posts').append(newItems);
+
+                    // Focus / scroll to newly revealed content
+                    $('html, body').animate({
+                        scrollTop: newItems.first().offset().top - 100
+                    }, 600);
+
+                    // Update offset
                     button.data('offset', offset + 4);
                     button.text('Load More');
+
                 } else {
-                    button.text('No More Impact posts');
+                    button.text('No more posts');
                     button.prop('disabled', true);
                 }
             }
@@ -282,3 +295,4 @@ jQuery(function($){
     });
 
 });
+
