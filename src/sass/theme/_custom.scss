@@ -1484,8 +1484,9 @@ ICON TEXT BLOCK
     }
 }
 .icon-text-blurb {
-    font-size: 23px;
+    /*font-size: 23px;*/
     font-family: "EB Garamond", serif !important;
+    line-height: 1.2em;
 }
 .icon-text-block {
     font-family: "EB Garamond", serif !important;
