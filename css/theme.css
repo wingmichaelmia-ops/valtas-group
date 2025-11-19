@@ -14782,7 +14782,7 @@ a.read-more {
 .post-pagination {
   text-align: center;
 }
-.post-pagination .page-numbers {
+.post-pagination .ajax-page-link {
   width: 30px;
   height: 30px;
   display: inline-block;
@@ -14797,10 +14797,21 @@ a.read-more {
   opacity: 0.5;
   line-height: 26px;
 }
-.post-pagination .page-numbers.current {
+.post-pagination .current {
   background: #012F6C;
   color: #fff;
   opacity: 1;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  border-radius: 100%;
+  font-family: "Helvetica World", sans-serif;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 26px;
 }
 
 /****************************************

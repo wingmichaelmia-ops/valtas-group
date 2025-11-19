@@ -45,76 +45,117 @@ get_template_part(
     <div class="row g-5">
         <!-- Main Blog Posts -->
         <div class="col-lg-8 blog-items">
-            <?php
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+            <div id="blog-posts-wrapper"><!-- wrapper for AJAX -->
 
-$args = [
-    'post_type'      => 'post',
-    'posts_per_page' => 6,
-    'paged'          => $paged,
-];
+    <?php
+    $paged = max(1, get_query_var('paged'), get_query_var('page'));
 
-$query = new WP_Query($args);
-?>
+    $args = [
+        'post_type'      => 'post',
+        'posts_per_page' => 6,
+        'paged'          => $paged,
+    ];
 
-<div id="blog-posts-container">
+    $query = new WP_Query($args);
+    ?>
 
-    <?php if ($query->have_posts()) : ?>
-        <div class="row g-4">
-            <?php while ($query->have_posts()) : $query->the_post(); ?>
+    <div class="row g-4" id="blog-posts-container">
+        <?php
+        if ($query->have_posts()) :
+            while ($query->have_posts()) : $query->the_post();
 
-                <div class="col-md-4">
-                    <article class="blog-card">
-                        <?php if (has_post_thumbnail()): ?>
+                $post_url   = urlencode(get_permalink());
+                $post_title = urlencode(get_the_title());
+                $share_facebook = 'https://www.facebook.com/sharer/sharer.php?u=' . $post_url;
+                $share_x        = 'https://twitter.com/intent/tweet?text=' . $post_title . '&url=' . $post_url;
+                ?>
+                <div class="col-md-12 blog-item-post">
+                    <div class="card h-100 border-0">
+                        <?php if (has_post_thumbnail()) : ?>
                             <a href="<?php the_permalink(); ?>">
-                                <?php the_post_thumbnail('large', ['class' => 'img-fluid']); ?>
+                                <?php the_post_thumbnail('medium_large', ['class' => 'card-img-top']); ?>
                             </a>
                         <?php endif; ?>
 
-                        <h3 class="blog-title mt-3">
-                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                        </h3>
+                        <div class="card-body py-4 px-0">
+                            <div class="card-meta d-flex gap-3 small mb-2 align-items-center">
+                                <div class="date-capsule"><?php echo get_the_date('m/d/y'); ?></div>
+                                <div class="share-links d-flex gap-2">
+                                    <a href="<?php echo esc_url($share_facebook); ?>" target="_blank" rel="noopener" class="text-primary">
+                                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/fb.png'); ?>" alt="Facebook" loading="lazy">
+                                    </a>
+                                    <a href="<?php echo esc_url($share_x); ?>" target="_blank" rel="noopener" class="text-dark">
+                                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/x.png'); ?>" alt="X" loading="lazy">
+                                    </a>
+                                </div>
+                            </div>
 
-                        <p class="blog-excerpt">
-                            <?php echo wp_trim_words(get_the_excerpt(), 20); ?>
-                        </p>
+                            <h3 class="card-title mb-3">
+                                <a href="<?php the_permalink(); ?>" class="text-dark text-decoration-none"><?php the_title(); ?></a>
+                            </h3>
 
-                        <a href="<?php the_permalink(); ?>" class="read-more">Read More</a>
-                    </article>
+                            <?php
+                            $post_id = get_the_ID();
+                            $excerpt = get_the_excerpt();
+                            if (empty($excerpt)) $excerpt = wp_trim_words(get_the_content(), 50);
+
+                            echo '<p>' . wp_kses($excerpt, [
+                                'p'=>[], 'a'=>['href'=>[], 'title'=>[], 'target'=>[], 'rel'=>[]],
+                                'strong'=>[], 'em'=>[], 'br'=>[]
+                            ]) . '</p>';
+                            echo '<a href="' . esc_url(get_permalink($post_id)) . '" class="read-more">Read more</a>';
+                            ?>
+                        </div>
+                        <hr class="my-3">
+                    </div>
                 </div>
+                <?php
+            endwhile;
+        else :
+            echo '<p>No blog posts found.</p>';
+        endif;
+        wp_reset_postdata();
+        ?>
+    </div> <!-- #blog-posts-container -->
 
-                <?php endwhile; ?>
-            </div>
-        <?php endif; ?>
+    <!-- Pagination -->
+    <div class="post-pagination text-center mt-4">
+        <?php
+        if ($query->max_num_pages > 1) {
+            $paginate_links = paginate_links([
+                'total' => $query->max_num_pages,
+                'current' => $paged,
+                'mid_size' => 2,
+                'prev_text' => '&lt;',
+                'next_text' => '&gt;',
+                'type' => 'array'
+            ]);
 
+            foreach ($paginate_links as $link) {
+
+                // Handle current page
+                if (strpos($link, 'current') !== false) {
+                    echo '<span class="current">' . strip_tags($link) . '</span>';
+                    continue;
+                }
+
+                // Extract page number from link (supports both /page/2/ and ?paged=2)
+                preg_match('/page\/(\d+)|paged=(\d+)/', $link, $matches);
+
+                if (!empty($matches[1])) $page_num = $matches[1];
+                elseif (!empty($matches[2])) $page_num = $matches[2];
+                else $page_num = 1;
+
+                // Replace <a> with AJAX link
+                $link = preg_replace('/<a.*?>(.*?)<\/a>/', '<a href="#" class="ajax-page-link" data-page="'.$page_num.'">$1</a>', $link);
+
+                echo $link;
+            }
+        }
+        ?>
     </div>
 
-    <?php
-    // Pagination as ARRAY for AJAX
-    $pagination = paginate_links([
-        'total'     => $query->max_num_pages,
-        'current'   => $paged,
-        'type'      => 'array',
-        'mid_size'  => 2,
-        'prev_text' => '&lt;',
-        'next_text' => '&gt;',
-    ]);
-    ?>
-
-    <div id="ajax-pagination" class="post-pagination text-center mt-4">
-        <?php if (!empty($pagination)): ?>
-            <ul class="pagination justify-content-center">
-                <?php foreach ($pagination as $page): ?>
-                    <li class="page-item">
-                        <?php echo str_replace('page-numbers', 'page-link', $page); ?>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        <?php endif; ?>
-    </div>
-
-    <?php wp_reset_postdata(); ?>
-
+</div> <!-- #blog-posts-wrapper -->
         </div>
 
         <!-- Sidebar -->
@@ -137,54 +178,75 @@ $query = new WP_Query($args);
     </div>
 </div>
 
+
+<?php get_footer(); 
+
+add_action('wp_footer', function() {
+?>
 <script>
-jQuery(document).ready(function($) {
-    function loadFilteredPosts(data) {
+jQuery(document).ready(function($){
+
+    function loadPosts(selectedYears, paged = 1) {
         $.ajax({
-            url: "<?php echo admin_url('admin-ajax.php'); ?>",
+            url: ajaxurl,
             type: 'POST',
-            data: data,
+            data: {
+                action: 'filter_posts_by_year',
+                years: selectedYears,
+                paged: paged
+            },
             beforeSend: function() {
-                $('#blog-posts-container').css('opacity', '0.5');
+                $('#blog-posts-container').addClass('loading');
             },
             success: function(response) {
-                $('#blog-posts-container').css('opacity', '1').html(response);
-            },
-            error: function() {
-                $('#blog-posts-container').css('opacity', '1').html('<p>Error loading posts.</p>');
+                $('#blog-posts-container').html(response);
+                $('#blog-posts-container').removeClass('loading');
+
+                $('html, body').animate({
+                    scrollTop: $('#blog-posts-container').offset().top - 80
+                }, 300);
             }
         });
     }
 
-    // Category Filter
-    $('#category-filter-form input[type="checkbox"]').on('change', function() {
-        let selected = [];
-        $('#category-filter-form input[type="checkbox"]:checked').each(function() {
-            selected.push($(this).val());
-        });
-        loadFilteredPosts({
-            action: 'filter_blog_posts',
-            categories: selected
-        });
+    // Year checkbox change
+    $(document).on('change', '.year-checkbox', function () {
+
+        if ($(this).val() === 'all') {
+            $('.year-checkbox').not('#year-all').prop('checked', false);
+            $('#year-all').prop('checked', true);
+        } else {
+            $('#year-all').prop('checked', false);
+        }
+
+        let selectedYears = $('.year-checkbox:checked').map(function(){
+            return $(this).val();
+        }).get();
+
+        if (selectedYears.length === 0) {
+            $('#year-all').prop('checked', true);
+            selectedYears = ['all'];
+        }
+
+        loadPosts(selectedYears, 1);
     });
 
-    // Year Filter
-    $('#year-filter-form .year-checkbox').on('change', function() {
-        let selectedYears = [];
-        if ($(this).val() === 'all' && $(this).is(':checked')) {
-            $('#year-filter-form .year-checkbox').not(this).prop('checked', false);
-        } else {
-            $('#year-filter-form .year-checkbox[value="all"]').prop('checked', false);
-        }
-        $('#year-filter-form .year-checkbox:checked').each(function() {
-            selectedYears.push($(this).val());
-        });
-        loadFilteredPosts({
-            action: 'filter_blog_posts',
-            years: selectedYears
-        });
+    // AJAX pagination click
+    $(document).on('click', '.ajax-page-link', function(e){
+        e.preventDefault();
+
+        let selectedYears = $('.year-checkbox:checked').map(function(){
+            return $(this).val();
+        }).get();
+
+        if (selectedYears.length === 0) selectedYears = ['all'];
+
+        let paged = $(this).data('page') || 1;
+
+        loadPosts(selectedYears, paged);
     });
+
 });
 </script>
-
-<?php get_footer(); ?>
+<?php
+});

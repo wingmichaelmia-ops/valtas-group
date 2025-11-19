@@ -149,62 +149,77 @@ jQuery(document).ready(function($) {
     setActiveService();
 });
 
-jQuery(function($){
+jQuery(document).ready(function($){
 
-    function loadPosts(page = 1) {
-
-        let selected = [];
-
-        $('.category-checkbox:checked').each(function(){
-            selected.push($(this).val());
-        });
-
-        if (selected.length === 0 || selected.includes("all")) {
-            selected = ["all"];
-        }
-
+    function loadPosts(selectedYears, selectedCategories, paged = 1){
         $.ajax({
-            url: ajax_params.ajax_url,
-            type: "POST",
+            url: ajaxurl,
+            type: 'POST',
             data: {
-                action: "filter_blog_posts",
-                categories: selected,
-                page: page
+                action: 'filter_posts',
+                years: selectedYears,
+                categories: selectedCategories,
+                paged: paged
             },
-            beforeSend: function(){
-                $('.blog-post-wrapper').addClass("loading");
-            },
+            beforeSend: function(){ $('#blog-posts-wrapper').addClass('loading'); },
             success: function(response){
-                $('.blog-post-wrapper').removeClass("loading");
-
-                $('.blog-post-wrapper').html(response.html);
-
-                $('.pagination-wrapper').html(response.pagination);
+                $('#blog-posts-wrapper').html(response);
+                $('#blog-posts-wrapper').removeClass('loading');
+                $('html, body').animate({
+                    scrollTop: $('#blog-posts-wrapper').offset().top - 80
+                }, 300);
             }
         });
     }
 
-    // Category toggle logic
-    $('#cat-all').on('change', function(){
-        if ($(this).is(':checked')) {
-            $('.category-checkbox').not(this).prop('checked', false);
-            loadPosts();
+    // Year filter
+    $(document).on('change', '.year-checkbox', function(){
+        if ($(this).val() === 'all'){
+            $('.year-checkbox').not('#year-all').prop('checked', false);
+            $('#year-all').prop('checked', true);
+        } else {
+            $('#year-all').prop('checked', false);
         }
+
+        let selectedYears = $('.year-checkbox:checked').map(function(){ return $(this).val(); }).get();
+        if (selectedYears.length === 0) selectedYears = ['all'];
+
+        let selectedCategories = $('.category-checkbox:checked').map(function(){ return $(this).val(); }).get();
+        if (selectedCategories.length === 0) selectedCategories = ['all'];
+
+        loadPosts(selectedYears, selectedCategories, 1);
     });
 
-    $('.category-checkbox').not('#cat-all').on('change', function(){
-        $('#cat-all').prop('checked', false);
-        if ($('.category-checkbox:checked').not('#cat-all').length === 0) {
-            $('#cat-all').prop('checked', true);
+    // Category filter
+    $(document).on('change', '.category-checkbox', function(){
+        if ($(this).val() === 'all'){
+            $('.category-checkbox').not('#category-all').prop('checked', false);
+            $('#category-all').prop('checked', true);
+        } else {
+            $('#category-all').prop('checked', false);
         }
-        loadPosts();
+
+        let selectedYears = $('.year-checkbox:checked').map(function(){ return $(this).val(); }).get();
+        if (selectedYears.length === 0) selectedYears = ['all'];
+
+        let selectedCategories = $('.category-checkbox:checked').map(function(){ return $(this).val(); }).get();
+        if (selectedCategories.length === 0) selectedCategories = ['all'];
+
+        loadPosts(selectedYears, selectedCategories, 1);
     });
 
     // Pagination click
-    $(document).on('click', '.ajax-pagination .page-num', function(e){
+    $(document).on('click', '.ajax-page-link', function(e){
         e.preventDefault();
-        let page = $(this).data('page');
-        loadPosts(page);
+
+        let paged = $(this).data('page') || 1;
+        let selectedYears = $('.year-checkbox:checked').map(function(){ return $(this).val(); }).get();
+        if (selectedYears.length === 0) selectedYears = ['all'];
+
+        let selectedCategories = $('.category-checkbox:checked').map(function(){ return $(this).val(); }).get();
+        if (selectedCategories.length === 0) selectedCategories = ['all'];
+
+        loadPosts(selectedYears, selectedCategories, paged);
     });
 
 });
@@ -327,44 +342,6 @@ jQuery(function($){
             }
         });
 
-    });
-
-});
-
-
-
-
-
-
-jQuery(function($){
-
-    // LOAD PAGE
-    function loadPage(page) {
-        $.ajax({
-            url: ajax_params.ajax_url,
-            type: "POST",
-            data: {
-                action: "ajax_load_blog_posts",
-                page: page,
-            },
-            beforeSend: function () {
-                $("#blog-posts-container").css("opacity", ".4");
-            },
-            success: function (response) {
-                $("#blog-posts-container").css("opacity", "1").html(response.html);
-                $("#ajax-pagination").html(response.pagination);
-            }
-        });
-    }
-
-    // CLICK PAGINATION
-    $(document).on("click", "#ajax-pagination a", function(e){
-        e.preventDefault();
-
-        let page = $(this).attr("href").split("paged=")[1];
-        if (!page) page = $(this).text();
-
-        loadPage(page);
     });
 
 });

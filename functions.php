@@ -86,6 +86,14 @@ function mytheme_enqueue_swiper() {
 }
 add_action('wp_enqueue_scripts', 'mytheme_enqueue_swiper', 20);
 
+add_action('wp_head', function() {
+    ?>
+    <script>
+        var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+    </script>
+    <?php
+});
+
 
 function ajax_load_more_testimonials() {
     $paged     = isset($_POST['page']) ? intval($_POST['page']) : 1;
@@ -152,203 +160,71 @@ function theme_register_sidebars() {
 add_action('widgets_init', 'theme_register_sidebars');
 
 
-function filter_blog_posts() {
 
-    $categories = isset($_POST['categories']) ? $_POST['categories'] : [];
-    $paged      = isset($_POST['page']) ? intval($_POST['page']) : 1;
-    $per_page   = 6;
+add_action( 'widgets_init', function() {
+    register_widget( 'Valtas_Category_Filter_Widget' );
+});
 
-    $args = [
-        'post_type'      => 'post',
-        'posts_per_page' => $per_page,
-        'paged'          => $paged,
-    ];
+class Valtas_Category_Filter_Widget extends WP_Widget {
 
-    // Apply tax filter only if NOT "all"
-    if (!empty($categories) && !(count($categories) === 1 && $categories[0] === "all")) {
-        $args['tax_query'] = [
-            [
-                'taxonomy' => 'category',
-                'field'    => 'term_id',
-                'terms'    => array_map('intval', $categories),
-            ]
-        ];
+    function __construct() {
+        parent::__construct(
+            'valtas_category_filter_widget',
+            __( 'Category Filter Checklist', 'valtas' ),
+            [ 'description' => __( 'Displays category checkboxes for filtering posts.', 'valtas' ) ]
+        );
     }
 
-    $query = new WP_Query($args);
+    function widget( $args, $instance ) {
+        echo $args['before_widget'];
+        echo '<div class="valtas-category-list">';
+        echo $args['before_title'] . __( 'Category :', 'valtas' ) . $args['after_title'];
 
-    ob_start();
+        $categories = get_categories([
+            'orderby' => 'name',
+            'order' => 'ASC',
+            'hide_empty' => true,
+        ]);
 
-    if ($query->have_posts()) :
-        while ($query->have_posts()) :
-            $query->the_post();
+        // 🔹 Start form
+        echo '<form id="category-filter-form">';
 
-            // ------- your output stays here -------
-            ?>
+        // 🔹 Add "All" checkbox (checked by default)
+        echo '<div class="form-check mb-2">';
+        echo '<input 
+                class="form-check-input category-checkbox" 
+                type="checkbox" 
+                id="cat-all" 
+                value="all" 
+                checked
+            >';
+        echo '<label class="form-check-label" for="cat-all">All</label>';
+        echo '</div>';
 
-            <div class="col-md-12 blog-item-post">
-                <div class="card h-100 border-0">
-
-                    <?php if (has_post_thumbnail()) : ?>
-                        <a href="<?php the_permalink(); ?>">
-                            <?php the_post_thumbnail('medium_large', ['class' => 'card-img-top']); ?>
-                        </a>
-                    <?php endif; ?>
-
-                    <div class="card-body py-4 px-0">
-
-                        <div class="card-meta d-flex gap-3 small mb-2 align-items-center">
-                            <div class="date-capsule"><?php echo get_the_date('m/d/y'); ?></div>
-                            <div class="share-links d-flex gap-2">
-                                <a href="#" target="_blank" rel="noopener">
-                                    <img src="<?php echo get_template_directory_uri().'/img/fb.png'; ?>" />
-                                </a>
-                            </div>
-                        </div>
-
-                        <h3 class="card-title mb-3">
-                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                        </h3>
-
-                        <p><?php echo wp_trim_words(get_the_content(), 40); ?></p>
-
-                    </div>
-
-                    <hr class="my-3">
-                </div>
-            </div>
-
-            <?php
-        endwhile;
-    else :
-        echo "<p>No posts found.</p>";
-    endif;
-
-    $posts_html = ob_get_clean();
-
-    // Build pagination
-    $max_pages = $query->max_num_pages;
-
-    $pagination_html = '<div class="ajax-pagination mt-4">';
-
-    if ($max_pages > 1) {
-        for ($i = 1; $i <= $max_pages; $i++) {
-            $active = ($i == $paged) ? 'active-page' : '';
-            $pagination_html .= "<a href='#' class='page-num {$active}' data-page='{$i}'>{$i}</a>";
+        // 🔹 Individual category checkboxes
+        foreach ( $categories as $cat ) {
+            echo '<div class="form-check mb-2">';
+            echo '<input 
+                    class="form-check-input category-checkbox" 
+                    type="checkbox" 
+                    value="' . esc_attr( $cat->term_id ) . '" 
+                    id="cat-' . esc_attr( $cat->term_id ) . '"
+                >';
+            echo '<label class="form-check-label" for="cat-' . esc_attr( $cat->term_id ) . '">' . esc_html( $cat->name ) . '</label>';
+            echo '</div>';
         }
+
+        echo '</form>';
+
+        echo $args['after_widget'];
+        echo '</div>';
     }
-
-    $pagination_html .= '</div>';
-
-    wp_reset_postdata();
-
-    wp_send_json([
-        'html'       => $posts_html,
-        'pagination' => $pagination_html,
-        'max_pages'  => $max_pages
-    ]);
-
-    wp_die();
 }
-
-add_action('wp_ajax_filter_blog_posts', 'filter_blog_posts');
-add_action('wp_ajax_nopriv_filter_blog_posts', 'filter_blog_posts');
-
-
+//YEAR FILTER WIDGET//
 
 add_action( 'widgets_init', function() {
     register_widget( 'Valtas_Year_Filter_Widget' );
 });
-
-
-// Localize script for AJAX
-add_action('wp_enqueue_scripts', function() {
-    wp_localize_script('theme-script-handle', 'ajax_params', [
-        'ajax_url' => admin_url('admin-ajax.php'),
-    ]);
-});
-
-
-// AJAX handler: load paginated posts
-add_action('wp_ajax_ajax_load_blog_posts', 'ajax_load_blog_posts');
-add_action('wp_ajax_nopriv_ajax_load_blog_posts', 'ajax_load_blog_posts');
-
-function ajax_load_blog_posts() {
-
-    $paged = isset($_POST['page']) ? intval($_POST['page']) : 1;
-
-    $args = [
-        'post_type'      => 'post',
-        'posts_per_page' => 6,
-        'paged'          => $paged,
-    ];
-
-    $query = new WP_Query($args);
-
-    ob_start();
-
-    if ($query->have_posts()) : ?>
-        <div class="row g-4">
-        <?php while ($query->have_posts()) : $query->the_post(); ?>
-            <div class="col-md-4">
-                <article class="blog-card">
-
-                    <?php if (has_post_thumbnail()): ?>
-                        <a href="<?php the_permalink(); ?>">
-                            <?php the_post_thumbnail('large', ['class' => 'img-fluid']); ?>
-                        </a>
-                    <?php endif; ?>
-
-                    <h3 class="blog-title mt-3">
-                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                    </h3>
-
-                    <p class="blog-excerpt">
-                        <?php echo wp_trim_words(get_the_excerpt(), 20); ?>
-                    </p>
-
-                    <a href="<?php the_permalink(); ?>" class="read-more">Read More</a>
-
-                </article>
-            </div>
-        <?php endwhile; ?>
-        </div>
-    <?php endif;
-
-    $html = ob_get_clean();
-
-
-    // pagination
-    $pagination_array = paginate_links([
-        'total'     => $query->max_num_pages,
-        'current'   => $paged,
-        'type'      => 'array',
-        'mid_size'  => 2,
-        'prev_text' => '&lt;',
-        'next_text' => '&gt;',
-    ]);
-
-    ob_start();
-    if (!empty($pagination_array)) : ?>
-        <ul class="pagination justify-content-center">
-            <?php foreach ($pagination_array as $page): ?>
-                <li class="page-item">
-                    <?php echo str_replace('page-numbers', 'page-link', $page); ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    <?php endif;
-    $pagination_html = ob_get_clean();
-
-
-    wp_send_json([
-        'html'       => $html,
-        'pagination' => $pagination_html,
-    ]);
-}
-
-
-
 
 class Valtas_Year_Filter_Widget extends WP_Widget {
 
@@ -376,8 +252,6 @@ class Valtas_Year_Filter_Widget extends WP_Widget {
 
         if ( $years ) {
             echo '<form id="year-filter-form">';
-            
-            // 🔹 Default “All” option
             echo '<div class="form-check mb-2">
                     <input class="form-check-input year-checkbox" type="checkbox" value="all" id="year-all" checked>
                     <label class="form-check-label" for="year-all">All</label>
@@ -395,10 +269,122 @@ class Valtas_Year_Filter_Widget extends WP_Widget {
             echo '<p>No posts available yet.</p>';
         }
 
-        echo $args['after_widget'];
         echo '</div>';
+        echo $args['after_widget'];
     }
 }
+
+add_action('wp_ajax_filter_posts', 'filter_posts');
+add_action('wp_ajax_nopriv_filter_posts', 'filter_posts');
+
+function filter_posts() {
+    $years = isset($_POST['years']) ? $_POST['years'] : ['all'];
+    $cats  = isset($_POST['categories']) ? $_POST['categories'] : ['all'];
+    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+
+    $args = [
+        'post_type' => 'post',
+        'posts_per_page' => 6,
+        'paged' => $paged,
+    ];
+
+    // Year filter
+    if (!in_array('all', $years)) {
+        $args['date_query'] = ['relation' => 'OR'];
+        foreach ($years as $year) {
+            $args['date_query'][] = ['year' => intval($year)];
+        }
+    }
+
+    // Category filter
+    if (!in_array('all', $cats)) {
+        $args['tax_query'] = [
+            [
+                'taxonomy' => 'category',
+                'field'    => 'term_id',
+                'terms'    => array_map('intval', $cats),
+            ]
+        ];
+    }
+
+    $query = new WP_Query($args);
+
+    ob_start();
+
+    if ($query->have_posts()) :
+        echo '<div class="row g-4" id="blog-posts-container">';
+        while ($query->have_posts()) : $query->the_post(); ?>
+            <div class="col-md-12 blog-item-post">
+                <div class="card h-100 border-0">
+                    <?php if (has_post_thumbnail()) : ?>
+                        <a href="<?php the_permalink(); ?>">
+                            <?php the_post_thumbnail('medium_large', ['class'=>'card-img-top']); ?>
+                        </a>
+                    <?php endif; ?>
+                    <div class="card-body py-4 px-0">
+                        <h3 class="card-title mb-3">
+                            <a href="<?php the_permalink(); ?>" class="text-dark text-decoration-none"><?php the_title(); ?></a>
+                        </h3>
+                        <p><?php echo wp_trim_words(get_the_excerpt(), 50); ?></p>
+                        <a href="<?php the_permalink(); ?>" class="read-more">Read more</a>
+                    </div>
+                </div>
+            </div>
+        <?php
+        endwhile;
+        echo '</div>';
+
+        // Pagination (same as before, using data-page)
+        if ($query->max_num_pages > 1) :
+            echo '<div class="post-pagination text-center mt-4">';
+            $paginate_links = paginate_links([
+                'total' => $query->max_num_pages,
+                'current' => $paged,
+                'mid_size' => 2,
+                'prev_text' => '&lt;',
+                'next_text' => '&gt;',
+                'type' => 'array'
+            ]);
+
+            foreach ($paginate_links as $link) {
+
+                if (strpos($link, 'current') !== false) {
+                    echo '<span class="current">' . strip_tags($link) . '</span>';
+                    continue;
+                }
+
+                preg_match('/href=[\'"]?([^\'" >]+)/', $link, $href_match);
+                $href = isset($href_match[1]) ? $href_match[1] : '';
+
+                $page_num = 1;
+                if ($href) {
+                    $url_parts = wp_parse_url($href);
+                    if (!empty($url_parts['query'])) {
+                        parse_str($url_parts['query'], $query_vars);
+                        if (!empty($query_vars['paged'])) $page_num = intval($query_vars['paged']);
+                    } elseif (!empty($url_parts['path'])) {
+                        if (preg_match('#/page/(\d+)/?#', $url_parts['path'], $matches)) {
+                            $page_num = intval($matches[1]);
+                        }
+                    }
+                }
+
+                $link = preg_replace('/<a.*?>(.*?)<\/a>/', '<a href="#" class="ajax-page-link" data-page="'.$page_num.'">$1</a>', $link);
+                echo $link;
+            }
+
+            echo '</div>';
+        endif;
+
+    else :
+        echo '<p>No posts found.</p>';
+    endif;
+
+    wp_reset_postdata();
+    echo ob_get_clean();
+    wp_die();
+}
+
 
 // =====================================================
 // CUSTOM LOGIN PAGE SETUP (for Members plugin integration)
