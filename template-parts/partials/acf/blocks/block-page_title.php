@@ -36,7 +36,7 @@ $g_end = $args['g_end'];
     
     <?php 
         $image = get_sub_field('background_image');
-
+        $header_image_id = get_field('header_background_image');
         if (empty($image)) {
             $image = get_post_thumbnail_id(get_the_ID());
         }
@@ -53,6 +53,19 @@ $g_end = $args['g_end'];
                 $image_id = $image['ID'];
             } elseif (is_numeric($image)) {
                 $image_id = $image;
+            }
+
+            if (!empty($image_id)) {
+                echo wp_get_attachment_image($image_id, 'full', false, [
+                    'class'   => 'bg-image feature-image',
+                    'loading' => 'lazy',
+                ]);
+            }
+        } elseif ($header_image_id) {
+            if (is_array($header_image_id) && isset($header_image_id['ID'])) {
+                $image_id = $header_image_id['ID'];
+            } elseif (is_numeric($header_image_id)) {
+                $image_id = $header_image_id;
             }
 
             if (!empty($image_id)) {
