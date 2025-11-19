@@ -149,16 +149,16 @@ jQuery(document).ready(function($) {
     setActiveService();
 });
 
-jQuery(function($) {
+jQuery(function($){
 
-    function loadPosts() {
+    function loadPosts(page = 1) {
+
         let selected = [];
 
-        $('.category-checkbox:checked').each(function() {
+        $('.category-checkbox:checked').each(function(){
             selected.push($(this).val());
         });
 
-        // If nothing checked OR "all" selected — use all
         if (selected.length === 0 || selected.includes("all")) {
             selected = ["all"];
         }
@@ -168,18 +168,23 @@ jQuery(function($) {
             type: "POST",
             data: {
                 action: "filter_blog_posts",
-                categories: selected
+                categories: selected,
+                page: page
             },
-            beforeSend: function() {
-                $('.blog-post-wrapper').html('<p>Loading...</p>');
+            beforeSend: function(){
+                $('.blog-post-wrapper').addClass("loading");
             },
-            success: function(res) {
-                $('.blog-post-wrapper').html(res);
+            success: function(response){
+                $('.blog-post-wrapper').removeClass("loading");
+
+                $('.blog-post-wrapper').html(response.html);
+
+                $('.pagination-wrapper').html(response.pagination);
             }
         });
     }
 
-    // Toggle all
+    // Category toggle logic
     $('#cat-all').on('change', function(){
         if ($(this).is(':checked')) {
             $('.category-checkbox').not(this).prop('checked', false);
@@ -187,19 +192,23 @@ jQuery(function($) {
         }
     });
 
-    // Toggle individual
     $('.category-checkbox').not('#cat-all').on('change', function(){
         $('#cat-all').prop('checked', false);
-
-        // If user unchecks all, re-check all
         if ($('.category-checkbox:checked').not('#cat-all').length === 0) {
             $('#cat-all').prop('checked', true);
         }
-
         loadPosts();
     });
 
+    // Pagination click
+    $(document).on('click', '.ajax-pagination .page-num', function(e){
+        e.preventDefault();
+        let page = $(this).data('page');
+        loadPosts(page);
+    });
+
 });
+
 
 
 
@@ -318,6 +327,44 @@ jQuery(function($){
             }
         });
 
+    });
+
+});
+
+
+
+
+
+
+jQuery(function($){
+
+    // LOAD PAGE
+    function loadPage(page) {
+        $.ajax({
+            url: ajax_params.ajax_url,
+            type: "POST",
+            data: {
+                action: "ajax_load_blog_posts",
+                page: page,
+            },
+            beforeSend: function () {
+                $("#blog-posts-container").css("opacity", ".4");
+            },
+            success: function (response) {
+                $("#blog-posts-container").css("opacity", "1").html(response.html);
+                $("#ajax-pagination").html(response.pagination);
+            }
+        });
+    }
+
+    // CLICK PAGINATION
+    $(document).on("click", "#ajax-pagination a", function(e){
+        e.preventDefault();
+
+        let page = $(this).attr("href").split("paged=")[1];
+        if (!page) page = $(this).text();
+
+        loadPage(page);
     });
 
 });

@@ -152,22 +152,25 @@ function theme_register_sidebars() {
 add_action('widgets_init', 'theme_register_sidebars');
 
 
-
 function filter_blog_posts() {
-    $categories = isset($_POST['categories']) ? array_map('intval', $_POST['categories']) : [];
+
+    $categories = isset($_POST['categories']) ? $_POST['categories'] : [];
+    $paged      = isset($_POST['page']) ? intval($_POST['page']) : 1;
+    $per_page   = 6;
 
     $args = [
         'post_type'      => 'post',
-        'posts_per_page' => 6,
+        'posts_per_page' => $per_page,
+        'paged'          => $paged,
     ];
 
-    // Apply category filter only if not "all"
-    if (!empty($categories) && !(count($categories) === 1 && $categories[0] === 'all')) {
+    // Apply tax filter only if NOT "all"
+    if (!empty($categories) && !(count($categories) === 1 && $categories[0] === "all")) {
         $args['tax_query'] = [
             [
                 'taxonomy' => 'category',
                 'field'    => 'term_id',
-                'terms'    => $categories,
+                'terms'    => array_map('intval', $categories),
             ]
         ];
     }
@@ -177,13 +180,10 @@ function filter_blog_posts() {
     ob_start();
 
     if ($query->have_posts()) :
-        while ($query->have_posts()) : $query->the_post();
+        while ($query->have_posts()) :
+            $query->the_post();
 
-            $post_url   = urlencode(get_permalink());
-            $post_title = urlencode(get_the_title());
-
-            $share_facebook = 'https://www.facebook.com/sharer/sharer.php?u=' . $post_url;
-            $share_x        = 'https://twitter.com/intent/tweet?text=' . $post_title . '&url=' . $post_url;
+            // ------- your output stays here -------
             ?>
 
             <div class="col-md-12 blog-item-post">
@@ -196,138 +196,159 @@ function filter_blog_posts() {
                     <?php endif; ?>
 
                     <div class="card-body py-4 px-0">
+
                         <div class="card-meta d-flex gap-3 small mb-2 align-items-center">
                             <div class="date-capsule"><?php echo get_the_date('m/d/y'); ?></div>
                             <div class="share-links d-flex gap-2">
-                                <a href="<?php echo esc_url($share_facebook); ?>" target="_blank" rel="noopener">
-                                    <img src="<?php echo esc_url(get_template_directory_uri() . '/img/fb.png'); ?>" alt="Facebook">
-                                </a>
-                                <a href="<?php echo esc_url($share_x); ?>" target="_blank" rel="noopener">
-                                    <img src="<?php echo esc_url(get_template_directory_uri() . '/img/x.png'); ?>" alt="X">
+                                <a href="#" target="_blank" rel="noopener">
+                                    <img src="<?php echo get_template_directory_uri().'/img/fb.png'; ?>" />
                                 </a>
                             </div>
                         </div>
 
                         <h3 class="card-title mb-3">
-                            <a href="<?php the_permalink(); ?>" class="text-dark text-decoration-none"><?php the_title(); ?></a>
+                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                         </h3>
 
-                        <?php
-                        // --- excerpt cleaning ---
-                        $post_id = get_the_ID();
-                        $excerpt = trim(get_post_field('post_excerpt', $post_id));
+                        <p><?php echo wp_trim_words(get_the_content(), 40); ?></p>
 
-                        if (empty($excerpt)) {
-                            $excerpt = get_post_field('post_content', $post_id);
-                        }
-
-                        $excerpt = preg_replace('/\s*\[.*?\]\s*/', ' ', $excerpt);                     
-                        $excerpt = preg_replace('/<!--.*?-->/s', '', $excerpt);                        
-                        $excerpt = preg_replace('/<img[^>]+>/i', '', $excerpt);                        
-                        $excerpt = preg_replace('/<a[^>]*>(\s*Read\s*More\s*|Continue\s*Reading\s*)<\/a>/i', '', $excerpt);
-                        $excerpt = preg_replace('/\s*Read\s*More.*$/i', '', $excerpt);
-
-                        if (!function_exists('trim_preserve_html')) {
-                            function trim_preserve_html($text, $limit = 50) {
-                                $words = preg_split('/(\s+)/', $text, -1, PREG_SPLIT_DELIM_CAPTURE);
-                                $output = '';
-                                $count = 0;
-
-                                foreach ($words as $w) {
-                                    if (trim($w) !== '' && strip_tags($w) === $w) {
-                                        $count++;
-                                    }
-                                    $output .= $w;
-                                    if ($count >= $limit) break;
-                                }
-
-                                return force_balance_tags($output);
-                            }
-                        }
-
-                        $excerpt = trim_preserve_html($excerpt, 50);
-
-                        echo wp_kses($excerpt, [
-                            'p' => [],
-                            'a' => ['href' => [], 'title' => [], 'target' => [], 'rel' => []],
-                            'ul' => [], 'ol' => [], 'li' => [],
-                            'strong' => [], 'em' => [], 'br' => []
-                        ]);
-
-                        echo ' <a href="' . esc_url(get_permalink()) . '" class="read-more">Read more</a>';
-                        ?>
                     </div>
+
                     <hr class="my-3">
                 </div>
             </div>
 
             <?php
         endwhile;
-        wp_reset_postdata();
     else :
-        echo '<p>No posts found.</p>';
+        echo "<p>No posts found.</p>";
     endif;
 
-    echo ob_get_clean();
+    $posts_html = ob_get_clean();
+
+    // Build pagination
+    $max_pages = $query->max_num_pages;
+
+    $pagination_html = '<div class="ajax-pagination mt-4">';
+
+    if ($max_pages > 1) {
+        for ($i = 1; $i <= $max_pages; $i++) {
+            $active = ($i == $paged) ? 'active-page' : '';
+            $pagination_html .= "<a href='#' class='page-num {$active}' data-page='{$i}'>{$i}</a>";
+        }
+    }
+
+    $pagination_html .= '</div>';
+
+    wp_reset_postdata();
+
+    wp_send_json([
+        'html'       => $posts_html,
+        'pagination' => $pagination_html,
+        'max_pages'  => $max_pages
+    ]);
+
     wp_die();
 }
 
 add_action('wp_ajax_filter_blog_posts', 'filter_blog_posts');
 add_action('wp_ajax_nopriv_filter_blog_posts', 'filter_blog_posts');
 
-class Valtas_Category_Filter_Widget extends WP_Widget {
-
-    function __construct() {
-        parent::__construct(
-            'valtas_category_filter_widget',
-            __( 'Category Filter Checklist', 'valtas' ),
-            [ 'description' => __( 'Displays category checkboxes for filtering posts.', 'valtas' ) ]
-        );
-    }
-
-    function widget($args, $instance) {
-        echo $args['before_widget'];
-
-        echo '<div class="valtas-category-list">';
-        echo $args['before_title'] . __( 'Category :', 'valtas' ) . $args['after_title'];
-
-        $categories = get_categories([
-            'orderby' => 'name',
-            'order'   => 'ASC',
-            'hide_empty' => true,
-        ]);
-
-        echo '<form id="category-filter-form">';
-
-        echo '<div class="form-check mb-2">
-                <input class="form-check-input category-checkbox" type="checkbox" id="cat-all" value="all" checked>
-                <label class="form-check-label" for="cat-all">All</label>
-            </div>';
-
-        foreach ($categories as $cat) {
-            echo '<div class="form-check mb-2">
-                    <input class="form-check-input category-checkbox" type="checkbox" value="' . esc_attr($cat->term_id) . '" id="cat-' . esc_attr($cat->term_id) . '">
-                    <label class="form-check-label" for="cat-' . esc_attr($cat->term_id) . '">' . esc_html($cat->name) . '</label>
-                </div>';
-        }
-
-        echo '</form>';
-        echo '</div>';
-
-        echo $args['after_widget'];
-    }
-}
-
-add_action('wp_enqueue_scripts', function() {
-    wp_localize_script('main-js', 'ajax_params', [
-        'ajax_url' => admin_url('admin-ajax.php')
-    ]);
-});
 
 
 add_action( 'widgets_init', function() {
     register_widget( 'Valtas_Year_Filter_Widget' );
 });
+
+
+// Localize script for AJAX
+add_action('wp_enqueue_scripts', function() {
+    wp_localize_script('theme-script-handle', 'ajax_params', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+    ]);
+});
+
+
+// AJAX handler: load paginated posts
+add_action('wp_ajax_ajax_load_blog_posts', 'ajax_load_blog_posts');
+add_action('wp_ajax_nopriv_ajax_load_blog_posts', 'ajax_load_blog_posts');
+
+function ajax_load_blog_posts() {
+
+    $paged = isset($_POST['page']) ? intval($_POST['page']) : 1;
+
+    $args = [
+        'post_type'      => 'post',
+        'posts_per_page' => 6,
+        'paged'          => $paged,
+    ];
+
+    $query = new WP_Query($args);
+
+    ob_start();
+
+    if ($query->have_posts()) : ?>
+        <div class="row g-4">
+        <?php while ($query->have_posts()) : $query->the_post(); ?>
+            <div class="col-md-4">
+                <article class="blog-card">
+
+                    <?php if (has_post_thumbnail()): ?>
+                        <a href="<?php the_permalink(); ?>">
+                            <?php the_post_thumbnail('large', ['class' => 'img-fluid']); ?>
+                        </a>
+                    <?php endif; ?>
+
+                    <h3 class="blog-title mt-3">
+                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                    </h3>
+
+                    <p class="blog-excerpt">
+                        <?php echo wp_trim_words(get_the_excerpt(), 20); ?>
+                    </p>
+
+                    <a href="<?php the_permalink(); ?>" class="read-more">Read More</a>
+
+                </article>
+            </div>
+        <?php endwhile; ?>
+        </div>
+    <?php endif;
+
+    $html = ob_get_clean();
+
+
+    // pagination
+    $pagination_array = paginate_links([
+        'total'     => $query->max_num_pages,
+        'current'   => $paged,
+        'type'      => 'array',
+        'mid_size'  => 2,
+        'prev_text' => '&lt;',
+        'next_text' => '&gt;',
+    ]);
+
+    ob_start();
+    if (!empty($pagination_array)) : ?>
+        <ul class="pagination justify-content-center">
+            <?php foreach ($pagination_array as $page): ?>
+                <li class="page-item">
+                    <?php echo str_replace('page-numbers', 'page-link', $page); ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif;
+    $pagination_html = ob_get_clean();
+
+
+    wp_send_json([
+        'html'       => $html,
+        'pagination' => $pagination_html,
+    ]);
+}
+
+
+
 
 class Valtas_Year_Filter_Widget extends WP_Widget {
 

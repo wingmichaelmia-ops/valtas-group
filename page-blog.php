@@ -45,133 +45,76 @@ get_template_part(
     <div class="row g-5">
         <!-- Main Blog Posts -->
         <div class="col-lg-8 blog-items">
-            <div><!-- 🧱 content reload zone -->
-                <?php
-                $paged = max(1, get_query_var('paged'), get_query_var('page'));
+            <?php
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-                $args = [
-                    'post_type'      => 'post',
-                    'posts_per_page' => 6,
-                    'paged'          => $paged,
-                ];
+$args = [
+    'post_type'      => 'post',
+    'posts_per_page' => 6,
+    'paged'          => $paged,
+];
 
-                $query = new WP_Query($args);
+$query = new WP_Query($args);
+?>
 
-                if ($query->have_posts()) :
-                    echo '<div class="row g-4" id="blog-posts-container">';
+<div id="blog-posts-container">
 
-                    while ($query->have_posts()) :
-                        $query->the_post();
+    <?php if ($query->have_posts()) : ?>
+        <div class="row g-4">
+            <?php while ($query->have_posts()) : $query->the_post(); ?>
 
-                        $post_url   = urlencode(get_permalink());
-                        $post_title = urlencode(get_the_title());
-                        $share_facebook = 'https://www.facebook.com/sharer/sharer.php?u=' . $post_url;
-                        $share_x        = 'https://twitter.com/intent/tweet?text=' . $post_title . '&url=' . $post_url;
-                        ?>
-                        <div class="col-md-12 blog-item-post">
-                            <div class="card h-100 border-0">
-                                <?php if (has_post_thumbnail()) : ?>
-                                    <a href="<?php the_permalink(); ?>">
-                                        <?php the_post_thumbnail('medium_large', ['class' => 'card-img-top']); ?>
-                                    </a>
-                                <?php endif; ?>
+                <div class="col-md-4">
+                    <article class="blog-card">
+                        <?php if (has_post_thumbnail()): ?>
+                            <a href="<?php the_permalink(); ?>">
+                                <?php the_post_thumbnail('large', ['class' => 'img-fluid']); ?>
+                            </a>
+                        <?php endif; ?>
 
-                                <div class="card-body py-4 px-0">
-                                    <div class="card-meta d-flex gap-3 small mb-2 align-items-center">
-                                        <div class="date-capsule"><?php echo get_the_date('m/d/y'); ?></div>
-                                        <div class="share-links d-flex gap-2">
-                                            <a href="<?php echo esc_url($share_facebook); ?>" target="_blank" rel="noopener" class="text-primary">
-                                                <img src="<?php echo esc_url(get_template_directory_uri() . '/img/fb.png'); ?>" alt="Facebook" loading="lazy">
-                                            </a>
-                                            <a href="<?php echo esc_url($share_x); ?>" target="_blank" rel="noopener" class="text-dark">
-                                                <img src="<?php echo esc_url(get_template_directory_uri() . '/img/x.png'); ?>" alt="X" loading="lazy">
-                                            </a>
-                                        </div>
-                                    </div>
+                        <h3 class="blog-title mt-3">
+                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                        </h3>
 
-                                    <h3 class="card-title mb-3">
-                                        <a href="<?php the_permalink(); ?>" class="text-dark text-decoration-none">
-                                            <?php the_title(); ?>
-                                        </a>
-                                    </h3>
+                        <p class="blog-excerpt">
+                            <?php echo wp_trim_words(get_the_excerpt(), 20); ?>
+                        </p>
 
-                                    <?php
-                                    // Helper function: trim but preserve basic HTML
-                                    if (!function_exists('trim_preserve_html')) {
-                                        function trim_preserve_html($text, $limit = 100) {
-                                            $words = preg_split('/(\s+)/', $text, -1, PREG_SPLIT_DELIM_CAPTURE);
-                                            $word_count = 0;
-                                            $output = '';
-                                            foreach ($words as $word) {
-                                                if (trim($word) !== '' && strip_tags($word) === $word) {
-                                                    $word_count++;
-                                                }
-                                                $output .= $word;
-                                                if ($word_count >= $limit) break;
-                                            }
-                                            return force_balance_tags($output);
-                                        }
-                                    }
+                        <a href="<?php the_permalink(); ?>" class="read-more">Read More</a>
+                    </article>
+                </div>
 
-                                    // Fetch excerpt or content
-                                    $post_id = get_the_ID();
-                                    $excerpt = trim(get_post_field('post_excerpt', $post_id));
-                                    if (empty($excerpt)) {
-                                        $excerpt = get_post_field('post_content', $post_id);
-                                    }
-
-                                    // Clean up excerpt: remove shortcodes, Gutenberg comments, and inline images
-                                    $excerpt = preg_replace('/\s*\[.*?\]\s*/', ' ', $excerpt);                     
-                                    $excerpt = preg_replace('/<!--.*?-->/s', '', $excerpt);                        
-                                    $excerpt = preg_replace('/<img[^>]+>/i', '', $excerpt);                        
-                                    $excerpt = preg_replace('/<a[^>]*>(\s*Read\s*More\s*|Continue\s*Reading\s*)<\/a>/i', '', $excerpt); 
-                                    $excerpt = preg_replace('/\s*Read\s*More.*$/i', '', $excerpt);                 
-
-                                    // Trim & preserve basic tags
-                                    $excerpt = trim_preserve_html($excerpt, 50);
-
-                                    // Allow only basic safe tags
-                                    $allowed_tags = [
-                                        'p'      => [],
-                                        'a'      => ['href' => [], 'title' => [], 'target' => [], 'rel' => []],
-                                        'ul'     => [],
-                                        'ol'     => [],
-                                        'li'     => [],
-                                        'strong' => [],
-                                        'em'     => [],
-                                        'br'     => [],
-                                    ];
-
-                                    echo wp_kses($excerpt, $allowed_tags);
-                                    echo ' <a href="' . esc_url(get_permalink($post_id)) . '" class="read-more">Read more</a>';
-
-                                    ?>
-                                </div>
-                                <hr class="my-3">
-                            </div>
-                        </div>
-                        <?php
-                    endwhile;
-
-                    echo '</div>'; // end .row.g-4
-
-                    // Pagination
-                    echo '<div class="post-pagination text-center mt-4">';
-                    echo paginate_links([
-                        'total'     => $query->max_num_pages,
-                        'current'   => $paged,
-                        'mid_size'  => 2,
-                        'prev_text' => '&lt;',
-                        'next_text' => '&gt;',
-                    ]);
-                    echo '</div>';
-
-                    wp_reset_postdata();
-                else :
-                    echo '<p>No blog posts found.</p>';
-                endif;
-                ?>
+                <?php endwhile; ?>
             </div>
+        <?php endif; ?>
+
+    </div>
+
+    <?php
+    // Pagination as ARRAY for AJAX
+    $pagination = paginate_links([
+        'total'     => $query->max_num_pages,
+        'current'   => $paged,
+        'type'      => 'array',
+        'mid_size'  => 2,
+        'prev_text' => '&lt;',
+        'next_text' => '&gt;',
+    ]);
+    ?>
+
+    <div id="ajax-pagination" class="post-pagination text-center mt-4">
+        <?php if (!empty($pagination)): ?>
+            <ul class="pagination justify-content-center">
+                <?php foreach ($pagination as $page): ?>
+                    <li class="page-item">
+                        <?php echo str_replace('page-numbers', 'page-link', $page); ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+    </div>
+
+    <?php wp_reset_postdata(); ?>
+
         </div>
 
         <!-- Sidebar -->
