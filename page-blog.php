@@ -29,13 +29,18 @@ blockquote.wp-block-quote {
 
 <section class="echo-block echo-block-page_title">
 <?php
+
+$title = get_field('header_title');
+$blurb = get_field('header_blurb');
+
 get_template_part(
     'template-parts/partials/acf/blocks/block',
     'page_title',
     [
-        'title'      => 'The Latest <span class="highlight">From Valtas</span>',
+        'title'      => $title ?: 'The Latest <span class="highlight">From Valtas</span>',
         'title_tag'  => 'h1',
-        'content'    => 'News, updates, and stories to keep you in the know.',
+        'content'    => $blurb ?: 'News, updates, and stories to keep you in the know.',
+        'button_group' => get_field( 'button_group' ),
     ]
 );
 ?>

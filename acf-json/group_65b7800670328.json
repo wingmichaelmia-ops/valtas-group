@@ -4834,6 +4834,11 @@
                 "param": "post_type",
                 "operator": "!=",
                 "value": "case-study"
+            },
+            {
+                "param": "page_template",
+                "operator": "!=",
+                "value": "page-blog.php"
             }
         ],
         [
@@ -4864,5 +4869,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1763497501
+    "modified": 1763573083
 }
