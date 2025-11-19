@@ -96,13 +96,16 @@ get_template_part(
 
                             <?php
                             $post_id = get_the_ID();
-                            $excerpt = get_the_excerpt();
-                            if (empty($excerpt)) $excerpt = wp_trim_words(get_the_content(), 50);
+                            $content = get_the_content();
+                            $excerpt = wp_trim_words( wp_strip_all_tags( $content ), 50, '..' ); // strip HTML and limit words
 
-                            echo '<p>' . wp_kses($excerpt, [
-                                'p'=>[], 'a'=>['href'=>[], 'title'=>[], 'target'=>[], 'rel'=>[]],
-                                'strong'=>[], 'em'=>[], 'br'=>[]
-                            ]) . '</p>';
+                            // Clean allowed tags (optional if you stripped all tags)
+                            $excerpt = wp_kses($excerpt, [
+                                'strong'=>[], 
+                                'em'=>[], 
+                            ]);
+
+                            echo '<p>' . $excerpt . '</p>';
                             echo '<a href="' . esc_url(get_permalink($post_id)) . '" class="read-more">Read more</a>';
                             ?>
                         </div>

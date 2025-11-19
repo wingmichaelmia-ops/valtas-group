@@ -322,6 +322,17 @@ function filter_posts() {
                         </a>
                     <?php endif; ?>
                     <div class="card-body py-4 px-0">
+                        <div class="card-meta d-flex gap-3 small mb-2 align-items-center">
+                            <div class="date-capsule"><?php echo get_the_date('m/d/y'); ?></div>
+                                <div class="share-links d-flex gap-2">
+                                    <a href="<?php echo esc_url($share_facebook); ?>" target="_blank" rel="noopener" class="text-primary">
+                                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/fb.png'); ?>" alt="Facebook" loading="lazy">
+                                    </a>
+                                    <a href="<?php echo esc_url($share_x); ?>" target="_blank" rel="noopener" class="text-dark">
+                                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/x.png'); ?>" alt="X" loading="lazy">
+                                    </a>
+                                </div>
+                            </div>
                         <h3 class="card-title mb-3">
                             <a href="<?php the_permalink(); ?>" class="text-dark text-decoration-none"><?php the_title(); ?></a>
                         </h3>
