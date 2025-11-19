@@ -6275,27 +6275,50 @@
     $(window).on('scroll resize', setActiveService);
     setActiveService();
   });
-  jQuery(document).ready(function ($) {
-    $('.category-checkbox').on('change', function () {
+  jQuery(function ($) {
+    function loadPosts() {
       var selected = [];
       $('.category-checkbox:checked').each(function () {
         selected.push($(this).val());
       });
+
+      // If nothing checked OR "all" selected — use all
+      if (selected.length === 0 || selected.includes("all")) {
+        selected = ["all"];
+      }
       $.ajax({
-        url: ajaxurl,
-        // WordPress global variable
-        type: 'POST',
+        url: ajax_params.ajax_url,
+        type: "POST",
         data: {
-          action: 'filter_posts',
+          action: "filter_blog_posts",
           categories: selected
         },
         beforeSend: function beforeSend() {
-          $('#post-results').html('<p>Loading...</p>');
+          $('.blog-post-wrapper').html('<p>Loading...</p>');
         },
-        success: function success(response) {
-          $('#post-results').html(response);
+        success: function success(res) {
+          $('.blog-post-wrapper').html(res);
         }
       });
+    }
+
+    // Toggle all
+    $('#cat-all').on('change', function () {
+      if ($(this).is(':checked')) {
+        $('.category-checkbox').not(this).prop('checked', false);
+        loadPosts();
+      }
+    });
+
+    // Toggle individual
+    $('.category-checkbox').not('#cat-all').on('change', function () {
+      $('#cat-all').prop('checked', false);
+
+      // If user unchecks all, re-check all
+      if ($('.category-checkbox:checked').not('#cat-all').length === 0) {
+        $('#cat-all').prop('checked', true);
+      }
+      loadPosts();
     });
   });
   document.addEventListener('DOMContentLoaded', function () {

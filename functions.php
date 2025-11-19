@@ -161,7 +161,8 @@ function filter_blog_posts() {
         'posts_per_page' => 6,
     ];
 
-    if ( !empty($categories) ) {
+    // Apply category filter only if not "all"
+    if (!empty($categories) && !(count($categories) === 1 && $categories[0] === 'all')) {
         $args['tax_query'] = [
             [
                 'taxonomy' => 'category',
@@ -173,17 +174,22 @@ function filter_blog_posts() {
 
     $query = new WP_Query($args);
 
-    if ( $query->have_posts() ) :
-        while ( $query->have_posts() ) : $query->the_post();
-            $post_url   = urlencode( get_permalink() );
-            $post_title = urlencode( get_the_title() );
+    ob_start();
+
+    if ($query->have_posts()) :
+        while ($query->have_posts()) : $query->the_post();
+
+            $post_url   = urlencode(get_permalink());
+            $post_title = urlencode(get_the_title());
 
             $share_facebook = 'https://www.facebook.com/sharer/sharer.php?u=' . $post_url;
             $share_x        = 'https://twitter.com/intent/tweet?text=' . $post_title . '&url=' . $post_url;
             ?>
+
             <div class="col-md-12 blog-item-post">
                 <div class="card h-100 border-0">
-                    <?php if ( has_post_thumbnail() ) : ?>
+
+                    <?php if (has_post_thumbnail()) : ?>
                         <a href="<?php the_permalink(); ?>">
                             <?php the_post_thumbnail('medium_large', ['class' => 'card-img-top']); ?>
                         </a>
@@ -193,103 +199,81 @@ function filter_blog_posts() {
                         <div class="card-meta d-flex gap-3 small mb-2 align-items-center">
                             <div class="date-capsule"><?php echo get_the_date('m/d/y'); ?></div>
                             <div class="share-links d-flex gap-2">
-                                <a href="<?php echo esc_url( $share_facebook ); ?>" target="_blank" rel="noopener">
-                                    <img src="<?php echo esc_url( get_template_directory_uri() . '/img/fb.png' ); ?>" alt="Facebook">
+                                <a href="<?php echo esc_url($share_facebook); ?>" target="_blank" rel="noopener">
+                                    <img src="<?php echo esc_url(get_template_directory_uri() . '/img/fb.png'); ?>" alt="Facebook">
                                 </a>
-                                <a href="<?php echo esc_url( $share_x ); ?>" target="_blank" rel="noopener">
-                                    <img src="<?php echo esc_url( get_template_directory_uri() . '/img/x.png' ); ?>" alt="X">
+                                <a href="<?php echo esc_url($share_x); ?>" target="_blank" rel="noopener">
+                                    <img src="<?php echo esc_url(get_template_directory_uri() . '/img/x.png'); ?>" alt="X">
                                 </a>
                             </div>
                         </div>
+
                         <h3 class="card-title mb-3">
                             <a href="<?php the_permalink(); ?>" class="text-dark text-decoration-none"><?php the_title(); ?></a>
                         </h3>
+
                         <?php
-                                    if ( ! function_exists( 'trim_preserve_html' ) ) {
-                                        /**
-                                         * Trim text to a number of words while preserving HTML formatting.
-                                         */
-                                        function trim_preserve_html( $text, $limit = 100 ) {
-                                            // Split by spaces but keep HTML tags
-                                            $words = preg_split( '/(\s+)/', $text, -1, PREG_SPLIT_DELIM_CAPTURE );
-                                            $word_count = 0;
-                                            $output = '';
+                        // --- excerpt cleaning ---
+                        $post_id = get_the_ID();
+                        $excerpt = trim(get_post_field('post_excerpt', $post_id));
 
-                                            foreach ( $words as $word ) {
-                                                // Count only actual words, not HTML tags or whitespace
-                                                if ( trim( $word ) !== '' && strip_tags( $word ) === $word ) {
-                                                    $word_count++;
-                                                }
+                        if (empty($excerpt)) {
+                            $excerpt = get_post_field('post_content', $post_id);
+                        }
 
-                                                $output .= $word;
+                        $excerpt = preg_replace('/\s*\[.*?\]\s*/', ' ', $excerpt);                     
+                        $excerpt = preg_replace('/<!--.*?-->/s', '', $excerpt);                        
+                        $excerpt = preg_replace('/<img[^>]+>/i', '', $excerpt);                        
+                        $excerpt = preg_replace('/<a[^>]*>(\s*Read\s*More\s*|Continue\s*Reading\s*)<\/a>/i', '', $excerpt);
+                        $excerpt = preg_replace('/\s*Read\s*More.*$/i', '', $excerpt);
 
-                                                if ( $word_count >= $limit ) {
-                                                    break;
-                                                }
-                                            }
+                        if (!function_exists('trim_preserve_html')) {
+                            function trim_preserve_html($text, $limit = 50) {
+                                $words = preg_split('/(\s+)/', $text, -1, PREG_SPLIT_DELIM_CAPTURE);
+                                $output = '';
+                                $count = 0;
 
-                                            // Fix any unclosed HTML tags
-                                            $output = force_balance_tags( $output );
-
-                                            return $output . '';
-                                        }
+                                foreach ($words as $w) {
+                                    if (trim($w) !== '' && strip_tags($w) === $w) {
+                                        $count++;
                                     }
+                                    $output .= $w;
+                                    if ($count >= $limit) break;
+                                }
 
-                                    // 1️⃣ Get post content or manual excerpt
-                                    // Fetch excerpt or content
-                                    $post_id = get_the_ID();
-                                    $excerpt = trim(get_post_field('post_excerpt', $post_id));
-                                    if (empty($excerpt)) {
-                                        $excerpt = get_post_field('post_content', $post_id);
-                                    }
+                                return force_balance_tags($output);
+                            }
+                        }
 
-                                    // Clean up excerpt: remove shortcodes, Gutenberg comments, and inline images
-                                    $excerpt = preg_replace('/\s*\[.*?\]\s*/', ' ', $excerpt);                     
-                                    $excerpt = preg_replace('/<!--.*?-->/s', '', $excerpt);                        
-                                    $excerpt = preg_replace('/<img[^>]+>/i', '', $excerpt);                        
-                                    $excerpt = preg_replace('/<a[^>]*>(\s*Read\s*More\s*|Continue\s*Reading\s*)<\/a>/i', '', $excerpt); 
-                                    $excerpt = preg_replace('/\s*Read\s*More.*$/i', '', $excerpt);                 
+                        $excerpt = trim_preserve_html($excerpt, 50);
 
-                                    // Trim & preserve basic tags
-                                    $excerpt = trim_preserve_html($excerpt, 50);
+                        echo wp_kses($excerpt, [
+                            'p' => [],
+                            'a' => ['href' => [], 'title' => [], 'target' => [], 'rel' => []],
+                            'ul' => [], 'ol' => [], 'li' => [],
+                            'strong' => [], 'em' => [], 'br' => []
+                        ]);
 
-                                    // Allow only basic safe tags
-                                    $allowed_tags = [
-                                        'p'      => [],
-                                        'a'      => ['href' => [], 'title' => [], 'target' => [], 'rel' => []],
-                                        'ul'     => [],
-                                        'ol'     => [],
-                                        'li'     => [],
-                                        'strong' => [],
-                                        'em'     => [],
-                                        'br'     => [],
-                                    ];
-
-                                    echo wp_kses($excerpt, $allowed_tags);
-                                    echo ' <a href="' . esc_url(get_permalink($post_id)) . '" class="read-more">Read more</a>';
-
-                                ?>
+                        echo ' <a href="' . esc_url(get_permalink()) . '" class="read-more">Read more</a>';
+                        ?>
                     </div>
                     <hr class="my-3">
                 </div>
             </div>
+
             <?php
         endwhile;
-        
         wp_reset_postdata();
     else :
         echo '<p>No posts found.</p>';
     endif;
 
+    echo ob_get_clean();
     wp_die();
 }
+
 add_action('wp_ajax_filter_blog_posts', 'filter_blog_posts');
 add_action('wp_ajax_nopriv_filter_blog_posts', 'filter_blog_posts');
-
-
-add_action( 'widgets_init', function() {
-    register_widget( 'Valtas_Category_Filter_Widget' );
-});
 
 class Valtas_Category_Filter_Widget extends WP_Widget {
 
@@ -301,51 +285,45 @@ class Valtas_Category_Filter_Widget extends WP_Widget {
         );
     }
 
-    function widget( $args, $instance ) {
+    function widget($args, $instance) {
         echo $args['before_widget'];
+
         echo '<div class="valtas-category-list">';
         echo $args['before_title'] . __( 'Category :', 'valtas' ) . $args['after_title'];
 
         $categories = get_categories([
             'orderby' => 'name',
-            'order' => 'ASC',
+            'order'   => 'ASC',
             'hide_empty' => true,
         ]);
 
-        // 🔹 Start form
         echo '<form id="category-filter-form">';
 
-        // 🔹 Add "All" checkbox (checked by default)
-        echo '<div class="form-check mb-2">';
-        echo '<input 
-                class="form-check-input category-checkbox" 
-                type="checkbox" 
-                id="cat-all" 
-                value="all" 
-                checked
-            >';
-        echo '<label class="form-check-label" for="cat-all">All</label>';
-        echo '</div>';
+        echo '<div class="form-check mb-2">
+                <input class="form-check-input category-checkbox" type="checkbox" id="cat-all" value="all" checked>
+                <label class="form-check-label" for="cat-all">All</label>
+            </div>';
 
-        // 🔹 Individual category checkboxes
-        foreach ( $categories as $cat ) {
-            echo '<div class="form-check mb-2">';
-            echo '<input 
-                    class="form-check-input category-checkbox" 
-                    type="checkbox" 
-                    value="' . esc_attr( $cat->term_id ) . '" 
-                    id="cat-' . esc_attr( $cat->term_id ) . '"
-                >';
-            echo '<label class="form-check-label" for="cat-' . esc_attr( $cat->term_id ) . '">' . esc_html( $cat->name ) . '</label>';
-            echo '</div>';
+        foreach ($categories as $cat) {
+            echo '<div class="form-check mb-2">
+                    <input class="form-check-input category-checkbox" type="checkbox" value="' . esc_attr($cat->term_id) . '" id="cat-' . esc_attr($cat->term_id) . '">
+                    <label class="form-check-label" for="cat-' . esc_attr($cat->term_id) . '">' . esc_html($cat->name) . '</label>
+                </div>';
         }
 
         echo '</form>';
+        echo '</div>';
 
         echo $args['after_widget'];
-        echo '</div>';
     }
 }
+
+add_action('wp_enqueue_scripts', function() {
+    wp_localize_script('main-js', 'ajax_params', [
+        'ajax_url' => admin_url('admin-ajax.php')
+    ]);
+});
+
 
 add_action( 'widgets_init', function() {
     register_widget( 'Valtas_Year_Filter_Widget' );
