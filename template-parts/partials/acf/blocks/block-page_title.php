@@ -45,9 +45,45 @@ $g_end = $args['g_end'];
             echo '<img src="' . esc_url( get_template_directory_uri() . '/img/default-banner.jpg' ) . '" alt="Default banner" class="bg-image" loading="lazy">';
            
         }
-        if ( is_page_template( 'page-members-area.php' ) ) {
-            echo '<img src="' . esc_url( get_template_directory_uri() . '/img/boardx-archive-banner.jpg' ) . '" alt="Default banner" class="bg-image" loading="lazy">';
+        $member_banner_image = get_field('boardx_background_image'); // ACF field
+
+        if ( is_page_template('page-members-area.php') ) {
+
+            $image_id = '';
+
+            // If ACF returns an array (common when return format = array)
+            if ( is_array($member_banner_image) && !empty($member_banner_image['ID']) ) {
+                $image_id = $member_banner_image['ID'];
+
+            // If ACF returns an ID
+            } elseif ( is_numeric($member_banner_image) ) {
+                $image_id = $member_banner_image;
+            }
+
+            // Display selected image
+            if ( !empty($image_id) ) {
+                echo wp_get_attachment_image(
+                    $image_id,
+                    'full',
+                    false,
+                    [
+                        'class'   => 'bg-image feature-image',
+                        'loading' => 'lazy'
+                    ]
+                );
+                ?>
+                <style>
+                    .echo-block-page_title img.bg-image:nth-child(3) {
+                        display: none;
+                    }
+                </style>
+                <?php
+            // Fallback image
+            } else {
+                echo '<img src="' . esc_url( get_template_directory_uri() . '/img/boardx-archive-banner.jpg' ) . '" alt="Default banner" class="bg-image" loading="lazy">';
+            }
         }
+
         if ($image) {
             if (is_array($image) && isset($image['ID'])) {
                 $image_id = $image['ID'];

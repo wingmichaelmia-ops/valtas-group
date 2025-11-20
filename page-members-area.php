@@ -25,15 +25,24 @@ if (
 }
 
 get_header();
+$title = get_field('hero_title');
+$blurb = get_field('hero_blurb');
+$bg = get_field('boardx_background_image');
 ?>
 
 <style>
     .page-title__content {
         max-width: 477px;
     }
+    <?php if($bg): ?>
+    .echo-block-page_title .bg-image:not(.feature-image) {
+        display: none;
+    }
+    <?php else: ?>
     .echo-block-page_title img.bg-image:nth-child(2) {
         display: none;
     }
+    <?php endif; ?>
 </style>
 <section class="echo-block echo-block-page_title">    
     
@@ -43,9 +52,10 @@ get_header();
         'template-parts/partials/acf/blocks/block',
         'page_title',
         [
-            'title'      => 'BoardSpark <span class="highlight">Archive</span>', // use the post title dynamically
+            'title'      => $title ?: 'BoardSpark <span class="highlight">Archive</span>', // use the post title dynamically
             'title_tag'  => 'h1',
-            'content'    => ' BoardSpark is a free, invitation-only resource hub powered by Valtas that equips nonprofit boards with tools, insights, and connections to grow their eXperience, eXpertise, and eXcellence, with a monthly donation from Valtas to every nonprofit whose board engages with the platform that month.',
+            'content'    => $blurb ?: ' BoardSpark is a free, invitation-only resource hub powered by Valtas that equips nonprofit boards with tools, insights, and connections to grow their eXperience, eXpertise, and eXcellence, with a monthly donation from Valtas to every nonprofit whose board engages with the platform that month.',
+            'button_group' => get_field( 'button_group' ),
         ]
     );
     ?>

@@ -692,7 +692,7 @@
         "block_editor",
         "the_content"
     ],
-    "active": true,
+    "active": false,
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
@@ -703,5 +703,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1762275423
+    "modified": 1763665661
 }
