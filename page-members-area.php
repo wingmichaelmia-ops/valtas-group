@@ -314,7 +314,7 @@ endif;
                     <div class="col-lg-4">
                         <div class="boardx-card large h-100 position-relative">
                             <?php if ($image): ?>
-                                <div class="featured-img">
+                                <div class="featured-img ratio ratio-1x1">
                                     <?php
                                         echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                                     ?>
@@ -1400,7 +1400,7 @@ endif;
                     <div class="col-lg-4">
                         <div class="boardx-card large h-100 position-relative">
                             <?php if ($image): ?>
-                                <div class="featured-img">
+                                <div class="featured-img ratio ratio-1x1">
                                     <?php
                                         echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                                     ?>
