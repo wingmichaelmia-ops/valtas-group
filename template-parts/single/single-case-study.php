@@ -63,7 +63,7 @@
 <?php if(get_field('dates_of_client_service_start') || get_field('dates_of_client_service_end')): ?>
     <section class="bg-primary text-white text-center">
         <div class="container py-3">
-            <strong style="color:#f3b700">Dates of Client Service:</strong> <?php echo get_field('dates_of_client_service_start') ?: 'Month Year'; ?> - <?php echo get_field('dates_of_client_service_end') ?: 'Month Year'; ?>
+            <strong style="color:#f3b700" class="d-block d-md-inline-block">Dates of Client Service:</strong> <?php echo get_field('dates_of_client_service_start') ?: 'Month Year'; ?> - <?php echo get_field('dates_of_client_service_end') ?: 'Month Year'; ?>
         </div>
     </section>
 <?php endif; ?>
