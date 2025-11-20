@@ -1785,6 +1785,9 @@ CASE STUDY TEMPLATE
     p:last-child {
         margin-bottom: 0;
     }
+    a {
+        color: $secondary;
+    }
 }
 .cp_container {
     background: white;

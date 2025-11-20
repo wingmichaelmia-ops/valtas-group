@@ -14711,6 +14711,9 @@ CASE STUDY TEMPLATE
 .ribbon p:last-child {
   margin-bottom: 0;
 }
+.ribbon a {
+  color: #F3B700;
+}
 
 .cp_container {
   background: white;
