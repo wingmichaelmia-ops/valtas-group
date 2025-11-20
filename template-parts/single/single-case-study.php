@@ -18,7 +18,8 @@
         max-width: 800px;
     }
     .page-title__title {
-        line-height: 1em;    
+        line-height: 1em;   
+        font-size: clamp(3.75rem, .1563rem + 11.5vw, 5.625rem);
     }
     #content a {
         text-decoration: none;
