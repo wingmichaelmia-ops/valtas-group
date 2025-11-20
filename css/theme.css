@@ -15222,9 +15222,6 @@ BOARDX ACHIEVE
   font-weight: 700;
 }
 
-.boardx-card .featured-img {
-  aspect-ratio: 1;
-}
 .boardx-card .featured-img img {
   -o-object-fit: cover;
   object-fit: cover;
