@@ -656,22 +656,6 @@ add_shortcode( 'custom_register_form', 'custom_register_form_shortcode' );
 
 
 
-// Redirect logged-out users from Members Area template or content tagged "BoardSpark"
-function valtas_redirect_members_area_pages() {
-
-	// Redirect if using the Members Area template
-	if ( is_page_template( 'page-members-area.php' ) && ! is_user_logged_in() ) {
-		wp_redirect( home_url( '/login/' ) );
-		exit;
-	}
-
-	// Redirect if post or page has the tag "BoardSpark"
-	if ( ( is_single() || is_page() ) && has_tag( 'BoardSpark' ) && ! is_user_logged_in() ) {
-		wp_redirect( home_url( '/login/' ) );
-		exit;
-	}
-}
-add_action( 'template_redirect', 'valtas_redirect_members_area_pages' );
 
 add_action( 'init', function() {
 	register_taxonomy_for_object_type( 'post_tag', 'page' );
