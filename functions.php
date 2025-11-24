@@ -914,18 +914,3 @@ add_filter( 'show_admin_bar', function( $show ) {
     return $show; // default behavior for others
 });
 
-
-// Redirect boardX users away from wp-admin
-add_action( 'admin_init', function() {
-    if ( is_user_logged_in() ) {
-        $user = wp_get_current_user();
-
-        if ( in_array( 'boardx', (array) $user->roles, true ) ) {
-
-            if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) {
-                wp_redirect( home_url() );
-                exit;
-            }
-        }
-    }
-});
