@@ -835,29 +835,6 @@ function load_more_case_studies() {
 
 
 
-function boardx_restrict_admin_area() {
-
-    // Exit if not logged in
-    if (!is_user_logged_in()) return;
-
-    $user = wp_get_current_user();
-
-    // If user has role "boardX"
-    if (in_array('boardX', (array) $user->roles)) {
-
-        // Hide admin bar
-        add_filter('show_admin_bar', '__return_false');
-
-        // Block access to /wp-admin except AJAX
-        if (is_admin() && !wp_doing_ajax()) {
-            wp_redirect(home_url());
-            exit;
-        }
-    }
-}
-add_action('init', 'boardx_restrict_admin_area');
-
-
 
 
 // Redirect default WP login to custom /login/
