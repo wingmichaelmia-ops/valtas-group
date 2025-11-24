@@ -835,27 +835,65 @@ function load_more_case_studies() {
 
 
 
-function boardx_restrict_admin_area() {
+/**
+ * Safe Custom Login Redirection
+ * Redirect wp-login.php to /login/ without breaking login functionality
+ */
 
-    // Exit if not logged in
-    if (!is_user_logged_in()) return;
+add_action('init', function () {
 
-    $user = wp_get_current_user();
+    // Current request URI and method
+    $request_uri  = $_SERVER['REQUEST_URI'];
+    $request_method = $_SERVER['REQUEST_METHOD'];
 
-    // If user has role "boardX"
-    if (in_array('boardX', (array) $user->roles)) {
-
-        // Hide admin bar
-        add_filter('show_admin_bar', '__return_false');
-
-        // Block access to /wp-admin except AJAX
-        if (is_admin() && !wp_doing_ajax()) {
-            wp_redirect(home_url());
-            exit;
+    // ------------------------------------------------------------------
+    // 1. Allow required core endpoints
+    // ------------------------------------------------------------------
+    $allowed = [
+        'wp-cron.php',
+        'admin-ajax.php',
+        'wp-json',
+    ];
+    foreach ($allowed as $ok) {
+        if (strpos($request_uri, $ok) !== false) {
+            return; // do nothing
         }
     }
-}
-add_action('init', 'boardx_restrict_admin_area');
 
+    // ------------------------------------------------------------------
+    // 2. Allow wp-login.php POST requests (login submission)
+    // ------------------------------------------------------------------
+    if ($request_method === 'POST' && strpos($request_uri, 'wp-login.php') !== false) {
+        return; // allow login POST
+    }
+
+    // ------------------------------------------------------------------
+    // 3. Redirect wp-login.php GET requests to custom /login/
+    // ------------------------------------------------------------------
+    if (
+        strpos($request_uri, 'wp-login.php') !== false ||
+        isset($_GET['loggedout'])
+    ) {
+        wp_safe_redirect(home_url('/login/'));
+        exit;
+    }
+});
+
+
+
+/**
+ * Block wp-admin for non-logged users
+ */
+add_action('admin_init', function () {
+
+    // Allow AJAX
+    if (wp_doing_ajax()) return;
+
+    // If not logged in → redirect to custom login
+    if (!is_user_logged_in()) {
+        wp_safe_redirect(home_url('/login/'));
+        exit;
+    }
+});
 
 
