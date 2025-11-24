@@ -9,20 +9,11 @@ global $post;
 /**
  * Redirect logged-out users if page is restricted via Members plugin
  */
-if (
-	function_exists( 'members_is_post_content_restricted' ) &&
-	isset( $post->ID ) &&
-	members_is_post_content_restricted( $post->ID )
-) {
-	if ( ! is_user_logged_in() ) {
-		// Custom login URL for your local site
-		$login_url = '/login/';
-		$redirect  = add_query_arg( 'redirect_to', urlencode( get_permalink( $post->ID ) ), $login_url );
 
-		wp_redirect( $redirect );
-		exit;
+	if ( ! is_user_logged_in() ) {
+		
 	}
-}
+
 
 get_header();
 $title = get_field('hero_title');
@@ -44,6 +35,17 @@ $bg = get_field('boardx_background_image');
     }
     <?php endif; ?>
 </style>
+<?php
+// STARTS - wrapp your content with this conditional statement
+if ( post_password_required() && ! is_user_logged_in() ) :
+
+    // if your post is password protected with our Pro version, show our password form instead
+    echo get_the_password_form();
+
+/* display the password protected content if the correct password is entered */ 
+else :
+
+?>
 <section class="echo-block echo-block-page_title">    
     
     <?php
@@ -60,6 +62,7 @@ $bg = get_field('boardx_background_image');
     );
     ?>
 </section>
+
 <section class="echo-block echo-block-articles_block bg-light-secondary">
     <div class="container pt-5 mb-5 header-title-center">
         <h2 class="valtas-cta-block__title">
@@ -1789,4 +1792,10 @@ while ($query->have_posts()) :
     </div>
     </div>
 </section>
-<?php get_footer(); ?>
+
+<?php
+
+endif;
+// ENDS - hide custom fields with PPWP password protection
+
+get_footer(); ?>

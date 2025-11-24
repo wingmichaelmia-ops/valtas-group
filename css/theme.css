@@ -15472,4 +15472,39 @@ PRIVACY
   margin-right: auto;
 }
 
+.ppw-ppf-desc {
+  margin-bottom: 1rem;
+}
+
+.ppw-post-password-container {
+  padding: 2rem;
+  text-align: center;
+  background: #012F6C;
+  color: #fff;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ppw-ppf-field-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.ppw-ppf-input-container label.ppw-pwd-label {
+  gap: 10px;
+  display: inline-flex;
+}
+
+@media (max-width: 767.98px) {
+  .ppw-ppf-field-container,
+  .ppw-ppf-input-container label.ppw-pwd-label {
+    flex-flow: column;
+    align-items: center;
+  }
+}
+
 /*# sourceMappingURL=theme.css.map */
