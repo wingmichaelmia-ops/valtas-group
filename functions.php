@@ -402,13 +402,13 @@ function filter_posts() {
 // =====================================================
 
 // Redirect logged-in users away from the login page BEFORE output starts
-function redirect_logged_in_user_from_login_page() {
+/*function redirect_logged_in_user_from_login_page() {
     if ( is_page( 'login' ) && is_user_logged_in() ) {
         wp_redirect( home_url( '/boardspark-archive/' ) );
         exit;
     }
 }
-add_action( 'template_redirect', 'redirect_logged_in_user_from_login_page' );
+add_action( 'template_redirect', 'redirect_logged_in_user_from_login_page' );*/
 
 // Custom Login Form Shortcode
 function custom_login_form_shortcode() {
