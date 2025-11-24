@@ -897,6 +897,24 @@ add_action('admin_init', function () {
 });
 
 
+
+
+// Disable admin bar for role "boardX"
+add_filter( 'show_admin_bar', function( $show ) {
+
+    if ( is_user_logged_in() ) {
+        $user = wp_get_current_user();
+
+        // Check if user has role boardX
+        if ( in_array( 'boardx', (array) $user->roles, true ) ) {
+            return false; // hide admin bar
+        }
+    }
+
+    return $show; // default behavior for others
+});
+
+
 // Redirect boardX users away from wp-admin
 add_action( 'admin_init', function() {
     if ( is_user_logged_in() ) {
