@@ -129,24 +129,31 @@ $g_end = $args['g_end'];
             <?php endif; ?>
             <?php if ( !empty($args['button_group']) ) : ?>
                 <div class="valtas-title-block__buttons d-flex flex-wrap gap-2">
-                    <?php foreach ( $args['button_group'] as $row ) : 
-                        $button = $row['button'] ?? null;
-                        if ( $button ) :
-                            $url    = $button['url'] ?? '';
-                            $title  = $button['title'] ?? '';
-                            $target = !empty($button['target']) ? $button['target'] : '_self';
-                            
-                            if ( $url && $title ) : ?>
-                                <div class="btn-valtas">
-                                    <a href="<?php echo esc_url($url); ?>" 
-                                    target="<?php echo esc_attr($target); ?>" 
-                                    class="btn btn-primary">
-                                        <?php echo esc_html($title); ?>
-                                    </a>
-                                </div>
-                            <?php endif; ?>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
+                    
+                    <?php
+                        if ( is_user_logged_in() && is_page('boardspark') ) {
+                            echo do_shortcode('[logout_button redirect="/login/" label="Sign Out"]');
+                        } else {
+                            foreach ( $args['button_group'] as $row ) : 
+                                $button = $row['button'] ?? null;
+                                if ( $button ) :
+                                    $url    = $button['url'] ?? '';
+                                    $title  = $button['title'] ?? '';
+                                    $target = !empty($button['target']) ? $button['target'] : '_self';
+                                    
+                                    if ( $url && $title ) : ?>
+                                        <div class="btn-valtas">
+                                            <a href="<?php echo esc_url($url); ?>" 
+                                            target="<?php echo esc_attr($target); ?>" 
+                                            class="btn btn-primary">
+                                                <?php echo esc_html($title); ?>
+                                            </a>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                            <?php endforeach; 
+                        }
+                    ?>
                 </div>
             <?php endif; ?>
         </div>

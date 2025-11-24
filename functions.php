@@ -919,6 +919,32 @@ function custom_logout_button_shortcode($atts)
 
     $logout_url = wp_logout_url($atts['redirect']);
 
-    return '<a href="' . esc_url($logout_url) . '" class="' . esc_attr($atts['class']) . '">' . esc_html($atts['label']) . '</a>';
+    return '<div class="btn-valtas"><a href="' . esc_url($logout_url) . '" class="' . esc_attr($atts['class']) . '">' . esc_html($atts['label']) . '</a></div>';
 }
 add_shortcode('logout_button', 'custom_logout_button_shortcode');
+
+
+
+/**
+ * Redirect failed login attempts to custom login page
+ */
+add_filter('login_redirect', function($redirect_to, $requested_redirect_to, $user) {
+    return $redirect_to; // Keep normal redirect after successful login
+}, 10, 3);
+
+add_action('wp_login_failed', function($username) {
+    // URL of your custom login page
+    $login_url = home_url('/login/');
+
+    // Add error query
+    $login_url = add_query_arg('login', 'failed', $login_url);
+
+    wp_safe_redirect($login_url);
+    exit;
+});
+
+if ( isset($_GET['login']) && $_GET['login'] === 'failed' ): ?>
+    <div class="login-error" style="color:red; margin-bottom:10px;">
+        Invalid username or password. Please try again.
+    </div>
+<?php endif; ?>
