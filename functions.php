@@ -834,21 +834,15 @@ function load_more_case_studies() {
 }
 
 
-
 /**
- * Safe Custom Login Redirection
- * Redirect wp-login.php to /login/ without breaking login functionality
+ * Redirect wp-login.php to /login/ safely
  */
-
 add_action('init', function () {
 
-    // Current request URI and method
-    $request_uri  = $_SERVER['REQUEST_URI'];
-    $request_method = $_SERVER['REQUEST_METHOD'];
+    $request_uri     = $_SERVER['REQUEST_URI'];
+    $request_method  = $_SERVER['REQUEST_METHOD'];
 
-    // ------------------------------------------------------------------
-    // 1. Allow required core endpoints
-    // ------------------------------------------------------------------
+    // 1. Allow required WP endpoints
     $allowed = [
         'wp-cron.php',
         'admin-ajax.php',
@@ -856,61 +850,75 @@ add_action('init', function () {
     ];
     foreach ($allowed as $ok) {
         if (strpos($request_uri, $ok) !== false) {
-            return; // do nothing
+            return;
         }
     }
 
-    // ------------------------------------------------------------------
-    // 2. Allow wp-login.php POST requests (login submission)
-    // ------------------------------------------------------------------
+    // 2. Allow login POST requests
     if ($request_method === 'POST' && strpos($request_uri, 'wp-login.php') !== false) {
-        return; // allow login POST
+        return;
     }
 
-    // ------------------------------------------------------------------
-    // 3. Redirect wp-login.php GET requests to custom /login/
-    // ------------------------------------------------------------------
-    if (
-        strpos($request_uri, 'wp-login.php') !== false ||
-        isset($_GET['loggedout'])
-    ) {
+    // 3. Allow logout
+    if (strpos($request_uri, 'wp-login.php') !== false && isset($_GET['action']) && $_GET['action'] === 'logout') {
+        return;
+    }
+
+    // 4. Redirect all other wp-login.php GET requests to /login/
+    if (strpos($request_uri, 'wp-login.php') !== false) {
+        wp_safe_redirect(home_url('/login/'));
+        exit;
+    }
+
+    // 5. Redirect ?loggedout to /login/
+    if (isset($_GET['loggedout'])) {
         wp_safe_redirect(home_url('/login/'));
         exit;
     }
 });
 
-
-
 /**
- * Block wp-admin for non-logged users
+ * Block wp-admin for non-logged-in users
  */
 add_action('admin_init', function () {
 
     // Allow AJAX
     if (wp_doing_ajax()) return;
 
-    // If not logged in → redirect to custom login
+    // Redirect non-logged-in users
     if (!is_user_logged_in()) {
         wp_safe_redirect(home_url('/login/'));
         exit;
     }
 });
 
-
-
-
-// Disable admin bar for role "boardX"
-add_filter( 'show_admin_bar', function( $show ) {
-
-    if ( is_user_logged_in() ) {
+/**
+ * Disable admin bar for role "boardX"
+ */
+add_filter('show_admin_bar', function ($show) {
+    if (is_user_logged_in()) {
         $user = wp_get_current_user();
-
-        // Check if user has role boardX
-        if ( in_array( 'boardx', (array) $user->roles, true ) ) {
-            return false; // hide admin bar
+        if (in_array('boardx', (array) $user->roles, true)) {
+            return false;
         }
     }
-
-    return $show; // default behavior for others
+    return $show;
 });
 
+/**
+ * Optional: Shortcode for logout button
+ * Usage: [logout_button redirect="/login/" label="Sign Out"]
+ */
+function custom_logout_button_shortcode($atts)
+{
+    $atts = shortcode_atts([
+        'redirect' => home_url('/'),
+        'label'    => 'Logout',
+        'class'    => 'logout-btn'
+    ], $atts);
+
+    $logout_url = wp_logout_url($atts['redirect']);
+
+    return '<a href="' . esc_url($logout_url) . '" class="' . esc_attr($atts['class']) . '">' . esc_html($atts['label']) . '</a>';
+}
+add_shortcode('logout_button', 'custom_logout_button_shortcode');
