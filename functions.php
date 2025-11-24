@@ -832,3 +832,60 @@ function load_more_case_studies() {
 
     die();
 }
+
+
+
+function boardx_restrict_admin_area() {
+
+    // Exit if not logged in
+    if (!is_user_logged_in()) return;
+
+    $user = wp_get_current_user();
+
+    // If user has role "boardX"
+    if (in_array('boardX', (array) $user->roles)) {
+
+        // Hide admin bar
+        add_filter('show_admin_bar', '__return_false');
+
+        // Block access to /wp-admin except AJAX
+        if (is_admin() && !wp_doing_ajax()) {
+            wp_redirect(home_url());
+            exit;
+        }
+    }
+}
+add_action('init', 'boardx_restrict_admin_area');
+
+
+
+
+// Redirect default WP login to custom /login/
+add_action( 'init', function() {
+    $request = $_SERVER['REQUEST_URI'];
+
+    // Allowed core endpoints (avoid breaking site)
+    $allowed = [
+        'wp-cron.php',
+        'admin-ajax.php',
+        'wp-json',
+    ];
+    foreach ($allowed as $ok) {
+        if (strpos($request, $ok) !== false) return;
+    }
+
+    // If accessing wp-login.php or ?action=register/lostpassword, redirect
+    if (strpos($request, 'wp-login.php') !== false || isset($_GET['loggedout'])) {
+        wp_redirect(home_url('/login/'));
+        exit;
+    }
+});
+
+
+// Block wp-admin for non-logged users
+add_action( 'admin_init', function() {
+    if (!is_user_logged_in()) {
+        wp_redirect(home_url('/login/'));
+        exit;
+    }
+});
