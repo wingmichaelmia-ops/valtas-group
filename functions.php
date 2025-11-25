@@ -414,7 +414,7 @@ add_action( 'template_redirect', 'redirect_logged_in_user_from_login_page' );*/
 function custom_login_form_shortcode() {
 
     if ( is_user_logged_in() ) {
-        return '<div class="alert alert-info text-center my-5">You are already logged in.</div>';
+        return '<div class="custom-login-wrapper"><div class="custom-login-wrapper-inner"><h2>You are already logged in.</h2></div></div>';
     }
 
     // Capture any login errors
@@ -1031,3 +1031,37 @@ add_filter('retrieve_password_message', function ($message, $key, $user_login) {
 
     return $message;
 }, 10, 3);
+
+
+function wpstats_track_loggedin_user($visit_id) {
+    if (!is_user_logged_in()) {
+        return;
+    }
+
+    $user = wp_get_current_user();
+    global $wpdb;
+
+    $meta_table = $wpdb->prefix . 'statistics_visit_meta';
+
+    // Store User ID
+    $wpdb->insert($meta_table, [
+        'visit_id'  => $visit_id,
+        'meta_key'  => 'wp_user_id',
+        'meta_value'=> $user->ID
+    ]);
+
+    // Store Name
+    $wpdb->insert($meta_table, [
+        'visit_id'  => $visit_id,
+        'meta_key'  => 'wp_user_name',
+        'meta_value'=> $user->display_name
+    ]);
+
+    // Store Email
+    $wpdb->insert($meta_table, [
+        'visit_id'  => $visit_id,
+        'meta_key'  => 'wp_user_email',
+        'meta_value'=> $user->user_email
+    ]);
+}
+add_action('wp_statistics_visit', 'wpstats_track_loggedin_user');
