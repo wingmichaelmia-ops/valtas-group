@@ -918,6 +918,20 @@ add_action('init', function () {
         exit;
     }
 
+    // --------------------------------------------
+    // ALLOW ALL PASSWORD RESET FLOWS
+    // --------------------------------------------
+    if (
+        strpos($uri, 'action=lostpassword') !== false ||
+        strpos($uri, 'action=rp') !== false ||
+        strpos($uri, 'action=resetpass') !== false ||
+        strpos($uri, 'checkemail=confirm') !== false ||
+        strpos($uri, 'checkemail=registered') !== false ||
+        strpos($uri, 'checkemail=reset') !== false
+    ) {
+        return; // let WordPress handle reset flow
+    }
+
     // Regular wp-login GET redirect
     if (strpos($request_uri, 'wp-login.php') !== false) {
         wp_safe_redirect(home_url('/login/'));
@@ -933,3 +947,87 @@ add_action('lostpassword_post', function($errors){
         exit;
     }
 });
+
+
+/**
+ * Custom Reset Password Page
+ * Shortcode: [custom_reset_password]
+ */
+
+add_shortcode('custom_reset_password', function () {
+
+    // Require key + login from the URL
+    if (!isset($_GET['key']) || !isset($_GET['login'])) {
+        return '<p style="color:red;">Invalid password reset link.</p>';
+    }
+
+    $key   = sanitize_text_field($_GET['key']);
+    $login = sanitize_text_field($_GET['login']);
+
+    // Validate login
+    $user = get_user_by('login', $login);
+    if (!$user) {
+        return '<p style="color:red;">Invalid user.</p>';
+    }
+
+    // Validate reset key
+    $check = check_password_reset_key($key, $login);
+    if (is_wp_error($check)) {
+        return '<p style="color:red;">Your reset link is expired or invalid.</p>';
+    }
+
+    // Handle form submission
+    if (isset($_POST['new_pass']) && isset($_POST['confirm_pass'])) {
+
+        $pass1 = sanitize_text_field($_POST['new_pass']);
+        $pass2 = sanitize_text_field($_POST['confirm_pass']);
+
+        if ($pass1 !== $pass2) {
+            $error = '<p style="color:red;">Passwords do not match.</p>';
+        } elseif (empty($pass1)) {
+            $error = '<p style="color:red;">Password cannot be empty.</p>';
+        } else {
+            reset_password($check, $pass1);
+
+            // after reset → redirect to your custom login
+            wp_safe_redirect(home_url('/login/?reset=done'));
+            exit;
+        }
+    }
+
+    ob_start();
+    ?>
+
+    <div class="custom-reset-wrapper" style="max-width:400px;margin:auto;">
+        <h2>Reset Your Password</h2>
+
+        <?php if (!empty($error)) echo $error; ?>
+
+        <form method="POST">
+            <label>New Password</label>
+            <input type="password" name="new_pass" required style="width:100%;padding:10px;margin-bottom:10px;">
+
+            <label>Confirm New Password</label>
+            <input type="password" name="confirm_pass" required style="width:100%;padding:10px;margin-bottom:20px;">
+
+            <button type="submit" style="width:100%;padding:12px;background:#0073aa;color:white;border:none;">
+                Change Password
+            </button>
+        </form>
+    </div>
+
+    <?php
+    return ob_get_clean();
+});
+
+add_filter('retrieve_password_message', function ($message, $key, $user_login) {
+
+    $reset_url = home_url('/reset-password/?key=' . $key . '&login=' . rawurlencode($user_login));
+
+    $message  = "Hi,\n\n";
+    $message .= "Click the link below to reset your password:\n\n";
+    $message .= $reset_url . "\n\n";
+    $message .= "If you did not request this, you can ignore this email.\n";
+
+    return $message;
+}, 10, 3);
