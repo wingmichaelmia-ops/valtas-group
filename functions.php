@@ -1065,3 +1065,67 @@ function wpstats_track_loggedin_user($visit_id) {
     ]);
 }
 add_action('wp_statistics_visit', 'wpstats_track_loggedin_user');
+
+
+// Admin Menu Page for User Visits Log
+
+// Add menu page
+add_action('admin_menu', function() {
+    add_menu_page(
+        'User Visits Log',         // Page title
+        'User Visits Log',         // Menu title
+        'manage_options',          // Capability
+        'user-visits-log',         // Menu slug
+        'display_user_visits_log', // Callback
+        'dashicons-analytics',     // Icon
+        25                         // Position
+    );
+});
+
+
+function display_user_visits_log() {
+    if (!current_user_can('manage_options')) return;
+
+    global $wpdb;
+
+    $visit_table = $wpdb->prefix . 'statistics_visit';
+    $meta_table  = $wpdb->prefix . 'statistics_visit_meta';
+
+    // Handle CSV export
+    if (isset($_GET['export_csv']) && $_GET['export_csv'] == '1') {
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment;filename=wp_user_visits.csv');
+        $output = fopen('php://output', 'w');
+        fputcsv($output, ['Name', 'Email', 'Page URL', 'Date / Time']);
+
+        $visits = $wpdb->get_results("SELECT v.id, v.url, v.date FROM $visit_table v ORDER BY v.date DESC");
+        foreach ($visits as $visit) {
+            $name = $wpdb->get_var($wpdb->prepare("SELECT meta_value FROM $meta_table WHERE visit_id=%d AND meta_key='wp_user_name'", $visit->id));
+            $email = $wpdb->get_var($wpdb->prepare("SELECT meta_value FROM $meta_table WHERE visit_id=%d AND meta_key='wp_user_email'", $visit->id));
+            fputcsv($output, [$name, $email, $visit->url, $visit->date]);
+        }
+        fclose($output);
+        exit;
+    }
+
+    echo '<div class="wrap"><h1>User Visits Log</h1>';
+    echo '<a href="' . admin_url('admin.php?page=user-visits-log&export_csv=1') . '" class="button button-primary">Export CSV</a><br><br>';
+
+    // Fetch last 100 visits
+    $visits = $wpdb->get_results("SELECT v.id, v.url, v.date FROM $visit_table v ORDER BY v.date DESC LIMIT 100");
+
+    echo '<table class="widefat striped"><thead><tr><th>Name</th><th>Email</th><th>Page URL</th><th>Date / Time</th></tr></thead><tbody>';
+
+    foreach ($visits as $visit) {
+        $name  = $wpdb->get_var($wpdb->prepare("SELECT meta_value FROM $meta_table WHERE visit_id=%d AND meta_key='wp_user_name'", $visit->id));
+        $email = $wpdb->get_var($wpdb->prepare("SELECT meta_value FROM $meta_table WHERE visit_id=%d AND meta_key='wp_user_email'", $visit->id));
+        echo '<tr>';
+        echo '<td>' . esc_html($name) . '</td>';
+        echo '<td>' . esc_html($email) . '</td>';
+        echo '<td>' . esc_html($visit->url) . '</td>';
+        echo '<td>' . esc_html($visit->date) . '</td>';
+        echo '</tr>';
+    }
+
+    echo '</tbody></table></div>';
+}
