@@ -23,9 +23,7 @@ $bg = get_field('boardx_background_image');
 ?>
 
 <style>
-    .page-title__content {
-        max-width: 477px;
-    }
+    
     <?php if($bg): ?>
     .echo-block-page_title .bg-image:not(.feature-image) {
         display: none;
