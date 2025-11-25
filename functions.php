@@ -446,70 +446,13 @@ function custom_login_form_shortcode() {
                     </div>-->
                     <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-primary w-100" value="Submit">
                     <div class="text-center mt-5 form-links">
-                        <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>">Lost your password?</a> | <a href="<?php echo esc_url( home_url( '/request-access/' ) ); ?>">Request Access</a>
+                        <a href="/lost-password">Lost your password?</a> | <a href="<?php echo esc_url( home_url( '/request-access/' ) ); ?>">Request Access</a>
                     </div>
                     <input type="hidden" name="redirect_to" value="<?php echo esc_url( home_url( '/boardspark-archive/' ) ); ?>">
                     <input type="hidden" name="testcookie" value="1">
                 </form>
         </div>
     </div>
-    <style>
-        .custom-login-wrapper {
-            background-image: url('<?php echo esc_url( get_template_directory_uri() . '/img/login-bg.jpg' ); ?>');
-            min-height: 80dvh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 3rem 1rem;
-            padding-top: 200px;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        .custom-login-wrapper-inner {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-flow: column;
-            background: white;
-            padding: 3rem 2rem;
-            border-radius: 30px;
-            width: 100%;
-            max-width: 577px;
-            box-shadow: 0 10px 125px rgba(0, 52, 78, .08);
-        }
-        #custom-login-form {
-            width: 100%;
-            margin-top: 1rem;
-        }
-        #custom-login-form input[type="text"],
-        #custom-login-form input[type="password"] {
-            width: 100%;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            padding: 1rem;
-            background-color: #F5F5F5;
-            border-color: #F5F5F5;
-        }
-        #custom-login-form input[type="submit"] {
-            width: 100%;
-            background: linear-gradient(90deg,rgba(0, 159, 237, 1) 0%, rgba(1, 47, 108, 1) 100%);
-            color: #fff;
-            border: none;
-            padding: 1rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            border-radius: 30px;
-            text-transform: uppercase;
-        }
-        #custom-login-form input[type="submit"]:hover {
-            background-color: #009fed;
-        }
-        .form-links a {
-            color: #009fed;
-        }
-    </style>
     <?php
     return ob_get_clean();
 }
@@ -931,4 +874,62 @@ if ( isset($_GET['login']) && $_GET['login'] === 'failed' ): ?>
     <div class="login-error" style="color:red; margin-bottom:10px;">
         Invalid username or password. Please try again.
     </div>
-<?php endif; ?>
+<?php endif; 
+
+
+/**
+ * Redirect WP lost password screens to custom page
+ */
+add_action('init', function () {
+
+    $request_uri  = $_SERVER['REQUEST_URI'];
+    $method       = $_SERVER['REQUEST_METHOD'];
+
+    // Allow admin-ajax, cron, REST API
+    $allowed = ['wp-cron.php', 'admin-ajax.php', 'wp-json'];
+    foreach ($allowed as $ok) {
+        if (strpos($request_uri, $ok) !== false) return;
+    }
+
+    // Allow login POST
+    if ($method === 'POST' && strpos($request_uri, 'wp-login.php') !== false) {
+        return;
+    }
+     // ------------------------------------------------------------------
+    // ALLOW LOGOUT ACTIONS
+    // ------------------------------------------------------------------
+    if (
+        strpos($request_uri, 'wp-login.php?action=logout') !== false ||
+        strpos($request_uri, 'wp-login.php?loggedout=true') !== false ||
+        (isset($_GET['action']) && $_GET['action'] === 'logout')
+    ) {
+        return; // Let WordPress process the logout
+    }
+
+    // LOST PASSWORD, RESET PASSWORD, AND CHECK EMAIL
+    if (
+        strpos($request_uri, 'wp-login.php?action=lostpassword') !== false ||
+        strpos($request_uri, 'wp-login.php?action=rp') !== false ||
+        strpos($request_uri, 'wp-login.php?action=resetpass') !== false ||
+        strpos($request_uri, 'wp-login.php?checkemail=confirm') !== false ||
+        strpos($request_uri, 'wp-login.php?checkemail=reset') !== false
+    ) {
+        wp_safe_redirect(home_url('/login/lost-password/'));
+        exit;
+    }
+
+    // Regular wp-login GET redirect
+    if (strpos($request_uri, 'wp-login.php') !== false) {
+        wp_safe_redirect(home_url('/login/'));
+        exit;
+    }
+});
+
+add_action('lostpassword_post', function($errors){
+    if (!empty($errors->errors)) {
+        $url = home_url('/login/lost-password/');
+        $url = add_query_arg('error', 'invalid', $url);
+        wp_safe_redirect($url);
+        exit;
+    }
+});
