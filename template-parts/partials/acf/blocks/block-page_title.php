@@ -134,7 +134,7 @@ $g_end = $args['g_end'];
                         if ( is_user_logged_in() && is_page('boardspark') ) {
                             echo '<div class="btn-valtas"><a href="/boardspark-archive/">BoardSpark Archives</a></div>';
                             echo do_shortcode('[logout_button redirect="/login/" label="Sign Out"]');
-                        } elseif (is_page('boardspark-archive') && is_user_logged_in()) {
+                        } elseif ( is_user_logged_in() && is_page('boardspark-archive') ) {
                             echo '<div class="btn-valtas"><a href="/contact-us/">Contact Us</a></div>';
                             echo do_shortcode('[logout_button redirect="/login/" label="Sign Out"]');
                         } else {
