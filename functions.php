@@ -998,22 +998,22 @@ add_shortcode('custom_reset_password', function () {
     ob_start();
     ?>
 
-    <div class="custom-reset-wrapper" style="max-width:400px;margin:auto;">
-        <h2>Reset Your Password</h2>
+    <div class="custom-login-wrapper">
+        <div class="custom-login-wrapper-inner">
+        <h2 class="h4 mb-2 fw-bold text-primary">Reset Your Password</h2>
 
         <?php if (!empty($error)) echo $error; ?>
 
-        <form method="POST">
-            <label>New Password</label>
-            <input type="password" name="new_pass" required style="width:100%;padding:10px;margin-bottom:10px;">
+            <form method="POST">
+                <input type="password" name="new_pass" required placeholder="New Password" class="form-control">
 
-            <label>Confirm New Password</label>
-            <input type="password" name="confirm_pass" required style="width:100%;padding:10px;margin-bottom:20px;">
+                <input type="password" name="confirm_pass" required placeholder="Confirm New Password" class="form-control">
 
-            <button type="submit" style="width:100%;padding:12px;background:#0073aa;color:white;border:none;">
-                Change Password
-            </button>
-        </form>
+                <button type="submit" class="btn btn-primary w-100">
+                    Change Password
+                </button>
+            </form>
+        </div>
     </div>
 
     <?php
