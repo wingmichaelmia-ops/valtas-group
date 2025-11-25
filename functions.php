@@ -881,7 +881,7 @@ if ( isset($_GET['login']) && $_GET['login'] === 'failed' ): ?>
  * Redirect WP lost password screens to custom page
  */
 add_action('init', function () {
-
+    
     $request_uri  = $_SERVER['REQUEST_URI'];
     $method       = $_SERVER['REQUEST_METHOD'];
 
@@ -922,12 +922,12 @@ add_action('init', function () {
     // ALLOW ALL PASSWORD RESET FLOWS
     // --------------------------------------------
     if (
-        strpos($uri, 'action=lostpassword') !== false ||
-        strpos($uri, 'action=rp') !== false ||
-        strpos($uri, 'action=resetpass') !== false ||
-        strpos($uri, 'checkemail=confirm') !== false ||
-        strpos($uri, 'checkemail=registered') !== false ||
-        strpos($uri, 'checkemail=reset') !== false
+        strpos($request_uri, 'action=lostpassword') !== false ||
+        strpos($request_uri, 'action=rp') !== false ||
+        strpos($request_uri, 'action=resetpass') !== false ||
+        strpos($request_uri, 'checkemail=confirm') !== false ||
+        strpos($request_uri, 'checkemail=registered') !== false ||
+        strpos($request_uri, 'checkemail=reset') !== false
     ) {
         return; // let WordPress handle reset flow
     }
