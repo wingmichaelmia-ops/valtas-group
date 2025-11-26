@@ -1937,6 +1937,9 @@ FORM STYLES
     padding: 0;
     position: relative !important;
     padding-top: 50px;
+    .hbspt-form .hs-input {
+        background-color: #fff;
+    }
     .form-title {
         padding: 1rem;
         background: $tertiary;

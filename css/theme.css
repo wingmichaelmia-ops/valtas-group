@@ -12515,6 +12515,7 @@ body .cky-consent-container {
   padding: 0.7rem 1rem !important;
   margin-bottom: 1rem;
   box-shadow: none !important;
+  background: rgba(0, 0, 0, 0.01);
   height: auto;
   border-radius: 8px;
   border: 1px solid rgba(0, 0, 0, 0.02);
@@ -14974,6 +14975,9 @@ FORM STYLES
   padding: 0;
   position: relative !important;
   padding-top: 50px;
+}
+.sidebar-form .hbspt-form .hs-input {
+  background-color: #fff;
 }
 .sidebar-form .form-title {
   padding: 1rem;

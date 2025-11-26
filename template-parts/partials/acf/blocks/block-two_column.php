@@ -61,7 +61,7 @@ if ( is_array( $css_second ) ) {
 
                         <?php if ( $args['blurb_first'] ) : ?>
                             <div class="blurb">
-                                <?php echo wp_kses_post( $args['blurb_first'] ); ?>
+                                <?php echo $args['blurb_first']; ?>
                             </div>
                         <?php endif; ?>
 
@@ -100,7 +100,7 @@ if ( is_array( $css_second ) ) {
 
                         <?php if ( $args['blurb_second'] ) : ?>
                             <div class="blurb">
-                                <?php echo wp_kses_post( $args['blurb_second'] ); ?>
+                                <?php echo  $args['blurb_second']; ?>
                             </div>
                         <?php endif; ?>
 
