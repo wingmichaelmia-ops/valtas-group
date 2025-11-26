@@ -42,7 +42,6 @@
             "acfe_flexible_layouts_templates": 0,
             "acfe_flexible_layouts_placeholder": 0,
             "acfe_flexible_layouts_thumbnails": 0,
-            "acfe_flexible_layouts_settings": 1,
             "acfe_flexible_async": [],
             "acfe_flexible_add_actions": [
                 "toggle",
@@ -2342,11 +2341,11 @@
                             "delay": 0
                         },
                         {
-                            "key": "field_68fa567e6ed20",
+                            "key": "field_69272ee507455",
                             "label": "Contact Form",
                             "name": "contact_form",
                             "aria-label": "",
-                            "type": "post_object",
+                            "type": "acfe_code_editor",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -2355,24 +2354,16 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "post_type": [
-                                "wpcf7_contact_form"
-                            ],
-                            "post_status": "",
-                            "taxonomy": "",
-                            "return_format": "id",
-                            "multiple": 0,
-                            "save_custom": 0,
-                            "save_post_status": "publish",
-                            "acfe_bidirectional": {
-                                "acfe_bidirectional_enabled": "0"
-                            },
-                            "allow_null": 0,
-                            "allow_in_bindings": 0,
-                            "bidirectional": 0,
-                            "ui": 1,
-                            "bidirectional_target": [],
-                            "save_post_type": ""
+                            "default_value": "",
+                            "placeholder": "",
+                            "mode": "text\/html",
+                            "lines": 1,
+                            "indent_unit": 4,
+                            "maxlength": "",
+                            "rows": 4,
+                            "max_rows": "",
+                            "return_format": [],
+                            "allow_in_bindings": 0
                         }
                     ],
                     "min": "",
@@ -4810,7 +4801,15 @@
             "min": "",
             "max": "",
             "button_label": "Add Block",
-            "acfe_flexible_layouts_previews": false
+            "acfe_flexible_layouts_previews": false,
+            "acfe_flexible_modal_settings": {
+                "acfe_flexible_modal_settings_enabled": 1,
+                "acfe_flexible_modal_settings_size": "large",
+                "acfe_flexible_modal_settings_close": true,
+                "acfe_flexible_modal_settings_close_label": ""
+            },
+            "acfe_flexible_close_button_label": "",
+            "acfe_flexible_remove_top_actions": []
         }
     ],
     "location": [
@@ -4862,12 +4861,11 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "acfe_display_title": "",
     "acfe_autosync": [
         "json"
     ],
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1763573083
+    "modified": 1764175843
 }

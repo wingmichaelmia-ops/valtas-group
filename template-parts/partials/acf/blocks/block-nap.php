@@ -74,7 +74,7 @@ $args = wp_parse_args($args ?? [], $defaults);
         <div class="col-lg-6">
             <?php if($args["contact_form"]) { ?>
                 <div class="valtas-form">
-                    <?php echo do_shortcode('[contact-form-7 id="'. $args["contact_form"] .'"]'); ?>
+                    <?php echo $args["contact_form"]; ?>
                 </div>
             <?php } ?>
         </div>
