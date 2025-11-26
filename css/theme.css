@@ -12510,6 +12510,7 @@ body .cky-consent-container {
   position: relative;
 }
 
+.hs-form-iframe .hs-input,
 .hbspt-form .hs-input {
   color: rgba(0, 0, 0, 0.5);
   padding: 0.7rem 1rem !important;
@@ -12931,6 +12932,10 @@ header .navbar-nav a:hover {
 
 .echo-block-page_title .btn-valtas:nth-child(2) a:hover {
   background: #012F6C;
+}
+
+.page-title__title {
+  line-height: 1em;
 }
 
 /*FONTS*/

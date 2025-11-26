@@ -316,6 +316,8 @@ body .cky-consent-container {
 .hbspt-form .input {
 	position: relative;
 }
+
+.hs-form-iframe .hs-input,
 .hbspt-form .hs-input {
     color: rgba(0, 0, 0, .5);
     padding: .7rem 1rem !important;
@@ -343,6 +345,7 @@ body .cky-consent-container {
 .hbspt-form .hs-form-private {
     padding: 2rem !important;
 }
+
 .hbspt-form .hs_submit .actions {
 	width: max-content;
     margin: auto !important;
