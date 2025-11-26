@@ -1932,9 +1932,11 @@ FORM STYLES
     margin-bottom: 1rem;
 }
 .sidebar-form {
-    background: #FDF5E4;
+    background: #fdf5e4;
     border-radius: 10px;
-    padding: 0 1rem 1rem;
+    padding: 0;
+    position: relative !important;
+    padding-top: 50px;
     .form-title {
         padding: 1rem;
         background: $tertiary;

@@ -321,7 +321,6 @@ body .cky-consent-container {
     padding: .7rem 1rem !important;
     margin-bottom: 1rem;
     box-shadow: none !important;
-    background: rgba(0, 0, 0, .01);
     height: auto;
     border-radius: 8px;
     border: 1px solid rgba(0, 0, 0, .02);
@@ -382,10 +381,32 @@ body .cky-consent-container {
 		font-weight: normal;
 		&:hover {
 			box-shadow: none;
+			background: $primary;
 		}
 	}
 }
 label.hs-error-msg.hs-main-font-element {
 	font-family: "EB Garamond", serif;
 	color: $secondary;
+}
+
+
+.sidebar-form:before {
+    content: 'Subscribe';
+    padding: 1rem;
+    background: #009fed;
+    margin: 0 auto 1rem;
+    width: -moz-max-content;
+    width: max-content;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 700;
+    font-family: "Helvetica world", sans-serif;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
 }

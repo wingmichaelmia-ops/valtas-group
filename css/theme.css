@@ -12515,7 +12515,6 @@ body .cky-consent-container {
   padding: 0.7rem 1rem !important;
   margin-bottom: 1rem;
   box-shadow: none !important;
-  background: rgba(0, 0, 0, 0.01);
   height: auto;
   border-radius: 8px;
   border: 1px solid rgba(0, 0, 0, 0.02);
@@ -12581,11 +12580,32 @@ body .cky-consent-container {
 }
 .hbspt-form .hs_submit .actions input.hs-button.primary.large:hover {
   box-shadow: none;
+  background: #012F6C;
 }
 
 label.hs-error-msg.hs-main-font-element {
   font-family: "EB Garamond", serif;
   color: #F3B700;
+}
+
+.sidebar-form:before {
+  content: "Subscribe";
+  padding: 1rem;
+  background: #009fed;
+  margin: 0 auto 1rem;
+  width: -moz-max-content;
+  width: max-content;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: 700;
+  font-family: "Helvetica world", sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
 }
 
 #main-nav {
@@ -14949,9 +14969,11 @@ FORM STYLES
 }
 
 .sidebar-form {
-  background: #FDF5E4;
+  background: #fdf5e4;
   border-radius: 10px;
-  padding: 0 1rem 1rem;
+  padding: 0;
+  position: relative !important;
+  padding-top: 50px;
 }
 .sidebar-form .form-title {
   padding: 1rem;
