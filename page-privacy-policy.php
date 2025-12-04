@@ -35,7 +35,6 @@ get_header();
 <section class="pp-header-title py-5">
     <div class="container text-center" style="max-width:820px;">
         <h1>Privacy <span class="highlight">Policy</span></h1>
-        <p>Nullam eget augue et mauris aliquam ornare ut sit amet diam. Sed ac dui varius, lacinia diam vitae, suscipit sapien. Curabitur eu ante vel ante elementum porta. </p>
     </div>
 </section>
 <section class="pp-body">
