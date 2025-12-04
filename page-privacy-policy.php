@@ -35,6 +35,7 @@ get_header();
 <section class="pp-header-title py-5">
     <div class="container text-center" style="max-width:820px;">
         <h1>Privacy <span class="highlight">Policy</span></h1>
+        <p>Your privacy matters to us. We are committed to protecting the personal information you share and ensuring it is handled with clarity, care, and transparency. This policy explains what data we collect, how we use it, and the steps we take to safeguard your information while delivering the services and support you expect from Valtas.</p>
     </div>
 </section>
 <section class="pp-body">
