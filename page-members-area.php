@@ -136,6 +136,8 @@ endif;
                 $count++;
                 $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
                 $download = get_field('file_download');
+                $description = get_field('description');
+                $button_text = get_field('button_text') ?: 'Download File';
             ?>
 
                 <?php if ($count === 1) : ?>
@@ -152,10 +154,11 @@ endif;
                             <div class="article-content bottom-0 start-0 py-2">
                                 <h3 class="boardx-title"><?php the_title(); ?></h3>
                                 <div class="boardx-excerpt">
-                                    <?php echo wp_kses_post( wp_trim_words( get_the_content(), 30, '...' ) ); ?>
+                                    <?php echo $description; ?>
                                 </div>
-                                
-                                <a href="<?php the_permalink(); ?>" class="stretched-link opacity-0"></a>
+                                <?php if ($download): ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -179,12 +182,10 @@ endif;
                             } ?>
                             <div class="article-content">
                                 <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                                <?php echo get_the_content(); ?>
+                                <?php echo $description; ?>
                                 <div class="mb-2">
                                 <?php if ($download): ?>
-                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                                <?php else: ?>
-                                    <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
                                 <?php endif; ?>
                                 </div>
                             </div>
@@ -216,12 +217,10 @@ endif;
                                     } ?>
                                     <div class="article-content">
                                         <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                                        <?php echo get_the_content(); ?>
+                                        <?php echo $description; ?>
                                         <div class="mb-2">
                                         <?php if ($download): ?>
-                                            <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                                        <?php else: ?>
-                                            <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
+                                            <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
                                         <?php endif; ?>
                                         </div>
                                     </div>
@@ -319,6 +318,8 @@ endif;
                 $count++;
                 $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
                 $download = get_field('file_download');
+                $description = get_field('description');
+                $button_text = get_field('button_text') ?: 'Download File';
             ?>
 
                 <?php if ($count === 1) : ?>
@@ -335,10 +336,12 @@ endif;
                             <div class="article-content bottom-0 start-0 py-2">
                                 <h3 class="boardx-title"><?php the_title(); ?></h3>
                                 <div class="boardx-excerpt">
-                                    <?php echo wp_kses_post( wp_trim_words( get_the_content(), 30, '...' ) ); ?>
+                                    <?php echo $description; ?>
                                 </div>
                                 
-                                <a href="<?php the_permalink(); ?>" class="stretched-link opacity-0"></a>
+                                <?php if ($download): ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -362,12 +365,10 @@ endif;
                             } ?>
                             <div class="article-content">
                                 <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                                <?php echo get_the_content(); ?>
+                                <?php echo $description; ?>
                                 <div class="mb-2">
                                 <?php if ($download): ?>
-                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                                <?php else: ?>
-                                    <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
                                 <?php endif; ?>
                                 </div>
                             </div>
@@ -399,12 +400,10 @@ endif;
                                     } ?>
                                     <div class="article-content">
                                         <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                                        <?php echo get_the_content(); ?>
+                                        <?php echo $description; ?>
                                         <div class="mb-2">
                                         <?php if ($download): ?>
-                                            <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                                        <?php else: ?>
-                                            <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
+                                            <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
                                         <?php endif; ?>
                                         </div>
                                     </div>
@@ -502,6 +501,8 @@ endif;
             $count++;
             $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
             $download = get_field('file_download');
+            $description = get_field('description');
+            $button_text = get_field('button_text') ?: 'Download File';
     ?>
         <?php if ($count === 1) : ?>
             <!-- Left large article -->
@@ -517,10 +518,12 @@ endif;
                     <div class="article-content bottom-0 start-0 py-2">
                         <h3 class="boardx-title"><?php the_title(); ?></h3>
                             <div class="boardx-excerpt">
-                                <?php echo wp_kses_post( wp_trim_words( get_the_content(), 30, '...' ) ); ?>
+                                <?php echo $description; ?>
                             </div>
                                 
-                            <a href="<?php the_permalink(); ?>" class="stretched-link opacity-0"></a>
+                            <?php if ($download): ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                     </div>
                 </div>
             </div>       
@@ -542,13 +545,11 @@ endif;
                             } ?>
                         <div class="article-content">
                             <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                            <?php echo get_the_content(); ?>
+                            <?php echo $description; ?>
                             <div class="mb-2">
                                 <?php if ($download): ?>
-                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                                <?php else: ?>
-                                    <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
-                                    <?php endif; ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -630,6 +631,8 @@ endif;
                 $count++;
                 $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
                 $download = get_field('file_download');
+                $description = get_field('description');
+                $button_text = get_field('button_text') ?: 'Download File';
     ?>
         <?php if ($count === 1) : ?>
             <!-- Left large article -->
@@ -645,10 +648,12 @@ endif;
                     <div class="article-content bottom-0 start-0 py-2">
                         <h3 class="boardx-title"><?php the_title(); ?></h3>
                             <div class="boardx-excerpt">
-                                <?php echo wp_kses_post( wp_trim_words( get_the_content(), 30, '...' ) ); ?>
+                               <?php echo $description; ?>
                             </div>
                                 
-                            <a href="<?php the_permalink(); ?>" class="stretched-link opacity-0"></a>
+                            <?php if ($download): ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -669,12 +674,10 @@ endif;
                             } ?>
                             <div class="article-content">
                                 <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                                <?php echo get_the_content(); ?>
+                                <?php echo $description; ?>
                                 <div class="mb-2">
                                 <?php if ($download): ?>
-                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                                <?php else: ?>
-                                    <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
                                 <?php endif; ?>
                                 </div>
                             </div>
@@ -698,13 +701,11 @@ endif;
                             } ?>
                         <div class="article-content">
                             <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                            <?php echo get_the_content(); ?>
+                            <?php echo $description; ?>
                             <div class="mb-2">
                                 <?php if ($download): ?>
-                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                                <?php else: ?>
-                                    <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
-                                    <?php endif; ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -787,6 +788,8 @@ while ($query->have_posts()) :
     $count++;
     $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
     $download = get_field('file_download');
+    $description = get_field('description');
+    $button_text = get_field('button_text') ?: 'Download File';
 ?>
 
     <?php if (in_array($count, [1, 2, 3])) : ?>
@@ -807,13 +810,11 @@ while ($query->have_posts()) :
 
                     <div class="article-content">
                         <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                        <?php the_content(); ?>
+                        <?php echo $description; ?>
                         <div class="mb-2">
                             <?php if ($download): ?>
-                                <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                            <?php else: ?>
-                                <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
-                            <?php endif; ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -833,13 +834,11 @@ while ($query->have_posts()) :
 
                     <div class="article-content">
                         <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                        <?php the_content(); ?>
+                        <?php echo $description; ?>
                         <div class="mb-2">
                             <?php if ($download): ?>
-                                <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                            <?php else: ?>
-                                <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
-                            <?php endif; ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -858,9 +857,11 @@ while ($query->have_posts()) :
                     <div class="article-content bottom-0 start-0 py-2">
                         <h3 class="boardx-title"><?php the_title(); ?></h3>
                         <div class="boardx-excerpt">
-                            <?php echo wp_kses_post(wp_trim_words(get_the_content(), 30, '...')); ?>
+                            <?php echo $description; ?>
                         </div>
-                        <a href="<?php the_permalink(); ?>" class="stretched-link opacity-0"></a>
+                        <?php if ($download): ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -941,6 +942,8 @@ while ($query->have_posts()) :
     $count++;
     $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
     $download = get_field('file_download');
+    $description = get_field('description');
+                $button_text = get_field('button_text') ?: 'Download File';
 ?>
 
     <?php if ( $count === 1) : ?>
@@ -956,9 +959,11 @@ while ($query->have_posts()) :
                     <div class="article-content bottom-0 start-0 py-2">
                         <h3 class="boardx-title"><?php the_title(); ?></h3>
                         <div class="boardx-excerpt">
-                            <?php echo wp_kses_post(wp_trim_words(get_the_content(), 30, '...')); ?>
+                            <?php echo $description; ?>
                         </div>
-                        <a href="<?php the_permalink(); ?>" class="stretched-link opacity-0"></a>
+                        <?php if ($download): ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -976,13 +981,11 @@ while ($query->have_posts()) :
 
                     <div class="article-content">
                         <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                        <?php the_content(); ?>
+                        <?php echo $description; ?>
                         <div class="mb-2">
                             <?php if ($download): ?>
-                                <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                            <?php else: ?>
-                                <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
-                            <?php endif; ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -1005,13 +1008,11 @@ while ($query->have_posts()) :
 
                     <div class="article-content">
                         <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                        <?php the_content(); ?>
+                        <?php echo $description; ?>
                         <div class="mb-2">
                             <?php if ($download): ?>
-                                <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                            <?php else: ?>
-                                <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
-                            <?php endif; ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -1098,6 +1099,8 @@ while ($query->have_posts()) :
             $count++;
             $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
             $download = get_field('file_download');
+            $description = get_field('description');
+                $button_text = get_field('button_text') ?: 'Download File';
     ?>
         <?php if ($count === 1) : ?>
             <!-- Left large article -->
@@ -1113,10 +1116,12 @@ while ($query->have_posts()) :
                     <div class="article-content bottom-0 start-0 py-2">
                         <h3 class="boardx-title"><?php the_title(); ?></h3>
                             <div class="boardx-excerpt">
-                                <?php echo wp_kses_post( wp_trim_words( get_the_content(), 30, '...' ) ); ?>
+                                <?php echo $description; ?>
                             </div>
                                 
-                            <a href="<?php the_permalink(); ?>" class="stretched-link opacity-0"></a>
+                            <?php if ($download): ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                     </div>
                 </div>
             </div>       
@@ -1138,13 +1143,11 @@ while ($query->have_posts()) :
                             } ?>
                         <div class="article-content">
                             <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                            <?php echo get_the_content(); ?>
+                            <?php echo $description; ?>
                             <div class="mb-2">
                                 <?php if ($download): ?>
-                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                                <?php else: ?>
-                                    <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
-                                    <?php endif; ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -1229,6 +1232,8 @@ endif;
                 $count++;
                 $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
                 $download = get_field('file_download');
+                $description = get_field('description');
+                $button_text = get_field('button_text') ?: 'Download File';
             ?>
 
                 <?php if ($count === 1) : ?>
@@ -1245,10 +1250,12 @@ endif;
                             <div class="article-content bottom-0 start-0 py-2">
                                 <h3 class="boardx-title"><?php the_title(); ?></h3>
                                 <div class="boardx-excerpt">
-                                    <?php echo wp_kses_post( wp_trim_words( get_the_content(), 30, '...' ) ); ?>
+                                    <?php echo $description; ?>
                                 </div>
                                 
-                                <a href="<?php the_permalink(); ?>" class="stretched-link opacity-0"></a>
+                                <?php if ($download): ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -1272,12 +1279,10 @@ endif;
                             } ?>
                             <div class="article-content">
                                 <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                                <?php echo get_the_content(); ?>
+                                <?php echo $description; ?>
                                 <div class="mb-2">
                                 <?php if ($download): ?>
-                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                                <?php else: ?>
-                                    <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
                                 <?php endif; ?>
                                 </div>
                             </div>
@@ -1309,12 +1314,10 @@ endif;
                                     } ?>
                                     <div class="article-content">
                                         <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                                        <?php echo get_the_content(); ?>
+                                        <?php echo $description; ?>
                                         <div class="mb-2">
                                         <?php if ($download): ?>
-                                            <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                                        <?php else: ?>
-                                            <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
+                                            <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
                                         <?php endif; ?>
                                         </div>
                                     </div>
@@ -1405,6 +1408,8 @@ endif;
                 $count++;
                 $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
                 $download = get_field('file_download');
+                $description = get_field('description');
+                $button_text = get_field('button_text') ?: 'Download File';
             ?>
 
                 <?php if ($count === 1) : ?>
@@ -1421,10 +1426,12 @@ endif;
                             <div class="article-content bottom-0 start-0 py-2">
                                 <h3 class="boardx-title"><?php the_title(); ?></h3>
                                 <div class="boardx-excerpt">
-                                    <?php echo wp_kses_post( wp_trim_words( get_the_content(), 30, '...' ) ); ?>
+                                    <?php echo $description; ?>
                                 </div>
                                 
-                                <a href="<?php the_permalink(); ?>" class="stretched-link opacity-0"></a>
+                                <?php if ($download): ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -1448,12 +1455,10 @@ endif;
                             } ?>
                             <div class="article-content">
                                 <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                                <?php echo get_the_content(); ?>
+                                <?php echo $description; ?>
                                 <div class="mb-2">
                                 <?php if ($download): ?>
-                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                                <?php else: ?>
-                                    <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
                                 <?php endif; ?>
                                 </div>
                             </div>
@@ -1485,12 +1490,10 @@ endif;
                                     } ?>
                                     <div class="article-content">
                                         <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                                        <?php echo get_the_content(); ?>
+                                        <?php echo $description; ?>
                                         <div class="mb-2">
                                         <?php if ($download): ?>
-                                            <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                                        <?php else: ?>
-                                            <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
+                                            <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
                                         <?php endif; ?>
                                         </div>
                                     </div>
@@ -1578,6 +1581,8 @@ while ($query->have_posts()) :
     $count++;
     $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
     $download = get_field('file_download');
+    $description = get_field('description');
+                $button_text = get_field('button_text') ?: 'Download File';
 ?>
 
     <?php if ( $count === 1) : ?>
@@ -1593,9 +1598,11 @@ while ($query->have_posts()) :
                     <div class="article-content bottom-0 start-0 py-2">
                         <h3 class="boardx-title"><?php the_title(); ?></h3>
                         <div class="boardx-excerpt">
-                            <?php echo wp_kses_post(wp_trim_words(get_the_content(), 30, '...')); ?>
+                            <?php echo $description; ?>
                         </div>
-                        <a href="<?php the_permalink(); ?>" class="stretched-link opacity-0"></a>
+                        <?php if ($download): ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -1613,12 +1620,10 @@ while ($query->have_posts()) :
 
                     <div class="article-content">
                         <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                        <?php the_content(); ?>
+                        <?php echo $description; ?>
                         <div class="mb-2">
                             <?php if ($download): ?>
-                                <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                            <?php else: ?>
-                                <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
+                                <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -1642,13 +1647,11 @@ while ($query->have_posts()) :
 
                     <div class="article-content">
                         <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                        <?php the_content(); ?>
+                        <?php echo $description; ?>
                         <div class="mb-2">
                             <?php if ($download): ?>
-                                <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                            <?php else: ?>
-                                <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
-                            <?php endif; ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -1734,6 +1737,8 @@ while ($query->have_posts()) :
             $count++;
             $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
             $download = get_field('file_download');
+            $description = get_field('description');
+                $button_text = get_field('button_text') ?: 'Download File';
     ?>
         <?php if ($count === 1) : ?>
             <!-- Left large article -->
@@ -1749,10 +1754,12 @@ while ($query->have_posts()) :
                     <div class="article-content bottom-0 start-0 py-2">
                         <h3 class="boardx-title"><?php the_title(); ?></h3>
                             <div class="boardx-excerpt">
-                                <?php echo wp_kses_post( wp_trim_words( get_the_content(), 30, '...' ) ); ?>
+                                <?php echo $description; ?>
                             </div>
                                 
-                            <a href="<?php the_permalink(); ?>" class="stretched-link opacity-0"></a>
+                            <?php if ($download): ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                     </div>
                 </div>
             </div>       
@@ -1774,13 +1781,11 @@ while ($query->have_posts()) :
                             } ?>
                         <div class="article-content">
                             <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
-                            <?php echo get_the_content(); ?>
+                            <?php echo $description; ?>
                             <div class="mb-2">
                                 <?php if ($download): ?>
-                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download>Download File</a>
-                                <?php else: ?>
-                                    <a href="<?php the_permalink(); ?>" class="text-decoration-underline">Read More</a>
-                                    <?php endif; ?>
+                                    <a href="<?php echo esc_url($download); ?>" class="text-decoration-underline" download><?php echo $button_text; ?></a>
+                                <?php endif; ?>
                                 </div>
                             </div>
                         </div>
