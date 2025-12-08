@@ -204,14 +204,6 @@ endif;
                                         ?>
                                         </div>
                                         <?php
-                                    } elseif ($download) {
-                                        ?>
-                                        <div class="newspaper-holder">
-                                        <?php
-                                        echo '<img src="' . esc_url(get_template_directory_uri() . '/img/newspaper.jpg') . '" class="img-fluid w-100" alt="Download Available">';
-                                        ?>
-                                        </div>
-                                        <?php
                                     } else {
                                         echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
                                     } ?>
