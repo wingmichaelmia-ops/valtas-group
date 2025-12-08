@@ -379,15 +379,7 @@ endif;
                                         ?>
                                         </div>
                                         <?php
-                                    } elseif ($download) {
-                                        ?>
-                                        <div class="newspaper-holder">
-                                        <?php
-                                        echo '<img src="' . esc_url(get_template_directory_uri() . '/img/newspaper.jpg') . '" class="img-fluid w-100" alt="Download Available">';
-                                        ?>
-                                        </div>
-                                        <?php
-                                    } else {
+                                    }  else {
                                         echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
                                     } ?>
                                     <div class="article-content">
@@ -528,11 +520,7 @@ endif;
                                 echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                             ?>
                         </div>
-                        <?php } elseif ($download) { ?>
-                            <div class="newspaper-holder">
-                                <?php echo '<img src="' . esc_url(get_template_directory_uri() . '/img/newspaper.jpg') . '" class="img-fluid w-100" alt="Download Available">'; ?>
-                            </div>
-                        <?php } else {
+                        <?php }  else {
                                 echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
                             } ?>
                         <div class="article-content">
@@ -684,11 +672,7 @@ endif;
                                 echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                             ?>
                         </div>
-                        <?php } elseif ($download) { ?>
-                            <div class="newspaper-holder">
-                                <?php echo '<img src="' . esc_url(get_template_directory_uri() . '/img/newspaper.jpg') . '" class="img-fluid w-100" alt="Download Available">'; ?>
-                            </div>
-                        <?php } else {
+                        <?php }  else {
                                 echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
                             } ?>
                         <div class="article-content">
@@ -792,10 +776,7 @@ while ($query->have_posts()) :
                         <div class="featured-img">
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
-                    <?php elseif ($download): ?>
-                        <div class="newspaper-holder">
-                            <img src="<?php echo esc_url(get_template_directory_uri() . '/img/newspaper.jpg'); ?>" class="img-fluid w-100" alt="Download Available">
-                        </div>
+                    
                     <?php else: ?>
                         <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3 white-icon" alt="Read More">
                     <?php endif; ?>
@@ -990,10 +971,7 @@ while ($query->have_posts()) :
                         <div class="featured-img">
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
-                    <?php elseif ($download): ?>
-                        <div class="newspaper-holder">
-                            <img src="<?php echo esc_url(get_template_directory_uri() . '/img/newspaper.jpg'); ?>" class="img-fluid w-100" alt="Download Available">
-                        </div>
+                   
                     <?php else: ?>
                         <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3 white-icon" alt="Read More">
                     <?php endif; ?>
@@ -1126,10 +1104,7 @@ while ($query->have_posts()) :
                                 echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                             ?>
                         </div>
-                        <?php } elseif ($download) { ?>
-                            <div class="newspaper-holder">
-                                <?php echo '<img src="' . esc_url(get_template_directory_uri() . '/img/newspaper.jpg') . '" class="img-fluid w-100" alt="Download Available">'; ?>
-                            </div>
+                       
                         <?php } else {
                                 echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
                             } ?>
@@ -1290,14 +1265,6 @@ endif;
                                         <div class="featured-img">
                                         <?php
                                         echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
-                                        ?>
-                                        </div>
-                                        <?php
-                                    } elseif ($download) {
-                                        ?>
-                                        <div class="newspaper-holder">
-                                        <?php
-                                        echo '<img src="' . esc_url(get_template_directory_uri() . '/img/newspaper.jpg') . '" class="img-fluid w-100" alt="Download Available">';
                                         ?>
                                         </div>
                                         <?php
@@ -1469,14 +1436,6 @@ endif;
                                         ?>
                                         </div>
                                         <?php
-                                    } elseif ($download) {
-                                        ?>
-                                        <div class="newspaper-holder">
-                                        <?php
-                                        echo '<img src="' . esc_url(get_template_directory_uri() . '/img/newspaper.jpg') . '" class="img-fluid w-100" alt="Download Available">';
-                                        ?>
-                                        </div>
-                                        <?php
                                     } else {
                                         echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
                                     } ?>
@@ -1629,10 +1588,6 @@ while ($query->have_posts()) :
                         <div class="featured-img">
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
-                    <?php elseif ($download): ?>
-                        <div class="newspaper-holder">
-                            <img src="<?php echo esc_url(get_template_directory_uri() . '/img/newspaper.jpg'); ?>" class="img-fluid w-100" alt="Download Available">
-                        </div>
                     <?php else: ?>
                         <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3 white-icon" alt="Read More">
                     <?php endif; ?>
@@ -1764,10 +1719,6 @@ while ($query->have_posts()) :
                                 echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                             ?>
                         </div>
-                        <?php } elseif ($download) { ?>
-                            <div class="newspaper-holder">
-                                <?php echo '<img src="' . esc_url(get_template_directory_uri() . '/img/newspaper.jpg') . '" class="img-fluid w-100" alt="Download Available">'; ?>
-                            </div>
                         <?php } else {
                                 echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
                             } ?>
