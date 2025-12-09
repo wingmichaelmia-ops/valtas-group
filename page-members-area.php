@@ -145,7 +145,7 @@ endif;
                     <div class="col-lg-4">
                         <div class="boardx-card large h-100 position-relative">
                             <?php if ($image): ?>
-                                <div class="featured-img">
+                                <div class="featured-img mb-2">
                                     <?php
                                         echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                                     ?>
@@ -170,7 +170,7 @@ endif;
                         <div class="boardx-card flex-grow-1 position-relative">
                             <?php if ($image) {
                                ?>
-                                        <div class="featured-img">
+                                        <div class="featured-img mb-2">
                                         <?php
                                         echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                                         ?>
@@ -200,7 +200,7 @@ endif;
                                 <div class="boardx-card position-relative h-100">
                                     <?php if ($image) {
                                         ?>
-                                        <div class="featured-img">
+                                        <div class="featured-img mb-2">
                                         <?php
                                         echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                                         ?>
@@ -349,7 +349,7 @@ endif;
                         <div class="boardx-card flex-grow-1 position-relative">
                             <?php if ($image) {
                                ?>
-                                        <div class="featured-img">
+                                        <div class="featured-img mb-2">
                                         <?php
                                         echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                                         ?>
@@ -379,7 +379,7 @@ endif;
                                 <div class="boardx-card position-relative h-100">
                                     <?php if ($image) {
                                         ?>
-                                        <div class="featured-img">
+                                        <div class="featured-img mb-2">
                                         <?php
                                         echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                                         ?>
@@ -501,7 +501,7 @@ endif;
             <div class="col-lg-12 mb-2">
                 <div class="boardx-card boardx-card-overlay large h-100 position-relative">
                     <?php if ($image): ?>
-                        <div class="featured-img">
+                        <div class="featured-img mb-2">
                             <?php
                                 echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                             ?>
@@ -523,7 +523,7 @@ endif;
             <div class="col-4">
                 <div class="boardx-card position-relative h-100 bg-light-secondary">
                     <?php if ($image) { ?>
-                        <div class="featured-img">
+                        <div class="featured-img mb-2">
                             <?php
                                 echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                             ?>
@@ -629,7 +629,7 @@ endif;
             <div class="col-lg-8">
                 <div class="boardx-card boardx-card-overlay large h-100 position-relative">
                     <?php if ($image): ?>
-                        <div class="featured-img">
+                        <div class="featured-img mb-2">
                             <?php
                                 echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                             ?>
@@ -652,7 +652,7 @@ endif;
                 <div class="boardx-card flex-grow-1 position-relative">
                             <?php if ($image) {
                                ?>
-                                        <div class="featured-img">
+                                        <div class="featured-img mb-2">
                                         <?php
                                         echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                                         ?>
@@ -679,7 +679,7 @@ endif;
             <div class="col-lg-4">
                 <div class="boardx-card position-relative h-100">
                     <?php if ($image) { ?>
-                        <div class="featured-img">
+                        <div class="featured-img mb-2">
                             <?php
                                 echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                             ?>
@@ -787,7 +787,7 @@ while ($query->have_posts()) :
             <div class="col-lg-4">
                 <div class="boardx-card transparent-bg position-relative h-100">
                     <?php if ($image): ?>
-                        <div class="featured-img">
+                        <div class="featured-img mb-2">
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
                     
@@ -813,7 +813,7 @@ while ($query->have_posts()) :
             <div class="col-lg-4">
                 <div class="boardx-card transparent-bg flex-grow-1 position-relative">
                     <?php if ($image): ?>
-                        <div class="featured-img">
+                        <div class="featured-img mb-2">
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
                     <?php elseif($download): ?>
@@ -838,7 +838,7 @@ while ($query->have_posts()) :
             <div class="col-lg-8">
                 <div class="boardx-card boardx-card-overlay large h-100 position-relative">
                     <?php if ($image): ?>
-                        <div class="featured-img">
+                        <div class="featured-img mb-2">
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
                     <?php endif; ?>
@@ -940,7 +940,7 @@ while ($query->have_posts()) :
             <div class="col-lg-6">
                 <div class="boardx-card boardx-card-overlay large h-100 position-relative">
                     <?php if ($image): ?>
-                        <div class="featured-img">
+                        <div class="featured-img mb-2">
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
                     <?php endif; ?>
@@ -961,7 +961,7 @@ while ($query->have_posts()) :
             <div class="col-lg-6">
                 <div class="boardx-card transparent-bg flex-grow-1 position-relative">
                     <?php if ($image): ?>
-                        <div class="featured-img">
+                        <div class="featured-img mb-2">
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
                     <?php elseif($download): ?>
@@ -985,7 +985,7 @@ while ($query->have_posts()) :
             <div class="col-lg-4">
                 <div class="boardx-card transparent-bg flex-grow-1 position-relative">
                     <?php if ($image): ?>
-                        <div class="featured-img">
+                        <div class="featured-img mb-2">
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
                    
@@ -1095,7 +1095,7 @@ while ($query->have_posts()) :
             <div class="col-lg-12 mb-2">
                 <div class="boardx-card boardx-card-overlay overlay-white large h-100 position-relative">
                     <?php if ($image): ?>
-                        <div class="featured-img">
+                        <div class="featured-img mb-2">
                             <?php
                                 echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                             ?>
@@ -1117,7 +1117,7 @@ while ($query->have_posts()) :
             <div class="col-4">
                 <div class="boardx-card position-relative h-100 bg-grey">
                     <?php if ($image) { ?>
-                        <div class="featured-img">
+                        <div class="featured-img mb-2">
                             <?php
                                 echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                             ?>
@@ -1252,7 +1252,7 @@ endif;
                         <div class="boardx-card flex-grow-1 position-relative">
                             <?php if ($image) {
                                ?>
-                                        <div class="featured-img">
+                                        <div class="featured-img mb-2">
                                         <?php
                                         echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                                         ?>
@@ -1280,7 +1280,7 @@ endif;
                                 <div class="boardx-card position-relative h-100">
                                     <?php if ($image) {
                                         ?>
-                                        <div class="featured-img">
+                                        <div class="featured-img mb-2">
                                         <?php
                                         echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                                         ?>
@@ -1420,7 +1420,7 @@ endif;
                         <div class="boardx-card flex-grow-1 position-relative">
                             <?php if ($image) {
                                ?>
-                                        <div class="featured-img">
+                                        <div class="featured-img mb-2">
                                         <?php
                                         echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                                         ?>
@@ -1448,7 +1448,7 @@ endif;
                                 <div class="boardx-card position-relative h-100">
                                     <?php if ($image) {
                                         ?>
-                                        <div class="featured-img">
+                                        <div class="featured-img mb-2">
                                         <?php
                                         echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                                         ?>
@@ -1559,7 +1559,7 @@ while ($query->have_posts()) :
             <div class="col-lg-6">
                 <div class="boardx-card boardx-card-overlay large h-100 position-relative">
                     <?php if ($image): ?>
-                        <div class="featured-img">
+                        <div class="featured-img mb-2">
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
                     <?php endif; ?>
@@ -1580,7 +1580,7 @@ while ($query->have_posts()) :
             <div class="col-lg-6">
                 <div class="boardx-card bg-light-secondary flex-grow-1 position-relative">
                     <?php if ($image): ?>
-                        <div class="featured-img">
+                        <div class="featured-img mb-2">
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
                     <?php elseif($download): ?>
@@ -1604,7 +1604,7 @@ while ($query->have_posts()) :
             <div class="col-lg-4">
                 <div class="boardx-card bg-light-secondary flex-grow-1 position-relative">
                     <?php if ($image): ?>
-                        <div class="featured-img">
+                        <div class="featured-img mb-2">
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
                     <?php elseif($download): ?>
@@ -1712,7 +1712,7 @@ while ($query->have_posts()) :
             <div class="col-lg-12 mb-2">
                 <div class="boardx-card boardx-card-overlay overlay-white large h-100 position-relative">
                     <?php if ($image): ?>
-                        <div class="featured-img">
+                        <div class="featured-img mb-2">
                             <?php
                                 echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                             ?>
@@ -1734,7 +1734,7 @@ while ($query->have_posts()) :
             <div class="col-4">
                 <div class="boardx-card position-relative h-100 bg-white">
                     <?php if ($image) { ?>
-                        <div class="featured-img">
+                        <div class="featured-img mb-2">
                             <?php
                                 echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                             ?>
