@@ -238,7 +238,7 @@ endif;
                 </h2>                              
             </div>
             <div class="col-lg-6 py-2">
-                <p>Rotating spotlight on a topic of near-term importance for boards, with handpicked resources to help your board focus where it matters most</p>
+                <p>Want the latest board resources? Each month we’ll feature a new topic here and provide the resources your board needs to operate well across that area. This month we’re focused on succession planning. Get this month’s featured resources below!</p>
             </div>
         </div>
     </div>
