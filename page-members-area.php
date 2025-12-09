@@ -964,8 +964,9 @@ while ($query->have_posts()) :
                         <div class="featured-img">
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
-                    <?php else: ?>
+                    <?php elseif($download): ?>
                         <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3 white-icon" alt="Read More">
+                    <?php else: ?>
                     <?php endif; ?>
 
                     <div class="article-content">
@@ -988,8 +989,9 @@ while ($query->have_posts()) :
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
                    
-                    <?php else: ?>
+                    <?php elseif($download): ?>
                         <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3 white-icon" alt="Read More">
+                    <?php else: ?>
                     <?php endif; ?>
 
                     <div class="article-content">
@@ -1121,9 +1123,9 @@ while ($query->have_posts()) :
                             ?>
                         </div>
                        
-                        <?php } else {
+                        <?php } elseif($download){
                                 echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
-                            } ?>
+                            } else { } ?>
                         <div class="article-content">
                             <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
                             <?php echo $description; ?>
@@ -1257,9 +1259,9 @@ endif;
                                         </div>
                                         <?php
                                 echo '<img src="' . esc_url(get_template_directory_uri() . '/img/newspaper.jpg') . '" class="img-fluid w-100 featured-img" alt="Download Available">';
-                            } else {
+                            } elseif($download){
                                 echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
-                            } ?>
+                            } else { } ?>
                             <div class="article-content">
                                 <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
                                 <?php echo $description; ?>
@@ -1284,9 +1286,9 @@ endif;
                                         ?>
                                         </div>
                                         <?php
-                                    } else {
+                                    } elseif($download){
                                         echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
-                                    } ?>
+                                    } else { } ?>
                                     <div class="article-content">
                                         <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
                                         <?php echo $description; ?>
@@ -1425,9 +1427,9 @@ endif;
                                         </div>
                                         <?php
                                 echo '<img src="' . esc_url(get_template_directory_uri() . '/img/newspaper.jpg') . '" class="img-fluid w-100 featured-img" alt="Download Available">';
-                            } else {
+                            } elseif($download){
                                 echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
-                            } ?>
+                            } else { } ?>
                             <div class="article-content">
                                 <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
                                 <?php echo $description; ?>
@@ -1452,9 +1454,9 @@ endif;
                                         ?>
                                         </div>
                                         <?php
-                                    } else {
+                                    } elseif($download){
                                         echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
-                                    } ?>
+                                    } else { } ?>
                                     <div class="article-content">
                                         <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
                                         <?php echo $description; ?>
@@ -1581,8 +1583,9 @@ while ($query->have_posts()) :
                         <div class="featured-img">
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
-                    <?php else: ?>
+                    <?php elseif($download): ?>
                         <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3 white-icon" alt="Read More">
+                    <?php else: ?>
                     <?php endif; ?>
 
                     <div class="article-content">
@@ -1604,8 +1607,9 @@ while ($query->have_posts()) :
                         <div class="featured-img">
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
                         </div>
-                    <?php else: ?>
+                    <?php elseif($download): ?>
                         <img src="<?php echo esc_url(get_template_directory_uri() . '/img/note.png'); ?>" class="img-fluid mb-3 white-icon" alt="Read More">
+                    <?php else: ?>
                     <?php endif; ?>
 
                     <div class="article-content">
@@ -1735,9 +1739,9 @@ while ($query->have_posts()) :
                                 echo '<img src="' . esc_url($image) . '" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="' . esc_attr(get_the_title()) . '">';
                             ?>
                         </div>
-                        <?php } else {
-                                echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
-                            } ?>
+                        <?php } elseif($download){
+                            echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
+                        } else { } ?>
                         <div class="article-content">
                             <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
                             <?php echo $description; ?>
