@@ -15,6 +15,7 @@ get_header();
         background: url(<?php echo esc_url(get_template_directory_uri() . '/img/login-bg.jpg') ?>);
         background-size: cover;
         background-position: bottom center;
+        padding-top: 150px !important;
     }
     h3 {
         font-size: clamp(1.875rem, 1.7188rem + 0.5vw, 2rem);
