@@ -197,7 +197,7 @@ endif;
                 <?php elseif ($count === 3 || $count === 4) : ?>
                             <!-- Bottom right small articles -->
                             <div class="col-6">
-                                <div class="boardx-card small position-relative h-100">
+                                <div class="boardx-card position-relative h-100">
                                     <?php if ($image) {
                                         ?>
                                         <div class="featured-img">
@@ -376,7 +376,7 @@ endif;
                 <?php elseif ($count === 3 || $count === 4) : ?>
                             <!-- Bottom right small articles -->
                             <div class="col-6">
-                                <div class="boardx-card small position-relative h-100">
+                                <div class="boardx-card position-relative h-100">
                                     <?php if ($image) {
                                         ?>
                                         <div class="featured-img">
@@ -521,7 +521,7 @@ endif;
             </div>       
         <?php else : ?>
             <div class="col-4">
-                <div class="boardx-card small position-relative h-100 bg-light-secondary">
+                <div class="boardx-card position-relative h-100 bg-light-secondary">
                     <?php if ($image) { ?>
                         <div class="featured-img">
                             <?php
@@ -677,7 +677,7 @@ endif;
             </div>
         <?php else : ?>
             <div class="col-lg-4">
-                <div class="boardx-card small position-relative h-100">
+                <div class="boardx-card position-relative h-100">
                     <?php if ($image) { ?>
                         <div class="featured-img">
                             <?php
@@ -785,7 +785,7 @@ while ($query->have_posts()) :
     <?php if (in_array($count, [1, 2, 3])) : ?>
         <!-- SMALL CARDS -->
             <div class="col-lg-4">
-                <div class="boardx-card transparent-bg small position-relative h-100">
+                <div class="boardx-card transparent-bg position-relative h-100">
                     <?php if ($image): ?>
                         <div class="featured-img">
                             <img src="<?php echo esc_url($image); ?>" class="img-fluid w-100 h-100 object-fit-cover rounded" alt="<?php the_title_attribute(); ?>">
@@ -1115,7 +1115,7 @@ while ($query->have_posts()) :
             </div>       
         <?php else : ?>
             <div class="col-4">
-                <div class="boardx-card small position-relative h-100 bg-grey">
+                <div class="boardx-card position-relative h-100 bg-grey">
                     <?php if ($image) { ?>
                         <div class="featured-img">
                             <?php
@@ -1277,7 +1277,7 @@ endif;
                 <?php elseif ($count === 3 || $count === 4) : ?>
                             <!-- Bottom right small articles -->
                             <div class="col-6">
-                                <div class="boardx-card small position-relative h-100">
+                                <div class="boardx-card position-relative h-100">
                                     <?php if ($image) {
                                         ?>
                                         <div class="featured-img">
@@ -1445,7 +1445,7 @@ endif;
                 <?php elseif ($count === 3 || $count === 4) : ?>
                             <!-- Bottom right small articles -->
                             <div class="col-6">
-                                <div class="boardx-card small position-relative h-100">
+                                <div class="boardx-card position-relative h-100">
                                     <?php if ($image) {
                                         ?>
                                         <div class="featured-img">
@@ -1732,7 +1732,7 @@ while ($query->have_posts()) :
             </div>       
         <?php else : ?>
             <div class="col-4">
-                <div class="boardx-card small position-relative h-100 bg-white">
+                <div class="boardx-card position-relative h-100 bg-white">
                     <?php if ($image) { ?>
                         <div class="featured-img">
                             <?php
