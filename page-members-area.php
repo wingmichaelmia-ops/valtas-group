@@ -177,8 +177,10 @@ endif;
                                         </div>
                                         <?php
                                 echo '<img src="' . esc_url(get_template_directory_uri() . '/img/newspaper.jpg') . '" class="img-fluid w-100 featured-img" alt="Download Available">';
-                            } else {
+                            }  elseif($download){
                                 echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
+                            } else {
+                                
                             } ?>
                             <div class="article-content">
                                 <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
@@ -204,8 +206,10 @@ endif;
                                         ?>
                                         </div>
                                         <?php
-                                    } else {
+                                    }  elseif($download){
                                         echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
+                                    } else {
+                                        
                                     } ?>
                                     <div class="article-content">
                                         <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
@@ -352,8 +356,10 @@ endif;
                                         </div>
                                         <?php
                                 echo '<img src="' . esc_url(get_template_directory_uri() . '/img/newspaper.jpg') . '" class="img-fluid w-100 featured-img" alt="Download Available">';
-                            } else {
+                            } elseif($download){
                                 echo '<img src="' . esc_url(get_template_directory_uri() . '/img/note.png') . '" class="img-fluid mb-3" alt="Read More">';
+                            } else {
+                                
                             } ?>
                             <div class="article-content">
                                 <h3 class="boardx-title mb-1"><?php the_title(); ?></h3>
