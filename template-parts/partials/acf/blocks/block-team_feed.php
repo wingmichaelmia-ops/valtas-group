@@ -101,12 +101,13 @@ $args = wp_parse_args($args ?? [], $defaults);
                         <div class="modal-content">
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             <div class="row g-5 team-profile">
-                                <div class="col-md-4">
+                                <div class="col-md-4 text-center">
                                      <div class="tp-image">
                                         <?php if ( $image_url ) : ?>
                                             <img src="<?php echo esc_url($image_url); ?>" alt="<?php the_title(); ?>" class="card-img-top">
                                         <?php endif; ?>
-                                    </div>               
+                                    </div>
+                                    <a href="<?php the_permalink(); ?>" target="_blank" class="btn btn-primary mt-4">View Profile</a>               
                                 </div>
                                 <div class="col-md-8">
                                     <div class="row align-items-center">
@@ -125,6 +126,7 @@ $args = wp_parse_args($args ?? [], $defaults);
                                                     <?php if ( $email ) : ?>
                                                         <a href="mailto:<?php echo antispambot($email); ?>" class="socials"><img src="<?php echo get_template_directory_uri() . '/img/email.svg'?>"></a>
                                                     <?php endif; ?>
+                                                    
 												</div>
 											</div>
                                             

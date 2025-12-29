@@ -18,7 +18,7 @@ $resume    = get_field('team_resume');
 $popid = strtolower( preg_replace( '/[^a-z0-9_-]/', '', str_replace( ' ', '', get_the_title() ) ) );
 ?>
 <div class="team-profile-popup">
-    <div class="bg-primary pt-5">
+    <div class="bg-primary mt-5 pt-5">
         <div class="container py-5">
             <div class="row g-5 team-profile pt-5">
                 <div class="col-md-4">
