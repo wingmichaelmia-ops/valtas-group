@@ -13037,13 +13037,12 @@ blockquote.blockquote, blockquote.wp-block-quote {
   content: "";
 }
 
-.highlight {
-  background-color: #009FED;
-  display: inline-block;
-  padding: 0 10px 12px;
-  color: #fff;
-}
-
+/*.highlight {
+    background-color: $tertiary;
+    display: inline-block;
+    padding: 0 10px 12px;
+    color: #fff;
+}*/
 .bg-light-blue {
   background: rgba(0, 159, 237, 0.1);
 }
