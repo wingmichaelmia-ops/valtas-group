@@ -32,7 +32,7 @@ $args = wp_parse_args($args ?? [], $default);
     $('.logo-center').slick({
         centerMode: true,
         centerPadding: '60px',
-        slidesToShow: 4,
+        slidesToShow: 3,
         autoplay: true,
         responsive: [
             {
